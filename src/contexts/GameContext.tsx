@@ -34,6 +34,8 @@ let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
 let fmSynth: Tone.FMSynth;
+let tickSynth: Tone.MembraneSynth;
+
 
 if (typeof window !== 'undefined') {
   const volume = 10;
@@ -80,6 +82,14 @@ if (typeof window !== 'undefined') {
     modulationEnvelope: { attack: 0.01, decay: 0.2, release: 0.2 }
   }).toDestination();
   fmSynth.volume.value = volume;
+
+  tickSynth = new Tone.MembraneSynth({
+    pitchDecay: 0.01,
+    octaves: 6,
+    oscillator: { type: 'sine' },
+    envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.1 },
+  }).toDestination();
+  tickSynth.volume.value = volume - 5;
 }
 
 
@@ -162,7 +172,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
         break;
       case 'tick':
-        synth.triggerAttackRelease('C5', '32n', now);
+        tickSynth.triggerAttackRelease('C5', '32n', now);
         break;
     }
   };
