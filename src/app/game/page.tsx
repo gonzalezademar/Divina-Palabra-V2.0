@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGame } from '@/contexts/GameContext';
 import { GameHeader } from '@/components/game/GameHeader';
@@ -13,18 +13,38 @@ import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Trophy, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
-const challenges = {
+const challengesData = {
   'find-word': [
-    { question: "SENEGIS", answer: "GENESIS", hint: "El primer libro de la Biblia." },
-    { question: "XODOE", answer: "EXODO", hint: "El libro de la salida de Egipto." },
-    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "El último libro, lleno de profecías." },
+    { question: "SENEGIS", answer: "GENESIS", hint: "EL PRIMER LIBRO DE LA BIBLIA." },
+    { question: "XODOE", answer: "EXODO", hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
+    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
   ],
   'complete-phrase': [
-    { question: "En el principio creó Dios los cielos y la _____", answer: "TIERRA", hint: "Lo opuesto al cielo." },
-    { question: "El Señor es mi pastor, nada me _____", answer: "FALTARA", hint: "Verbo que significa 'carecer'." },
-    { question: "Porque de tal manera amó Dios al mundo, que ha dado a su Hijo unigénito, para que todo aquel que en él cree, no se pierda, mas tenga vida _____", answer: "ETERNA", hint: "Que no tiene fin." },
+    { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
+    { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
+    { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO UNIGENITO, PARA QUE TODO AQUEL QUE EN EL CREE, NO SE PIERDA, MAS TENGA VIDA _____", answer: "ETERNA", hint: "QUE NO TIENE FIN." },
   ]
 };
+
+// Función para barajar un array (Fisher-Yates shuffle)
+const shuffleArray = (array: any[]) => {
+  let currentIndex = array.length,  randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex > 0) {
+
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+
+  return array;
+}
+
 
 export default function GamePage() {
   const router = useRouter();
@@ -36,6 +56,12 @@ export default function GamePage() {
   const [timeLeft, setTimeLeft] = useState(30);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
+
+  // Barajar los desafíos al iniciar el juego
+  const challenges = useMemo(() => {
+      if (!gameMode) return [];
+      return shuffleArray([...challengesData[gameMode]]);
+  }, [gameMode]);
 
   useEffect(() => {
     if (!gameMode) {
@@ -53,12 +79,11 @@ export default function GamePage() {
     return () => clearInterval(timer);
   }, [timeLeft, isPracticeMode, feedback, gameOver]);
 
-  if (!gameMode) {
+  if (!gameMode || challenges.length === 0) {
     return null;
   }
   
-  const currentChallenges = challenges[gameMode];
-  const challenge = currentChallenges[currentChallengeIndex];
+  const challenge = challenges[currentChallengeIndex];
 
   const handleAnswer = (isCorrect: boolean) => {
     if (isCorrect) {
@@ -86,7 +111,7 @@ export default function GamePage() {
           nextChallengeIndex = currentChallengeIndex + 1;
         }
 
-        if (nextChallengeIndex >= currentChallenges.length) {
+        if (nextChallengeIndex >= challenges.length) {
             setGameOver(true);
         } else {
             setCurrentChallengeIndex(nextChallengeIndex);
@@ -127,7 +152,10 @@ export default function GamePage() {
                         </div>
                       </>
                     ) : (
-                      <h3 className="text-2xl font-bold">¡Completaste el desafío!</h3>
+                      <>
+                        <h3 className="text-2xl font-bold">¡Completaste el desafío!</h3>
+                        <p className="text-lg">Puntuación final: {teams[0].score} puntos</p>
+                      </>
                     )}
                     <Button onClick={() => { resetGame(); router.push('/') }} size="lg">Jugar de Nuevo</Button>
                 </CardContent>
@@ -203,13 +231,13 @@ export default function GamePage() {
                     <span>{team.name}</span>
                     <span>{team.score} pts</span>
                   </div>
-                  <Progress value={(team.score / (currentChallenges.length * 10)) * 100} />
+                  <Progress value={(team.score / (challenges.length * 10)) * 100} />
                 </div>
               ))}
               <Alert>
                 <AlertTitle className="font-bold">Progreso del Juego</AlertTitle>
                 <AlertDescription>
-                  Ronda {currentChallengeIndex + 1} de {currentChallenges.length}.
+                  Ronda {currentChallengeIndex + 1} de {challenges.length}.
                 </AlertDescription>
               </Alert>
             </CardContent>
