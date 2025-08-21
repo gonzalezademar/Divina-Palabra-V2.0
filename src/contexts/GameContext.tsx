@@ -25,8 +25,6 @@ interface GameContextType {
   resetGame: () => void;
   roundTime: number;
   setRoundTime: (time: number) => void;
-  waitTime: number;
-  setWaitTime: (time: number) => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -94,7 +92,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [roundTime, setRoundTime] = useState(30);
-  const [waitTime, setWaitTime] = useState(5);
   
   useEffect(() => {
     const savedTeams = localStorage.getItem('gameTeams');
@@ -111,20 +108,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (savedRoundTime) {
       setRoundTime(JSON.parse(savedRoundTime));
     }
-     const savedWaitTime = localStorage.getItem('waitTime');
-    if (savedWaitTime) {
-      setWaitTime(JSON.parse(savedWaitTime));
-    }
   }, []);
 
   const handleSetRoundTime = (time: number) => {
     setRoundTime(time);
     localStorage.setItem('roundTime', JSON.stringify(time));
-  };
-  
-  const handleSetWaitTime = (time: number) => {
-    setWaitTime(time);
-    localStorage.setItem('waitTime', JSON.stringify(time));
   };
 
   const setTeams = (newTeams: Team[]) => {
@@ -185,7 +173,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime, waitTime, setWaitTime: handleSetWaitTime }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
       {children}
     </GameContext.Provider>
   );

@@ -10,7 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Hourglass } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
 const findWordLevel1 = [
@@ -94,18 +94,14 @@ const scrambleWord = (challenge: any, level: number) => {
     return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled;
 }
 
-type TurnPhase = 'showing_hint' | 'answering' | 'feedback';
-
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, waitTime } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [timeLeft, setTimeLeft] = useState(roundTime);
-  const [waitTimer, setWaitTimer] = useState(waitTime);
-  const [turnPhase, setTurnPhase] = useState<TurnPhase>('showing_hint');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -130,38 +126,24 @@ export default function GamePage() {
   useEffect(() => {
     if (!gameMode) {
       router.push('/');
-    }
-    if (gameMode === 'complete-phrase') {
-      setTurnPhase('answering'); // Skip hint phase for complete-phrase
     } else {
-      setWaitTimer(waitTime);
-      setTurnPhase('showing_hint');
+        setTimeLeft(roundTime);
     }
-  }, [gameMode, router, waitTime]);
+  }, [gameMode, router, roundTime]);
   
   useEffect(() => {
     if (isPracticeMode || gameOver || feedback) return;
 
-    let timer: NodeJS.Timeout;
-
-    if (turnPhase === 'showing_hint') {
-      if (waitTimer > 0) {
-        timer = setInterval(() => setWaitTimer(t => t - 1), 1000);
-      } else {
-        setTurnPhase('answering');
-        setTimeLeft(roundTime);
-      }
-    } else if (turnPhase === 'answering') {
-      if (timeLeft > 0) {
-        timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
-      } else {
-        playSound('times-up');
-        handleAnswer(false);
-      }
+    if (timeLeft > 0) {
+      const timer = setInterval(() => {
+        setTimeLeft((t) => t - 1);
+      }, 1000);
+      return () => clearInterval(timer);
+    } else {
+      playSound('times-up');
+      handleAnswer(false);
     }
-
-    return () => clearInterval(timer);
-  }, [turnPhase, waitTimer, timeLeft, isPracticeMode, gameOver, roundTime, feedback]);
+  }, [timeLeft, isPracticeMode, gameOver, feedback]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
@@ -170,7 +152,7 @@ export default function GamePage() {
   const challenge = challenges[currentChallengeIndex];
 
   const handleAnswer = (isCorrect: boolean) => {
-    if (turnPhase === 'feedback') return;
+    if(feedback) return;
 
     if (isCorrect) {
       playSound('correct');
@@ -180,8 +162,6 @@ export default function GamePage() {
       playSound('incorrect');
       setFeedback('incorrect');
     }
-    
-    setTurnPhase('feedback');
     
     setTimeout(() => {
         setFeedback(null);
@@ -196,13 +176,7 @@ export default function GamePage() {
             if (teams.length > 0) {
               setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
             }
-            if(gameMode === 'find-word'){
-              setTurnPhase('showing_hint');
-              setWaitTimer(waitTime);
-            } else {
-              setTurnPhase('answering');
-              setTimeLeft(roundTime);
-            }
+            setTimeLeft(roundTime);
         }
     }, 2000);
   };
@@ -264,20 +238,10 @@ export default function GamePage() {
               </CardTitle>
               <div className="flex items-center gap-4 justify-center text-muted-foreground">
                 {!isPracticeMode && (
-                    <>
-                      {turnPhase === 'showing_hint' && gameMode === 'find-word' && (
-                        <div className="flex items-center gap-2 text-lg">
-                          <Hourglass className="w-5 h-5"/>
-                          <span>Preparate: {waitTimer}s</span>
-                        </div>
-                      )}
-                       {turnPhase === 'answering' && (
-                        <div className="flex items-center gap-2 text-lg">
-                            <Clock className="w-5 h-5"/>
-                            <span>Tiempo: {timeLeft}s</span>
-                        </div>
-                       )}
-                    </>
+                    <div className="flex items-center gap-2 text-lg">
+                        <Clock className="w-5 h-5"/>
+                        <span>Tiempo: {timeLeft}s</span>
+                    </div>
                 )}
                 {currentLevel && (
                     <div className="flex items-center gap-2">
@@ -288,7 +252,7 @@ export default function GamePage() {
               </div>
             </CardHeader>
             <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-6">
-              {turnPhase === 'feedback' && feedback && (
+              {feedback && (
                   <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
@@ -297,25 +261,23 @@ export default function GamePage() {
                     {feedback === 'incorrect' && <p>La respuesta era: {challenge.answer}</p>}
                   </div>
               )}
-              {turnPhase !== 'feedback' && (
+              {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
                     <p className="text-lg text-muted-foreground">{challenge.hint}</p>
-                    <h2 className={`text-4xl md:text-5xl font-bold tracking-widest font-headline ${turnPhase === 'showing_hint' ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}>
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline">
                         {challenge.question}
                     </h2>
-                    <div className={turnPhase === 'showing_hint' ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
-                      <Input
-                        value={answer}
-                        onChange={(e) => setAnswer(e.target.value)}
-                        onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
-                        placeholder="Escribe tu respuesta aquí"
-                        className="text-center text-xl h-14"
-                        disabled={turnPhase !== 'answering'}
-                      />
-                      <Button onClick={submitAnswer} size="lg" className="w-full text-lg mt-4" disabled={!answer || turnPhase !== 'answering'}>
-                        Enviar Respuesta
-                      </Button>
-                    </div>
+                    <Input
+                      value={answer}
+                      onChange={(e) => setAnswer(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
+                      placeholder="Escribe tu respuesta aquí"
+                      className="text-center text-xl h-14"
+                      disabled={!!feedback}
+                    />
+                    <Button onClick={submitAnswer} size="lg" className="w-full text-lg mt-4" disabled={!answer || !!feedback}>
+                      Enviar Respuesta
+                    </Button>
                   </div>
               )}
             </CardContent>
