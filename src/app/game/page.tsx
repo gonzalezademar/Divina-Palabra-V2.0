@@ -29,6 +29,21 @@ const findWordLevel1 = [
     { answer: "ANGEL", syllables: ["AN", "GEL"], hint: "MENSAJERO CELESTIAL." },
     { answer: "GOLIAT", syllables: ["GO", "LIAT"], hint: "GIGANTE DERROTADO POR DAVID." },
     { answer: "SANSON", syllables: ["SAN", "SON"], hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
+    { answer: "DANIEL", syllables: ["DA", "NIEL"], hint: "PROFETA EN EL FOSO DE LOS LEONES." },
+    { answer: "ISAIAS", syllables: ["I", "SA", "IAS"], hint: "PROFETA QUE ANUNCIO AL MESIAS." },
+    { answer: "JONAS", syllables: ["JO", "NAS"], hint: "PROFETA QUE FUE TRAGADO POR UN GRAN PEZ." },
+    { answer: "RUT", syllables: ["RUT"], hint: "MOABITA, ANTEPASADA DE DAVID." },
+    { answer: "ESTER", syllables: ["ES", "TER"], hint: "REINA JUDIA QUE SALVO A SU PUEBLO." },
+    { answer: "JOB", syllables: ["JOB"], hint: "HOMBRE JUSTO QUE SUFRIO GRANDES PRUEBAS." },
+    { answer: "LEVI", syllables: ["LE", "VI"], hint: "UNO DE LOS DOCE HIJOS DE JACOB." },
+    { answer: "MARIA", syllables: ["MA", "RI", "A"], hint: "MADRE DE JESUS." },
+    { answer: "PEDRO", syllables: ["PE", "DRO"], hint: "APOSTOL QUE NEGO A JESUS TRES VECES." },
+    { answer: "PABLO", syllables: ["PA", "BLO"], hint: "APOSTOL DE LOS GENTILES." },
+    { answer: "JUAN", syllables: ["JUAN"], hint: "EL DISCIPULO AMADO." },
+    { answer: "LUCAS", syllables: ["LU", "CAS"], hint: "MEDICO Y AUTOR DE UN EVANGELIO." },
+    { answer: "MATEO", syllables: ["MA", "TE", "O"], hint: "RECAUDADOR DE IMPUESTOS Y APOSTOL." },
+    { answer: "JUDAS", syllables: ["JU", "DAS"], hint: "EL QUE TRAICIONO A JESUS." },
+    { answer: "SATANAS", syllables: ["SA", "TA", "NAS"], hint: "EL ADVERSARIO." },
 ];
 
 const findWordLevel2 = [
@@ -47,6 +62,21 @@ const findWordLevel2 = [
     { answer: "TABERNACULO", hint: "SANTUARIO PORTATIL DE LOS ISRAELITAS." },
     { answer: "ZARZA", hint: "DONDE DIOS HABLO A MOISES." },
     { answer: "BALSAMO", hint: "RESINA AROMATICA DE GALAAD." },
+    { answer: "BETESDA", hint: "ESTANQUE EN JERUSALEN DE 5 PORTICOS." },
+    { answer: "CALVARIO", hint: "LUGAR DE LA CRUCIFIXION, GOLGOTA." },
+    { answer: "CENA", hint: "LA ULTIMA COMIDA DE JESUS CON SUS DISCIPULOS." },
+    { answer: "DISCIPULO", hint: "SEGUIDOR Y APRENDIZ DE JESUS." },
+    { answer: "EVANGELIO", hint: "LAS BUENAS NUEVAS DE SALVACION." },
+    { answer: "FILISTEOS", hint: "PUEBLO ENEMIGO DE ISRAEL EN LA COSTA." },
+    { answer: "GALILEA", hint: "REGION NORTE DE ISRAEL DONDE JESUS MINISTRO." },
+    { answer: "HEBREOS", hint: "PUEBLO ELEGIDO DE DIOS, ISRAELITAS." },
+    { answer: "INCIENSO", hint: "SUSTANCIA AROMATICA QUEMADA EN EL TEMPLO." },
+    { answer: "JERICO", hint: "CIUDAD CUYOS MUROS CAYERON." },
+    { answer: "LEPROSO", hint: "ENFERMO DE LA PIEL SANADO POR JESUS." },
+    { answer: "MILAGRO", hint: "HECHO SOBRENATURAL REALIZADO POR DIOS." },
+    { answer: "NEFILIM", hint: "GIGANTES MENCIONADOS EN GENESIS." },
+    { answer: "OFRENDA", hint: "REGALO DADO A DIOS COMO ACTO DE ADORACION." },
+    { answer: "QUERUBIN", hint: "TIPO DE ANGEL QUE GUARDA EL EDEN." },
 ];
 
 const completePhraseChallenges = [
@@ -70,6 +100,26 @@ const completePhraseChallenges = [
     { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
     { question: "LOS CIELOS CUENTAN LA ____ DE DIOS", answer: "GLORIA", hint: "HONRA, ESPLENDOR." },
     { question: "SI DIOS ES POR NOSOTROS, ¿QUIEN CONTRA ____?", answer: "NOSOTROS", hint: "PRONOMBRE PERSONAL." },
+    { question: "ORANDO EN TODO TIEMPO CON TODA ORACION Y _____", answer: "SUPLICA", hint: "RUEGO, PETICION." },
+    { question: "EL GOZO DEL SENOR ES VUESTRA _____", answer: "FORTALEZA", hint: "VIGOR, FUERZA." },
+    { question: "POR GRACIA SOIS SALVOS POR MEDIO DE LA _____", answer: "FE", hint: "CREENCIA, CONFIANZA." },
+    { question: "LA HIERBA SE SECA, Y LA FLOR SE _____", answer: "MARCHITA", hint: "PERDER LA FRESCURA Y EL COLOR." },
+    { question: "MI PUEBLO FUE DESTRUIDO PORQUE LE FALTO _____", answer: "CONOCIMIENTO", hint: "SABER, ENTENDIMIENTO." },
+    { question: "NO OS CONFORMEIS A ESTE _____", answer: "SIGLO", hint: "MUNDO, EPOCA." },
+    { question: "SOMOS HECHURA SUYA, CREADOS EN CRISTO JESUS PARA BUENAS _____", answer: "OBRAS", hint: "ACCIONES, TRABAJOS." },
+    { question: "EL QUE NO AMA, NO HA CONOCIDO A _____", answer: "DIOS", hint: "EL SER SUPREMO." },
+    { question: "YO ESTOY A LA PUERTA Y _____", answer: "LLAMO", hint: "ACCION DE TOCAR PARA QUE ABRAN." },
+    { question: "EL QUE PERSEVERE HASTA EL FIN, ESTE SERA _____", answer: "SALVO", hint: "LIBERADO DE PELIGRO O CONDENACION." },
+    { question: "NO TEMAS, PORQUE YO ESTOY _____", answer: "CONTIGO", hint: "A TU LADO." },
+    { question: "MI YUGO ES FACIL, Y LIGERA MI _____", answer: "CARGA", hint: "PESO, RESPONSABILIDAD." },
+    { question: "EL QUE SE HUMILLA SERA _____", answer: "ENALTECIDO", hint: "LEVANTADO, EXALTADO." },
+    { question: "SOBRE TODA COSA GUARDADA, GUARDA TU _____", answer: "CORAZON", hint: "ORGANO DEL AMOR Y LOS SENTIMIENTOS." },
+    { question: "LA LAMPARA DEL CUERPO ES EL _____", answer: "OJO", hint: "ORGANO DE LA VISION." },
+    { question: "NINGUNO PUEDE SERVIR A DOS _____", answer: "SENORES", hint: "AMOS, DUEÑOS." },
+    { question: "EL QUE ESTA EN CRISTO, NUEVA ____ ES", answer: "CRIATURA", hint: "SER CREADO." },
+    { question: "MAS LA SENDA DE LOS JUSTOS ES COMO LA LUZ DE LA _____", answer: "AURORA", hint: "PRIMERA LUZ DEL DIA." },
+    { question: "NO TE DEJES VENCER DE LO MALO, SINO VENCE CON EL BIEN EL _____", answer: "MAL", hint: "LO CONTRARIO AL BIEN." },
+    { question: "HIJO MIO, NO TE OLVIDES DE MI _____", answer: "LEY", hint: "CONJUNTO DE PRECEPTOS." },
 ];
 
 const guessPhraseChallenges = [
@@ -83,6 +133,16 @@ const guessPhraseChallenges = [
     { phrase: "EN EL PRINCIPIO ERA EL VERBO", hint: "JUAN 1:1" },
     { phrase: "ORAD SIN CESAR", hint: "1 TESALONICENSES 5:17" },
     { phrase: "LA FE MUEVE MONTANAS", hint: "MATEO 17:20" },
+    { phrase: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA TIERRA", hint: "GENESIS 1:1" },
+    { phrase: "NO SOLO DE PAN VIVIRA EL HOMBRE", hint: "MATEO 4:4" },
+    { phrase: "YO Y EL PADRE UNO SOMOS", hint: "JUAN 10:30" },
+    { phrase: "YO SOY EL CAMINO Y LA VERDAD Y LA VIDA", hint: "JUAN 14:6" },
+    { phrase: "EL PRINCIPIO DE LA SABIDURIA ES EL TEMOR DE JEHOVA", hint: "PROVERBIOS 1:7" },
+    { phrase: "SI DIOS ES POR NOSOTROS QUIEN CONTRA NOSOTROS", hint: "ROMANOS 8:31" },
+    { phrase: "POR GRACIA SOIS SALVOS POR MEDIO DE LA FE", hint: "EFESIOS 2:8" },
+    { phrase: "YO ESTOY A LA PUERTA Y LLAMO", hint: "APOCALIPSIS 3:20" },
+    { phrase: "NO TEMAS PORQUE YO ESTOY CONTIGO", hint: "ISAIAS 41:10" },
+    { phrase: "SOBRE TODA COSA GUARDADA GUARDA TU CORAZON", hint: "PROVERBIOS 4:23" },
 ];
 
 
@@ -227,10 +287,6 @@ export default function GamePage() {
       playSound('incorrect');
       setFeedback('incorrect');
     }
-    
-    setTimeout(() => {
-        handleNextTurn();
-    }, 2000);
   };
   
   const submitAnswer = () => {
@@ -255,7 +311,6 @@ export default function GamePage() {
             const newLives = updateLives(currentTeamIndex, -1);
             if (newLives <= 0) {
                 setFeedback('incorrect'); // Team is out of lives for this round
-                setTimeout(() => handleNextTurn(), 2000);
             }
         }
     } else {
@@ -265,7 +320,6 @@ export default function GamePage() {
         if (revealedLetters.length === phraseLetters.length) {
             setFeedback('correct');
             if(!isPracticeMode) updateScore(currentTeamIndex, 20); // More points for solving the phrase
-            setTimeout(() => handleNextTurn(), 2000);
         }
     }
     if (teams.length > 1) {
@@ -283,14 +337,13 @@ export default function GamePage() {
           playSound('incorrect');
           setFeedback('incorrect');
           if (!isPracticeMode) {
-            updateLives(currentTeamIndex, -2); // Penalty for wrong guess
-            if (updateLives(currentTeamIndex, 0) <= 0) {
-                setTimeout(() => handleNextTurn(), 2000);
+            const newLives = updateLives(currentTeamIndex, -2); // Penalty for wrong guess
+            if (newLives <= 0) {
+                // The feedback is already set to incorrect, so the Continue button will show.
                 return;
             }
           }
       }
-      setTimeout(() => handleNextTurn(), 2000);
   }
   
   const winner = teams.length > 0 
@@ -432,12 +485,13 @@ export default function GamePage() {
             </CardHeader>
             <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-4 p-4">
               {feedback && (
-                  <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
+                  <div className={`w-full animate-fade-in flex flex-col items-center justify-center space-y-4 ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
                     {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer || challenge.phrase}</span></p>}
+                    <Button onClick={handleNextTurn} size="lg">Continuar</Button>
                   </div>
               )}
               {!feedback && (
@@ -485,5 +539,3 @@ export default function GamePage() {
     </div>
   );
 }
-
-    
