@@ -7,9 +7,10 @@ import * as Tone from 'tone';
 type Team = {
   name: string;
   score: number;
+  lives: number;
 };
 
-type GameMode = 'find-word' | 'complete-phrase';
+type GameMode = 'find-word' | 'complete-phrase' | 'guess-the-phrase';
 
 interface GameContextType {
   teams: Team[];
@@ -22,6 +23,7 @@ interface GameContextType {
   toggleSound: () => void;
   playSound: (sound: 'correct' | 'incorrect' | 'click' | 'times-up' | 'tick') => void;
   updateScore: (teamIndex: number, points: number) => void;
+  updateLives: (teamIndex: number, change: number) => number;
   resetGame: () => void;
   roundTime: number;
   setRoundTime: (time: number) => void;
@@ -92,23 +94,27 @@ if (typeof window !== 'undefined') {
   tickSynth.volume.value = -20;
 }
 
+const INITIAL_LIVES = 5;
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [teams, setTeamsState] = useState<Team[]>([
-    { name: 'Equipo 1', score: 0 },
-    { name: 'Equipo 2', score: 0 },
+    { name: 'Equipo 1', score: 0, lives: INITIAL_LIVES },
+    { name: 'Equipo 2', score: 0, lives: INITIAL_LIVES },
   ]);
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [roundTime, setRoundTime] = useState(30);
   
+  const resetTeamStats = (teams: Team[]) => {
+    return teams.map(team => ({...team, score: 0, lives: INITIAL_LIVES}));
+  }
+
   useEffect(() => {
     const savedTeams = localStorage.getItem('gameTeams');
     if (savedTeams) {
       const parsedTeams = JSON.parse(savedTeams);
-      const teamsWithResetScores = parsedTeams.map((team: any) => ({ ...team, score: 0 }));
-      setTeamsState(teamsWithResetScores);
+      setTeamsState(resetTeamStats(parsedTeams));
     }
     const savedSound = localStorage.getItem('soundOn');
     if (savedSound) {
@@ -126,13 +132,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const setTeams = (newTeams: Team[]) => {
-    setTeamsState(newTeams.map(t => ({...t, score: 0})));
-    localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name, score: 0 }))));
+    const teamsWithStats = newTeams.map(t => ({...t, score: 0, lives: INITIAL_LIVES}));
+    setTeamsState(teamsWithStats);
+    localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name }))));
   };
   
   const resetGame = () => {
     setGameMode(null);
-    setTeamsState(prevTeams => prevTeams.map(team => ({...team, score: 0})));
+    setTeamsState(prevTeams => resetTeamStats(prevTeams));
   }
 
   const toggleSound = () => {
@@ -188,8 +195,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
+  const updateLives = (teamIndex: number, change: number): number => {
+      let newLives = 0;
+      setTeamsState(prevTeams => {
+        const newTeams = [...prevTeams];
+        const currentLives = newTeams[teamIndex].lives;
+        newLives = Math.max(0, currentLives + change);
+        newTeams[teamIndex].lives = newLives;
+        return newTeams;
+    });
+    return newLives;
+  };
+
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
       {children}
     </GameContext.Provider>
   );
@@ -202,3 +221,5 @@ export const useGame = () => {
   }
   return context;
 };
+
+    

@@ -9,7 +9,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll, Clock } from 'lucide-react';
+import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll, Clock, Palette } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 import { Slider } from '@/components/ui/slider';
 
@@ -28,7 +28,7 @@ export default function HomePage() {
     setTeams(newTeams);
   };
 
-  const startGame = (mode: 'find-word' | 'complete-phrase') => {
+  const startGame = (mode: 'find-word' | 'complete-phrase' | 'guess-the-phrase') => {
     playSound('click');
     setGameMode(mode);
     router.push('/game');
@@ -47,17 +47,17 @@ export default function HomePage() {
         <Card className="w-full bg-card/80 backdrop-blur-sm border-primary/20 shadow-2xl shadow-primary/10">
           <CardHeader className="pt-4 pb-2">
             <div className="flex justify-center items-center gap-2 mb-1">
-              <BookOpen className="w-6 h-6 text-primary" />
-              <Crown className="w-8 h-8 text-primary" />
-              <Scroll className="w-6 h-6 text-primary" />
+              <BookOpen className="w-5 h-5 text-primary" />
+              <Crown className="w-6 h-6 text-primary" />
+              <Scroll className="w-5 h-5 text-primary" />
             </div>
-            <CardTitle className="font-headline text-3xl text-primary">Encuentra la Palabra</CardTitle>
+            <CardTitle className="font-headline text-2xl text-primary">Encuentra la Palabra</CardTitle>
             <p className="text-xs text-muted-foreground">Saludos a Braian y Alexis</p>
             <CardDescription className="text-muted-foreground text-md">Edición Bíblica</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 p-4 pt-2">
             <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
-              <h3 className="font-headline text-xl flex items-center justify-center gap-2 text-accent-foreground/80"><Users className="w-5 h-5 text-accent"/> Configuración de Equipos</h3>
+              <h3 className="font-headline text-lg flex items-center justify-center gap-2 text-accent-foreground/80"><Users className="w-5 h-5 text-accent"/> Configuración de Equipos</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {teams.map((team, index) => (
                   <div key={index} className="flex items-center gap-2">
@@ -75,11 +75,12 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.4s'}}>
-              <h3 className="font-headline text-xl flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-5 h-5 text-accent" /> Elige el Desafío</h3>
-              <Tabs defaultValue="find-word" className="w-full max-w-sm mx-auto">
-                <TabsList className="grid w-full grid-cols-2 h-auto p-1 bg-muted/50">
-                  <TabsTrigger value="find-word" className="py-2 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Encuentra la Palabra</TabsTrigger>
-                  <TabsTrigger value="complete-phrase" className="py-2 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Completa la Frase</TabsTrigger>
+              <h3 className="font-headline text-lg flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-5 h-5 text-accent" /> Elige el Desafío</h3>
+              <Tabs defaultValue="find-word" className="w-full max-w-md mx-auto">
+                <TabsList className="grid w-full grid-cols-3 h-auto p-1 bg-muted/50">
+                  <TabsTrigger value="find-word" className="data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-16 whitespace-normal bg-transparent">Encuentra la Palabra</TabsTrigger>
+                  <TabsTrigger value="complete-phrase" className="data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-16 whitespace-normal bg-transparent">Completa la Frase</TabsTrigger>
+                   <TabsTrigger value="guess-the-phrase" className="data-[state=active]:bg-primary/90 data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-16 whitespace-normal bg-transparent">Adivina la Frase</TabsTrigger>
                 </TabsList>
                 <TabsContent value="find-word" className="pt-2">
                   <p className="text-muted-foreground text-sm">Descifra las palabras bíblicas revueltas. ¡Pon a prueba tu agilidad mental!</p>
@@ -88,6 +89,10 @@ export default function HomePage() {
                 <TabsContent value="complete-phrase" className="pt-2">
                    <p className="text-muted-foreground text-sm">Completa los versículos y frases célebres de la Biblia. ¿Recuerdas cómo terminan?</p>
                    <Button onClick={() => startGame('complete-phrase')} size="lg" className="mt-3 w-full font-bold text-lg">Jugar a Completar</Button>
+                </TabsContent>
+                 <TabsContent value="guess-the-phrase" className="pt-2">
+                   <p className="text-muted-foreground text-sm">Adivina la frase oculta letra por letra. ¡Como el ahorcado!</p>
+                   <Button onClick={() => startGame('guess-the-phrase')} size="lg" className="mt-3 w-full font-bold text-lg">Jugar a Adivinar</Button>
                 </TabsContent>
               </Tabs>
             </div>
@@ -123,3 +128,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    

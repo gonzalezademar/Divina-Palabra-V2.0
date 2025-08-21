@@ -10,7 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users, Heart } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
 const findWordLevel1 = [
@@ -29,21 +29,6 @@ const findWordLevel1 = [
     { answer: "ANGEL", syllables: ["AN", "GEL"], hint: "MENSAJERO CELESTIAL." },
     { answer: "GOLIAT", syllables: ["GO", "LIAT"], hint: "GIGANTE DERROTADO POR DAVID." },
     { answer: "SANSON", syllables: ["SAN", "SON"], hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
-    { answer: "EVANGELIO", syllables: ["E", "VAN", "GE", "LIO"], hint: "SIGNIFICA 'BUENA NUEVA'." },
-    { answer: "BAUTISMO", syllables: ["BAU", "TIS", "MO"], hint: "RITO DE INICIACION CRISTIANO CON AGUA." },
-    { answer: "ISRAEL", syllables: ["IS", "RA", "EL"], hint: "PUEBLO ELEGIDO DE DIOS." },
-    { answer: "DISCIPULO", syllables: ["DIS", "CI", "PU", "LO"], hint: "SEGUIDOR O ALUMNO." },
-    { answer: "GETSEMANI", syllables: ["GET", "SE", "MA", "NI"], hint: "JARDIN DONDE ORO JESUS ANTES DE SER ARRESTADO." },
-    { answer: "GABRIEL", syllables: ["GA", "BRI", "EL"], hint: "ANGEL QUE ANUNCIO EL NACIMIENTO DE JESUS." },
-    { answer: "NAZARENO", syllables: ["NA", "ZA", "RE", "NO"], hint: "GENTILICIO DE JESUS POR SU CIUDAD." },
-    { answer: "FILISTEOS", syllables: ["FI", "LIS", "TE", "OS"], hint: "ENEMIGOS DE ISRAEL EN TIEMPOS DE SANSON." },
-    { answer: "JONAS", syllables: ["JO", "NAS"], hint: "PROFETA QUE FUE TRAGADO POR UN GRAN PEZ." },
-    { answer: "DANIEL", syllables: ["DA", "NI", "EL"], hint: "PROFETA EN EL FOSO DE LOS LEONES." },
-    { answer: "JEREMIAS", syllables: ["JE", "RE", "MI", "AS"], hint: "EL PROFETA LLORON." },
-    { answer: "ISAIAS", syllables: ["I", "SA", "I", "AS"], hint: "PROFETIZO EL NACIMIENTO DEL MESIAS." },
-    { answer: "EZEQUIEL", syllables: ["E", "ZE", "QUIEL"], hint: "TUVO LA VISION DEL VALLE DE LOS HUESOS SECOS." },
-    { answer: "SAMUEL", syllables: ["SA", "MUEL"], hint: "EL ULTIMO JUEZ DE ISRAEL." },
-    { answer: "PEDRO", syllables: ["PE", "DRO"], hint: "EL APOSTOL QUE NEGO A JESUS TRES VECES." },
 ];
 
 const findWordLevel2 = [
@@ -62,21 +47,6 @@ const findWordLevel2 = [
     { answer: "TABERNACULO", hint: "SANTUARIO PORTATIL DE LOS ISRAELITAS." },
     { answer: "ZARZA", hint: "DONDE DIOS HABLO A MOISES." },
     { answer: "BALSAMO", hint: "RESINA AROMATICA DE GALAAD." },
-    { answer: "LEVIATAN", hint: "CRIATURA MARINA MITICA MENCIONADA EN JOB." },
-    { answer: "HEBREO", hint: "IDIOMA ORIGINAL DE GRAN PARTE DEL ANTIGUO TESTAMENTO." },
-    { answer: "GENTILES", hint: "TERMINO PARA LOS NO JUDIOS." },
-    { answer: "GALILEA", hint: "REGION DONDE JESUS REALIZO GRAN PARTE DE SU MINISTERIO." },
-    { answer: "BETANIA", hint: "PUEBLO DE LAZARO, MARTA Y MARIA." },
-    { answer: "GOLGOTA", hint: "LUGAR DE LA CRUCIFIXION DE JESUS." },
-    { answer: "ARIMATEA", hint: "LUGAR DE ORIGEN DEL HOMBRE QUE ENTERRO A JESUS." },
-    { answer: "NEFILIM", hint: "GIGANTES MENCIONADOS EN GENESIS." },
-    { answer: "PATMOS", hint: "ISLA DONDE JUAN RECIBIO LA REVELACION DEL APOCALIPSIS." },
-    { answer: "UR", hint: "CIUDAD DE ORIGEN DE ABRAHAM." },
-    { answer: "BABILONIA", hint: "IMPERIO QUE DESTRUYO EL PRIMER TEMPLO DE JERUSALEN." },
-    { answer: "DAMASCO", hint: "CAMINO DONDE PABLO TUVO SU CONVERSION." },
-    { answer: "EFESO", hint: "UNA DE LAS SIETE IGLESIAS DEL APOCALIPSIS." },
-    { answer: "ANTICRISTO", hint: "FIGURA OPUESTA A CRISTO EN LA ESCATOLOGIA." },
-    { answer: "QUERUBINES", hint: "ANGELES QUE GUARADABAN LA ENTRADA DEL EDEN." },
 ];
 
 const completePhraseChallenges = [
@@ -100,27 +70,21 @@ const completePhraseChallenges = [
     { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
     { question: "LOS CIELOS CUENTAN LA ____ DE DIOS", answer: "GLORIA", hint: "HONRA, ESPLENDOR." },
     { question: "SI DIOS ES POR NOSOTROS, ¿QUIEN CONTRA ____?", answer: "NOSOTROS", hint: "PRONOMBRE PERSONAL." },
-    { question: "PORQUE NO NOS HA DADO DIOS ESPIRITU DE ____, SINO DE PODER, DE AMOR Y DE DOMINIO PROPIO", answer: "COBARDIA", hint: "FALTA DE VALOR." },
-    { question: "MI PUEBLO FUE DESTRUIDO PORQUE LE FALTO _____", answer: "CONOCIMIENTO", hint: "ENTENDIMIENTO, SABER." },
-    { question: "Y CONOCEREIS LA VERDAD, Y LA VERDAD OS HARA _____", answer: "LIBRES", hint: "SIN ATADURAS." },
-    { question: "ENCOMIENDA A JEHOVA TU CAMINO, Y CONFIA EN EL; Y EL _____", answer: "HARA", hint: "FUTURO DEL VERBO 'HACER'." },
-    { question: "EL HOMBRE NO TENDRA PAZ, NI AUN _____, SI NO TIENE PAZ CON DIOS.", answer: "CONSIGO MISMO", hint: "CON SU PROPIO SER." },
-    { question: "LA HIERBA SE SECA, Y LA FLOR SE MARCHITA; MAS LA PALABRA DEL DIOS NUESTRO PERMANECE PARA _____", answer: "SIEMPRE", hint: "ETERNAMENTE." },
-    { question: "NO OS CONFORMEIS A ESTE SIGLO, SINO ____ POR MEDIO DE LA RENOVACION DE VUESTRO ENTENDIMIENTO.", answer: "TRANSFORMAOS", hint: "CAMBIAR DE FORMA." },
-    { question: "MAYOR ES EL QUE ESTA EN VOSOTROS, QUE EL QUE ESTA EN EL _____", answer: "MUNDO", hint: "EL PLANETA, LA SOCIEDAD." },
-    { question: "EL QUE HABITA AL ABRIGO DEL ALTISIMO, MORARA BAJO LA SOMBRA DEL _____", answer: "OMNIPOTENTE", hint: "QUE TODO LO PUEDE." },
-    { question: "SOBRE TODA COSA GUARDADA, GUARDA TU _____; PORQUE DE EL MANA LA VIDA.", answer: "CORAZON", hint: "ORGANO VITAL, CENTRO DE LAS EMOCIONES." },
-    { question: "NO TE DEJES VENCER DE LO MALO, SINO VENCE CON EL BIEN EL _____", answer: "MAL", hint: "LO CONTRARIO DEL BIEN." },
-    { question: "JEHOVA ES MI LUZ Y MI _____; ¿DE QUIEN TEMERE?", answer: "SALVACION", hint: "LIBERACION DE UN PELIGRO." },
-    { question: "PORQUE MIS PENSAMIENTOS NO SON VUESTROS PENSAMIENTOS, NI VUESTROS CAMINOS MIS _____, DIJO JEHOVA.", answer: "CAMINOS", hint: "RUTAS, SENDEROS." },
-    { question: "LA MANO DE NUESTRO DIOS ES PARA BIEN SOBRE TODOS LOS QUE LE _____", answer: "BUSCAN", hint: "INTENTAN ENCONTRAR." },
-    { question: "MEJOR ES LA SABIDURIA QUE LAS ____ PRECIOSAS.", answer: "PIEDRAS", hint: "MINERALES VALIOSOS." },
-    { question: "TODO TIENE SU _____, Y TODO LO QUE SE QUIERE DEBAJO DEL CIELO TIENE SU HORA.", answer: "TIEMPO", hint: "PERIODO, MOMENTO." },
-    { question: "Y ESTE ES EL AMOR, QUE ANDEMOS SEGUN SUS _____", answer: "MANDAMIENTOS", hint: "ORDENES, PRECEPTOS." },
-    { question: "EL FRUTO DEL ESPIRITU ES AMOR, GOZO, PAZ, PACIENCIA, BENIGNIDAD, BONDAD, _____", answer: "FE", hint: "CONFIANZA, CREENCIA." },
-    { question: "NO TENGAIS MIEDO, MANADA PEQUENA, PORQUE A VUESTRO PADRE LE HA PLACIDO DAROS EL _____", answer: "REINO", hint: "DOMINIO DE UN REY." },
-    { question: "ORAD SIN _____", answer: "CESAR", hint: "SIN DETENERSE." },
 ];
+
+const guessPhraseChallenges = [
+    { phrase: "JEHOVA ES MI LUZ Y MI SALVACION", hint: "SALMO 27:1" },
+    { phrase: "TODO LO PUEDO EN CRISTO QUE ME FORTALECE", hint: "FILIPENSES 4:13" },
+    { phrase: "EL AMOR NUNCA DEJA DE SER", hint: "1 CORINTIOS 13:8" },
+    { phrase: "YO SOY EL ALFA Y LA OMEGA", hint: "APOCALIPSIS 1:8" },
+    { phrase: "LA VERDAD OS HARA LIBRES", hint: "JUAN 8:32" },
+    { phrase: "ESFUERZATE Y SE VALIENTE", hint: "JOSUE 1:9" },
+    { phrase: "EL SENOR ES MI PASTOR", hint: "SALMO 23:1" },
+    { phrase: "EN EL PRINCIPIO ERA EL VERBO", hint: "JUAN 1:1" },
+    { phrase: "ORAD SIN CESAR", hint: "1 TESALONICENSES 5:17" },
+    { phrase: "LA FE MUEVE MONTANAS", hint: "MATEO 17:20" },
+];
+
 
 const shuffleArray = (array: any[]) => {
   let currentIndex = array.length,  randomIndex;
@@ -146,7 +110,7 @@ const scrambleWord = (challenge: any, level: number) => {
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, updateLives } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
@@ -157,12 +121,16 @@ export default function GamePage() {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const lastTickTimeRef = useRef(0);
 
+  // For "Guess the Phrase"
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const [letterInput, setLetterInput] = useState('');
+
   const challenges = useMemo(() => {
     if (!gameMode) return [];
     
     if (gameMode === 'find-word') {
         const allChallenges = shuffleArray([...findWordLevel1, ...findWordLevel2]);
-        return allChallenges.map((challenge, index) => {
+        return allChallenges.map((challenge) => {
             const level = findWordLevel1.some(c => c.answer === challenge.answer) ? 1 : 2;
             return {
                 ...challenge,
@@ -170,8 +138,10 @@ export default function GamePage() {
                 level: level,
             };
         });
-    } else {
+    } else if (gameMode === 'complete-phrase') {
         return shuffleArray([...completePhraseChallenges]);
+    } else { // guess-the-phrase
+        return shuffleArray([...guessPhraseChallenges]);
     }
   }, [gameMode]);
 
@@ -183,9 +153,13 @@ export default function GamePage() {
     }
   }, [gameMode, router, roundTime]);
   
+  const stopTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+  }
+
   useEffect(() => {
-    if (isPracticeMode || gameOver || feedback) {
-        if (timerRef.current) clearInterval(timerRef.current);
+    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase') {
+        stopTimer();
         return;
     }
 
@@ -207,26 +181,43 @@ export default function GamePage() {
         });
       }, 1000);
     } else if (timeLeft <= 0 && !feedback) {
-        if (timerRef.current) clearInterval(timerRef.current);
+        stopTimer();
         playSound('times-up');
         handleAnswer(false);
     }
     
-    return () => {
-        if (timerRef.current) clearInterval(timerRef.current);
-    };
-  }, [timeLeft, isPracticeMode, gameOver, feedback, playSound]);
+    return () => stopTimer();
+  }, [timeLeft, isPracticeMode, gameOver, feedback, playSound, gameMode]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
   }
   
   const challenge = challenges[currentChallengeIndex];
+  const currentTeam = teams[currentTeamIndex];
+
+  const handleNextTurn = () => {
+    setFeedback(null);
+    setAnswer('');
+    setGuessedLetters([]);
+    setLetterInput('');
+    
+    const nextChallengeIndex = currentChallengeIndex + 1;
+    
+    if (nextChallengeIndex >= challenges.length) {
+        setGameOver(true);
+    } else {
+        setCurrentChallengeIndex(nextChallengeIndex);
+        if (teams.length > 0) {
+          setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
+        }
+        if(gameMode !== 'guess-the-phrase') setTimeLeft(roundTime);
+    }
+  }
 
   const handleAnswer = (isCorrect: boolean) => {
     if(feedback) return;
-
-    if (timerRef.current) clearInterval(timerRef.current);
+    stopTimer();
 
     if (isCorrect) {
       playSound('correct');
@@ -238,20 +229,7 @@ export default function GamePage() {
     }
     
     setTimeout(() => {
-        setFeedback(null);
-        setAnswer('');
-        
-        const nextChallengeIndex = currentChallengeIndex + 1;
-        
-        if (nextChallengeIndex >= challenges.length) {
-            setGameOver(true);
-        } else {
-            setCurrentChallengeIndex(nextChallengeIndex);
-            if (teams.length > 0) {
-              setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
-            }
-            setTimeLeft(roundTime);
-        }
+        handleNextTurn();
     }, 2000);
   };
   
@@ -259,6 +237,61 @@ export default function GamePage() {
     const isCorrect = answer.trim().toUpperCase() === challenge.answer.toUpperCase();
     handleAnswer(isCorrect);
   };
+
+  const handleGuessLetter = () => {
+    const letter = letterInput.trim().toUpperCase();
+    if (!letter || letter.length > 1 || guessedLetters.includes(letter)) {
+        setLetterInput('');
+        return;
+    }
+
+    setGuessedLetters([...guessedLetters, letter]);
+    setLetterInput('');
+
+    const phrase = (challenge.phrase || '').toUpperCase();
+    if (!phrase.includes(letter)) {
+        playSound('incorrect');
+        if (!isPracticeMode) {
+            const newLives = updateLives(currentTeamIndex, -1);
+            if (newLives <= 0) {
+                setFeedback('incorrect'); // Team is out of lives for this round
+                setTimeout(() => handleNextTurn(), 2000);
+            }
+        }
+    } else {
+        playSound('correct');
+        const phraseLetters = [...new Set(phrase.replace(/ /g, ''))];
+        const revealedLetters = phraseLetters.filter(l => guessedLetters.includes(l) || l === letter);
+        if (revealedLetters.length === phraseLetters.length) {
+            setFeedback('correct');
+            if(!isPracticeMode) updateScore(currentTeamIndex, 20); // More points for solving the phrase
+            setTimeout(() => handleNextTurn(), 2000);
+        }
+    }
+    if (teams.length > 1) {
+      setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
+    }
+  };
+
+  const handleGuessPhrase = () => {
+      const isCorrect = answer.trim().toUpperCase() === (challenge.phrase || '').toUpperCase();
+      if(isCorrect) {
+          playSound('correct');
+          setFeedback('correct');
+          if(!isPracticeMode) updateScore(currentTeamIndex, 20);
+      } else {
+          playSound('incorrect');
+          setFeedback('incorrect');
+          if (!isPracticeMode) {
+            updateLives(currentTeamIndex, -2); // Penalty for wrong guess
+            if (updateLives(currentTeamIndex, 0) <= 0) {
+                setTimeout(() => handleNextTurn(), 2000);
+                return;
+            }
+          }
+      }
+      setTimeout(() => handleNextTurn(), 2000);
+  }
   
   const winner = teams.length > 0 
     ? teams.reduce((prev, current) => (prev.score > current.score) ? prev : current)
@@ -298,7 +331,75 @@ export default function GamePage() {
 
   const totalChallenges = challenges.length;
   const progress = (currentChallengeIndex / totalChallenges) * 100;
-  const currentLevel = challenge.level;
+  const currentLevel = (challenge as any).level;
+
+  const renderGuessThePhrase = () => {
+    const phrase = (challenge.phrase || '').toUpperCase();
+    const displayedPhrase = phrase.split('').map(char => {
+        if (char === ' ') return ' ';
+        if (guessedLetters.includes(char)) return char;
+        return '_';
+    }).join('');
+
+    return (
+        <div className="w-full space-y-4 animate-scroll-reveal">
+            <p className="text-sm text-accent-foreground/70">{challenge.hint}</p>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-widest font-mono text-foreground p-2">
+                {displayedPhrase.split(' ').map((word, i) => <span key={i} className="inline-block mr-4">{word}</span>)}
+            </h2>
+            <div className="flex gap-2 justify-center">
+                <Input
+                  value={letterInput}
+                  onChange={(e) => setLetterInput(e.target.value.slice(0, 1))}
+                  onKeyPress={(e) => e.key === 'Enter' && handleGuessLetter()}
+                  placeholder="Adivina una letra"
+                  className="text-center text-xl h-14 w-48 border-2 border-primary/50 bg-card/50 focus:border-primary focus:ring-primary/50"
+                  disabled={!!feedback}
+                  maxLength={1}
+                />
+                <Button onClick={handleGuessLetter} size="lg" disabled={!letterInput || !!feedback}>Enviar Letra</Button>
+            </div>
+             <div className="flex gap-2 justify-center">
+                 <Input
+                      value={answer}
+                      onChange={(e) => setAnswer(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && handleGuessPhrase()}
+                      placeholder="Adivina la frase completa"
+                      className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary focus:ring-primary/50"
+                      disabled={!!feedback}
+                    />
+                 <Button onClick={handleGuessPhrase} size="lg" disabled={!answer || !!feedback}>Resolver</Button>
+            </div>
+            {!isPracticeMode && (
+                <div className="flex items-center justify-center gap-2">
+                   {Array.from({ length: 5 }).map((_, i) => (
+                        <Heart key={i} className={`w-6 h-6 ${i < (currentTeam?.lives ?? 0) ? 'text-red-500 fill-current' : 'text-muted-foreground'}`}/>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+  };
+
+  const renderDefaultGame = () => (
+     <div className="w-full space-y-4 animate-scroll-reveal">
+        <p className="text-sm text-accent-foreground/70">{challenge.hint}</p>
+        <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-foreground">
+            {challenge.question}
+        </h2>
+        <Input
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+          onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
+          placeholder="Escribe tu respuesta aquí"
+          className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary focus:ring-primary/50"
+          disabled={!!feedback}
+        />
+        <Button onClick={submitAnswer} size="lg" className="w-full text-lg" disabled={!answer || !!feedback}>
+          Enviar Respuesta
+        </Button>
+      </div>
+  )
 
   return (
     <div className="h-screen max-h-screen overflow-hidden bg-background text-foreground flex flex-col p-2 pt-16 md:p-4 md:pt-20">
@@ -315,7 +416,7 @@ export default function GamePage() {
                       <Users className="w-5 h-5 text-accent"/>
                       <span className="font-bold text-lg text-primary">{teams[currentTeamIndex]?.name}</span>
                   </div>
-                {!isPracticeMode && (
+                {!isPracticeMode && gameMode !== 'guess-the-phrase' && (
                     <div className="flex items-center gap-2 text-lg font-bold text-accent-foreground/80">
                         <Clock className="w-5 h-5 text-accent"/>
                         <span>{timeLeft}s</span>
@@ -336,27 +437,11 @@ export default function GamePage() {
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
-                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer}</span></p>}
+                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer || challenge.phrase}</span></p>}
                   </div>
               )}
               {!feedback && (
-                  <div className="w-full space-y-4 animate-scroll-reveal">
-                    <p className="text-sm text-accent-foreground/70">{challenge.hint}</p>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-foreground">
-                        {challenge.question}
-                    </h2>
-                    <Input
-                      value={answer}
-                      onChange={(e) => setAnswer(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
-                      placeholder="Escribe tu respuesta aquí"
-                      className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary focus:ring-primary/50"
-                      disabled={!!feedback}
-                    />
-                    <Button onClick={submitAnswer} size="lg" className="w-full text-lg" disabled={!answer || !!feedback}>
-                      Enviar Respuesta
-                    </Button>
-                  </div>
+                  gameMode === 'guess-the-phrase' ? renderGuessThePhrase() : renderDefaultGame()
               )}
             </CardContent>
           </Card>
@@ -400,3 +485,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
