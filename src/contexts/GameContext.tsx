@@ -20,7 +20,7 @@ interface GameContextType {
   setPracticeMode: (isPractice: boolean) => void;
   isSoundOn: boolean;
   toggleSound: () => void;
-  playSound: (sound: 'correct' | 'incorrect' | 'click' | 'times-up') => void;
+  playSound: (sound: 'correct' | 'incorrect' | 'click' | 'times-up' | 'tick') => void;
   updateScore: (teamIndex: number, points: number) => void;
   resetGame: () => void;
   roundTime: number;
@@ -135,7 +135,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     playSound('click');
   };
 
-  const playSound = (sound: 'correct' | 'incorrect' | 'click' | 'times-up') => {
+  const playSound = (sound: 'correct' | 'incorrect' | 'click' | 'times-up' | 'tick') => {
     if (!isSoundOn || typeof window === 'undefined') return;
     
     if (Tone.context.state !== 'running') {
@@ -160,6 +160,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       case 'times-up':
         fmSynth.triggerAttackRelease('G3', '4n', now);
         fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
+        break;
+      case 'tick':
+        synth.triggerAttackRelease('C5', '32n', now);
         break;
     }
   };

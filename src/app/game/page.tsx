@@ -136,14 +136,17 @@ export default function GamePage() {
 
     if (timeLeft > 0) {
       const timer = setInterval(() => {
-        setTimeLeft((t) => t - 1);
+        setTimeLeft((t) => {
+            if (t > 1) playSound('tick');
+            return t - 1
+        });
       }, 1000);
       return () => clearInterval(timer);
     } else {
       playSound('times-up');
       handleAnswer(false);
     }
-  }, [timeLeft, isPracticeMode, gameOver, feedback]);
+  }, [timeLeft, isPracticeMode, gameOver, feedback, playSound]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
