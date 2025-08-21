@@ -164,16 +164,17 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     }
 
     try {
-      const now = Tone.now();
       switch (sound) {
         case 'correct':
-          amSynth.triggerAttackRelease('C4', '8n');
-          amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
-          amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
+          // Correct way to sequence notes without timing conflicts
+          Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('C4', '8n'); }, Tone.now());
+          Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('G4', '8n'); }, Tone.now() + 0.15);
+          Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('C5', '8n'); }, Tone.now() + 0.3);
           break;
         case 'incorrect':
-          synth.triggerAttackRelease('A2', '8n');
-          synth.triggerAttackRelease('A#2', '8n', now + 0.1);
+           // Correct way to sequence notes without timing conflicts
+          Tone.Draw.schedule(() => { synth.triggerAttackRelease('A2', '8n'); }, Tone.now());
+          Tone.Draw.schedule(() => { synth.triggerAttackRelease('A#2', '8n'); }, Tone.now() + 0.1);
           break;
         case 'click':
           clickSynth.triggerAttackRelease('C7', '32n');
