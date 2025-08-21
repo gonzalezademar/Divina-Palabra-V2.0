@@ -36,6 +36,7 @@ let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
 let tickSynth: Tone.MembraneSynth;
+let glassSynth: Tone.MetalSynth;
 
 
 if (typeof window !== 'undefined') {
@@ -83,6 +84,16 @@ if (typeof window !== 'undefined') {
     envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.01 }
   }).toDestination();
   tickSynth.volume.value = -18;
+  
+  glassSynth = new Tone.MetalSynth({
+        frequency: 440,
+        envelope: { attack: 0.001, decay: 1.5, release: 0.8 },
+        harmonicity: 8.5,
+        modulationIndex: 20,
+        resonance: 4000,
+        octaves: 1.5,
+      }).toDestination();
+  glassSynth.volume.value = -12;
 }
 
 const INITIAL_LIVES = 5;
@@ -163,19 +174,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
-          tickSynth.triggerAttackRelease('C7', '32n');
+          tickSynth.triggerAttackRelease('C7', '32n', now);
           break;
         case 'times-up':
-          const glassSynth = new Tone.MetalSynth({
-            frequency: 200,
-            envelope: { attack: 0.001, decay: 1.4, release: 0.4 },
-            harmonicity: 5.1,
-            modulationIndex: 32,
-            resonance: 4000,
-            octaves: 1.5,
-          }).toDestination();
-          glassSynth.volume.value = -15;
-          glassSynth.triggerAttackRelease("C6", "2n", now);
+          glassSynth.triggerAttackRelease("G5", "1n", now);
           break;
         case 'tick':
           tickSynth.triggerAttackRelease('C5', '32n');
