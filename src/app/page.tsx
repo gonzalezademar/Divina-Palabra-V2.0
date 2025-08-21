@@ -105,9 +105,9 @@ export default function HomePage() {
                 <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2"><Clock className="w-5 h-5" /> Tiempo de Ronda: {roundTime}s</Label>
                 <Slider
                   id="round-time"
-                  min={10}
-                  max={30}
-                  step={1}
+                  min={5}
+                  max={60}
+                  step={5}
                   value={[roundTime]}
                   onValueChange={(value) => setRoundTime(value[0])}
                   disabled={isPracticeMode}
