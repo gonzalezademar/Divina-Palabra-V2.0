@@ -155,12 +155,12 @@ const shuffleArray = (array: any[]) => {
   return newArray;
 }
 
-const scrambleWord = (challenge: any, level: number) => {
+const scrambleWord = (challenge: any, type: 'syllables' | 'letters') => {
     let scrambled;
     let original;
     let sourceArray;
 
-    if (level === 1) {
+    if (type === 'syllables' && challenge.syllables) {
         original = challenge.syllables.join('');
         sourceArray = [...challenge.syllables];
     } else {
@@ -187,7 +187,11 @@ const scrambleWord = (challenge: any, level: number) => {
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, updateLives, gameRestarted } = useGame();
+  const { 
+    teams, gameMode, isPracticeMode, playSound, 
+    updateScore, resetGame, roundTime, updateLives, 
+    gameRestarted, difficulty 
+  } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
@@ -205,17 +209,43 @@ export default function GamePage() {
     if (!gameMode) return [];
 
     if (gameMode === 'find-word') {
-        const level1 = shuffleArray(findWordLevel1).map(challenge => ({
-            ...challenge,
-            question: scrambleWord(challenge, 1),
-            level: 1,
-        }));
-        const level2 = shuffleArray(findWordLevel2).map(challenge => ({
-            ...challenge,
-            question: scrambleWord(challenge, 2),
-            level: 2,
-        }));
-        return [...level1, ...level2];
+        const shuffledLevel1 = shuffleArray(findWordLevel1);
+        const shuffledLevel2 = shuffleArray(findWordLevel2);
+        
+        switch (difficulty) {
+            case 'principiante':
+                return shuffledLevel1.map(challenge => ({
+                    ...challenge,
+                    question: scrambleWord(challenge, 'syllables'),
+                    level: 1, // Keep level for UI
+                    hint: challenge.hint,
+                }));
+            case 'discipulo':
+                const C_SYLLABLES = 15;
+                const C_LETTERS = 15;
+                const syllablesPart = shuffledLevel1.slice(0, C_SYLLABLES).map(challenge => ({
+                    ...challenge,
+                    question: scrambleWord(challenge, 'syllables'),
+                    level: 1,
+                    hint: 'Adivina la palabra con las sílabas.', // No real hint
+                }));
+                const lettersPart = shuffledLevel2.slice(0, C_LETTERS).map(challenge => ({
+                    ...challenge,
+                    question: scrambleWord(challenge, 'letters'),
+                    level: 2,
+                    hint: 'Adivina la palabra con las letras.', // No real hint
+                }));
+                return shuffleArray([...syllablesPart, ...lettersPart]);
+            case 'experto':
+                return [...shuffledLevel1, ...shuffledLevel2].map(challenge => ({
+                    ...challenge,
+                    question: scrambleWord(challenge, 'letters'),
+                    level: 2,
+                    hint: 'Modo experto: sin pistas.',
+                }));
+            default:
+                 return [];
+        }
     }
     
     if (gameMode === 'complete-phrase') {
@@ -225,7 +255,7 @@ export default function GamePage() {
     // guess-the-phrase
     return shuffleArray([...guessPhraseChallenges]);
 
-  }, [gameMode]);
+  }, [gameMode, difficulty]);
 
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -244,7 +274,7 @@ export default function GamePage() {
                 return 0;
             }
             // Only play tick sound in the last 5 seconds or for specific intervals
-            if (prevTime <= 6) {
+            if (prevTime <= 6 && prevTime > 1) {
               playSound('tick');
             }
             return prevTime - 1;
@@ -503,7 +533,7 @@ export default function GamePage() {
                         <span>{timeLeft}s</span>
                     </div>
                 )}
-                {currentLevel && (
+                {currentLevel && gameMode === 'find-word' && (
                     <div className="flex items-center gap-2">
                         {currentLevel === 1 ? <Star className="w-5 h-5 text-yellow-400"/> : <Brain className="w-5 h-5 text-pink-400"/>}
                         <span className="font-semibold text-accent-foreground/80">Nivel {currentLevel}</span>

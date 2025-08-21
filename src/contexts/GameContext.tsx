@@ -11,12 +11,15 @@ type Team = {
 };
 
 type GameMode = 'find-word' | 'complete-phrase' | 'guess-the-phrase';
+type DifficultyLevel = 'principiante' | 'discipulo' | 'experto';
 
 interface GameContextType {
   teams: Team[];
   setTeams: (teams: Team[]) => void;
   gameMode: GameMode | null;
   setGameMode: (mode: GameMode | null) => void;
+  difficulty: DifficultyLevel;
+  setDifficulty: (difficulty: DifficultyLevel) => void;
   isPracticeMode: boolean;
   setPracticeMode: (isPractice: boolean) => void;
   isSoundOn: boolean;
@@ -99,6 +102,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     { name: 'Equipo 2', score: 0, lives: INITIAL_LIVES },
   ]);
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
+  const [difficulty, setDifficultyState] = useState<DifficultyLevel>('principiante');
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [roundTime, setRoundTime] = useState(30);
@@ -122,11 +126,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (savedRoundTime) {
       setRoundTime(JSON.parse(savedRoundTime));
     }
+    const savedDifficulty = localStorage.getItem('difficulty');
+    if (savedDifficulty) {
+      setDifficultyState(JSON.parse(savedDifficulty));
+    }
   }, []);
 
   const handleSetRoundTime = (time: number) => {
     setRoundTime(time);
     localStorage.setItem('roundTime', JSON.stringify(time));
+  };
+  
+  const setDifficulty = (newDifficulty: DifficultyLevel) => {
+    setDifficultyState(newDifficulty);
+    localStorage.setItem('difficulty', JSON.stringify(newDifficulty));
   };
 
   const setTeams = (newTeams: Team[]) => {
@@ -167,13 +180,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     try {
       switch (sound) {
         case 'correct':
-          // Correct way to sequence notes without timing conflicts
           Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('C4', '8n'); }, Tone.now());
           Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('G4', '8n'); }, Tone.now() + 0.15);
           Tone.Draw.schedule(() => { amSynth.triggerAttackRelease('C5', '8n'); }, Tone.now() + 0.3);
           break;
         case 'incorrect':
-           // Correct way to sequence notes without timing conflicts
           Tone.Draw.schedule(() => { synth.triggerAttackRelease('A2', '8n'); }, Tone.now());
           Tone.Draw.schedule(() => { synth.triggerAttackRelease('A#2', '8n'); }, Tone.now() + 0.1);
           break;
@@ -184,8 +195,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           glassSynth.triggerAttackRelease("G5", "1n");
           break;
         case 'tick':
-          // The most robust way to handle rapid-fire sounds to avoid race conditions.
-          // Create and destroy the synth on demand.
           const tickSynth = new Tone.MembraneSynth({
             pitchDecay: 0.01,
             octaves: 2,
@@ -194,7 +203,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           }).toDestination();
           tickSynth.volume.value = -22;
           tickSynth.triggerAttackRelease('C5', '32n');
-          // Clean up the synth after it's done playing to avoid memory leaks.
           setTimeout(() => {
             tickSynth.dispose();
           }, 300);
@@ -230,7 +238,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, restartCurrentGame, gameRestarted, roundTime, setRoundTime: handleSetRoundTime }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, difficulty, setDifficulty, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, restartCurrentGame, gameRestarted, roundTime, setRoundTime: handleSetRoundTime }}>
       {children}
     </GameContext.Provider>
   );
