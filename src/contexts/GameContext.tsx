@@ -180,7 +180,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           glassSynth.triggerAttackRelease("G5", "1n", now);
           break;
         case 'tick':
-          tickSynth.triggerAttackRelease('C5', '32n');
+          tickSynth.triggerAttackRelease('C5', '32n', now);
           break;
       }
     } catch(e) {
