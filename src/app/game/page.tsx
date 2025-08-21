@@ -113,9 +113,7 @@ export default function GamePage() {
     if (!gameMode) return [];
     
     if (gameMode === 'find-word') {
-        const level1 = findWordLevel1;
-        const level2 = findWordLevel2;
-        const allChallenges = shuffleArray([...level1, ...level2]);
+        const allChallenges = shuffleArray([...findWordLevel1, ...findWordLevel2]);
         return allChallenges.map((challenge, index) => {
             const level = findWordLevel1.some(c => c.answer === challenge.answer) ? 1 : 2;
             return {
@@ -135,32 +133,35 @@ export default function GamePage() {
     }
     if (gameMode === 'complete-phrase') {
       setTurnPhase('answering'); // Skip hint phase for complete-phrase
+    } else {
+      setWaitTimer(waitTime);
+      setTurnPhase('showing_hint');
     }
-  }, [gameMode, router]);
+  }, [gameMode, router, waitTime]);
   
   useEffect(() => {
-    if (isPracticeMode || gameOver || turnPhase === 'feedback') return;
+    if (isPracticeMode || gameOver || feedback) return;
+
+    let timer: NodeJS.Timeout;
 
     if (turnPhase === 'showing_hint') {
-      if (waitTimer === 0) {
+      if (waitTimer > 0) {
+        timer = setInterval(() => setWaitTimer(t => t - 1), 1000);
+      } else {
         setTurnPhase('answering');
         setTimeLeft(roundTime);
-        return;
       }
-      const timer = setInterval(() => setWaitTimer(t => t - 1), 1000);
-      return () => clearInterval(timer);
-    }
-
-    if (turnPhase === 'answering') {
-      if (timeLeft === 0) {
+    } else if (turnPhase === 'answering') {
+      if (timeLeft > 0) {
+        timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
+      } else {
         playSound('times-up');
         handleAnswer(false);
-        return;
       }
-      const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
-      return () => clearInterval(timer);
     }
-  }, [timeLeft, waitTimer, turnPhase, isPracticeMode, gameOver, roundTime]);
+
+    return () => clearInterval(timer);
+  }, [turnPhase, waitTimer, timeLeft, isPracticeMode, gameOver, roundTime, feedback]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
@@ -250,9 +251,6 @@ export default function GamePage() {
   const totalChallenges = challenges.length;
   const progress = (currentChallengeIndex / totalChallenges) * 100;
   const currentLevel = challenge.level;
-  const showAnsweringUI = turnPhase === 'answering' || (turnPhase === 'feedback' && gameMode === 'complete-phrase');
-  const showFindWordAnsweringUI = turnPhase === 'answering' || (turnPhase === 'feedback' && gameMode === 'find-word');
-
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col p-4 pt-20 md:p-6 md:pt-24">
