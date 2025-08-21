@@ -203,25 +203,28 @@ export default function GamePage() {
 
   const challenges = useMemo(() => {
     if (!gameMode) return [];
-    
-    let allChallenges;
+
     if (gameMode === 'find-word') {
-        allChallenges = shuffleArray([...findWordLevel1, ...findWordLevel2]);
-        return allChallenges.map((challenge) => {
-            const level = findWordLevel1.some(c => c.answer === challenge.answer) ? 1 : 2;
-            return {
-                ...challenge,
-                question: scrambleWord(challenge, level),
-                level: level,
-            };
-        });
-    } else if (gameMode === 'complete-phrase') {
-        allChallenges = shuffleArray([...completePhraseChallenges]);
-        return allChallenges;
-    } else { // guess-the-phrase
-        allChallenges = shuffleArray([...guessPhraseChallenges]);
-        return allChallenges;
+        const level1 = shuffleArray(findWordLevel1).map(challenge => ({
+            ...challenge,
+            question: scrambleWord(challenge, 1),
+            level: 1,
+        }));
+        const level2 = shuffleArray(findWordLevel2).map(challenge => ({
+            ...challenge,
+            question: scrambleWord(challenge, 2),
+            level: 2,
+        }));
+        return [...level1, ...level2];
     }
+    
+    if (gameMode === 'complete-phrase') {
+        return shuffleArray([...completePhraseChallenges]);
+    }
+    
+    // guess-the-phrase
+    return shuffleArray([...guessPhraseChallenges]);
+
   }, [gameMode]);
 
   const startTimer = () => {
