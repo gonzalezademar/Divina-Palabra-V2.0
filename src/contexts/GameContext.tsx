@@ -190,7 +190,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const updateScore = (teamIndex: number, points: number) => {
     setTeamsState(prevTeams => {
         const newTeams = [...prevTeams];
-        newTeams[teamIndex].score += points;
+        if(newTeams[teamIndex]) {
+          newTeams[teamIndex].score += points;
+        }
         return newTeams;
     });
   };
@@ -199,9 +201,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       let newLives = 0;
       setTeamsState(prevTeams => {
         const newTeams = [...prevTeams];
-        const currentLives = newTeams[teamIndex].lives;
-        newLives = Math.max(0, currentLives + change);
-        newTeams[teamIndex].lives = newLives;
+        if (newTeams[teamIndex]) {
+          const currentLives = newTeams[teamIndex].lives;
+          newLives = Math.max(0, currentLives + change);
+          newTeams[teamIndex].lives = newLives;
+        }
         return newTeams;
     });
     return newLives;
@@ -221,5 +225,3 @@ export const useGame = () => {
   }
   return context;
 };
-
-    

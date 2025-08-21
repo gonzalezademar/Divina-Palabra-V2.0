@@ -147,27 +147,41 @@ const guessPhraseChallenges = [
 
 
 const shuffleArray = (array: any[]) => {
-  let currentIndex = array.length,  randomIndex;
+  const newArray = [...array];
+  let currentIndex = newArray.length, randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
   }
-  return array;
+  return newArray;
 }
 
 const scrambleWord = (challenge: any, level: number) => {
     let scrambled;
+    let original;
+    let sourceArray;
+
+    if (level === 1) {
+        original = challenge.syllables.join('');
+        sourceArray = [...challenge.syllables];
+    } else {
+        original = challenge.answer;
+        sourceArray = challenge.answer.split('');
+    }
+
+    let attempts = 0;
     do {
-      if (level === 1) {
-          const shuffledSyllables = shuffleArray(challenge.syllables);
-          scrambled = shuffledSyllables.join('');
-      } else {
-          const letters = challenge.answer.split('');
-          const shuffledLetters = shuffleArray(letters);
-          scrambled = shuffledLetters.join('');
+      const shuffledArray = shuffleArray(sourceArray);
+      scrambled = shuffledArray.join('');
+      attempts++;
+      // Prevent infinite loops for single-letter/syllable words or unlucky shuffles
+      if (attempts > 50) { 
+        console.warn("Could not scramble word differently after 50 attempts:", original);
+        break;
       }
-    } while (scrambled === challenge.answer)
+    } while (scrambled === original && sourceArray.length > 1);
+
     return scrambled;
 }
 
@@ -214,7 +228,7 @@ export default function GamePage() {
     if (timerRef.current) clearInterval(timerRef.current);
     setTimeLeft(roundTime);
     
-    if (isPracticeMode || gameOver) {
+    if (isPracticeMode || gameOver || gameMode === 'guess-the-phrase') {
         return;
     }
     
@@ -233,11 +247,14 @@ export default function GamePage() {
         });
     }, 1000);
   };
-
+  
   useEffect(() => {
     if (!gameMode) {
       router.push('/');
-    } else {
+      return;
+    }
+    // Don't start a new timer if there's feedback on screen
+    if (!feedback) {
         startTimer();
     }
     // Cleanup timer on unmount
@@ -246,19 +263,7 @@ export default function GamePage() {
         clearInterval(timerRef.current);
       }
     };
-  }, [gameMode, router, currentChallengeIndex]);
-  
-
-  useEffect(() => {
-    if (feedback && timerRef.current) {
-      clearInterval(timerRef.current);
-      const timeoutId = setTimeout(() => {
-        handleNextTurn();
-      }, 2000); // Wait 2 seconds before next turn
-      return () => clearTimeout(timeoutId);
-    }
-  }, [feedback]);
-
+  }, [gameMode, router, currentChallengeIndex, feedback]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
@@ -287,6 +292,7 @@ export default function GamePage() {
 
   const handleAnswer = (isCorrect: boolean) => {
     if(feedback) return;
+    if (timerRef.current) clearInterval(timerRef.current);
 
     if (isCorrect) {
       playSound('correct');
@@ -496,6 +502,7 @@ export default function GamePage() {
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
                     {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer || challenge.phrase}</span></p>}
+                    <Button onClick={handleNextTurn}>Continuar</Button>
                   </div>
               )}
               {!feedback && (
@@ -543,4 +550,3 @@ export default function GamePage() {
     </div>
   );
 }
-
