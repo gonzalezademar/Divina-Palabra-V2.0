@@ -57,16 +57,16 @@ export default function HomePage() {
           </CardHeader>
           <CardContent className="space-y-8">
             <div className="space-y-4 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
-              <h3 className="font-headline text-2xl flex items-center justify-center gap-2"><Users className="w-6 h-6"/> Configuración de Equipos</h3>
+              <h3 className="font-headline text-2xl flex items-center justify-center gap-2 text-accent-foreground/80"><Users className="w-6 h-6 text-accent"/> Configuración de Equipos</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {teams.map((team, index) => (
                   <div key={index} className="space-y-2">
-                    <Label htmlFor={`team-${index}`} className="text-left text-lg">Equipo {index + 1}</Label>
+                    <Label htmlFor={`team-${index}`} className="text-left text-lg text-muted-foreground">Equipo {index + 1}</Label>
                     <Input
                       id={`team-${index}`}
                       value={team.name}
                       onChange={(e) => handleTeamNameChange(index, e.target.value)}
-                      className="text-center text-lg"
+                      className="text-center text-lg border-primary/30"
                       placeholder={`Nombre del Equipo ${index + 1}`}
                     />
                   </div>
@@ -75,9 +75,9 @@ export default function HomePage() {
             </div>
 
             <div className="space-y-4 animate-scroll-reveal" style={{animationDelay: '0.4s'}}>
-              <h3 className="font-headline text-2xl flex items-center justify-center gap-2"><Swords className="w-6 h-6" /> Elige el Desafío</h3>
+              <h3 className="font-headline text-2xl flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-6 h-6 text-accent" /> Elige el Desafío</h3>
               <Tabs defaultValue="find-word" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 h-auto">
+                <TabsList className="grid w-full grid-cols-2 h-auto bg-primary/10">
                   <TabsTrigger value="find-word" className="py-3 text-base">Encuentra la Palabra</TabsTrigger>
                   <TabsTrigger value="complete-phrase" className="py-3 text-base">Completa la Frase</TabsTrigger>
                 </TabsList>
@@ -92,10 +92,10 @@ export default function HomePage() {
               </Tabs>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-6">
+          <CardFooter className="flex flex-col gap-6 pt-4 bg-primary/5">
               <div className="flex items-center space-x-2 animate-scroll-reveal" style={{animationDelay: '0.6s'}}>
                 <BrainCircuit className="w-6 h-6 text-primary" />
-                <Label htmlFor="practice-mode" className="text-lg">Modo Práctica (sin tiempo)</Label>
+                <Label htmlFor="practice-mode" className="text-lg text-muted-foreground">Modo Práctica (sin tiempo)</Label>
                 <Switch
                   id="practice-mode"
                   checked={isPracticeMode}
@@ -103,7 +103,7 @@ export default function HomePage() {
                 />
               </div>
               <div className="w-full space-y-3 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
-                <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2"><Clock className="w-5 h-5" /> Tiempo de Ronda: {roundTime}s</Label>
+                <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2 text-muted-foreground"><Clock className="w-5 h-5 text-primary" /> Tiempo de Ronda: {roundTime}s</Label>
                 <Slider
                   id="round-time"
                   min={5}

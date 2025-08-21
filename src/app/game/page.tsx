@@ -259,22 +259,22 @@ export default function GamePage() {
         {/* Main Game Panel */}
         <main className="flex-grow flex flex-col pb-2 md:pb-0">
           <Card className="flex-grow flex flex-col bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
-            <CardHeader className="p-4">
+            <CardHeader className="p-4 bg-primary/5">
               <div className="flex items-center justify-between text-muted-foreground">
                   <div className="flex items-center gap-2">
-                      <Users className="w-5 h-5"/>
+                      <Users className="w-5 h-5 text-accent"/>
                       <span className="font-bold text-lg text-primary">{teams[currentTeamIndex]?.name}</span>
                   </div>
                 {!isPracticeMode && (
-                    <div className="flex items-center gap-2 text-lg">
-                        <Clock className="w-5 h-5"/>
+                    <div className="flex items-center gap-2 text-lg font-bold text-accent-foreground/80">
+                        <Clock className="w-5 h-5 text-accent"/>
                         <span>{timeLeft}s</span>
                     </div>
                 )}
                 {currentLevel && (
                     <div className="flex items-center gap-2">
                         {currentLevel === 1 ? <Star className="w-5 h-5 text-yellow-400"/> : <Brain className="w-5 h-5 text-pink-400"/>}
-                        <span>Nivel {currentLevel}</span>
+                        <span className="font-semibold text-accent-foreground/80">Nivel {currentLevel}</span>
                     </div>
                 )}
               </div>
@@ -286,12 +286,12 @@ export default function GamePage() {
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
-                    {feedback === 'incorrect' && <p>La respuesta era: {challenge.answer}</p>}
+                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer}</span></p>}
                   </div>
               )}
               {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
-                    <p className="text-base text-muted-foreground">{challenge.hint}</p>
+                    <p className="text-sm text-accent-foreground/70">{challenge.hint}</p>
                     <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-primary">
                         {challenge.question}
                     </h2>
@@ -300,7 +300,7 @@ export default function GamePage() {
                       onChange={(e) => setAnswer(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
                       placeholder="Escribe tu respuesta aquí"
-                      className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary"
+                      className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary focus:ring-primary/50"
                       disabled={!!feedback}
                     />
                     <Button onClick={submitAnswer} size="lg" className="w-full text-lg" disabled={!answer || !!feedback}>
@@ -315,8 +315,8 @@ export default function GamePage() {
         {/* Side Panel / Score */}
         <aside className="w-full md:w-1/3 flex flex-col gap-2 md:gap-4">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
-            <CardHeader className="p-3 md:p-4">
-              <CardTitle className="font-headline text-xl md:text-2xl flex items-center gap-2">
+            <CardHeader className="p-3 md:p-4 bg-primary/5">
+              <CardTitle className="font-headline text-xl md:text-2xl flex items-center gap-2 text-accent-foreground/90">
                 <Trophy className="w-6 h-6 text-primary"/>
                 Puntuación
               </CardTitle>
@@ -324,9 +324,9 @@ export default function GamePage() {
             <CardContent className="space-y-3 p-3 md:p-4">
               {teams.map((team, index) => (
                 <div key={index} className="space-y-1">
-                  <div className="flex justify-between font-bold text-sm">
+                  <div className="flex justify-between font-bold text-sm text-muted-foreground">
                     <span>{team.name}</span>
-                    <span>{team.score} pts</span>
+                    <span className="text-foreground">{team.score} pts</span>
                   </div>
                   <Progress value={(team.score / (totalChallenges * 10 / (teams.length || 1)))} />
                 </div>
@@ -334,9 +334,9 @@ export default function GamePage() {
             </CardContent>
           </Card>
           
-           <Alert className="p-3 md:p-4">
-                <AlertTitle className="font-bold text-sm">Progreso</AlertTitle>
-                <AlertDescription className="text-xs">
+           <Alert className="p-3 md:p-4 bg-card/80 border-primary/20">
+                <AlertTitle className="font-bold text-sm text-accent-foreground/80">Progreso</AlertTitle>
+                <AlertDescription className="text-xs text-muted-foreground">
                   Desafío {currentChallengeIndex + 1} de {totalChallenges}.
                 </AlertDescription>
               <Progress value={progress} className="mt-2 h-2" />
@@ -350,4 +350,3 @@ export default function GamePage() {
     </div>
   );
 }
-
