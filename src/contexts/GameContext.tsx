@@ -34,7 +34,7 @@ let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
 let fmSynth: Tone.FMSynth;
-let tickSynth: Tone.MembraneSynth;
+let tickSynth: Tone.FMSynth;
 
 
 if (typeof window !== 'undefined') {
@@ -83,13 +83,13 @@ if (typeof window !== 'undefined') {
   }).toDestination();
   fmSynth.volume.value = volume;
 
-  tickSynth = new Tone.MembraneSynth({
-    pitchDecay: 0.01,
-    octaves: 6,
-    oscillator: { type: 'sine' },
-    envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.1 },
+  tickSynth = new Tone.FMSynth({
+    harmonicity: 1,
+    modulationIndex: 10,
+    envelope: { attack: 0.001, decay: 0.1, release: 0.1 },
+    modulationEnvelope: { attack: 0.001, decay: 0.1, release: 0.1 }
   }).toDestination();
-  tickSynth.volume.value = volume - 15;
+  tickSynth.volume.value = -20;
 }
 
 
