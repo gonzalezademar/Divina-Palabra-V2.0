@@ -89,7 +89,7 @@ if (typeof window !== 'undefined') {
     oscillator: { type: 'sine' },
     envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.1 },
   }).toDestination();
-  tickSynth.volume.value = volume - 5;
+  tickSynth.volume.value = volume - 15;
 }
 
 
@@ -172,7 +172,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
           break;
         case 'tick':
-          tickSynth.triggerAttackRelease('C5', '32n', now);
+          tickSynth.triggerAttackRelease('C5', '32n');
           break;
       }
     } catch(e) {
