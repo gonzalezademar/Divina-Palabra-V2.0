@@ -18,11 +18,45 @@ const challengesData = {
     { question: "SENEGIS", answer: "GENESIS", hint: "EL PRIMER LIBRO DE LA BIBLIA." },
     { question: "XODOE", answer: "EXODO", hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
     { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
+    { question: "FEPROTA", answer: "PROFETA", hint: "UN MENSAJERO DE DIOS." },
+    { question: "TOLASOP", answer: "APOSTOL", hint: "UNO DE LOS DOCE SEGUIDORES DE JESUS." },
+    { question: "GELAN", answer: "ANGEL", hint: "MENSAJERO CELESTIAL." },
+    { question: "ACAR", answer: "ARCA", hint: "LA EMBARCACION QUE CONSTRUYO NOE." },
+    { question: "LEBEN", answer: "BELEN", hint: "CIUDAD DEL NACIMIENTO DE JESUS." },
+    { question: "SERTDEIO", answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
+    { question: "NAIC", answer: "CAIN", hint: "HERMANO DE ABEL." },
+    { question: "LOGIAT", answer: "GOLIAT", hint: "GIGANTE DERROTADO POR DAVID." },
+    { question: "NOSANS", answer: "SANSON", hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
+    { question: "NAZTERA", answer: "NAZARET", hint: "CIUDAD DONDE CRECIO JESUS." },
+    { question: "BALAPORA", answer: "PARABOLA", hint: "HISTORIA CORTA CON UNA ENSENANZA MORAL." },
+    { question: "SOMLAS", answer: "SALMOS", hint: "LIBRO DE CANTOS Y ORACIONES." },
+    { question: "PLOMET", answer: "TEMPLO", hint: "LUGAR SAGRADO DE ADORACION EN JERUSALEN." },
+    { question: "VIDAD", answer: "DAVID", hint: "REY DE ISRAEL QUE DERROTO A UN GIGANTE." },
+    { question: "SESIOM", answer: "MOISES", hint: "LIBERO A LOS ISRAELITAS DE LA ESCLAVITUD." },
+    { question: "NOMLOSA", answer: "SALOMON", hint: "EL REY MAS SABIO DE ISRAEL." },
+    { question: "MARAHAB", answer: "ABRAHAM", hint: "PADRE DE MUCHAS NACIONES." },
   ],
   'complete-phrase': [
     { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
     { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
-    { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO UNIGENITO, PARA QUE TODO AQUEL QUE EN EL CREE, NO SE PIERDA, MAS TENGA VIDA _____", answer: "ETERNA", hint: "QUE NO TIENE FIN." },
+    { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO _____", answer: "UNIGENITO", hint: "HIJO UNICO." },
+    { question: "YO SOY EL CAMINO, Y LA VERDAD, Y LA _____", answer: "VIDA", hint: "LO CONTRARIO A LA MUERTE." },
+    { question: "TODO LO PUEDO EN CRISTO QUE ME _____", answer: "FORTALECE", hint: "QUE ME DA FUERZA." },
+    { question: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA, LA CONVICCION DE LO QUE NO SE _____", answer: "VE", hint: "PERCIBIR CON LOS OJOS." },
+    { question: "EL AMOR ES PACIENTE, ES _____", answer: "BONDADOSO", hint: "LLENO DE BONDAD." },
+    { question: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y _____", answer: "CARGADOS", hint: "QUE LLEVAN UNA CARGA PESADA." },
+    { question: "DE MAS ESTIMA ES EL BUEN NOMBRE QUE LAS MUCHAS _____", answer: "RIQUEZAS", hint: "ABUNDANCIA DE BIENES Y DINERO." },
+    { question: "PORQUE LA PAGA DEL PECADO ES _____", answer: "MUERTE", hint: "FIN DE LA VIDA." },
+    { question: "NO SOLO DE PAN VIVIRA EL _____", answer: "HOMBRE", hint: "SER HUMANO DE SEXO MASCULINO." },
+    { question: "PEDID, Y SE OS _____", answer: "DARA", hint: "FUTURO DEL VERBO 'DAR'." },
+    { question: "YO Y EL PADRE UNO _____", answer: "SOMOS", hint: "PRESENTE DEL VERBO 'SER' PARA 'NOSOTROS'." },
+    { question: "EN LA CASA DE MI PADRE MUCHAS ____ HAY", answer: "MORADAS", hint: "LUGARES PARA VIVIR." },
+    { question: "DEJAD A LOS NINOS VENIR A MI, Y NO SE LO _____", answer: "IMPIDAIS", hint: "NO PERMITIR ALGO." },
+    { question: "MAS BUSCAD PRIMERAMENTE EL REINO DE DIOS Y SU _____", answer: "JUSTICIA", hint: "PRINCIPIO MORAL DE DAR A CADA UNO LO QUE LE CORRESPONDE." },
+    { question: "FIATE DE JEHOVA DE TODO TU CORAZON, Y NO TE APOYES EN TU PROPIA _____", answer: "PRUDENCIA", hint: "SABIDURIA, BUEN JUICIO." },
+    { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
+    { question: "LOS CIELOS CUENTAN LA ____ DE DIOS", answer: "GLORIA", hint: "HONRA, ESPLENDOR." },
+    { question: "SI DIOS ES POR NOSOTROS, ¿QUIEN CONTRA ____?", answer: "NOSOTROS", hint: "PRONOMBRE PERSONAL." },
   ]
 };
 
@@ -60,7 +94,9 @@ export default function GamePage() {
   // Barajar los desafíos al iniciar el juego
   const challenges = useMemo(() => {
       if (!gameMode) return [];
-      return shuffleArray([...challengesData[gameMode]]);
+      // Hacemos una copia para no mutar el array original
+      const gameChallenges = [...challengesData[gameMode]];
+      return shuffleArray(gameChallenges);
   }, [gameMode]);
 
   useEffect(() => {
@@ -86,6 +122,8 @@ export default function GamePage() {
   const challenge = challenges[currentChallengeIndex];
 
   const handleAnswer = (isCorrect: boolean) => {
+    if (feedback) return; // Evitar multiples respuestas
+
     if (isCorrect) {
       playSound('correct');
       setFeedback('correct');
@@ -102,23 +140,23 @@ export default function GamePage() {
         let nextTeamIndex = currentTeamIndex;
         let nextChallengeIndex = currentChallengeIndex;
 
-        if (teams.length > 1) { // Competitive mode with turns
+        // Avanzar al siguiente equipo o al siguiente desafío
+        if (teams.length > 1) { // Modo competitivo con turnos
           nextTeamIndex = (currentTeamIndex + 1) % teams.length;
-          if (nextTeamIndex === 0) { // A full round of turns is complete
-            nextChallengeIndex = currentChallengeIndex + 1;
+          // Si hemos completado una ronda completa de turnos (vuelve al equipo 0)
+          if (nextTeamIndex === 0) {
+            nextChallengeIndex++;
           }
-        } else { // Single player or practice
-          nextChallengeIndex = currentChallengeIndex + 1;
+        } else { // Modo solitario o práctica
+          nextChallengeIndex++;
         }
-
+        
         if (nextChallengeIndex >= challenges.length) {
             setGameOver(true);
         } else {
             setCurrentChallengeIndex(nextChallengeIndex);
             setCurrentTeamIndex(nextTeamIndex);
-            if(!gameOver) {
-              setTimeLeft(30);
-            }
+            setTimeLeft(30);
         }
     }, 2000);
   };
@@ -128,9 +166,9 @@ export default function GamePage() {
     handleAnswer(isCorrect);
   };
   
-  const winner = teams.length > 1 
+  const winner = teams.length > 0 
     ? teams.reduce((prev, current) => (prev.score > current.score) ? prev : current)
-    : teams[0];
+    : null;
 
   if (gameOver) {
     return (
@@ -142,7 +180,7 @@ export default function GamePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Trophy className="w-24 h-24 text-primary mx-auto"/>
-                    {teams.length > 1 ? (
+                    {teams.length > 1 && winner ? (
                       <>
                         <h3 className="text-2xl font-bold">Ganador: {winner.name}</h3>
                         <div className="space-y-2">
@@ -154,7 +192,7 @@ export default function GamePage() {
                     ) : (
                       <>
                         <h3 className="text-2xl font-bold">¡Completaste el desafío!</h3>
-                        <p className="text-lg">Puntuación final: {teams[0].score} puntos</p>
+                        {teams.length > 0 && <p className="text-lg">Puntuación final: {teams[0].score} puntos</p>}
                       </>
                     )}
                     <Button onClick={() => { resetGame(); router.push('/') }} size="lg">Jugar de Nuevo</Button>
@@ -173,7 +211,7 @@ export default function GamePage() {
           <Card className="flex-grow flex flex-col bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
             <CardHeader>
               <CardTitle className="font-headline text-3xl text-center">
-                Turno de: <span className="text-primary">{teams[currentTeamIndex]?.name}</span>
+                {teams.length > 0 && `Turno de: `} <span className="text-primary">{teams[currentTeamIndex]?.name}</span>
               </CardTitle>
               {!isPracticeMode && (
                 <div className="flex items-center gap-2 justify-center text-muted-foreground">
@@ -237,7 +275,7 @@ export default function GamePage() {
               <Alert>
                 <AlertTitle className="font-bold">Progreso del Juego</AlertTitle>
                 <AlertDescription>
-                  Ronda {currentChallengeIndex + 1} de {challenges.length}.
+                  Desafío {Math.min(Math.floor(currentChallengeIndex / teams.length) + 1, challenges.length)} de {challenges.length}.
                 </AlertDescription>
               </Alert>
             </CardContent>
