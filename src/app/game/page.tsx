@@ -105,6 +105,7 @@ export default function GamePage() {
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const lastTickTimeRef = useRef(0);
 
   const challenges = useMemo(() => {
     if (!gameMode) return [];
@@ -142,7 +143,11 @@ export default function GamePage() {
       timerRef.current = setInterval(() => {
         setTimeLeft((t) => {
             if (t > 1) {
-                playSound('tick');
+                const now = Date.now();
+                if (now - lastTickTimeRef.current > 900) { // Throttle sound
+                    playSound('tick');
+                    lastTickTimeRef.current = now;
+                }
                 return t - 1
             }
             // When time reaches 1, we will clear interval and handle times up.
