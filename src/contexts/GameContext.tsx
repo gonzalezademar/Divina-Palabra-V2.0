@@ -20,9 +20,11 @@ interface GameContextType {
   setPracticeMode: (isPractice: boolean) => void;
   isSoundOn: boolean;
   toggleSound: () => void;
-  playSound: (sound: 'correct' | 'incorrect' | 'click') => void;
+  playSound: (sound: 'correct' | 'incorrect' | 'click' | 'times-up') => void;
   updateScore: (teamIndex: number, points: number) => void;
   resetGame: () => void;
+  roundTime: number;
+  setRoundTime: (time: number) => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -31,12 +33,15 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
+let fmSynth: Tone.FMSynth;
 
 if (typeof window !== 'undefined') {
+  const volume = 5; // Aumentar volumen
   synth = new Tone.Synth({
     oscillator: { type: 'triangle' },
     envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.4 },
   }).toDestination();
+  synth.volume.value = volume;
   
   amSynth = new Tone.AMSynth({
     harmonicity: 3,
@@ -60,11 +65,21 @@ if (typeof window !== 'undefined') {
       release: 0.3
     }
   }).toDestination();
+  amSynth.volume.value = volume;
 
   noiseSynth = new Tone.NoiseSynth({
     noise: { type: 'white' },
     envelope: { attack: 0.005, decay: 0.1, release: 0.2 },
   }).toDestination();
+  noiseSynth.volume.value = volume;
+
+  fmSynth = new Tone.FMSynth({
+    harmonicity: 2,
+    modulationIndex: 10,
+    envelope: { attack: 0.01, decay: 0.2, release: 0.2 },
+    modulationEnvelope: { attack: 0.01, decay: 0.2, release: 0.2 }
+  }).toDestination();
+  fmSynth.volume.value = volume;
 }
 
 
@@ -76,6 +91,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
+  const [roundTime, setRoundTime] = useState(30);
   
   useEffect(() => {
     const savedTeams = localStorage.getItem('gameTeams');
@@ -89,7 +105,16 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (savedSound) {
       setIsSoundOn(JSON.parse(savedSound));
     }
+    const savedRoundTime = localStorage.getItem('roundTime');
+    if (savedRoundTime) {
+      setRoundTime(JSON.parse(savedRoundTime));
+    }
   }, []);
+
+  const handleSetRoundTime = (time: number) => {
+    setRoundTime(time);
+    localStorage.setItem('roundTime', JSON.stringify(time));
+  };
 
   const setTeams = (newTeams: Team[]) => {
     setTeamsState(newTeams.map(t => ({...t, score: 0})));
@@ -112,7 +137,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     playSound('click');
   };
 
-  const playSound = (sound: 'correct' | 'incorrect' | 'click') => {
+  const playSound = (sound: 'correct' | 'incorrect' | 'click' | 'times-up') => {
     if (!isSoundOn || typeof window === 'undefined') return;
     
     if (Tone.context.state !== 'running') {
@@ -123,19 +148,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
     switch (sound) {
       case 'correct':
-        // Melodía armónica para acierto
         amSynth.triggerAttackRelease('C4', '8n', now);
         amSynth.triggerAttackRelease('E4', '8n', now + 0.1);
         amSynth.triggerAttackRelease('G4', '8n', now + 0.2);
         amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
         break;
       case 'incorrect':
-        // Sonido grave y corto para error
         synth.triggerAttackRelease('A2', '8n', now);
         synth.triggerAttackRelease('A#2', '8n', now + 0.1);
         break;
       case 'click':
         noiseSynth.triggerAttackRelease('16n', now);
+        break;
+      case 'times-up':
+        fmSynth.triggerAttackRelease('G3', '4n', now);
         break;
     }
   };
@@ -149,7 +175,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
       {children}
     </GameContext.Provider>
   );

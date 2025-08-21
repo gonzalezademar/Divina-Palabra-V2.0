@@ -66,44 +66,33 @@ const challengesData = {
   ]
 };
 
-// Función para barajar un array (Fisher-Yates shuffle)
 const shuffleArray = (array: any[]) => {
   let currentIndex = array.length,  randomIndex;
-
-  // While there remain elements to shuffle.
   while (currentIndex > 0) {
-
-    // Pick a remaining element.
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
-
   return array;
 }
 
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [answer, setAnswer] = useState('');
-  const [timeLeft, setTimeLeft] = useState(30);
+  const [timeLeft, setTimeLeft] = useState(roundTime);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
-  // Barajar los desafíos al iniciar el juego
   const challenges = useMemo(() => {
       if (!gameMode) return [];
       const gameChallenges = [...challengesData[gameMode]];
-      // No barajar si se quiere dificultad progresiva
-      // return shuffleArray(gameChallenges);
-      return gameChallenges;
+      return shuffleArray(gameChallenges);
   }, [gameMode]);
 
   useEffect(() => {
@@ -115,6 +104,7 @@ export default function GamePage() {
   useEffect(() => {
     if (isPracticeMode || feedback || gameOver) return;
     if (timeLeft === 0) {
+      playSound('times-up');
       handleAnswer(false);
       return;
     }
@@ -129,7 +119,7 @@ export default function GamePage() {
   const challenge = challenges[currentChallengeIndex];
 
   const handleAnswer = (isCorrect: boolean) => {
-    if (feedback) return; // Evitar multiples respuestas
+    if (feedback) return; 
 
     if (isCorrect) {
       playSound('correct');
@@ -150,9 +140,8 @@ export default function GamePage() {
             setGameOver(true);
         } else {
             setCurrentChallengeIndex(nextChallengeIndex);
-            // Avanzar al siguiente equipo
             setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
-            setTimeLeft(30);
+            setTimeLeft(roundTime);
         }
     }, 2000);
   };
@@ -288,5 +277,3 @@ export default function GamePage() {
     </div>
   );
 }
-
-    

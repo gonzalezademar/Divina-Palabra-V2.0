@@ -8,12 +8,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll } from 'lucide-react';
+import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll, Clock } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
+import { Slider } from '@/components/ui/slider';
 
 export default function HomePage() {
   const router = useRouter();
-  const { teams, setTeams, setGameMode, setPracticeMode, isPracticeMode, isSoundOn, toggleSound, playSound } = useGame();
+  const { teams, setTeams, setGameMode, setPracticeMode, isPracticeMode, isSoundOn, toggleSound, playSound, roundTime, setRoundTime } = useGame();
 
   const handleTeamNameChange = (index: number, name: string) => {
     const newTeams = [...teams];
@@ -84,7 +85,7 @@ export default function HomePage() {
               </Tabs>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-4">
+          <CardFooter className="flex flex-col gap-6">
               <div className="flex items-center space-x-2 animate-scroll-reveal" style={{animationDelay: '0.6s'}}>
                 <BrainCircuit className="w-6 h-6 text-primary" />
                 <Label htmlFor="practice-mode" className="text-lg">Modo Práctica (sin tiempo)</Label>
@@ -92,6 +93,18 @@ export default function HomePage() {
                   id="practice-mode"
                   checked={isPracticeMode}
                   onCheckedChange={setPracticeMode}
+                />
+              </div>
+              <div className="w-full space-y-4 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
+                <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2"><Clock className="w-5 h-5" /> Tiempo por Turno: {roundTime}s</Label>
+                <Slider
+                  id="round-time"
+                  min={10}
+                  max={60}
+                  step={5}
+                  value={[roundTime]}
+                  onValueChange={(value) => setRoundTime(value[0])}
+                  disabled={isPracticeMode}
                 />
               </div>
           </CardFooter>
