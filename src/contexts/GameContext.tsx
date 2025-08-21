@@ -158,7 +158,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (!isSoundOn || typeof window === 'undefined') return;
     
     if (Tone.context.state !== 'running') {
-        Tone.start();
+        Tone.start().catch(e => console.error("Tone.start() failed", e));
     }
 
     try {
@@ -180,7 +180,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           glassSynth.triggerAttackRelease("G5", "1n", now);
           break;
         case 'tick':
-          tickSynth.triggerAttackRelease('C5', '32n', now);
+          // This is the robust way to handle rapid-fire sounds
+          // without scheduling them in the future, preventing the error.
+          tickSynth.triggerAttackRelease('C5', '32n');
           break;
       }
     } catch(e) {
