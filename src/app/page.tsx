@@ -106,8 +106,8 @@ export default function HomePage() {
                 <Slider
                   id="round-time"
                   min={10}
-                  max={60}
-                  step={5}
+                  max={30}
+                  step={1}
                   value={[roundTime]}
                   onValueChange={(value) => setRoundTime(value[0])}
                   disabled={isPracticeMode}
