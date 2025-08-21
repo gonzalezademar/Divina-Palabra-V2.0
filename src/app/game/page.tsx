@@ -27,7 +27,7 @@ const challenges = {
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, setGameMode } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
@@ -63,7 +63,7 @@ export default function GamePage() {
     if (isCorrect) {
       playSound('correct');
       setFeedback('correct');
-      updateScore(currentTeamIndex, 10);
+      if(!isPracticeMode) updateScore(currentTeamIndex, 10);
     } else {
       playSound('incorrect');
       setFeedback('incorrect');
@@ -72,19 +72,27 @@ export default function GamePage() {
     setTimeout(() => {
         setFeedback(null);
         setAnswer('');
-        const nextTeamIndex = (currentTeamIndex + 1) % teams.length;
         
-        if (nextTeamIndex === 0) { // A full round of turns is complete
-            if (currentChallengeIndex + 1 >= currentChallenges.length) {
-                setGameOver(true);
-            } else {
-                setCurrentChallengeIndex(i => i + 1);
-            }
+        let nextTeamIndex = currentTeamIndex;
+        let nextChallengeIndex = currentChallengeIndex;
+
+        if (teams.length > 1) { // Competitive mode with turns
+          nextTeamIndex = (currentTeamIndex + 1) % teams.length;
+          if (nextTeamIndex === 0) { // A full round of turns is complete
+            nextChallengeIndex = currentChallengeIndex + 1;
+          }
+        } else { // Single player or practice
+          nextChallengeIndex = currentChallengeIndex + 1;
         }
-        setCurrentTeamIndex(nextTeamIndex);
-        
-        if(!gameOver) {
-          setTimeLeft(30);
+
+        if (nextChallengeIndex >= currentChallenges.length) {
+            setGameOver(true);
+        } else {
+            setCurrentChallengeIndex(nextChallengeIndex);
+            setCurrentTeamIndex(nextTeamIndex);
+            if(!gameOver) {
+              setTimeLeft(30);
+            }
         }
     }, 2000);
   };
@@ -94,7 +102,9 @@ export default function GamePage() {
     handleAnswer(isCorrect);
   };
   
-  const winner = teams.reduce((prev, current) => (prev.score > current.score) ? prev : current);
+  const winner = teams.length > 1 
+    ? teams.reduce((prev, current) => (prev.score > current.score) ? prev : current)
+    : teams[0];
 
   if (gameOver) {
     return (
@@ -106,13 +116,19 @@ export default function GamePage() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                     <Trophy className="w-24 h-24 text-primary mx-auto"/>
-                    <h3 className="text-2xl font-bold">Ganador: {winner.name}</h3>
-                    <div className="space-y-2">
-                        {teams.map(team => (
-                            <p key={team.name} className="text-lg">{team.name}: {team.score} puntos</p>
-                        ))}
-                    </div>
-                    <Button onClick={() => { setGameMode(null); router.push('/') }} size="lg">Jugar de Nuevo</Button>
+                    {teams.length > 1 ? (
+                      <>
+                        <h3 className="text-2xl font-bold">Ganador: {winner.name}</h3>
+                        <div className="space-y-2">
+                            {teams.map(team => (
+                                <p key={team.name} className="text-lg">{team.name}: {team.score} puntos</p>
+                            ))}
+                        </div>
+                      </>
+                    ) : (
+                      <h3 className="text-2xl font-bold">¡Completaste el desafío!</h3>
+                    )}
+                    <Button onClick={() => { resetGame(); router.push('/') }} size="lg">Jugar de Nuevo</Button>
                 </CardContent>
             </Card>
         </div>

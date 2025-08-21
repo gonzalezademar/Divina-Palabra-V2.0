@@ -6,11 +6,11 @@ import { Volume2, VolumeX, Home } from 'lucide-react';
 import Link from 'next/link';
 
 export function GameHeader() {
-    const { isSoundOn, toggleSound } = useGame();
+    const { isSoundOn, toggleSound, resetGame } = useGame();
     return (
         <header className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10">
             <Link href="/" passHref>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" onClick={resetGame}>
                     <Home className="h-6 w-6" />
                     <span className="sr-only">Volver al Inicio</span>
                 </Button>

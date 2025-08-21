@@ -21,6 +21,7 @@ interface GameContextType {
   toggleSound: () => void;
   playSound: (sound: 'correct' | 'incorrect' | 'click') => void;
   updateScore: (teamIndex: number, points: number) => void;
+  resetGame: () => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -75,10 +76,15 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const setTeams = (newTeams: Team[]) => {
-    setTeamsState(newTeams);
+    setTeamsState(newTeams.map(t => ({...t, score: 0})));
     localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name, score: 0 }))));
   };
   
+  const resetGame = () => {
+    setGameMode(null);
+    setTeamsState(prevTeams => prevTeams.map(team => ({...team, score: 0})));
+  }
+
   const toggleSound = () => {
     const newSoundState = !isSoundOn;
     setIsSoundOn(newSoundState);
@@ -120,7 +126,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame }}>
       {children}
     </GameContext.Provider>
   );
