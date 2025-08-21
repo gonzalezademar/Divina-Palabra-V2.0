@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
@@ -33,16 +34,16 @@ let noiseSynth: Tone.NoiseSynth;
 
 if (typeof window !== 'undefined') {
   synth = new Tone.Synth({
-    oscillator: { type: 'sine' },
-    envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 1 },
+    oscillator: { type: 'triangle' },
+    envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.4 },
   }).toDestination();
 
   metallicSynth = new Tone.MetalSynth({
-    frequency: 200,
+    frequency: 150,
     envelope: { attack: 0.001, decay: 0.4, release: 0.2 },
-    harmonicity: 5.1,
-    modulationIndex: 32,
-    resonance: 4000,
+    harmonicity: 8.5,
+    modulationIndex: 20,
+    resonance: 8000,
     octaves: 1.5,
   }).toDestination();
   
@@ -66,6 +67,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const savedTeams = localStorage.getItem('gameTeams');
     if (savedTeams) {
       const parsedTeams = JSON.parse(savedTeams);
+      // Reset scores on load, keep names
       const teamsWithResetScores = parsedTeams.map((team: any) => ({ ...team, score: 0 }));
       setTeamsState(teamsWithResetScores);
     }
@@ -82,6 +84,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   
   const resetGame = () => {
     setGameMode(null);
+    // Reset scores, but keep team names
     setTeamsState(prevTeams => prevTeams.map(team => ({...team, score: 0})));
   }
 
@@ -106,10 +109,14 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
     switch (sound) {
       case 'correct':
-        metallicSynth.triggerAttackRelease('C4', '8n', now);
+        // Melodía ascendente para acierto
+        metallicSynth.triggerAttackRelease('C4', '16n', now);
+        metallicSynth.triggerAttackRelease('E4', '16n', now + 0.12);
+        metallicSynth.triggerAttackRelease('G4', '16n', now + 0.24);
         break;
       case 'incorrect':
-        synth.triggerAttackRelease('C3', '8n', now);
+        // Sonido grave y corto para error
+        synth.triggerAttackRelease('A2', '8n', now);
         break;
       case 'click':
         noiseSynth.triggerAttackRelease('16n', now);
