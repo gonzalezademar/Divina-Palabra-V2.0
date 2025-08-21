@@ -25,6 +25,8 @@ interface GameContextType {
   updateScore: (teamIndex: number, points: number) => void;
   updateLives: (teamIndex: number, change: number) => number;
   resetGame: () => void;
+  restartCurrentGame: () => void;
+  gameRestarted: number;
   roundTime: number;
   setRoundTime: (time: number) => void;
 }
@@ -100,6 +102,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [roundTime, setRoundTime] = useState(30);
+  const [gameRestarted, setGameRestarted] = useState(0);
   
   const resetTeamStats = (teams: Team[]) => {
     return teams.map(team => ({...team, score: 0, lives: INITIAL_LIVES}));
@@ -136,6 +139,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     setGameMode(null);
     setTeamsState(prevTeams => resetTeamStats(prevTeams));
   }
+
+  const restartCurrentGame = () => {
+    setTeamsState(prevTeams => resetTeamStats(prevTeams));
+    setGameRestarted(prev => prev + 1);
+  };
 
   const toggleSound = () => {
     const newSoundState = !isSoundOn;
@@ -220,7 +228,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, restartCurrentGame, gameRestarted, roundTime, setRoundTime: handleSetRoundTime }}>
       {children}
     </GameContext.Provider>
   );

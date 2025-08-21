@@ -187,7 +187,7 @@ const scrambleWord = (challenge: any, level: number) => {
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, updateLives } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, updateLives, gameRestarted } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
@@ -266,6 +266,18 @@ export default function GamePage() {
       }
     };
   }, [gameMode, router, currentChallengeIndex, feedback]);
+
+  useEffect(() => {
+    if (gameRestarted > 0) {
+        setCurrentChallengeIndex(0);
+        setCurrentTeamIndex(0);
+        setAnswer('');
+        setFeedback(null);
+        setGameOver(false);
+        setGuessedLetters([]);
+        setLetterInput('');
+    }
+  }, [gameRestarted]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
