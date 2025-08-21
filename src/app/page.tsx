@@ -76,10 +76,10 @@ export default function HomePage() {
 
             <div className="space-y-4 animate-scroll-reveal" style={{animationDelay: '0.4s'}}>
               <h3 className="font-headline text-2xl flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-6 h-6 text-accent" /> Elige el Desafío</h3>
-              <Tabs defaultValue="find-word" className="w-full">
-                <TabsList className="grid w-full grid-cols-2 h-auto bg-muted p-1">
-                  <TabsTrigger value="find-word" className="py-3 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg">Encuentra la Palabra</TabsTrigger>
-                  <TabsTrigger value="complete-phrase" className="py-3 text-base data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg">Completa la Frase</TabsTrigger>
+              <Tabs defaultValue="find-word" className="w-full max-w-sm mx-auto">
+                <TabsList className="grid w-full grid-cols-2 h-auto p-1 bg-muted/50">
+                  <TabsTrigger value="find-word" className="py-2.5 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg">Encuentra la Palabra</TabsTrigger>
+                  <TabsTrigger value="complete-phrase" className="py-2.5 text-sm data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg">Completa la Frase</TabsTrigger>
                 </TabsList>
                 <TabsContent value="find-word" className="pt-4">
                   <p className="text-muted-foreground">Descifra las palabras bíblicas revueltas. ¡Pon a prueba tu agilidad mental!</p>
