@@ -45,23 +45,23 @@ export default function HomePage() {
 
       <main className="flex flex-col items-center justify-center text-center w-full max-w-2xl animate-fade-in">
         <Card className="w-full bg-card/80 backdrop-blur-sm border-primary/20 shadow-2xl shadow-primary/10">
-          <CardHeader>
-            <div className="flex justify-center items-center gap-4 mb-4">
-              <BookOpen className="w-12 h-12 text-primary" />
-              <Crown className="w-16 h-16 text-primary" />
-              <Scroll className="w-12 h-12 text-primary" />
+          <CardHeader className="pt-4 pb-2">
+            <div className="flex justify-center items-center gap-3 mb-2">
+              <BookOpen className="w-8 h-8 text-primary" />
+              <Crown className="w-10 h-10 text-primary" />
+              <Scroll className="w-8 h-8 text-primary" />
             </div>
-            <CardTitle className="font-headline text-5xl text-primary">Encuentra la Palabra</CardTitle>
-            <p className="text-sm text-muted-foreground">Saludos a Braian y Alexis</p>
-            <CardDescription className="text-muted-foreground text-lg">Edición Bíblica</CardDescription>
+            <CardTitle className="font-headline text-4xl text-primary">Encuentra la Palabra</CardTitle>
+            <p className="text-xs text-muted-foreground">Saludos a Braian y Alexis</p>
+            <CardDescription className="text-muted-foreground text-md">Edición Bíblica</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-8">
-            <div className="space-y-4 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
-              <h3 className="font-headline text-2xl flex items-center justify-center gap-2 text-accent-foreground/80"><Users className="w-6 h-6 text-accent"/> Configuración de Equipos</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <CardContent className="space-y-6 p-4 pt-2">
+            <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
+              <h3 className="font-headline text-xl flex items-center justify-center gap-2 text-accent-foreground/80"><Users className="w-5 h-5 text-accent"/> Configuración de Equipos</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {teams.map((team, index) => (
-                  <div key={index} className="space-y-2">
-                    <Label htmlFor={`team-${index}`} className="text-left text-lg text-muted-foreground">Equipo {index + 1}</Label>
+                  <div key={index} className="space-y-1">
+                    <Label htmlFor={`team-${index}`} className="text-left text-md text-muted-foreground">Equipo {index + 1}</Label>
                     <Input
                       id={`team-${index}`}
                       value={team.name}
@@ -74,36 +74,36 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="space-y-4 animate-scroll-reveal" style={{animationDelay: '0.4s'}}>
-              <h3 className="font-headline text-2xl flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-6 h-6 text-accent" /> Elige el Desafío</h3>
+            <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.4s'}}>
+              <h3 className="font-headline text-xl flex items-center justify-center gap-2 text-accent-foreground/80"><Swords className="w-5 h-5 text-accent" /> Elige el Desafío</h3>
               <Tabs defaultValue="find-word" className="w-full max-w-md mx-auto">
                 <TabsList className="grid w-full grid-cols-2 h-auto p-1 bg-muted/50">
-                  <TabsTrigger value="find-word" className="py-3 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Encuentra la Palabra</TabsTrigger>
-                  <TabsTrigger value="complete-phrase" className="py-3 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Completa la Frase</TabsTrigger>
+                  <TabsTrigger value="find-word" className="py-2 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Encuentra la Palabra</TabsTrigger>
+                  <TabsTrigger value="complete-phrase" className="py-2 text-sm leading-tight data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-lg h-14 whitespace-normal">Completa la Frase</TabsTrigger>
                 </TabsList>
-                <TabsContent value="find-word" className="pt-4">
-                  <p className="text-muted-foreground">Descifra las palabras bíblicas revueltas. ¡Pon a prueba tu agilidad mental!</p>
-                  <Button onClick={() => startGame('find-word')} size="lg" className="mt-4 w-full font-bold text-lg">Jugar a Encontrar</Button>
+                <TabsContent value="find-word" className="pt-2">
+                  <p className="text-muted-foreground text-sm">Descifra las palabras bíblicas revueltas. ¡Pon a prueba tu agilidad mental!</p>
+                  <Button onClick={() => startGame('find-word')} size="lg" className="mt-3 w-full font-bold text-lg">Jugar a Encontrar</Button>
                 </TabsContent>
-                <TabsContent value="complete-phrase" className="pt-4">
-                   <p className="text-muted-foreground">Completa los versículos y frases célebres de la Biblia. ¿Recuerdas cómo terminan?</p>
-                   <Button onClick={() => startGame('complete-phrase')} size="lg" className="mt-4 w-full font-bold text-lg">Jugar a Completar</Button>
+                <TabsContent value="complete-phrase" className="pt-2">
+                   <p className="text-muted-foreground text-sm">Completa los versículos y frases célebres de la Biblia. ¿Recuerdas cómo terminan?</p>
+                   <Button onClick={() => startGame('complete-phrase')} size="lg" className="mt-3 w-full font-bold text-lg">Jugar a Completar</Button>
                 </TabsContent>
               </Tabs>
             </div>
           </CardContent>
-          <CardFooter className="flex flex-col gap-6 pt-4 bg-primary/5">
+          <CardFooter className="flex flex-col gap-4 p-4 bg-primary/5">
               <div className="flex items-center space-x-2 animate-scroll-reveal" style={{animationDelay: '0.6s'}}>
                 <BrainCircuit className="w-6 h-6 text-primary" />
-                <Label htmlFor="practice-mode" className="text-lg text-muted-foreground">Modo Práctica (sin tiempo)</Label>
+                <Label htmlFor="practice-mode" className="text-md text-muted-foreground">Modo Práctica (sin tiempo)</Label>
                 <Switch
                   id="practice-mode"
                   checked={isPracticeMode}
                   onCheckedChange={setPracticeMode}
                 />
               </div>
-              <div className="w-full space-y-3 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
-                <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2 text-muted-foreground"><Clock className="w-5 h-5 text-primary" /> Tiempo de Ronda: {roundTime}s</Label>
+              <div className="w-full space-y-2 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
+                <Label htmlFor="round-time" className="text-md flex items-center justify-center gap-2 text-muted-foreground"><Clock className="w-5 h-5 text-primary" /> Tiempo de Ronda: {roundTime}s</Label>
                 <Slider
                   id="round-time"
                   min={5}
@@ -117,7 +117,7 @@ export default function HomePage() {
           </CardFooter>
         </Card>
       </main>
-      <footer className="w-full max-w-2xl mt-8">
+      <footer className="w-full max-w-2xl mt-4">
         <AdBanner />
       </footer>
     </div>
