@@ -138,6 +138,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const resetGame = () => {
     setGameMode(null);
     setTeamsState(prevTeams => resetTeamStats(prevTeams));
+    setGameRestarted(prev => prev + 1); // Trigger a reset on the game page
   }
 
   const restartCurrentGame = () => {
