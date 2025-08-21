@@ -35,7 +35,6 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
-let fmSynth: Tone.FMSynth;
 let tickSynth: Tone.FMSynth;
 
 
@@ -76,14 +75,6 @@ if (typeof window !== 'undefined') {
     envelope: { attack: 0.005, decay: 0.1, release: 0.2 },
   }).toDestination();
   noiseSynth.volume.value = volume;
-
-  fmSynth = new Tone.FMSynth({
-    harmonicity: 5,
-    modulationIndex: 20,
-    envelope: { attack: 0.005, decay: 0.5, sustain: 0.1, release: 2 },
-    modulationEnvelope: { attack: 0.005, decay: 0.5, sustain: 0.1, release: 2 }
-  }).toDestination();
-  fmSynth.volume.value = volume - 8;
 
   tickSynth = new Tone.FMSynth({
     harmonicity: 1,
@@ -175,7 +166,16 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           tickSynth.triggerAttackRelease('C7', '32n');
           break;
         case 'times-up':
-          fmSynth.triggerAttackRelease('G6', '2n', now);
+          const glassSynth = new Tone.MetalSynth({
+            frequency: 440,
+            envelope: { attack: 0.001, decay: 1.4, release: 0.2 },
+            harmonicity: 8.5,
+            modulationIndex: 20,
+            resonance: 4000,
+            octaves: 1.5
+          }).toDestination();
+          glassSynth.volume.value = -8;
+          glassSynth.triggerAttackRelease("C5", "2n", now);
           break;
         case 'tick':
           tickSynth.triggerAttackRelease('C5', '32n');
