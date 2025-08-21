@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -14,9 +15,9 @@ import { AdBanner } from '@/components/game/AdBanner';
 
 const challenges = {
   'find-word': [
-    { question: "SENÉGIS", answer: "GENESIS", hint: "El primer libro de la Biblia." },
-    { question: "XODOÉ", answer: "EXODO", hint: "El libro de la salida de Egipto." },
-    { question: "SÍAPOCALIPS", answer: "APOCALIPSIS", hint: "El último libro, lleno de profecías." },
+    { question: "SENEGIS", answer: "GENESIS", hint: "El primer libro de la Biblia." },
+    { question: "XODOE", answer: "EXODO", hint: "El libro de la salida de Egipto." },
+    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "El último libro, lleno de profecías." },
   ],
   'complete-phrase': [
     { question: "En el principio creó Dios los cielos y la _____", answer: "TIERRA", hint: "Lo opuesto al cielo." },
