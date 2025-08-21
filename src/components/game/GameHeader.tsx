@@ -8,7 +8,7 @@ import Link from 'next/link';
 export function GameHeader() {
     const { isSoundOn, toggleSound, resetGame } = useGame();
     return (
-        <header className="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10">
+        <header className="absolute top-0 left-0 right-0 p-2 md:p-4 flex justify-between items-center z-10">
             <Link href="/" passHref>
                 <Button variant="ghost" size="icon" onClick={resetGame}>
                     <Home className="h-6 w-6" />
@@ -22,3 +22,5 @@ export function GameHeader() {
         </header>
     )
 }
+
+    

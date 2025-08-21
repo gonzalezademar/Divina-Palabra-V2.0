@@ -10,7 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock, Star, Brain } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
 const findWordLevel1 = [
@@ -227,20 +227,24 @@ export default function GamePage() {
   const currentLevel = challenge.level;
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col p-4 pt-20 md:p-6 md:pt-24">
+    <div className="h-screen max-h-screen overflow-hidden bg-background text-foreground flex flex-col p-2 pt-16 md:p-4 md:pt-20">
       <GameHeader />
-      <main className="flex-grow flex flex-col md:flex-row gap-6">
-        <div className="md:w-2/3 flex flex-col">
+      
+      <div className="flex-grow flex flex-col md:flex-row md:gap-4 overflow-hidden">
+        
+        {/* Main Game Panel */}
+        <main className="flex-grow flex flex-col pb-2 md:pb-0">
           <Card className="flex-grow flex flex-col bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
-            <CardHeader>
-              <CardTitle className="font-headline text-3xl text-center">
-                {teams.length > 0 && `Turno de: `} <span className="text-primary">{teams[currentTeamIndex]?.name}</span>
-              </CardTitle>
-              <div className="flex items-center gap-4 justify-center text-muted-foreground">
+            <CardHeader className="p-4">
+              <div className="flex items-center justify-between text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                      <Users className="w-5 h-5"/>
+                      <span className="font-bold text-lg text-primary">{teams[currentTeamIndex]?.name}</span>
+                  </div>
                 {!isPracticeMode && (
                     <div className="flex items-center gap-2 text-lg">
                         <Clock className="w-5 h-5"/>
-                        <span>Tiempo: {timeLeft}s</span>
+                        <span>{timeLeft}s</span>
                     </div>
                 )}
                 {currentLevel && (
@@ -251,7 +255,7 @@ export default function GamePage() {
                 )}
               </div>
             </CardHeader>
-            <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-6">
+            <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-4 p-4">
               {feedback && (
                   <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
@@ -263,8 +267,8 @@ export default function GamePage() {
               )}
               {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
-                    <p className="text-lg text-muted-foreground">{challenge.hint}</p>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline text-primary">
+                    <p className="text-base text-muted-foreground">{challenge.hint}</p>
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-primary">
                         {challenge.question}
                     </h2>
                     <Input
@@ -275,47 +279,52 @@ export default function GamePage() {
                       className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary"
                       disabled={!!feedback}
                     />
-                    <Button onClick={submitAnswer} size="lg" className="w-full text-lg mt-4" disabled={!answer || !!feedback}>
+                    <Button onClick={submitAnswer} size="lg" className="w-full text-lg" disabled={!answer || !!feedback}>
                       Enviar Respuesta
                     </Button>
                   </div>
               )}
             </CardContent>
           </Card>
-        </div>
+        </main>
         
-        <div className="md:w-1/3">
+        {/* Side Panel / Score */}
+        <aside className="w-full md:w-1/3 flex flex-col gap-2 md:gap-4">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
-            <CardHeader>
-              <CardTitle className="font-headline text-2xl flex items-center gap-2">
+            <CardHeader className="p-3 md:p-4">
+              <CardTitle className="font-headline text-xl md:text-2xl flex items-center gap-2">
                 <Trophy className="w-6 h-6 text-primary"/>
                 Puntuación
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-3 p-3 md:p-4">
               {teams.map((team, index) => (
-                <div key={index} className="space-y-2">
-                  <div className="flex justify-between font-bold">
+                <div key={index} className="space-y-1">
+                  <div className="flex justify-between font-bold text-sm">
                     <span>{team.name}</span>
                     <span>{team.score} pts</span>
                   </div>
                   <Progress value={(team.score / (totalChallenges * 10 / (teams.length || 1)))} />
                 </div>
               ))}
-              <Alert>
-                <AlertTitle className="font-bold">Progreso del Juego</AlertTitle>
-                <AlertDescription>
-                  Desafío {currentChallengeIndex + 1} de {totalChallenges}.
-                </AlertDescription>
-              </Alert>
-              <Progress value={progress} />
             </CardContent>
           </Card>
-        </div>
-      </main>
-      <footer className="w-full mt-auto pt-6">
-        <AdBanner />
-      </footer>
+          
+           <Alert className="p-3 md:p-4">
+                <AlertTitle className="font-bold text-sm">Progreso</AlertTitle>
+                <AlertDescription className="text-xs">
+                  Desafío {currentChallengeIndex + 1} de {totalChallenges}.
+                </AlertDescription>
+              <Progress value={progress} className="mt-2 h-2" />
+            </Alert>
+            
+          <footer className="w-full mt-auto">
+             <AdBanner className="h-12 md:h-16" />
+          </footer>
+        </aside>
+      </div>
     </div>
   );
 }
+
+    
