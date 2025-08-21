@@ -35,7 +35,7 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
-let tickSynth: Tone.MembraneSynth;
+let clickSynth: Tone.MembraneSynth;
 let glassSynth: Tone.MetalSynth;
 
 
@@ -77,13 +77,13 @@ if (typeof window !== 'undefined') {
   }).toDestination();
   noiseSynth.volume.value = volume;
 
-  tickSynth = new Tone.MembraneSynth({
+  clickSynth = new Tone.MembraneSynth({
     pitchDecay: 0.01,
     octaves: 2,
     oscillator: { type: 'sine' },
     envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.01 }
   }).toDestination();
-  tickSynth.volume.value = -18;
+  clickSynth.volume.value = -18;
   
   glassSynth = new Tone.MetalSynth({
         frequency: 440,
@@ -159,6 +159,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     
     if (Tone.context.state !== 'running') {
         Tone.start().catch(e => console.error("Tone.start() failed", e));
+        return;
     }
 
     try {
@@ -174,15 +175,26 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
-          tickSynth.triggerAttackRelease('C7', '32n', now);
+          clickSynth.triggerAttackRelease('C7', '32n', now);
           break;
         case 'times-up':
           glassSynth.triggerAttackRelease("G5", "1n", now);
           break;
         case 'tick':
-          // This is the robust way to handle rapid-fire sounds
-          // without scheduling them in the future, preventing the error.
+          // The most robust way to handle rapid-fire sounds to avoid race conditions.
+          // Create and destroy the synth on demand.
+          const tickSynth = new Tone.MembraneSynth({
+            pitchDecay: 0.01,
+            octaves: 2,
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.01 }
+          }).toDestination();
+          tickSynth.volume.value = -22;
           tickSynth.triggerAttackRelease('C5', '32n');
+          // Clean up the synth after it's done playing to avoid memory leaks.
+          setTimeout(() => {
+            tickSynth.dispose();
+          }, 300);
           break;
       }
     } catch(e) {

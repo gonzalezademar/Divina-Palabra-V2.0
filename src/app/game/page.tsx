@@ -148,11 +148,9 @@ const guessPhraseChallenges = [
 
 const shuffleArray = (array: any[]) => {
   const newArray = [...array];
-  let currentIndex = newArray.length, randomIndex;
-  while (currentIndex > 0) {
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
   }
   return newArray;
 }
@@ -170,17 +168,19 @@ const scrambleWord = (challenge: any, level: number) => {
         sourceArray = challenge.answer.split('');
     }
 
+    if (sourceArray.length <= 1) {
+      return original;
+    }
+
     let attempts = 0;
     do {
-      const shuffledArray = shuffleArray(sourceArray);
-      scrambled = shuffledArray.join('');
+      scrambled = shuffleArray(sourceArray).join('');
       attempts++;
-      // Prevent infinite loops for single-letter/syllable words or unlucky shuffles
       if (attempts > 50) { 
         console.warn("Could not scramble word differently after 50 attempts:", original);
         break;
       }
-    } while (scrambled === original && sourceArray.length > 1);
+    } while (scrambled === original);
 
     return scrambled;
 }
@@ -240,7 +240,10 @@ export default function GamePage() {
                 handleAnswer(false);
                 return 0;
             }
-            playSound('tick');
+            // Only play tick sound in the last 5 seconds or for specific intervals
+            if (prevTime <= 6) {
+              playSound('tick');
+            }
             return prevTime - 1;
         });
     }, 1000);
@@ -252,7 +255,10 @@ export default function GamePage() {
       return;
     }
   
-    startTimer();
+    // Start timer only when there is no feedback screen
+    if (!feedback) {
+      startTimer();
+    }
   
     return () => {
       if (timerRef.current) {
