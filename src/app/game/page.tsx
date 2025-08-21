@@ -240,7 +240,7 @@ export default function GamePage() {
                 handleAnswer(false);
                 return 0;
             }
-            if(prevTime % 10 === 0 || prevTime <= 5){
+            if(prevTime <= 5){
                playSound('tick');
             }
             return prevTime - 1;

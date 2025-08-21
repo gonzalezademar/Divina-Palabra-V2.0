@@ -172,7 +172,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
-          noiseSynth.triggerAttackRelease('16n', now);
+          tickSynth.triggerAttackRelease('C7', '32n');
           break;
         case 'times-up':
           fmSynth.triggerAttackRelease('G3', '4n', now);
