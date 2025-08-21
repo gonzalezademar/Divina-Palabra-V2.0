@@ -15,43 +15,49 @@ import { AdBanner } from '@/components/game/AdBanner';
 
 const challengesData = {
   'find-word': [
+    // Libros de la biblia (Fácil)
     { question: "SENEGIS", answer: "GENESIS", hint: "EL PRIMER LIBRO DE LA BIBLIA." },
     { question: "XODOE", answer: "EXODO", hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
-    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
-    { question: "FEPROTA", answer: "PROFETA", hint: "UN MENSAJERO DE DIOS." },
-    { question: "TOLASOP", answer: "APOSTOL", hint: "UNO DE LOS DOCE SEGUIDORES DE JESUS." },
-    { question: "GELAN", answer: "ANGEL", hint: "MENSAJERO CELESTIAL." },
-    { question: "ACAR", answer: "ARCA", hint: "LA EMBARCACION QUE CONSTRUYO NOE." },
-    { question: "LEBEN", answer: "BELEN", hint: "CIUDAD DEL NACIMIENTO DE JESUS." },
-    { question: "SERTDEIO", answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
+    { question: "SOMLAS", answer: "SALMOS", hint: "LIBRO DE CANTOS Y ORACIONES." },
     { question: "NAIC", answer: "CAIN", hint: "HERMANO DE ABEL." },
+    { question: "VIDAD", answer: "DAVID", hint: "REY DE ISRAEL QUE DERROTO A UN GIGANTE." },
+    { question: "SESIOM", answer: "MOISES", hint: "LIBERO A LOS ISRAELITAS DE LA ESCLAVITUD." },
+    { question: "LEBEN", answer: "BELEN", hint: "CIUDAD DEL NACIMIENTO DE JESUS." },
+    { question: "ACAR", answer: "ARCA", hint: "LA EMBARCACION QUE CONSTRUYO NOE." },
+    // Personajes y lugares (Medio)
+    { question: "MARAHAB", answer: "ABRAHAM", hint: "PADRE DE MUCHAS NACIONES." },
+    { question: "NOMLOSA", answer: "SALOMON", hint: "EL REY MAS SABIO DE ISRAEL." },
+    { question: "TOLASOP", answer: "APOSTOL", hint: "UNO DE LOS DOCE SEGUIDORES DE JESUS." },
+    { question: "FEPROTA", answer: "PROFETA", hint: "UN MENSAJERO DE DIOS." },
+    { question: "GELAN", answer: "ANGEL", hint: "MENSAJERO CELESTIAL." },
     { question: "LOGIAT", answer: "GOLIAT", hint: "GIGANTE DERROTADO POR DAVID." },
     { question: "NOSANS", answer: "SANSON", hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
     { question: "NAZTERA", answer: "NAZARET", hint: "CIUDAD DONDE CRECIO JESUS." },
+    // Conceptos y otros (Difícil)
+    { question: "SERTDEIO", answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
     { question: "BALAPORA", answer: "PARABOLA", hint: "HISTORIA CORTA CON UNA ENSENANZA MORAL." },
-    { question: "SOMLAS", answer: "SALMOS", hint: "LIBRO DE CANTOS Y ORACIONES." },
     { question: "PLOMET", answer: "TEMPLO", hint: "LUGAR SAGRADO DE ADORACION EN JERUSALEN." },
-    { question: "VIDAD", answer: "DAVID", hint: "REY DE ISRAEL QUE DERROTO A UN GIGANTE." },
-    { question: "SESIOM", answer: "MOISES", hint: "LIBERO A LOS ISRAELITAS DE LA ESCLAVITUD." },
-    { question: "NOMLOSA", answer: "SALOMON", hint: "EL REY MAS SABIO DE ISRAEL." },
-    { question: "MARAHAB", answer: "ABRAHAM", hint: "PADRE DE MUCHAS NACIONES." },
+    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
   ],
   'complete-phrase': [
+    // Frases conocidas (Fácil)
     { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
     { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
+    { question: "NO SOLO DE PAN VIVIRA EL _____", answer: "HOMBRE", hint: "SER HUMANO DE SEXO MASCULINO." },
+    { question: "PEDID, Y SE OS _____", answer: "DARA", hint: "FUTURO DEL VERBO 'DAR'." },
+    { question: "YO Y EL PADRE UNO _____", answer: "SOMOS", hint: "PRESENTE DEL VERBO 'SER' PARA 'NOSOTROS'." },
+    // Enseñanzas (Medio)
     { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO _____", answer: "UNIGENITO", hint: "HIJO UNICO." },
     { question: "YO SOY EL CAMINO, Y LA VERDAD, Y LA _____", answer: "VIDA", hint: "LO CONTRARIO A LA MUERTE." },
     { question: "TODO LO PUEDO EN CRISTO QUE ME _____", answer: "FORTALECE", hint: "QUE ME DA FUERZA." },
     { question: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA, LA CONVICCION DE LO QUE NO SE _____", answer: "VE", hint: "PERCIBIR CON LOS OJOS." },
     { question: "EL AMOR ES PACIENTE, ES _____", answer: "BONDADOSO", hint: "LLENO DE BONDAD." },
+    { question: "DEJAD A LOS NINOS VENIR A MI, Y NO SE LO _____", answer: "IMPIDAIS", hint: "NO PERMITIR ALGO." },
+    // Conceptos teológicos (Difícil)
     { question: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y _____", answer: "CARGADOS", hint: "QUE LLEVAN UNA CARGA PESADA." },
     { question: "DE MAS ESTIMA ES EL BUEN NOMBRE QUE LAS MUCHAS _____", answer: "RIQUEZAS", hint: "ABUNDANCIA DE BIENES Y DINERO." },
     { question: "PORQUE LA PAGA DEL PECADO ES _____", answer: "MUERTE", hint: "FIN DE LA VIDA." },
-    { question: "NO SOLO DE PAN VIVIRA EL _____", answer: "HOMBRE", hint: "SER HUMANO DE SEXO MASCULINO." },
-    { question: "PEDID, Y SE OS _____", answer: "DARA", hint: "FUTURO DEL VERBO 'DAR'." },
-    { question: "YO Y EL PADRE UNO _____", answer: "SOMOS", hint: "PRESENTE DEL VERBO 'SER' PARA 'NOSOTROS'." },
     { question: "EN LA CASA DE MI PADRE MUCHAS ____ HAY", answer: "MORADAS", hint: "LUGARES PARA VIVIR." },
-    { question: "DEJAD A LOS NINOS VENIR A MI, Y NO SE LO _____", answer: "IMPIDAIS", hint: "NO PERMITIR ALGO." },
     { question: "MAS BUSCAD PRIMERAMENTE EL REINO DE DIOS Y SU _____", answer: "JUSTICIA", hint: "PRINCIPIO MORAL DE DAR A CADA UNO LO QUE LE CORRESPONDE." },
     { question: "FIATE DE JEHOVA DE TODO TU CORAZON, Y NO TE APOYES EN TU PROPIA _____", answer: "PRUDENCIA", hint: "SABIDURIA, BUEN JUICIO." },
     { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
@@ -94,9 +100,10 @@ export default function GamePage() {
   // Barajar los desafíos al iniciar el juego
   const challenges = useMemo(() => {
       if (!gameMode) return [];
-      // Hacemos una copia para no mutar el array original
       const gameChallenges = [...challengesData[gameMode]];
-      return shuffleArray(gameChallenges);
+      // No barajar si se quiere dificultad progresiva
+      // return shuffleArray(gameChallenges);
+      return gameChallenges;
   }, [gameMode]);
 
   useEffect(() => {
@@ -137,25 +144,14 @@ export default function GamePage() {
         setFeedback(null);
         setAnswer('');
         
-        let nextTeamIndex = currentTeamIndex;
-        let nextChallengeIndex = currentChallengeIndex;
-
-        // Avanzar al siguiente equipo o al siguiente desafío
-        if (teams.length > 1) { // Modo competitivo con turnos
-          nextTeamIndex = (currentTeamIndex + 1) % teams.length;
-          // Si hemos completado una ronda completa de turnos (vuelve al equipo 0)
-          if (nextTeamIndex === 0) {
-            nextChallengeIndex++;
-          }
-        } else { // Modo solitario o práctica
-          nextChallengeIndex++;
-        }
+        const nextChallengeIndex = currentChallengeIndex + 1;
         
         if (nextChallengeIndex >= challenges.length) {
             setGameOver(true);
         } else {
             setCurrentChallengeIndex(nextChallengeIndex);
-            setCurrentTeamIndex(nextTeamIndex);
+            // Avanzar al siguiente equipo
+            setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
             setTimeLeft(30);
         }
     }, 2000);
@@ -184,7 +180,7 @@ export default function GamePage() {
                       <>
                         <h3 className="text-2xl font-bold">Ganador: {winner.name}</h3>
                         <div className="space-y-2">
-                            {teams.map(team => (
+                            {teams.sort((a,b) => b.score - a.score).map(team => (
                                 <p key={team.name} className="text-lg">{team.name}: {team.score} puntos</p>
                             ))}
                         </div>
@@ -201,6 +197,9 @@ export default function GamePage() {
         </div>
     );
   }
+
+  const totalChallenges = challenges.length;
+  const progress = (currentChallengeIndex / totalChallenges) * 100;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col p-4 pt-20 md:p-6 md:pt-24">
@@ -269,15 +268,16 @@ export default function GamePage() {
                     <span>{team.name}</span>
                     <span>{team.score} pts</span>
                   </div>
-                  <Progress value={(team.score / (challenges.length * 10)) * 100} />
+                  <Progress value={(team.score / (challenges.length * 10 / teams.length))} />
                 </div>
               ))}
               <Alert>
                 <AlertTitle className="font-bold">Progreso del Juego</AlertTitle>
                 <AlertDescription>
-                  Desafío {Math.min(Math.floor(currentChallengeIndex / teams.length) + 1, challenges.length)} de {challenges.length}.
+                  Desafío {currentChallengeIndex + 1} de {totalChallenges}.
                 </AlertDescription>
               </Alert>
+              <Progress value={progress} />
             </CardContent>
           </Card>
         </div>
@@ -288,3 +288,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
