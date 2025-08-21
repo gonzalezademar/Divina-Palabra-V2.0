@@ -292,7 +292,7 @@ export default function GamePage() {
               {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
                     <p className="text-sm text-accent-foreground/70">{challenge.hint}</p>
-                    <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-primary">
+                    <h2 className="text-3xl md:text-5xl font-bold tracking-widest font-headline text-foreground">
                         {challenge.question}
                     </h2>
                     <Input
