@@ -144,7 +144,7 @@ export default function GamePage() {
         setTimeLeft((t) => {
             if (t > 1) {
                 const now = Date.now();
-                if (now - lastTickTimeRef.current > 900) { // Throttle sound
+                if (now - lastTickTimeRef.current >= 990) { // Throttle sound to once per second
                     playSound('tick');
                     lastTickTimeRef.current = now;
                 }
