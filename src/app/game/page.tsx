@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useGame } from '@/contexts/GameContext';
 import { GameHeader } from '@/components/game/GameHeader';
@@ -104,6 +104,7 @@ export default function GamePage() {
   const [timeLeft, setTimeLeft] = useState(roundTime);
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const challenges = useMemo(() => {
     if (!gameMode) return [];
@@ -132,20 +133,33 @@ export default function GamePage() {
   }, [gameMode, router, roundTime]);
   
   useEffect(() => {
-    if (isPracticeMode || gameOver || feedback) return;
+    if (isPracticeMode || gameOver || feedback) {
+        if (timerRef.current) clearInterval(timerRef.current);
+        return;
+    }
 
     if (timeLeft > 0) {
-      const timer = setInterval(() => {
+      timerRef.current = setInterval(() => {
         setTimeLeft((t) => {
-            if (t > 1) playSound('tick');
-            return t - 1
+            if (t > 1) {
+                playSound('tick');
+                return t - 1
+            }
+            // When time reaches 1, we will clear interval and handle times up.
+            playSound('times-up');
+            handleAnswer(false);
+            return 0;
         });
       }, 1000);
-      return () => clearInterval(timer);
-    } else {
-      playSound('times-up');
-      handleAnswer(false);
+    } else if (timeLeft <= 0 && !feedback) {
+        if (timerRef.current) clearInterval(timerRef.current);
+        playSound('times-up');
+        handleAnswer(false);
     }
+    
+    return () => {
+        if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [timeLeft, isPracticeMode, gameOver, feedback, playSound]);
 
   if (!gameMode || challenges.length === 0) {
@@ -156,6 +170,8 @@ export default function GamePage() {
 
   const handleAnswer = (isCorrect: boolean) => {
     if(feedback) return;
+
+    if (timerRef.current) clearInterval(timerRef.current);
 
     if (isCorrect) {
       playSound('correct');
@@ -329,5 +345,3 @@ export default function GamePage() {
     </div>
   );
 }
-
-    

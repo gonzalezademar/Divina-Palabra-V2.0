@@ -152,28 +152,31 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         Tone.start();
     }
 
-    const now = Tone.now();
-
-    switch (sound) {
-      case 'correct':
-        amSynth.triggerAttackRelease('C4', '8n', now);
-        amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
-        amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
-        break;
-      case 'incorrect':
-        synth.triggerAttackRelease('A2', '8n', now);
-        synth.triggerAttackRelease('A#2', '8n', now + 0.1);
-        break;
-      case 'click':
-        noiseSynth.triggerAttackRelease('16n', now);
-        break;
-      case 'times-up':
-        fmSynth.triggerAttackRelease('G3', '4n', now);
-        fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
-        break;
-      case 'tick':
-        tickSynth.triggerAttackRelease('C5', '32n', now);
-        break;
+    try {
+      const now = Tone.now();
+      switch (sound) {
+        case 'correct':
+          amSynth.triggerAttackRelease('C4', '8n', now);
+          amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
+          amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
+          break;
+        case 'incorrect':
+          synth.triggerAttackRelease('A2', '8n', now);
+          synth.triggerAttackRelease('A#2', '8n', now + 0.1);
+          break;
+        case 'click':
+          noiseSynth.triggerAttackRelease('16n', now);
+          break;
+        case 'times-up':
+          fmSynth.triggerAttackRelease('G3', '4n', now);
+          fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
+          break;
+        case 'tick':
+          tickSynth.triggerAttackRelease('C5', '32n', now);
+          break;
+      }
+    } catch(e) {
+        console.error("Error playing sound", e);
     }
   };
 
