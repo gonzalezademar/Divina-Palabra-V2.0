@@ -29,7 +29,7 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 
 // Sound setup
 let synth: Tone.Synth;
-let metallicSynth: Tone.MetalSynth;
+let amSynth: Tone.AMSynth;
 let noiseSynth: Tone.NoiseSynth;
 
 if (typeof window !== 'undefined') {
@@ -37,16 +37,30 @@ if (typeof window !== 'undefined') {
     oscillator: { type: 'triangle' },
     envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.4 },
   }).toDestination();
-
-  metallicSynth = new Tone.MetalSynth({
-    frequency: 150,
-    envelope: { attack: 0.001, decay: 0.4, release: 0.2 },
-    harmonicity: 8.5,
-    modulationIndex: 20,
-    resonance: 8000,
-    octaves: 1.5,
-  }).toDestination();
   
+  amSynth = new Tone.AMSynth({
+    harmonicity: 3,
+    detune: 0,
+    oscillator: {
+      type: 'fatsawtooth'
+    },
+    envelope: {
+      attack: 0.01,
+      decay: 0.2,
+      sustain: 0.2,
+      release: 0.3
+    },
+    modulation: {
+      type: 'square'
+    },
+    modulationEnvelope: {
+      attack: 0.01,
+      decay: 0.3,
+      sustain: 0.2,
+      release: 0.3
+    }
+  }).toDestination();
+
   noiseSynth = new Tone.NoiseSynth({
     noise: { type: 'white' },
     envelope: { attack: 0.005, decay: 0.1, release: 0.2 },
@@ -109,14 +123,16 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
     switch (sound) {
       case 'correct':
-        // Melodía ascendente para acierto
-        metallicSynth.triggerAttackRelease('C4', '16n', now);
-        metallicSynth.triggerAttackRelease('E4', '16n', now + 0.12);
-        metallicSynth.triggerAttackRelease('G4', '16n', now + 0.24);
+        // Melodía armónica para acierto
+        amSynth.triggerAttackRelease('C4', '8n', now);
+        amSynth.triggerAttackRelease('E4', '8n', now + 0.1);
+        amSynth.triggerAttackRelease('G4', '8n', now + 0.2);
+        amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
         break;
       case 'incorrect':
         // Sonido grave y corto para error
         synth.triggerAttackRelease('A2', '8n', now);
+        synth.triggerAttackRelease('A#2', '8n', now + 0.1);
         break;
       case 'click':
         noiseSynth.triggerAttackRelease('16n', now);
