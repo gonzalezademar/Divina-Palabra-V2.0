@@ -159,9 +159,10 @@ const shuffleArray = (array: any[]) => {
 
 const scrambleWord = (challenge: any, level: number) => {
     let scrambled;
+    const originalSyllables = challenge.syllables ? [...challenge.syllables] : null;
     do {
-      if (level === 1 && challenge.syllables) {
-          const shuffledSyllables = shuffleArray(challenge.syllables);
+      if (level === 1 && originalSyllables) {
+          const shuffledSyllables = shuffleArray(originalSyllables);
           scrambled = shuffledSyllables.join('');
       } else {
           const letters = challenge.answer.split('');
@@ -183,7 +184,6 @@ export default function GamePage() {
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
-  const lastTickTimeRef = useRef(0);
 
   // For "Guess the Phrase"
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
@@ -218,23 +218,14 @@ export default function GamePage() {
         timerRef.current = null;
     }
   }
-
-  useEffect(() => {
-    if (!gameMode) {
-      router.push('/');
-    }
-  }, [gameMode, router]);
   
-  useEffect(() => {
-    return () => stopTimer();
-  }, []);
-
   const startTimer = () => {
-    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase' || timerRef.current) {
+    stopTimer();
+    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase') {
         return;
     }
     setTimeLeft(roundTime);
-    lastTickTimeRef.current = Date.now();
+    
     timerRef.current = setInterval(() => {
         setTimeLeft((prevTime) => {
             if (prevTime <= 1) {
@@ -243,23 +234,30 @@ export default function GamePage() {
                 handleAnswer(false);
                 return 0;
             }
-            const now = Date.now();
-            if (now - lastTickTimeRef.current >= 990) { 
-                playSound('tick');
-                lastTickTimeRef.current = now;
+            if(prevTime % 10 === 0 || prevTime <= 5){
+               playSound('tick');
             }
             return prevTime - 1;
         });
     }, 1000);
   };
+
+  useEffect(() => {
+    if (!gameMode) {
+      router.push('/');
+    }
+    // Cleanup timer on unmount
+    return () => stopTimer();
+  }, [gameMode, router]);
   
   useEffect(() => {
+    // This effect starts the timer when a new challenge is presented (and it's not a feedback screen)
     if (!feedback && !gameOver) {
         startTimer();
     } else {
         stopTimer();
     }
-  }, [feedback, gameOver]);
+  }, [currentChallengeIndex, feedback, gameOver]);
 
 
   if (!gameMode || challenges.length === 0) {
@@ -285,9 +283,7 @@ export default function GamePage() {
         if (teams.length > 0) {
           setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
         }
-        if(gameMode !== 'guess-the-phrase') {
-          startTimer();
-        }
+        // Timer will be started by the useEffect that watches currentChallengeIndex
     }
   }
 
@@ -345,6 +341,7 @@ export default function GamePage() {
 
   const handleGuessPhrase = () => {
       const isCorrect = answer.trim().toUpperCase() === (challenge.phrase || '').toUpperCase();
+      stopTimer();
       if(isCorrect) {
           playSound('correct');
           setFeedback('correct');
@@ -353,11 +350,7 @@ export default function GamePage() {
           playSound('incorrect');
           setFeedback('incorrect');
           if (!isPracticeMode) {
-            const newLives = updateLives(currentTeamIndex, -2); // Penalty for wrong guess
-            if (newLives <= 0) {
-                // The feedback is already set to incorrect, so the Continue button will show.
-                return;
-            }
+            updateLives(currentTeamIndex, -2); // Penalty for wrong guess
           }
       }
   }
