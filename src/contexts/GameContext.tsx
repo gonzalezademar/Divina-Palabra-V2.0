@@ -78,12 +78,12 @@ if (typeof window !== 'undefined') {
   noiseSynth.volume.value = volume;
 
   fmSynth = new Tone.FMSynth({
-    harmonicity: 3,
-    modulationIndex: 10,
-    envelope: { attack: 0.01, decay: 0.2, release: 1.5 },
-    modulationEnvelope: { attack: 0.01, decay: 0.2, release: 1.5 }
+    harmonicity: 5,
+    modulationIndex: 20,
+    envelope: { attack: 0.005, decay: 0.5, sustain: 0.1, release: 2 },
+    modulationEnvelope: { attack: 0.005, decay: 0.5, sustain: 0.1, release: 2 }
   }).toDestination();
-  fmSynth.volume.value = volume - 5;
+  fmSynth.volume.value = volume - 8;
 
   tickSynth = new Tone.FMSynth({
     harmonicity: 1,
@@ -175,7 +175,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           tickSynth.triggerAttackRelease('C7', '32n');
           break;
         case 'times-up':
-          fmSynth.triggerAttackRelease('C5', '2n', now);
+          fmSynth.triggerAttackRelease('G6', '2n', now);
           break;
         case 'tick':
           tickSynth.triggerAttackRelease('C5', '32n');
