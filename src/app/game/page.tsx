@@ -10,36 +10,48 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
-const challengesData = {
-  'find-word': [
-    // Libros de la biblia (Fácil)
-    { question: "SENEGIS", answer: "GENESIS", hint: "EL PRIMER LIBRO DE LA BIBLIA." },
-    { question: "XODOE", answer: "EXODO", hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
-    { question: "SOMLAS", answer: "SALMOS", hint: "LIBRO DE CANTOS Y ORACIONES." },
-    { question: "NAIC", answer: "CAIN", hint: "HERMANO DE ABEL." },
-    { question: "VIDAD", answer: "DAVID", hint: "REY DE ISRAEL QUE DERROTO A UN GIGANTE." },
-    { question: "SESIOM", answer: "MOISES", hint: "LIBERO A LOS ISRAELITAS DE LA ESCLAVITUD." },
-    { question: "LEBEN", answer: "BELEN", hint: "CIUDAD DEL NACIMIENTO DE JESUS." },
-    { question: "ACAR", answer: "ARCA", hint: "LA EMBARCACION QUE CONSTRUYO NOE." },
-    // Personajes y lugares (Medio)
-    { question: "MARAHAB", answer: "ABRAHAM", hint: "PADRE DE MUCHAS NACIONES." },
-    { question: "NOMLOSA", answer: "SALOMON", hint: "EL REY MAS SABIO DE ISRAEL." },
-    { question: "TOLASOP", answer: "APOSTOL", hint: "UNO DE LOS DOCE SEGUIDORES DE JESUS." },
-    { question: "FEPROTA", answer: "PROFETA", hint: "UN MENSAJERO DE DIOS." },
-    { question: "GELAN", answer: "ANGEL", hint: "MENSAJERO CELESTIAL." },
-    { question: "LOGIAT", answer: "GOLIAT", hint: "GIGANTE DERROTADO POR DAVID." },
-    { question: "NOSANS", answer: "SANSON", hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
-    { question: "NAZTERA", answer: "NAZARET", hint: "CIUDAD DONDE CRECIO JESUS." },
-    // Conceptos y otros (Difícil)
-    { question: "SERTDEIO", answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
-    { question: "BALAPORA", answer: "PARABOLA", hint: "HISTORIA CORTA CON UNA ENSENANZA MORAL." },
-    { question: "PLOMET", answer: "TEMPLO", hint: "LUGAR SAGRADO DE ADORACION EN JERUSALEN." },
-    { question: "SIAPOCALIPS", answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
-  ],
-  'complete-phrase': [
+// NIVEL 1: Mezcla por sílabas
+const findWordLevel1 = [
+    { answer: "GENESIS", syllables: ["GE", "NE", "SIS"], hint: "EL PRIMER LIBRO DE LA BIBLIA." },
+    { answer: "EXODO", syllables: ["E", "XO", "DO"], hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
+    { answer: "SALMOS", syllables: ["SAL", "MOS"], hint: "LIBRO DE CANTOS Y ORACIONES." },
+    { answer: "CAIN", syllables: ["CA", "IN"], hint: "HERMANO DE ABEL." },
+    { answer: "DAVID", syllables: ["DA", "VID"], hint: "REY DE ISRAEL QUE DERROTO A UN GIGANTE." },
+    { answer: "MOISES", syllables: ["MOI", "SES"], hint: "LIBERO A LOS ISRAELITAS DE LA ESCLAVITUD." },
+    { answer: "BELEN", syllables: ["BE", "LEN"], hint: "CIUDAD DEL NACIMIENTO DE JESUS." },
+    { answer: "ARCA", syllables: ["AR", "CA"], hint: "LA EMBARCACION QUE CONSTRUYO NOE." },
+    { answer: "ABRAHAM", syllables: ["A", "BRA", "HAM"], hint: "PADRE DE MUCHAS NACIONES." },
+    { answer: "SALOMON", syllables: ["SA", "LO", "MON"], hint: "EL REY MAS SABIO DE ISRAEL." },
+    { answer: "APOSTOL", syllables: ["A", "POS", "TOL"], hint: "UNO DE LOS DOCE SEGUIDORES DE JESUS." },
+    { answer: "PROFETA", syllables: ["PRO", "FE", "TA"], hint: "UN MENSAJERO DE DIOS." },
+    { answer: "ANGEL", syllables: ["AN", "GEL"], hint: "MENSAJERO CELESTIAL." },
+    { answer: "GOLIAT", syllables: ["GO", "LIAT"], hint: "GIGANTE DERROTADO POR DAVID." },
+    { answer: "SANSON", syllables: ["SAN", "SON"], hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
+];
+
+// NIVEL 2: Mezcla por letras
+const findWordLevel2 = [
+    { answer: "NAZARET", hint: "CIUDAD DONDE CRECIO JESUS." },
+    { answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
+    { answer: "PARABOLA", hint: "HISTORIA CORTA CON UNA ENSENANZA MORAL." },
+    { answer: "TEMPLO", hint: "LUGAR SAGRADO DE ADORACION EN JERUSALEN." },
+    { answer: "APOCALIPSIS", hint: "EL ULTIMO LIBRO, LLENO DE PROFECIAS." },
+    { answer: "TESTAMENTO", hint: "UNA DE LAS DOS PARTES PRINCIPALES DE LA BIBLIA." },
+    { answer: "JERUSALEN", hint: "LA CIUDAD SANTA." },
+    { answer: "MESIAS", hint: "EL TITULO DEL 'UNGIDO'." },
+    { answer: "SINAGOGA", hint: "LUGAR DE REUNION Y ORACION JUDIA." },
+    { answer: "EUFRATES", hint: "UNO DE LOS RIOS DEL EDEN." },
+    { answer: "MANA", hint: "EL PAN ENVIADO DEL CIELO." },
+    { answer: "PENTATEUCO", hint: "LOS PRIMEROS CINCO LIBROS DE LA BIBLIA." },
+    { answer: "TABERNACULO", hint: "SANTUARIO PORTATIL DE LOS ISRAELITAS." },
+    { answer: "ZARZA", hint: "DONDE DIOS HABLO A MOISES." },
+    { answer: "BALSAMO", hint: "RESINA AROMATICA DE GALAAD." },
+];
+
+const completePhraseChallenges = [
     // Frases conocidas (Fácil)
     { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
     { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
@@ -63,20 +75,31 @@ const challengesData = {
     { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
     { question: "LOS CIELOS CUENTAN LA ____ DE DIOS", answer: "GLORIA", hint: "HONRA, ESPLENDOR." },
     { question: "SI DIOS ES POR NOSOTROS, ¿QUIEN CONTRA ____?", answer: "NOSOTROS", hint: "PRONOMBRE PERSONAL." },
-  ]
-};
+];
 
 const shuffleArray = (array: any[]) => {
   let currentIndex = array.length,  randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex], array[currentIndex]];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
   return array;
 }
 
+const scrambleWord = (challenge: any, level: number) => {
+    if (level === 1 && challenge.syllables) {
+        // Scramble by syllables
+        const shuffledSyllables = shuffleArray([...challenge.syllables]);
+        const scrambled = shuffledSyllables.join('');
+        return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled; // Reshuffle if it matches answer
+    }
+    // Scramble by letters
+    const letters = challenge.answer.split('');
+    const shuffledLetters = shuffleArray(letters);
+    const scrambled = shuffledLetters.join('');
+    return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled; // Reshuffle if it matches answer
+}
 
 export default function GamePage() {
   const router = useRouter();
@@ -90,9 +113,23 @@ export default function GamePage() {
   const [gameOver, setGameOver] = useState(false);
 
   const challenges = useMemo(() => {
-      if (!gameMode) return [];
-      const gameChallenges = [...challengesData[gameMode]];
-      return shuffleArray(gameChallenges);
+    if (!gameMode) return [];
+    
+    if (gameMode === 'find-word') {
+        const level1 = shuffleArray([...findWordLevel1]);
+        const level2 = shuffleArray([...findWordLevel2]);
+        const allChallenges = [...level1, ...level2];
+        return allChallenges.map((challenge, index) => {
+            const level = index < 15 ? 1 : 2;
+            return {
+                ...challenge,
+                question: scrambleWord(challenge, level),
+                level: level,
+            };
+        });
+    } else { // 'complete-phrase'
+        return shuffleArray([...completePhraseChallenges]);
+    }
   }, [gameMode]);
 
   useEffect(() => {
@@ -140,7 +177,9 @@ export default function GamePage() {
             setGameOver(true);
         } else {
             setCurrentChallengeIndex(nextChallengeIndex);
-            setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
+            if (teams.length > 0) {
+              setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
+            }
             setTimeLeft(roundTime);
         }
     }, 2000);
@@ -189,6 +228,7 @@ export default function GamePage() {
 
   const totalChallenges = challenges.length;
   const progress = (currentChallengeIndex / totalChallenges) * 100;
+  const currentLevel = challenge.level;
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col p-4 pt-20 md:p-6 md:pt-24">
@@ -201,16 +241,24 @@ export default function GamePage() {
               <CardTitle className="font-headline text-3xl text-center">
                 {teams.length > 0 && `Turno de: `} <span className="text-primary">{teams[currentTeamIndex]?.name}</span>
               </CardTitle>
-              {!isPracticeMode && (
-                <div className="flex items-center gap-2 justify-center text-muted-foreground">
-                    <Clock className="w-5 h-5"/>
-                    <span>Tiempo restante: {timeLeft}s</span>
-                </div>
-              )}
+              <div className="flex items-center gap-4 justify-center text-muted-foreground">
+                {!isPracticeMode && (
+                    <div className="flex items-center gap-2">
+                        <Clock className="w-5 h-5"/>
+                        <span>Tiempo: {timeLeft}s</span>
+                    </div>
+                )}
+                {currentLevel && (
+                    <div className="flex items-center gap-2">
+                        {currentLevel === 1 ? <Star className="w-5 h-5 text-yellow-400"/> : <Brain className="w-5 h-5 text-pink-400"/>}
+                        <span>Nivel {currentLevel}</span>
+                    </div>
+                )}
+              </div>
             </CardHeader>
             <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-6">
               {feedback && (
-                  <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-600' : 'text-red-600'}`}>
+                  <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
@@ -221,7 +269,7 @@ export default function GamePage() {
               {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
                     <p className="text-lg text-muted-foreground">{challenge.hint}</p>
-                    <h2 className="text-4xl font-bold tracking-widest font-headline">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline">
                         {challenge.question}
                     </h2>
                     <Input
@@ -257,7 +305,7 @@ export default function GamePage() {
                     <span>{team.name}</span>
                     <span>{team.score} pts</span>
                   </div>
-                  <Progress value={(team.score / (challenges.length * 10 / teams.length))} />
+                  <Progress value={(team.score / (totalChallenges * 10 / (teams.length || 1)))} />
                 </div>
               ))}
               <Alert>
@@ -277,3 +325,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
