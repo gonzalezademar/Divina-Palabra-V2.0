@@ -147,25 +147,29 @@ const guessPhraseChallenges = [
 
 
 const shuffleArray = (array: any[]) => {
-  let currentIndex = array.length,  randomIndex;
+  const newArray = [...array];
+  let currentIndex = newArray.length,  randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
   }
-  return array;
+  return newArray;
 }
 
 const scrambleWord = (challenge: any, level: number) => {
-    if (level === 1 && challenge.syllables) {
-        const shuffledSyllables = shuffleArray([...challenge.syllables]);
-        const scrambled = shuffledSyllables.join('');
-        return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled;
-    }
-    const letters = challenge.answer.split('');
-    const shuffledLetters = shuffleArray(letters);
-    const scrambled = shuffledLetters.join('');
-    return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled;
+    let scrambled;
+    do {
+      if (level === 1 && challenge.syllables) {
+          const shuffledSyllables = shuffleArray(challenge.syllables);
+          scrambled = shuffledSyllables.join('');
+      } else {
+          const letters = challenge.answer.split('');
+          const shuffledLetters = shuffleArray(letters);
+          scrambled = shuffledLetters.join('');
+      }
+    } while (scrambled === challenge.answer)
+    return scrambled;
 }
 
 export default function GamePage() {
