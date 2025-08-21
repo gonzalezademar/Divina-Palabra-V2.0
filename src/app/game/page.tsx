@@ -228,7 +228,7 @@ export default function GamePage() {
     if (timerRef.current) clearInterval(timerRef.current);
     setTimeLeft(roundTime);
     
-    if (isPracticeMode || gameOver || gameMode === 'guess-the-phrase') {
+    if (isPracticeMode || gameOver || gameMode === 'guess-the-phrase' || !!feedback) {
         return;
     }
     
@@ -240,9 +240,7 @@ export default function GamePage() {
                 handleAnswer(false);
                 return 0;
             }
-            if(prevTime <= 5){
-               playSound('tick');
-            }
+            playSound('tick');
             return prevTime - 1;
         });
     }, 1000);
@@ -253,11 +251,9 @@ export default function GamePage() {
       router.push('/');
       return;
     }
-    // Don't start a new timer if there's feedback on screen
-    if (!feedback) {
-        startTimer();
-    }
-    // Cleanup timer on unmount
+  
+    startTimer();
+  
     return () => {
       if (timerRef.current) {
         clearInterval(timerRef.current);
