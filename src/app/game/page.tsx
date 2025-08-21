@@ -147,22 +147,20 @@ const guessPhraseChallenges = [
 
 
 const shuffleArray = (array: any[]) => {
-  const newArray = [...array];
-  let currentIndex = newArray.length,  randomIndex;
+  let currentIndex = array.length,  randomIndex;
   while (currentIndex > 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
-    [newArray[currentIndex], newArray[randomIndex]] = [newArray[randomIndex], newArray[currentIndex]];
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
   }
-  return newArray;
+  return array;
 }
 
 const scrambleWord = (challenge: any, level: number) => {
     let scrambled;
-    const originalSyllables = challenge.syllables ? [...challenge.syllables] : null;
     do {
-      if (level === 1 && originalSyllables) {
-          const shuffledSyllables = shuffleArray(originalSyllables);
+      if (level === 1) {
+          const shuffledSyllables = shuffleArray(challenge.syllables);
           scrambled = shuffledSyllables.join('');
       } else {
           const letters = challenge.answer.split('');
@@ -212,25 +210,18 @@ export default function GamePage() {
     }
   }, [gameMode]);
 
-  const stopTimer = () => {
-    if (timerRef.current) {
-        clearInterval(timerRef.current);
-        timerRef.current = null;
-    }
-  }
-  
   const startTimer = () => {
-    stopTimer();
+    if (timerRef.current) clearInterval(timerRef.current);
     setTimeLeft(roundTime);
     
-    if (isPracticeMode || gameOver || feedback) {
+    if (isPracticeMode || gameOver) {
         return;
     }
     
     timerRef.current = setInterval(() => {
         setTimeLeft((prevTime) => {
             if (prevTime <= 1) {
-                stopTimer();
+                if(timerRef.current) clearInterval(timerRef.current);
                 playSound('times-up');
                 handleAnswer(false);
                 return 0;
@@ -246,16 +237,25 @@ export default function GamePage() {
   useEffect(() => {
     if (!gameMode) {
       router.push('/');
+    } else {
+        startTimer();
     }
-    startTimer();
     // Cleanup timer on unmount
-    return () => stopTimer();
-  }, [gameMode, router]);
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, [gameMode, router, currentChallengeIndex]);
   
 
   useEffect(() => {
-    if (feedback) {
-        stopTimer();
+    if (feedback && timerRef.current) {
+      clearInterval(timerRef.current);
+      const timeoutId = setTimeout(() => {
+        handleNextTurn();
+      }, 2000); // Wait 2 seconds before next turn
+      return () => clearTimeout(timeoutId);
     }
   }, [feedback]);
 
@@ -277,19 +277,16 @@ export default function GamePage() {
     
     if (nextChallengeIndex >= challenges.length) {
         setGameOver(true);
-        stopTimer();
     } else {
         setCurrentChallengeIndex(nextChallengeIndex);
         if (teams.length > 0) {
           setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
         }
-        startTimer();
     }
   }
 
   const handleAnswer = (isCorrect: boolean) => {
     if(feedback) return;
-    stopTimer();
 
     if (isCorrect) {
       playSound('correct');
@@ -341,7 +338,6 @@ export default function GamePage() {
 
   const handleGuessPhrase = () => {
       const isCorrect = answer.trim().toUpperCase() === (challenge.phrase || '').toUpperCase();
-      stopTimer();
       if(isCorrect) {
           playSound('correct');
           setFeedback('correct');
@@ -500,7 +496,6 @@ export default function GamePage() {
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
                     {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer || challenge.phrase}</span></p>}
-                    <Button onClick={handleNextTurn} size="lg">Continuar</Button>
                   </div>
               )}
               {!feedback && (
@@ -548,3 +543,4 @@ export default function GamePage() {
     </div>
   );
 }
+
