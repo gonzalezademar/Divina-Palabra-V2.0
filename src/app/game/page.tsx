@@ -264,7 +264,7 @@ export default function GamePage() {
               {!feedback && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
                     <p className="text-lg text-muted-foreground">{challenge.hint}</p>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline">
+                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline text-primary">
                         {challenge.question}
                     </h2>
                     <Input
@@ -272,7 +272,7 @@ export default function GamePage() {
                       onChange={(e) => setAnswer(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
                       placeholder="Escribe tu respuesta aquí"
-                      className="text-center text-xl h-14"
+                      className="text-center text-xl h-14 border-2 border-primary/50 bg-card/50 focus:border-primary"
                       disabled={!!feedback}
                     />
                     <Button onClick={submitAnswer} size="lg" className="w-full text-lg mt-4" disabled={!answer || !!feedback}>
