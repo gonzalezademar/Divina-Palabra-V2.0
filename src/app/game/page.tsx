@@ -192,8 +192,9 @@ export default function GamePage() {
   const challenges = useMemo(() => {
     if (!gameMode) return [];
     
+    let allChallenges;
     if (gameMode === 'find-word') {
-        const allChallenges = shuffleArray([...findWordLevel1, ...findWordLevel2]);
+        allChallenges = shuffleArray([...findWordLevel1, ...findWordLevel2]);
         return allChallenges.map((challenge) => {
             const level = findWordLevel1.some(c => c.answer === challenge.answer) ? 1 : 2;
             return {
@@ -203,55 +204,63 @@ export default function GamePage() {
             };
         });
     } else if (gameMode === 'complete-phrase') {
-        return shuffleArray([...completePhraseChallenges]);
+        allChallenges = shuffleArray([...completePhraseChallenges]);
+        return allChallenges;
     } else { // guess-the-phrase
-        return shuffleArray([...guessPhraseChallenges]);
+        allChallenges = shuffleArray([...guessPhraseChallenges]);
+        return allChallenges;
     }
   }, [gameMode]);
+
+  const stopTimer = () => {
+    if (timerRef.current) {
+        clearInterval(timerRef.current);
+        timerRef.current = null;
+    }
+  }
 
   useEffect(() => {
     if (!gameMode) {
       router.push('/');
-    } else {
-        setTimeLeft(roundTime);
     }
-  }, [gameMode, router, roundTime]);
+  }, [gameMode, router]);
   
-  const stopTimer = () => {
-    if (timerRef.current) clearInterval(timerRef.current);
-  }
-
   useEffect(() => {
-    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase') {
-        stopTimer();
+    return () => stopTimer();
+  }, []);
+
+  const startTimer = () => {
+    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase' || timerRef.current) {
         return;
     }
-
-    if (timeLeft > 0) {
-      timerRef.current = setInterval(() => {
-        setTimeLeft((t) => {
-            if (t > 1) {
-                const now = Date.now();
-                if (now - lastTickTimeRef.current >= 990) { 
-                    playSound('tick');
-                    lastTickTimeRef.current = now;
-                }
-                return t - 1
+    setTimeLeft(roundTime);
+    lastTickTimeRef.current = Date.now();
+    timerRef.current = setInterval(() => {
+        setTimeLeft((prevTime) => {
+            if (prevTime <= 1) {
+                stopTimer();
+                playSound('times-up');
+                handleAnswer(false);
+                return 0;
             }
-            
-            playSound('times-up');
-            handleAnswer(false);
-            return 0;
+            const now = Date.now();
+            if (now - lastTickTimeRef.current >= 990) { 
+                playSound('tick');
+                lastTickTimeRef.current = now;
+            }
+            return prevTime - 1;
         });
-      }, 1000);
-    } else if (timeLeft <= 0 && !feedback) {
+    }, 1000);
+  };
+  
+  useEffect(() => {
+    if (!feedback && !gameOver) {
+        startTimer();
+    } else {
         stopTimer();
-        playSound('times-up');
-        handleAnswer(false);
     }
-    
-    return () => stopTimer();
-  }, [timeLeft, isPracticeMode, gameOver, feedback, playSound, gameMode]);
+  }, [feedback, gameOver]);
+
 
   if (!gameMode || challenges.length === 0) {
     return null;
@@ -270,12 +279,15 @@ export default function GamePage() {
     
     if (nextChallengeIndex >= challenges.length) {
         setGameOver(true);
+        stopTimer();
     } else {
         setCurrentChallengeIndex(nextChallengeIndex);
         if (teams.length > 0) {
           setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
         }
-        if(gameMode !== 'guess-the-phrase') setTimeLeft(roundTime);
+        if(gameMode !== 'guess-the-phrase') {
+          startTimer();
+        }
     }
   }
 
@@ -543,3 +555,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
