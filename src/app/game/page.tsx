@@ -144,13 +144,13 @@ export default function GamePage() {
         setTimeLeft((t) => {
             if (t > 1) {
                 const now = Date.now();
-                if (now - lastTickTimeRef.current >= 990) { // Throttle sound to once per second
+                if (now - lastTickTimeRef.current >= 990) { 
                     playSound('tick');
                     lastTickTimeRef.current = now;
                 }
                 return t - 1
             }
-            // When time reaches 1, we will clear interval and handle times up.
+            
             playSound('times-up');
             handleAnswer(false);
             return 0;
@@ -350,3 +350,4 @@ export default function GamePage() {
     </div>
   );
 }
+
