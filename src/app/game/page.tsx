@@ -221,10 +221,11 @@ export default function GamePage() {
   
   const startTimer = () => {
     stopTimer();
-    if (isPracticeMode || gameOver || feedback || gameMode === 'guess-the-phrase') {
+    setTimeLeft(roundTime);
+    
+    if (isPracticeMode || gameOver || feedback) {
         return;
     }
-    setTimeLeft(roundTime);
     
     timerRef.current = setInterval(() => {
         setTimeLeft((prevTime) => {
@@ -246,18 +247,17 @@ export default function GamePage() {
     if (!gameMode) {
       router.push('/');
     }
+    startTimer();
     // Cleanup timer on unmount
     return () => stopTimer();
   }, [gameMode, router]);
   
+
   useEffect(() => {
-    // This effect starts the timer when a new challenge is presented (and it's not a feedback screen)
-    if (!feedback && !gameOver) {
-        startTimer();
-    } else {
+    if (feedback) {
         stopTimer();
     }
-  }, [currentChallengeIndex, feedback, gameOver]);
+  }, [feedback]);
 
 
   if (!gameMode || challenges.length === 0) {
@@ -283,7 +283,7 @@ export default function GamePage() {
         if (teams.length > 0) {
           setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
         }
-        // Timer will be started by the useEffect that watches currentChallengeIndex
+        startTimer();
     }
   }
 
@@ -548,5 +548,3 @@ export default function GamePage() {
     </div>
   );
 }
-
-    
