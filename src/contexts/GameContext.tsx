@@ -34,7 +34,6 @@ const GameContext = createContext<GameContextType | undefined>(undefined);
 // Sound setup
 let synth: Tone.Synth;
 let amSynth: Tone.AMSynth;
-let noiseSynth: Tone.NoiseSynth;
 let clickSynth: Tone.MembraneSynth;
 let glassSynth: Tone.MetalSynth;
 
@@ -70,12 +69,6 @@ if (typeof window !== 'undefined') {
     }
   }).toDestination();
   amSynth.volume.value = volume;
-
-  noiseSynth = new Tone.NoiseSynth({
-    noise: { type: 'white' },
-    envelope: { attack: 0.005, decay: 0.1, release: 0.2 },
-  }).toDestination();
-  noiseSynth.volume.value = volume;
 
   clickSynth = new Tone.MembraneSynth({
     pitchDecay: 0.01,
@@ -166,19 +159,19 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       const now = Tone.now();
       switch (sound) {
         case 'correct':
-          amSynth.triggerAttackRelease('C4', '8n', now);
+          amSynth.triggerAttackRelease('C4', '8n');
           amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
           amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
           break;
         case 'incorrect':
-          synth.triggerAttackRelease('A2', '8n', now);
+          synth.triggerAttackRelease('A2', '8n');
           synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
-          clickSynth.triggerAttackRelease('C7', '32n', now);
+          clickSynth.triggerAttackRelease('C7', '32n');
           break;
         case 'times-up':
-          glassSynth.triggerAttackRelease("G5", "1n", now);
+          glassSynth.triggerAttackRelease("G5", "1n");
           break;
         case 'tick':
           // The most robust way to handle rapid-fire sounds to avoid race conditions.
