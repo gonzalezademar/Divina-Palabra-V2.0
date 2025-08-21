@@ -10,10 +10,9 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock, Star, Brain } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Hourglass } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 
-// NIVEL 1: Mezcla por sílabas
 const findWordLevel1 = [
     { answer: "GENESIS", syllables: ["GE", "NE", "SIS"], hint: "EL PRIMER LIBRO DE LA BIBLIA." },
     { answer: "EXODO", syllables: ["E", "XO", "DO"], hint: "EL LIBRO DE LA SALIDA DE EGIPTO." },
@@ -32,7 +31,6 @@ const findWordLevel1 = [
     { answer: "SANSON", syllables: ["SAN", "SON"], hint: "JUEZ DE ISRAEL CON FUERZA SOBRENATURAL." },
 ];
 
-// NIVEL 2: Mezcla por letras
 const findWordLevel2 = [
     { answer: "NAZARET", hint: "CIUDAD DONDE CRECIO JESUS." },
     { answer: "DESIERTO", hint: "LUGAR DONDE JESUS AYUNO 40 DIAS." },
@@ -52,20 +50,17 @@ const findWordLevel2 = [
 ];
 
 const completePhraseChallenges = [
-    // Frases conocidas (Fácil)
     { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
     { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
     { question: "NO SOLO DE PAN VIVIRA EL _____", answer: "HOMBRE", hint: "SER HUMANO DE SEXO MASCULINO." },
     { question: "PEDID, Y SE OS _____", answer: "DARA", hint: "FUTURO DEL VERBO 'DAR'." },
     { question: "YO Y EL PADRE UNO _____", answer: "SOMOS", hint: "PRESENTE DEL VERBO 'SER' PARA 'NOSOTROS'." },
-    // Enseñanzas (Medio)
     { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO _____", answer: "UNIGENITO", hint: "HIJO UNICO." },
     { question: "YO SOY EL CAMINO, Y LA VERDAD, Y LA _____", answer: "VIDA", hint: "LO CONTRARIO A LA MUERTE." },
     { question: "TODO LO PUEDO EN CRISTO QUE ME _____", answer: "FORTALECE", hint: "QUE ME DA FUERZA." },
     { question: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA, LA CONVICCION DE LO QUE NO SE _____", answer: "VE", hint: "PERCIBIR CON LOS OJOS." },
     { question: "EL AMOR ES PACIENTE, ES _____", answer: "BONDADOSO", hint: "LLENO DE BONDAD." },
     { question: "DEJAD A LOS NINOS VENIR A MI, Y NO SE LO _____", answer: "IMPIDAIS", hint: "NO PERMITIR ALGO." },
-    // Conceptos teológicos (Difícil)
     { question: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y _____", answer: "CARGADOS", hint: "QUE LLEVAN UNA CARGA PESADA." },
     { question: "DE MAS ESTIMA ES EL BUEN NOMBRE QUE LAS MUCHAS _____", answer: "RIQUEZAS", hint: "ABUNDANCIA DE BIENES Y DINERO." },
     { question: "PORQUE LA PAGA DEL PECADO ES _____", answer: "MUERTE", hint: "FIN DE LA VIDA." },
@@ -89,26 +84,28 @@ const shuffleArray = (array: any[]) => {
 
 const scrambleWord = (challenge: any, level: number) => {
     if (level === 1 && challenge.syllables) {
-        // Scramble by syllables
         const shuffledSyllables = shuffleArray([...challenge.syllables]);
         const scrambled = shuffledSyllables.join('');
-        return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled; // Reshuffle if it matches answer
+        return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled;
     }
-    // Scramble by letters
     const letters = challenge.answer.split('');
     const shuffledLetters = shuffleArray(letters);
     const scrambled = shuffledLetters.join('');
-    return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled; // Reshuffle if it matches answer
+    return scrambled === challenge.answer ? scrambleWord(challenge, level) : scrambled;
 }
+
+type TurnPhase = 'showing_hint' | 'answering' | 'feedback';
 
 export default function GamePage() {
   const router = useRouter();
-  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime } = useGame();
+  const { teams, gameMode, isPracticeMode, playSound, updateScore, resetGame, roundTime, waitTime } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
   const [currentTeamIndex, setCurrentTeamIndex] = useState(0);
   const [answer, setAnswer] = useState('');
   const [timeLeft, setTimeLeft] = useState(roundTime);
+  const [waitTimer, setWaitTimer] = useState(waitTime);
+  const [turnPhase, setTurnPhase] = useState<TurnPhase>('showing_hint');
   const [feedback, setFeedback] = useState<'correct' | 'incorrect' | null>(null);
   const [gameOver, setGameOver] = useState(false);
 
@@ -116,18 +113,18 @@ export default function GamePage() {
     if (!gameMode) return [];
     
     if (gameMode === 'find-word') {
-        const level1 = shuffleArray([...findWordLevel1]);
-        const level2 = shuffleArray([...findWordLevel2]);
-        const allChallenges = [...level1, ...level2];
+        const level1 = findWordLevel1;
+        const level2 = findWordLevel2;
+        const allChallenges = shuffleArray([...level1, ...level2]);
         return allChallenges.map((challenge, index) => {
-            const level = index < 15 ? 1 : 2;
+            const level = findWordLevel1.some(c => c.answer === challenge.answer) ? 1 : 2;
             return {
                 ...challenge,
                 question: scrambleWord(challenge, level),
                 level: level,
             };
         });
-    } else { // 'complete-phrase'
+    } else {
         return shuffleArray([...completePhraseChallenges]);
     }
   }, [gameMode]);
@@ -136,18 +133,34 @@ export default function GamePage() {
     if (!gameMode) {
       router.push('/');
     }
+    if (gameMode === 'complete-phrase') {
+      setTurnPhase('answering'); // Skip hint phase for complete-phrase
+    }
   }, [gameMode, router]);
   
   useEffect(() => {
-    if (isPracticeMode || feedback || gameOver) return;
-    if (timeLeft === 0) {
-      playSound('times-up');
-      handleAnswer(false);
-      return;
+    if (isPracticeMode || gameOver || turnPhase === 'feedback') return;
+
+    if (turnPhase === 'showing_hint') {
+      if (waitTimer === 0) {
+        setTurnPhase('answering');
+        setTimeLeft(roundTime);
+        return;
+      }
+      const timer = setInterval(() => setWaitTimer(t => t - 1), 1000);
+      return () => clearInterval(timer);
     }
-    const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
-    return () => clearInterval(timer);
-  }, [timeLeft, isPracticeMode, feedback, gameOver]);
+
+    if (turnPhase === 'answering') {
+      if (timeLeft === 0) {
+        playSound('times-up');
+        handleAnswer(false);
+        return;
+      }
+      const timer = setInterval(() => setTimeLeft(t => t - 1), 1000);
+      return () => clearInterval(timer);
+    }
+  }, [timeLeft, waitTimer, turnPhase, isPracticeMode, gameOver, roundTime]);
 
   if (!gameMode || challenges.length === 0) {
     return null;
@@ -156,7 +169,7 @@ export default function GamePage() {
   const challenge = challenges[currentChallengeIndex];
 
   const handleAnswer = (isCorrect: boolean) => {
-    if (feedback) return; 
+    if (turnPhase === 'feedback') return;
 
     if (isCorrect) {
       playSound('correct');
@@ -166,6 +179,8 @@ export default function GamePage() {
       playSound('incorrect');
       setFeedback('incorrect');
     }
+    
+    setTurnPhase('feedback');
     
     setTimeout(() => {
         setFeedback(null);
@@ -180,7 +195,13 @@ export default function GamePage() {
             if (teams.length > 0) {
               setCurrentTeamIndex((currentTeamIndex + 1) % teams.length);
             }
-            setTimeLeft(roundTime);
+            if(gameMode === 'find-word'){
+              setTurnPhase('showing_hint');
+              setWaitTimer(waitTime);
+            } else {
+              setTurnPhase('answering');
+              setTimeLeft(roundTime);
+            }
         }
     }, 2000);
   };
@@ -229,12 +250,14 @@ export default function GamePage() {
   const totalChallenges = challenges.length;
   const progress = (currentChallengeIndex / totalChallenges) * 100;
   const currentLevel = challenge.level;
+  const showAnsweringUI = turnPhase === 'answering' || (turnPhase === 'feedback' && gameMode === 'complete-phrase');
+  const showFindWordAnsweringUI = turnPhase === 'answering' || (turnPhase === 'feedback' && gameMode === 'find-word');
+
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col p-4 pt-20 md:p-6 md:pt-24">
       <GameHeader />
       <main className="flex-grow flex flex-col md:flex-row gap-6">
-        {/* Game Panel */}
         <div className="md:w-2/3 flex flex-col">
           <Card className="flex-grow flex flex-col bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
             <CardHeader>
@@ -243,10 +266,20 @@ export default function GamePage() {
               </CardTitle>
               <div className="flex items-center gap-4 justify-center text-muted-foreground">
                 {!isPracticeMode && (
-                    <div className="flex items-center gap-2">
-                        <Clock className="w-5 h-5"/>
-                        <span>Tiempo: {timeLeft}s</span>
-                    </div>
+                    <>
+                      {turnPhase === 'showing_hint' && gameMode === 'find-word' && (
+                        <div className="flex items-center gap-2 text-lg">
+                          <Hourglass className="w-5 h-5"/>
+                          <span>Preparate: {waitTimer}s</span>
+                        </div>
+                      )}
+                       {turnPhase === 'answering' && (
+                        <div className="flex items-center gap-2 text-lg">
+                            <Clock className="w-5 h-5"/>
+                            <span>Tiempo: {timeLeft}s</span>
+                        </div>
+                       )}
+                    </>
                 )}
                 {currentLevel && (
                     <div className="flex items-center gap-2">
@@ -257,7 +290,7 @@ export default function GamePage() {
               </div>
             </CardHeader>
             <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-6">
-              {feedback && (
+              {turnPhase === 'feedback' && feedback && (
                   <div className={`w-full animate-fade-in ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
@@ -266,30 +299,31 @@ export default function GamePage() {
                     {feedback === 'incorrect' && <p>La respuesta era: {challenge.answer}</p>}
                   </div>
               )}
-              {!feedback && (
+              {turnPhase !== 'feedback' && (
                   <div className="w-full space-y-4 animate-scroll-reveal">
                     <p className="text-lg text-muted-foreground">{challenge.hint}</p>
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-widest font-headline">
+                    <h2 className={`text-4xl md:text-5xl font-bold tracking-widest font-headline ${turnPhase === 'showing_hint' ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}`}>
                         {challenge.question}
                     </h2>
-                    <Input
-                      value={answer}
-                      onChange={(e) => setAnswer(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
-                      placeholder="Escribe tu respuesta aquí"
-                      className="text-center text-xl h-14"
-                      disabled={!!feedback}
-                    />
-                    <Button onClick={submitAnswer} size="lg" className="w-full text-lg" disabled={!answer || !!feedback}>
-                      Enviar Respuesta
-                    </Button>
+                    <div className={turnPhase === 'showing_hint' ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
+                      <Input
+                        value={answer}
+                        onChange={(e) => setAnswer(e.target.value)}
+                        onKeyPress={(e) => e.key === 'Enter' && submitAnswer()}
+                        placeholder="Escribe tu respuesta aquí"
+                        className="text-center text-xl h-14"
+                        disabled={turnPhase !== 'answering'}
+                      />
+                      <Button onClick={submitAnswer} size="lg" className="w-full text-lg mt-4" disabled={!answer || turnPhase !== 'answering'}>
+                        Enviar Respuesta
+                      </Button>
+                    </div>
                   </div>
               )}
             </CardContent>
           </Card>
         </div>
         
-        {/* Stats Panel */}
         <div className="md:w-1/3">
           <Card className="bg-card/80 backdrop-blur-sm border-primary/20 shadow-lg">
             <CardHeader>
@@ -325,5 +359,3 @@ export default function GamePage() {
     </div>
   );
 }
-
-    

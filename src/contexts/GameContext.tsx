@@ -25,6 +25,8 @@ interface GameContextType {
   resetGame: () => void;
   roundTime: number;
   setRoundTime: (time: number) => void;
+  waitTime: number;
+  setWaitTime: (time: number) => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -36,7 +38,7 @@ let noiseSynth: Tone.NoiseSynth;
 let fmSynth: Tone.FMSynth;
 
 if (typeof window !== 'undefined') {
-  const volume = 5; // Aumentar volumen
+  const volume = 10;
   synth = new Tone.Synth({
     oscillator: { type: 'triangle' },
     envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.4 },
@@ -44,7 +46,7 @@ if (typeof window !== 'undefined') {
   synth.volume.value = volume;
   
   amSynth = new Tone.AMSynth({
-    harmonicity: 3,
+    harmonicity: 1.5,
     detune: 0,
     oscillator: {
       type: 'fatsawtooth'
@@ -92,12 +94,12 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [isPracticeMode, setPracticeMode] = useState(false);
   const [isSoundOn, setIsSoundOn] = useState(true);
   const [roundTime, setRoundTime] = useState(30);
+  const [waitTime, setWaitTime] = useState(5);
   
   useEffect(() => {
     const savedTeams = localStorage.getItem('gameTeams');
     if (savedTeams) {
       const parsedTeams = JSON.parse(savedTeams);
-      // Reset scores on load, keep names
       const teamsWithResetScores = parsedTeams.map((team: any) => ({ ...team, score: 0 }));
       setTeamsState(teamsWithResetScores);
     }
@@ -109,11 +111,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (savedRoundTime) {
       setRoundTime(JSON.parse(savedRoundTime));
     }
+     const savedWaitTime = localStorage.getItem('waitTime');
+    if (savedWaitTime) {
+      setWaitTime(JSON.parse(savedWaitTime));
+    }
   }, []);
 
   const handleSetRoundTime = (time: number) => {
     setRoundTime(time);
     localStorage.setItem('roundTime', JSON.stringify(time));
+  };
+  
+  const handleSetWaitTime = (time: number) => {
+    setWaitTime(time);
+    localStorage.setItem('waitTime', JSON.stringify(time));
   };
 
   const setTeams = (newTeams: Team[]) => {
@@ -123,7 +134,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   
   const resetGame = () => {
     setGameMode(null);
-    // Reset scores, but keep team names
     setTeamsState(prevTeams => prevTeams.map(team => ({...team, score: 0})));
   }
 
@@ -149,8 +159,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     switch (sound) {
       case 'correct':
         amSynth.triggerAttackRelease('C4', '8n', now);
-        amSynth.triggerAttackRelease('E4', '8n', now + 0.1);
-        amSynth.triggerAttackRelease('G4', '8n', now + 0.2);
+        amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
         amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
         break;
       case 'incorrect':
@@ -162,6 +171,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
         break;
       case 'times-up':
         fmSynth.triggerAttackRelease('G3', '4n', now);
+        fmSynth.triggerAttackRelease('C3', '4n', now + 0.5);
         break;
     }
   };
@@ -175,7 +185,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime }}>
+    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, resetGame, roundTime, setRoundTime: handleSetRoundTime, waitTime, setWaitTime: handleSetWaitTime }}>
       {children}
     </GameContext.Provider>
   );

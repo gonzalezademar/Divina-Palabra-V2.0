@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRouter } from 'next/navigation';
@@ -8,13 +9,19 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll, Clock } from 'lucide-react';
+import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll, Clock, Hourglass } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 import { Slider } from '@/components/ui/slider';
 
 export default function HomePage() {
   const router = useRouter();
-  const { teams, setTeams, setGameMode, setPracticeMode, isPracticeMode, isSoundOn, toggleSound, playSound, roundTime, setRoundTime } = useGame();
+  const { 
+    teams, setTeams, setGameMode, 
+    isPracticeMode, setPracticeMode, 
+    isSoundOn, toggleSound, playSound, 
+    roundTime, setRoundTime,
+    waitTime, setWaitTime
+  } = useGame();
 
   const handleTeamNameChange = (index: number, name: string) => {
     const newTeams = [...teams];
@@ -95,17 +102,31 @@ export default function HomePage() {
                   onCheckedChange={setPracticeMode}
                 />
               </div>
-              <div className="w-full space-y-4 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
-                <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2"><Clock className="w-5 h-5" /> Tiempo por Turno: {roundTime}s</Label>
-                <Slider
-                  id="round-time"
-                  min={10}
-                  max={60}
-                  step={5}
-                  value={[roundTime]}
-                  onValueChange={(value) => setRoundTime(value[0])}
-                  disabled={isPracticeMode}
-                />
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 animate-scroll-reveal" style={{animationDelay: '0.8s'}}>
+                <div className="w-full space-y-3">
+                  <Label htmlFor="wait-time" className="text-lg flex items-center justify-center gap-2"><Hourglass className="w-5 h-5" /> Tiempo de Espera: {waitTime}s</Label>
+                  <Slider
+                    id="wait-time"
+                    min={3}
+                    max={15}
+                    step={1}
+                    value={[waitTime]}
+                    onValueChange={(value) => setWaitTime(value[0])}
+                    disabled={isPracticeMode}
+                  />
+                </div>
+                <div className="w-full space-y-3">
+                  <Label htmlFor="round-time" className="text-lg flex items-center justify-center gap-2"><Clock className="w-5 h-5" /> Tiempo de Respuesta: {roundTime}s</Label>
+                  <Slider
+                    id="round-time"
+                    min={10}
+                    max={60}
+                    step={5}
+                    value={[roundTime]}
+                    onValueChange={(value) => setRoundTime(value[0])}
+                    disabled={isPracticeMode}
+                  />
+                </div>
               </div>
           </CardFooter>
         </Card>
