@@ -80,47 +80,48 @@ const findWordLevel2 = [
 ];
 
 const completePhraseChallenges = [
-    { question: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA _____", answer: "TIERRA", hint: "LO OPUESTO AL CIELO." },
-    { question: "EL SENOR ES MI PASTOR, NADA ME _____", answer: "FALTARA", hint: "VERBO QUE SIGNIFICA 'CARECER'." },
-    { question: "NO SOLO DE PAN VIVIRA EL _____", answer: "HOMBRE", hint: "SER HUMANO DE SEXO MASCULINO." },
-    { question: "PEDID, Y SE OS _____", answer: "DARA", hint: "FUTURO DEL VERBO 'DAR'." },
-    { question: "YO Y EL PADRE UNO _____", answer: "SOMOS", hint: "PRESENTE DEL VERBO 'SER' PARA 'NOSOTROS'." },
-    { question: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO, QUE HA DADO A SU HIJO _____", answer: "UNIGENITO", hint: "HIJO UNICO." },
-    { question: "YO SOY EL CAMINO, Y LA VERDAD, Y LA _____", answer: "VIDA", hint: "LO CONTRARIO A LA MUERTE." },
-    { question: "TODO LO PUEDO EN CRISTO QUE ME _____", answer: "FORTALECE", hint: "QUE ME DA FUERZA." },
-    { question: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA, LA CONVICCION DE LO QUE NO SE _____", answer: "VE", hint: "PERCIBIR CON LOS OJOS." },
-    { question: "EL AMOR ES PACIENTE, ES _____", answer: "BONDADOSO", hint: "LLENO DE BONDAD." },
-    { question: "DEJAD A LOS NINOS VENIR A MI, Y NO SE LO _____", answer: "IMPIDAIS", hint: "NO PERMITIR ALGO." },
-    { question: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y _____", answer: "CARGADOS", hint: "QUE LLEVAN UNA CARGA PESADA." },
-    { question: "DE MAS ESTIMA ES EL BUEN NOMBRE QUE LAS MUCHAS _____", answer: "RIQUEZAS", hint: "ABUNDANCIA DE BIENES Y DINERO." },
-    { question: "PORQUE LA PAGA DEL PECADO ES _____", answer: "MUERTE", hint: "FIN DE LA VIDA." },
-    { question: "EN LA CASA DE MI PADRE MUCHAS ____ HAY", answer: "MORADAS", hint: "LUGARES PARA VIVIR." },
-    { question: "MAS BUSCAD PRIMERAMENTE EL REINO DE DIOS Y SU _____", answer: "JUSTICIA", hint: "PRINCIPIO MORAL DE DAR A CADA UNO LO QUE LE CORRESPONDE." },
-    { question: "FIATE DE JEHOVA DE TODO TU CORAZON, Y NO TE APOYES EN TU PROPIA _____", answer: "PRUDENCIA", hint: "SABIDURIA, BUEN JUICIO." },
-    { question: "EL PRINCIPIO DE LA SABIDURIA ES EL ____ DE JEHOVA", answer: "TEMOR", hint: "MIEDO RESPETUOSO." },
-    { question: "LOS CIELOS CUENTAN LA ____ DE DIOS", answer: "GLORIA", hint: "HONRA, ESPLENDOR." },
-    { question: "SI DIOS ES POR NOSOTROS, ¿QUIEN CONTRA ____?", answer: "NOSOTROS", hint: "PRONOMBRE PERSONAL." },
-    { question: "ORANDO EN TODO TIEMPO CON TODA ORACION Y _____", answer: "SUPLICA", hint: "RUEGO, PETICION." },
-    { question: "EL GOZO DEL SENOR ES VUESTRA _____", answer: "FORTALEZA", hint: "VIGOR, FUERZA." },
-    { question: "POR GRACIA SOIS SALVOS POR MEDIO DE LA _____", answer: "FE", hint: "CREENCIA, CONFIANZA." },
-    { question: "LA HIERBA SE SECA, Y LA FLOR SE _____", answer: "MARCHITA", hint: "PERDER LA FRESCURA Y EL COLOR." },
-    { question: "MI PUEBLO FUE DESTRUIDO PORQUE LE FALTO _____", answer: "CONOCIMIENTO", hint: "SABER, ENTENDIMIENTO." },
-    { question: "NO OS CONFORMEIS A ESTE _____", answer: "SIGLO", hint: "MUNDO, EPOCA." },
-    { question: "SOMOS HECHURA SUYA, CREADOS EN CRISTO JESUS PARA BUENAS _____", answer: "OBRAS", hint: "ACCIONES, TRABAJOS." },
-    { question: "EL QUE NO AMA, NO HA CONOCIDO A _____", answer: "DIOS", hint: "EL SER SUPREMO." },
-    { question: "YO ESTOY A LA PUERTA Y _____", answer: "LLAMO", hint: "ACCION DE TOCAR PARA QUE ABRAN." },
-    { question: "EL QUE PERSEVERE HASTA EL FIN, ESTE SERA _____", answer: "SALVO", hint: "LIBERADO DE PELIGRO O CONDENACION." },
-    { question: "NO TEMAS, PORQUE YO ESTOY _____", answer: "CONTIGO", hint: "A TU LADO." },
-    { question: "MI YUGO ES FACIL, Y LIGERA MI _____", answer: "CARGA", hint: "PESO, RESPONSABILIDAD." },
-    { question: "EL QUE SE HUMILLA SERA _____", answer: "ENALTECIDO", hint: "LEVANTADO, EXALTADO." },
-    { question: "SOBRE TODA COSA GUARDADA, GUARDA TU _____", answer: "CORAZON", hint: "ORGANO DEL AMOR Y LOS SENTIMIENTOS." },
-    { question: "LA LAMPARA DEL CUERPO ES EL _____", answer: "OJO", hint: "ORGANO DE LA VISION." },
-    { question: "NINGUNO PUEDE SERVIR A DOS _____", answer: "SENORES", hint: "AMOS, DUEÑOS." },
-    { question: "EL QUE ESTA EN CRISTO, NUEVA ____ ES", answer: "CRIATURA", hint: "SER CREADO." },
-    { question: "MAS LA SENDA DE LOS JUSTOS ES COMO LA LUZ DE LA _____", answer: "AURORA", hint: "PRIMERA LUZ DEL DIA." },
-    { question: "NO TE DEJES VENCER DE LO MALO, SINO VENCE CON EL BIEN EL _____", answer: "MAL", hint: "LO CONTRARIO AL BIEN." },
-    { question: "HIJO MIO, NO TE OLVIDES DE MI _____", answer: "LEY", hint: "CONJUNTO DE PRECEPTOS." },
+    { fullPhrase: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA TIERRA", hint: "GÉNESIS 1:1" },
+    { fullPhrase: "EL SENOR ES MI PASTOR NADA ME FALTARA", hint: "SALMO 23:1" },
+    { fullPhrase: "NO SOLO DE PAN VIVIRA EL HOMBRE", hint: "MATEO 4:4" },
+    { fullPhrase: "PEDID Y SE OS DARA", hint: "MATEO 7:7" },
+    { fullPhrase: "YO Y EL PADRE UNO SOMOS", hint: "JUAN 10:30" },
+    { fullPhrase: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO QUE HA DADO A SU HIJO UNIGENITO", hint: "JUAN 3:16" },
+    { fullPhrase: "YO SOY EL CAMINO Y LA VERDAD Y LA VIDA", hint: "JUAN 14:6" },
+    { fullPhrase: "TODO LO PUEDO EN CRISTO QUE ME FORTALECE", hint: "FILIPENSES 4:13" },
+    { fullPhrase: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA LA CONVICCION DE LO QUE NO SE VE", hint: "HEBREOS 11:1" },
+    { fullPhrase: "EL AMOR ES PACIENTE ES BONDADOSO", hint: "1 CORINTIOS 13:4" },
+    { fullPhrase: "DEJAD A LOS NINOS VENIR A MI Y NO SE LO IMPIDAIS", hint: "MATEO 19:14" },
+    { fullPhrase: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y CARGADOS", hint: "MATEO 11:28" },
+    { fullPhrase: "DE MAS ESTIMA ES EL BUEN NOMBRE QUE LAS MUCHAS RIQUEZAS", hint: "PROVERBIOS 22:1" },
+    { fullPhrase: "PORQUE LA PAGA DEL PECADO ES MUERTE", hint: "ROMANOS 6:23" },
+    { fullPhrase: "EN LA CASA DE MI PADRE MUCHAS MORADAS HAY", hint: "JUAN 14:2" },
+    { fullPhrase: "MAS BUSCAD PRIMERAMENTE EL REINO DE DIOS Y SU JUSTICIA", hint: "MATEO 6:33" },
+    { fullPhrase: "FIATE DE JEHOVA DE TODO TU CORAZON Y NO TE APOYES EN TU PROPIA PRUDENCIA", hint: "PROVERBIOS 3:5" },
+    { fullPhrase: "EL PRINCIPIO DE LA SABIDURIA ES EL TEMOR DE JEHOVA", hint: "PROVERBIOS 1:7" },
+    { fullPhrase: "LOS CIELOS CUENTAN LA GLORIA DE DIOS", hint: "SALMO 19:1" },
+    { fullPhrase: "SI DIOS ES POR NOSOTROS QUIEN CONTRA NOSOTROS", hint: "ROMANOS 8:31" },
+    { fullPhrase: "ORANDO EN TODO TIEMPO CON TODA ORACION Y SUPLICA", hint: "EFESIOS 6:18" },
+    { fullPhrase: "EL GOZO DEL SENOR ES VUESTRA FORTALEZA", hint: "NEHEMÍAS 8:10" },
+    { fullPhrase: "POR GRACIA SOIS SALVOS POR MEDIO DE LA FE", hint: "EFESIOS 2:8" },
+    { fullPhrase: "LA HIERBA SE SECA Y LA FLOR SE MARCHITA", hint: "ISAÍAS 40:8" },
+    { fullPhrase: "MI PUEBLO FUE DESTRUIDO PORQUE LE FALTO CONOCIMIENTO", hint: "OSEAS 4:6" },
+    { fullPhrase: "NO OS CONFORMEIS A ESTE SIGLO", hint: "ROMANOS 12:2" },
+    { fullPhrase: "SOMOS HECHURA SUYA CREADOS EN CRISTO JESUS PARA BUENAS OBRAS", hint: "EFESIOS 2:10" },
+    { fullPhrase: "EL QUE NO AMA NO HA CONOCIDO A DIOS", hint: "1 JUAN 4:8" },
+    { fullPhrase: "YO ESTOY A LA PUERTA Y LLAMO", hint: "APOCALIPSIS 3:20" },
+    { fullPhrase: "EL QUE PERSEVERE HASTA EL FIN ESTE SERA SALVO", hint: "MATEO 24:13" },
+    { fullPhrase: "NO TEMAS PORQUE YO ESTOY CONTIGO", hint: "ISAÍAS 41:10" },
+    { fullPhrase: "MI YUGO ES FACIL Y LIGERA MI CARGA", hint: "MATEO 11:30" },
+    { fullPhrase: "EL QUE SE HUMILLA SERA ENALTECIDO", hint: "LUCAS 14:11" },
+    { fullPhrase: "SOBRE TODA COSA GUARDADA GUARDA TU CORAZON", hint: "PROVERBIOS 4:23" },
+    { fullPhrase: "LA LAMPARA DEL CUERPO ES EL OJO", hint: "MATEO 6:22" },
+    { fullPhrase: "NINGUNO PUEDE SERVIR A DOS SENORES", hint: "MATEO 6:24" },
+    { fullPhrase: "EL QUE ESTA EN CRISTO NUEVA CRIATURA ES", hint: "2 CORINTIOS 5:17" },
+    { fullPhrase: "MAS LA SENDA DE LOS JUSTOS ES COMO LA LUZ DE LA AURORA", hint: "PROVERBIOS 4:18" },
+    { fullPhrase: "NO TE DEJES VENCER DE LO MALO SINO VENCE CON EL BIEN EL MAL", hint: "ROMANOS 12:21" },
+    { fullPhrase: "HIJO MIO NO TE OLVIDES DE MI LEY", hint: "PROVERBIOS 3:1" },
 ];
+
 
 const guessPhraseChallenges = [
     { phrase: "JEHOVA ES MI LUZ Y MI SALVACION", hint: "SALMO 27:1" },
@@ -185,6 +186,79 @@ const scrambleWord = (challenge: any, type: 'syllables' | 'letters') => {
     return scrambled;
 }
 
+const generateCompletePhraseChallenge = (challenge: any, difficulty: string) => {
+    const words = challenge.fullPhrase.split(' ');
+    let missingWords: string[] = [];
+    let question = challenge.fullPhrase;
+
+    if (difficulty === 'principiante') {
+        const lastWord = words[words.length - 1];
+        missingWords.push(lastWord);
+        question = words.slice(0, -1).join(' ') + ' _____';
+    } else if (difficulty === 'discipulo') {
+        const lastWord = words.pop() as string;
+        missingWords.push(lastWord);
+        if (words.length > 0) {
+            const randomIndex = Math.floor(Math.random() * words.length);
+            missingWords.unshift(words[randomIndex]);
+            words[randomIndex] = '_____';
+        }
+        question = words.join(' ') + ' _____';
+    } else if (difficulty === 'experto') {
+        const tempWords = [...words];
+        for (let i = 0; i < 3 && tempWords.length > 0; i++) {
+            const randomIndex = Math.floor(Math.random() * tempWords.length);
+            const missingWord = tempWords.splice(randomIndex, 1)[0];
+            missingWords.push(missingWord);
+        }
+        
+        question = challenge.fullPhrase;
+        missingWords.forEach((word: string) => {
+             // Use a function for replacement to only replace the first occurrence
+            let replaced = false;
+            question = question.split(' ').map((w: string) => {
+                if (!replaced && w === word) {
+                    replaced = true;
+                    return '_____';
+                }
+                return w;
+            }).join(' ');
+        });
+    }
+
+    return {
+        question,
+        answer: missingWords.join(' ').toUpperCase(),
+        hint: difficulty === 'principiante' ? challenge.hint : 'Sin Pistas',
+        fullAnswer: challenge.fullPhrase,
+    };
+};
+
+const generateGuessPhraseChallenge = (challenge: any, difficulty: string) => {
+    const phrase = challenge.phrase.toUpperCase();
+    const uniqueLetters = [...new Set(phrase.replace(/ /g, ''))];
+    let preGuessed: string[] = [];
+    let hint = challenge.hint;
+
+    if (difficulty === 'principiante') {
+        const lettersToReveal = Math.floor(uniqueLetters.length * 0.5);
+        preGuessed = shuffleArray(uniqueLetters).slice(0, lettersToReveal);
+    } else if (difficulty === 'discipulo') {
+        const lettersToReveal = Math.floor(uniqueLetters.length * 0.2);
+        preGuessed = shuffleArray(uniqueLetters).slice(0, lettersToReveal);
+        hint = 'Sin Pistas';
+    } else { // Experto
+        hint = 'Sin Pistas';
+    }
+    
+    return {
+      ...challenge,
+      preGuessed,
+      hint,
+    };
+};
+
+
 export default function GamePage() {
   const router = useRouter();
   const { 
@@ -217,7 +291,7 @@ export default function GamePage() {
                 return shuffledLevel1.map(challenge => ({
                     ...challenge,
                     question: scrambleWord(challenge, 'syllables'),
-                    level: 1, // Keep level for UI
+                    level: 1, 
                     hint: challenge.hint,
                 }));
             case 'discipulo':
@@ -227,13 +301,13 @@ export default function GamePage() {
                     ...challenge,
                     question: scrambleWord(challenge, 'syllables'),
                     level: 1,
-                    hint: 'Adivina la palabra con las sílabas.', // No real hint
+                    hint: 'Adivina la palabra con las sílabas.',
                 }));
                 const lettersPart = shuffledLevel2.slice(0, C_LETTERS).map(challenge => ({
                     ...challenge,
                     question: scrambleWord(challenge, 'letters'),
                     level: 2,
-                    hint: 'Adivina la palabra con las letras.', // No real hint
+                    hint: 'Adivina la palabra con las letras.',
                 }));
                 return shuffleArray([...syllablesPart, ...lettersPart]);
             case 'experto':
@@ -249,13 +323,25 @@ export default function GamePage() {
     }
     
     if (gameMode === 'complete-phrase') {
-        return shuffleArray([...completePhraseChallenges]);
+        return shuffleArray(completePhraseChallenges).map(c => generateCompletePhraseChallenge(c, difficulty));
     }
     
-    // guess-the-phrase
-    return shuffleArray([...guessPhraseChallenges]);
+    if (gameMode === 'guess-the-phrase') {
+      return shuffleArray(guessPhraseChallenges).map(c => generateGuessPhraseChallenge(c, difficulty));
+    }
 
+    return [];
   }, [gameMode, difficulty]);
+
+   useEffect(() => {
+    const challenge = challenges[currentChallengeIndex];
+    if (gameMode === 'guess-the-phrase' && challenge?.preGuessed) {
+      setGuessedLetters(challenge.preGuessed);
+    } else {
+      setGuessedLetters([]);
+    }
+  }, [currentChallengeIndex, challenges, gameMode]);
+
 
   const startTimer = () => {
     if (timerRef.current) clearInterval(timerRef.current);
@@ -273,7 +359,6 @@ export default function GamePage() {
                 handleAnswer(false);
                 return 0;
             }
-            // Only play tick sound in the last 5 seconds or for specific intervals
             if (prevTime <= 6 && prevTime > 1) {
               playSound('tick');
             }
@@ -288,7 +373,6 @@ export default function GamePage() {
       return;
     }
   
-    // Start timer only when there is no feedback screen
     if (!feedback) {
       startTimer();
     }
@@ -322,7 +406,7 @@ export default function GamePage() {
   const handleNextTurn = () => {
     setFeedback(null);
     setAnswer('');
-    setGuessedLetters([]);
+    // setGuessedLetters([]); Let's not reset this here, useEffect will handle it.
     setLetterInput('');
     
     const nextChallengeIndex = currentChallengeIndex + 1;
@@ -344,7 +428,15 @@ export default function GamePage() {
     if (isCorrect) {
       playSound('correct');
       setFeedback('correct');
-      if(!isPracticeMode) updateScore(currentTeamIndex, 10);
+      if(!isPracticeMode) {
+        let points = 10;
+        if (gameMode === 'guess-the-phrase') points = 20;
+        if (gameMode === 'complete-phrase') {
+          if (difficulty === 'discipulo') points = 15;
+          if (difficulty === 'experto') points = 20;
+        }
+        updateScore(currentTeamIndex, points);
+      }
     } else {
       playSound('incorrect');
       setFeedback('incorrect');
@@ -372,7 +464,7 @@ export default function GamePage() {
         if (!isPracticeMode) {
             const newLives = updateLives(currentTeamIndex, -1);
             if (newLives <= 0) {
-                setFeedback('incorrect'); // Team is out of lives for this round
+                setFeedback('incorrect'); 
             }
         }
     } else {
@@ -381,7 +473,7 @@ export default function GamePage() {
         const revealedLetters = phraseLetters.filter(l => guessedLetters.includes(l) || l === letter);
         if (revealedLetters.length === phraseLetters.length) {
             setFeedback('correct');
-            if(!isPracticeMode) updateScore(currentTeamIndex, 20); // More points for solving the phrase
+            if(!isPracticeMode) updateScore(currentTeamIndex, 20);
         }
     }
     if (teams.length > 1) {
@@ -391,17 +483,7 @@ export default function GamePage() {
 
   const handleGuessPhrase = () => {
       const isCorrect = answer.trim().toUpperCase() === (challenge.phrase || '').toUpperCase();
-      if(isCorrect) {
-          playSound('correct');
-          setFeedback('correct');
-          if(!isPracticeMode) updateScore(currentTeamIndex, 20);
-      } else {
-          playSound('incorrect');
-          setFeedback('incorrect');
-          if (!isPracticeMode) {
-            updateLives(currentTeamIndex, -2); // Penalty for wrong guess
-          }
-      }
+      handleAnswer(isCorrect);
   }
   
   const winner = teams.length > 0 
@@ -443,6 +525,7 @@ export default function GamePage() {
   const totalChallenges = challenges.length;
   const progress = (currentChallengeIndex / totalChallenges) * 100;
   const currentLevel = (challenge as any).level;
+  const fullAnswer = (challenge as any).fullAnswer;
 
   const renderGuessThePhrase = () => {
     const phrase = (challenge.phrase || '').toUpperCase();
@@ -548,7 +631,7 @@ export default function GamePage() {
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
                     <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
-                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{challenge.answer || challenge.phrase}</span></p>}
+                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{gameMode === 'complete-phrase' ? fullAnswer : (challenge.answer || challenge.phrase)}</span></p>}
                     <Button onClick={handleNextTurn}>Continuar</Button>
                   </div>
               )}
