@@ -151,9 +151,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const resetGame = () => {
     setGameMode(null);
     setTeamsState(prevTeams => resetTeamStats(prevTeams));
-    setDifficulty('principiante');
-    localStorage.setItem('difficulty', JSON.stringify('principiante'));
-    // Do not increment gameRestarted here, it's handled by router push which unmounts the component
   }
 
   const restartCurrentGame = () => {
@@ -174,7 +171,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const playSound = (sound: 'correct' | 'incorrect' | 'click' | 'times-up' | 'tick') => {
     if (!isSoundOn || typeof window === 'undefined') return;
     
-    // Ensure the audio context is running
     if (Tone.context.state !== 'running') {
         Tone.start().catch(e => console.error("Tone.start() failed", e));
         return;
@@ -184,15 +180,13 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       const now = Tone.now();
       switch (sound) {
         case 'correct':
-          // Play a simple chord/arpeggio without complex scheduling
           amSynth.triggerAttackRelease('C4', '8n', now);
           amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
           amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
           break;
         case 'incorrect':
-          // Play two notes in sequence, ensuring a slight delay
           synth.triggerAttackRelease('A2', '8n', now);
-          synth.triggerAttackRelease('G#2', '8n', now + 0.1);
+          synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
           clickSynth.triggerAttackRelease('C7', '32n');
@@ -201,8 +195,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           glassSynth.triggerAttackRelease("G5", "1n");
           break;
         case 'tick':
-          // For rapid-fire sounds, creating a new synth instance each time is the safest way
-          // to prevent "start time" errors, although slightly less performant.
           const tickSynth = new Tone.MembraneSynth({
             pitchDecay: 0.01,
             octaves: 2,
@@ -211,7 +203,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           }).toDestination();
           tickSynth.volume.value = -22;
           tickSynth.triggerAttackRelease('C5', '32n');
-          // Clean up the synth after it has played to avoid memory leaks
           setTimeout(() => {
             tickSynth.dispose();
           }, 300);
