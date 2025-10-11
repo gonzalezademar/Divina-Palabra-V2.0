@@ -53,7 +53,7 @@ export default function HomePage() {
               <Crown className="w-6 h-6 text-primary" />
               <Scroll className="w-5 h-5 text-primary" />
             </div>
-            <CardTitle className="font-headline text-2xl text-primary">Encuentra la Palabra</CardTitle>
+            <CardTitle className="font-headline text-2xl text-primary">Divina Palabra</CardTitle>
             <p className="text-xs text-muted-foreground">Saludos a Braian y Alexis</p>
             <CardDescription className="text-muted-foreground text-md">Edición Bíblica</CardDescription>
           </CardHeader>

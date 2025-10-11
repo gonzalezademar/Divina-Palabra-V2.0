@@ -4,7 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { GameProvider } from '@/contexts/GameContext';
 
 export const metadata: Metadata = {
-  title: 'Encuentra la Palabra - Edición Bíblica',
+  title: 'Divina Palabra - Edición Bíblica',
   description: 'Un juego de palabras bíblico para desafiar tu conocimiento.',
 };
 
