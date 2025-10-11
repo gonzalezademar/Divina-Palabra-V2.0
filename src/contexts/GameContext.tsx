@@ -113,11 +113,22 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   }
 
   useEffect(() => {
-    const savedTeams = localStorage.getItem('gameTeams');
-    if (savedTeams) {
-      const parsedTeams = JSON.parse(savedTeams);
-      setTeamsState(resetTeamStats(parsedTeams));
+    try {
+      const savedTeamsItem = localStorage.getItem('gameTeams');
+      if (savedTeamsItem) {
+          const savedTeams = JSON.parse(savedTeamsItem);
+          // We only restore names, stats are reset
+          setTeamsState(currentTeams => 
+              currentTeams.map((team, index) => ({
+                  ...team,
+                  name: savedTeams[index]?.name || team.name
+              }))
+          );
+      }
+    } catch (e) {
+      console.error("Failed to parse teams from localStorage", e);
     }
+    
     const savedSound = localStorage.getItem('soundOn');
     if (savedSound) {
       setIsSoundOn(JSON.parse(savedSound));
@@ -143,8 +154,8 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const setTeams = (newTeams: Team[]) => {
-    const teamsWithStats = newTeams.map(t => ({...t, score: 0, lives: INITIAL_LIVES}));
-    setTeamsState(teamsWithStats);
+    setTeamsState(newTeams);
+    // Save only the names to localStorage to persist them across sessions
     localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name }))));
   };
   
@@ -185,7 +196,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
           amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
           break;
         case 'incorrect':
-          synth.triggerAttackRelease('A2', '8n', now);
+          synth.triggerAttackRelease('A2', '8n');
           synth.triggerAttackRelease('A#2', '8n', now + 0.1);
           break;
         case 'click':
