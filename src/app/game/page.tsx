@@ -89,7 +89,7 @@ const completePhraseChallenges = [
     { fullPhrase: "PORQUE DE TAL MANERA AMO DIOS AL MUNDO QUE HA DADO A SU HIJO UNIGENITO", hint: "JUAN 3:16", reference: "Juan 3:16" },
     { fullPhrase: "YO SOY EL CAMINO Y LA VERDAD Y LA VIDA", hint: "JUAN 14:6", reference: "Juan 14:6" },
     { fullPhrase: "TODO LO PUEDO EN CRISTO QUE ME FORTALECE", hint: "FILIPENSES 4:13", reference: "Filipenses 4:13" },
-    { fullPhrase: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA LA CONVICCION DE LO QUE NO SE VE", hint: "HEBREOS 11:1", reference: "Hebreos 11:1" },
+    { fullPhrase: "LA FE ES LA CERTEZA DE LO QUE SE ESPERA LA CONVICION DE LO QUE NO SE VE", hint: "HEBREOS 11:1", reference: "Hebreos 11:1" },
     { fullPhrase: "EL AMOR ES PACIENTE ES BONDADOSO", hint: "1 CORINTIOS 13:4", reference: "1 Corintios 13:4" },
     { fullPhrase: "DEJAD A LOS NINOS VENIR A MI Y NO SE LO IMPIDAIS", hint: "MATEO 19:14", reference: "Mateo 19:14" },
     { fullPhrase: "VENID A MI TODOS LOS QUE ESTAIS TRABAJADOS Y CARGADOS", hint: "MATEO 11:28", reference: "Mateo 11:28" },
@@ -125,26 +125,46 @@ const completePhraseChallenges = [
 
 
 const guessPhraseChallenges = [
-    { phrase: "JEHOVA ES MI LUZ Y MI SALVACION", hint: "SALMO 27:1", reference: "Salmo 27:1" },
-    { phrase: "TODO LO PUEDO EN CRISTO QUE ME FORTALECE", hint: "FILIPENSES 4:13", reference: "Filipenses 4:13" },
-    { phrase: "EL AMOR NUNCA DEJA DE SER", hint: "1 CORINTIOS 13:8", reference: "1 Corintios 13:8" },
-    { phrase: "YO SOY EL ALFA Y LA OMEGA", hint: "APOCALIPSIS 1:8", reference: "Apocalipsis 1:8" },
-    { phrase: "LA VERDAD OS HARA LIBRES", hint: "JUAN 8:32", reference: "Juan 8:32" },
-    { phrase: "ESFUERZATE Y SE VALIENTE", hint: "JOSUE 1:9", reference: "Josué 1:9" },
-    { phrase: "EL SENOR ES MI PASTOR", hint: "SALMO 23:1", reference: "Salmo 23:1" },
-    { phrase: "EN EL PRINCIPIO ERA EL VERBO", hint: "JUAN 1:1", reference: "Juan 1:1" },
-    { phrase: "ORAD SIN CESAR", hint: "1 TESALONICENSES 5:17", reference: "1 Tesalonicenses 5:17" },
-    { phrase: "LA FE MUEVE MONTANAS", hint: "MATEO 17:20", reference: "Mateo 17:20" },
-    { phrase: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA TIERRA", hint: "GENESIS 1:1", reference: "Génesis 1:1" },
-    { phrase: "NO SOLO DE PAN VIVIRA EL HOMBRE", hint: "MATEO 4:4", reference: "Mateo 4:4" },
-    { phrase: "YO Y EL PADRE UNO SOMOS", hint: "JUAN 10:30", reference: "Juan 10:30" },
-    { phrase: "YO SOY EL CAMINO Y LA VERDAD Y LA VIDA", hint: "JUAN 14:6", reference: "Juan 14:6" },
-    { phrase: "EL PRINCIPIO DE LA SABIDURIA ES EL TEMOR DE JEHOVA", hint: "PROVERBIOS 1:7", reference: "Proverbios 1:7" },
-    { phrase: "SI DIOS ES POR NOSOTROS QUIEN CONTRA NOSOTROS", hint: "ROMANOS 8:31", reference: "Romanos 8:31" },
-    { phrase: "POR GRACIA SOIS SALVOS POR MEDIO DE LA FE", hint: "EFESIOS 2:8", reference: "Efesios 2:8" },
-    { phrase: "YO ESTOY A LA PUERTA Y LLAMO", hint: "APOCALIPSIS 3:20", reference: "Apocalipsis 3:20" },
-    { phrase: "NO TEMAS PORQUE YO ESTOY CONTIGO", hint: "ISAIAS 41:10", reference: "Isaías 41:10" },
-    { phrase: "SOBRE TODA COSA GUARDADA GUARDA TU CORAZON", hint: "PROVERBIOS 4:23", reference: "Proverbios 4:23" },
+    { phrase: "JEHOVA ES MI LUZ Y MI SALVACION", hint: "Un salmo de confianza en la protección divina.", reference: "Salmo 27:1" },
+    { phrase: "TODO LO PUEDO EN CRISTO QUE ME FORTALECE", hint: "Declaración de suficiencia a través de la fe.", reference: "Filipenses 4:13" },
+    { phrase: "EL AMOR NUNCA DEJA DE SER", hint: "La cualidad más perdurable de todas.", reference: "1 Corintios 13:8" },
+    { phrase: "YO SOY EL ALFA Y LA OMEGA", hint: "Título divino que significa el principio y el fin.", reference: "Apocalipsis 1:8" },
+    { phrase: "LA VERDAD OS HARA LIBRES", hint: "Promesa de Jesús sobre el conocimiento y la libertad.", reference: "Juan 8:32" },
+    { phrase: "ESFUERZATE Y SE VALIENTE", hint: "Mandato divino dado a un gran líder de Israel.", reference: "Josué 1:9" },
+    { phrase: "EL SENOR ES MI PASTOR", hint: "Inicio de un conocido salmo sobre el cuidado de Dios.", reference: "Salmo 23:1" },
+    { phrase: "EN EL PRINCIPIO ERA EL VERBO", hint: "Inicio de un evangelio que describe la preexistencia de Cristo.", reference: "Juan 1:1" },
+    { phrase: "ORAD SIN CESAR", hint: "Una instrucción apostólica sobre la constancia en la oración.", reference: "1 Tesalonicenses 5:17" },
+    { phrase: "LA FE MUEVE MONTANAS", hint: "Enseñanza de Jesús sobre el poder de una fe genuina.", reference: "Mateo 17:20" },
+    { phrase: "EN EL PRINCIPIO CREO DIOS LOS CIELOS Y LA TIERRA", hint: "El primer versículo de toda la Biblia.", reference: "Génesis 1:1" },
+    { phrase: "NO SOLO DE PAN VIVIRA EL HOMBRE", hint: "Respuesta de Jesús durante la tentación en el desierto.", reference: "Mateo 4:4" },
+    { phrase: "YO Y EL PADRE UNO SOMOS", hint: "Declaración de Jesús sobre su unidad con el Padre.", reference: "Juan 10:30" },
+    { phrase: "YO SOY EL CAMINO Y LA VERDAD Y LA VIDA", hint: "Una de las afirmaciones 'Yo Soy' de Jesús.", reference: "Juan 14:6" },
+    { phrase: "EL PRINCIPIO DE LA SABIDURIA ES EL TEMOR DE JEHOVA", hint: "Un famoso proverbio sobre el conocimiento.", reference: "Proverbios 1:7" },
+    { phrase: "SI DIOS ES POR NOSOTROS QUIEN CONTRA NOSOTROS", hint: "Declaración de confianza frente a la adversidad.", reference: "Romanos 8:31" },
+    { phrase: "POR GRACIA SOIS SALVOS POR MEDIO DE LA FE", hint: "Explicación apostólica sobre la naturaleza de la salvación.", reference: "Efesios 2:8" },
+    { phrase: "YO ESTOY A LA PUERTA Y LLAMO", hint: "Invitación de Cristo a una de las siete iglesias.", reference: "Apocalipsis 3:20" },
+    { phrase: "NO TEMAS PORQUE YO ESTOY CONTIGO", hint: "Promesa divina de compañía y fortaleza.", reference: "Isaías 41:10" },
+    { phrase: "SOBRE TODA COSA GUARDADA GUARDA TU CORAZON", hint: "Un proverbio sobre la importancia de la vida interior.", reference: "Proverbios 4:23" },
+    { phrase: "AUNQUE ANDE EN VALLE DE SOMBRA DE MUERTE", hint: "Salmo sobre la confianza en medio del peligro.", reference: "Salmo 23:4" },
+    { phrase: "EL JUSTO POR LA FE VIVIRA", hint: "Principio clave de la teología de la justificación.", reference: "Romanos 1:17" },
+    { phrase: "AMARAS A TU PROJIMO COMO A TI MISMO", hint: "El segundo gran mandamiento.", reference: "Mateo 22:39" },
+    { phrase: "ID POR TODO EL MUNDO Y PREDICAD EL EVANGELIO", hint: "La Gran Comisión dada a los discípulos.", reference: "Marcos 16:15" },
+    { phrase: "ESTAD QUIETOS Y CONOCED QUE YO SOY DIOS", hint: "Un llamado a confiar en la soberanía divina.", reference: "Salmo 46:10" },
+    { phrase: "EL HOMBRE NO VERA A DIOS SIN LA PAZ Y LA SANTIDAD", hint: "Requisito para la comunión con Dios.", reference: "Hebreos 12:14" },
+    { phrase: "EN PAZ ME acostare Y ASIMISMO DUMIRE", hint: "Un salmo de confianza para el descanso nocturno.", reference: "Salmo 4:8" },
+    { phrase: "LA ORACION EFICAZ DEL JUSTO PUEDE MUCHO", hint: "Declaración sobre el poder de la intercesión.", reference: "Santiago 5:16" },
+    { phrase: "EN TODO TIEMPO AMA EL AMIGO", hint: "Un proverbio sobre la lealtad y la amistad.", reference: "Proverbios 17:17" },
+    { phrase: "PORQUE EL OCUPARSE DE LA CARNE ES MUERTE", hint: "Contraste entre la vida en el Espíritu y la vida natural.", reference: "Romanos 8:6" },
+    { phrase: "NO ME AVERGUENZO DEL EVANGELIO", hint: "Declaración de un apóstol sobre el poder de las buenas nuevas.", reference: "Romanos 1:16" },
+    { phrase: "EL QUE HABITA AL ABRIGO DEL ALTISIMO", hint: "Comienzo de un salmo de protección divina.", reference: "Salmo 91:1" },
+    { phrase: "Joven fui y he envejecido y no he visto justo desamparado", hint: "Testimonio de la fidelidad de Dios a través de la vida.", reference: "Salmo 37:25" },
+    { phrase: "Y CONOCEREIS LA VERDAD Y LA VERDAD OS HARA LIBRES", hint: "Promesa sobre el poder transformador del conocimiento.", reference: "Juan 8:32" },
+    { phrase: "DAD GRACIAS EN TODO", hint: "Una instrucción sobre la gratitud constante.", reference: "1 Tesalonicenses 5:18" },
+    { phrase: "SERVIR A JEHOVA CON ALEGRIA", hint: "Un llamado a una adoración gozosa.", reference: "Salmo 100:2" },
+    { phrase: "NO HAY JUSTO NI AUN UNO", hint: "Declaración sobre la condición universal de la humanidad.", reference: "Romanos 3:10" },
+    { phrase: "YO SOY LA RESURRECCION Y LA VIDA", hint: "Declaración de Jesús a Marta antes de un gran milagro.", reference: "Juan 11:25" },
+    { phrase: "TODO TIENE SU TIEMPO", hint: "Un famoso pasaje sobre las estaciones de la vida.", reference: "Eclesiastés 3:1" },
+    { phrase: "MEJOR ES DAR QUE RECIBIR", hint: "Una enseñanza de Jesús citada por Pablo.", reference: "Hechos 20:35" },
 ];
 
 
@@ -677,5 +697,7 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
 
     
