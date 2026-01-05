@@ -10,7 +10,7 @@ import { Progress } from '@/components/ui/progress';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users, Heart } from 'lucide-react';
+import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users, Heart, BookOpen } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
 import { normalizeForValidation } from '@/lib/string-utils';
 
@@ -617,12 +617,18 @@ export default function GamePage() {
             </CardHeader>
             <CardContent className="flex-grow flex flex-col items-center justify-center text-center space-y-4 p-4">
               {feedback && (
-                  <div className={`w-full animate-fade-in flex flex-col items-center justify-center space-y-4 ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
+                  <div className={`w-full animate-fade-in flex flex-col items-center justify-center space-y-3 ${feedback === 'correct' ? 'text-green-500' : 'text-red-500'}`}>
                     {feedback === 'correct' ? 
                         <CheckCircle className="w-16 h-16 mx-auto"/> : <XCircle className="w-16 h-16 mx-auto"/>
                     }
-                    <p className="text-2xl font-bold mt-2">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
-                    {feedback === 'incorrect' && <p>La respuesta era: <span className="font-bold text-foreground">{gameMode === 'complete-phrase' ? fullAnswer : (challenge.answer || challenge.phrase)}</span></p>}
+                    <p className="text-2xl font-bold">{feedback === 'correct' ? '¡Correcto!' : 'Incorrecto'}</p>
+                    {feedback === 'incorrect' && <p className="text-base text-foreground/80">La respuesta era: <span className="font-bold text-foreground">{gameMode === 'complete-phrase' ? fullAnswer : (challenge.answer || challenge.phrase)}</span></p>}
+                    {challenge.reference && (
+                      <div className="flex items-center justify-center gap-2 text-sm text-accent-foreground/70 p-2 bg-muted/50 rounded-md">
+                        <BookOpen className="w-4 h-4" />
+                        <span>{challenge.reference}</span>
+                      </div>
+                    )}
                     <Button onClick={handleNextTurn}>Continuar</Button>
                   </div>
               )}
