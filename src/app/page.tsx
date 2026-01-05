@@ -13,6 +13,7 @@ import { Volume2, VolumeX, Users, Swords, BookOpen, Crown, BrainCircuit, Scroll,
 import { AdBanner } from '@/components/game/AdBanner';
 import { Slider } from '@/components/ui/slider';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { InstitutionalLogo } from '@/components/common/InstitutionalLogo';
 
 export default function HomePage() {
   const router = useRouter();
@@ -47,15 +48,18 @@ export default function HomePage() {
 
       <main className="flex flex-col items-center justify-center text-center w-full max-w-2xl animate-fade-in">
         <Card className="w-full bg-card/80 backdrop-blur-sm border-primary/20 shadow-2xl shadow-primary/10">
-          <CardHeader className="pt-4 pb-2">
-            <div className="flex justify-center items-center gap-2 mb-1">
-              <BookOpen className="w-5 h-5 text-primary" />
-              <Crown className="w-6 h-6 text-primary" />
-              <Scroll className="w-5 h-5 text-primary" />
+          <CardHeader className="pt-4 pb-2 text-center">
+            <div className="flex justify-center items-center gap-4 mb-2">
+                <InstitutionalLogo className="w-16 h-16" />
+                <div className="text-left">
+                    <p className="font-bold text-accent-foreground/90">Fundacion Anawin</p>
+                    <p className="text-sm text-muted-foreground">“Ayudando a SER y a CRECER”</p>
+                </div>
             </div>
+            <div className="border-b border-border/50 w-3/4 mx-auto my-2"></div>
             <CardTitle className="font-headline text-2xl text-primary">Divina Palabra</CardTitle>
-            <p className="text-xs text-muted-foreground">Saludos a Braian y Alexis</p>
             <CardDescription className="text-muted-foreground text-md">Edición Bíblica</CardDescription>
+            <p className="text-xs text-muted-foreground pt-1">Saludos a Braian y Alexis</p>
           </CardHeader>
           <CardContent className="space-y-6 p-4 pt-2">
             <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
@@ -93,7 +97,7 @@ export default function HomePage() {
                           Discípulo
                       </Label>
                   </div>
-                  <div>
+                  <div>-
                       <RadioGroupItem value="experto" id="experto" className="sr-only" />
                       <Label htmlFor="experto" className="flex flex-col items-center justify-center rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground cursor-pointer [&:has([data-state=checked])]:border-primary">
                           <BrainCircuit className="mb-3 h-6 w-6" />
@@ -157,3 +161,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    
