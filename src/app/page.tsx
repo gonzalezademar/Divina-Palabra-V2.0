@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRouter } from 'next/navigation';
@@ -59,7 +58,6 @@ export default function HomePage() {
             <div className="border-b border-border/50 w-3/4 mx-auto my-2"></div>
             <CardTitle className="font-headline text-2xl text-primary">Divina Palabra</CardTitle>
             <CardDescription className="text-muted-foreground text-md">Edición Bíblica</CardDescription>
-            <p className="text-xs text-muted-foreground pt-1">Saludos a Braian y Alexis</p>
           </CardHeader>
           <CardContent className="space-y-6 p-4 pt-2">
             <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.2s'}}>
@@ -161,5 +159,3 @@ export default function HomePage() {
     </div>
   );
 }
-
-    
