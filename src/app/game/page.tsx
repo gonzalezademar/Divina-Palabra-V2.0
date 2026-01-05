@@ -12,6 +12,7 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users, Heart } from 'lucide-react';
 import { AdBanner } from '@/components/game/AdBanner';
+import { normalizeForValidation } from '@/lib/string-utils';
 
 const findWordLevel1 = [
     { answer: "GENESIS", syllables: ["GE", "NE", "SIS"], hint: "EL PRIMER LIBRO DE LA BIBLIA." },
@@ -434,7 +435,7 @@ export default function GamePage() {
   };
   
   const submitAnswer = () => {
-    const isCorrect = answer.trim().toUpperCase() === challenge.answer.toUpperCase();
+    const isCorrect = normalizeForValidation(answer) === normalizeForValidation(challenge.answer);
     handleAnswer(isCorrect);
   };
 
@@ -472,7 +473,7 @@ export default function GamePage() {
   };
 
   const handleGuessPhrase = () => {
-      const isCorrect = answer.trim().toUpperCase() === (challenge.phrase || '').toUpperCase();
+      const isCorrect = normalizeForValidation(answer) === normalizeForValidation(challenge.phrase || '');
       handleAnswer(isCorrect);
   }
   
@@ -670,3 +671,5 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
