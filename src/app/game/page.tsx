@@ -191,40 +191,30 @@ const generateCompletePhraseChallenge = (challenge: any, difficulty: string) => 
     let missingWords: string[] = [];
     let question = challenge.fullPhrase;
 
+    const wordsToHideCount = difficulty === 'principiante' ? 1 : difficulty === 'discipulo' ? 2 : 3;
+    const wordsToHide = [];
+    const availableWords = [...words];
+
     if (difficulty === 'principiante') {
-        const lastWord = words[words.length - 1];
-        missingWords.push(lastWord);
-        question = words.slice(0, -1).join(' ') + ' _____';
-    } else if (difficulty === 'discipulo') {
-        const lastWord = words.pop() as string;
-        missingWords.push(lastWord);
-        if (words.length > 0) {
-            const randomIndex = Math.floor(Math.random() * words.length);
-            missingWords.unshift(words[randomIndex]);
-            words[randomIndex] = '_____';
+        const lastWord = availableWords.pop() as string;
+        wordsToHide.push(lastWord);
+    } else {
+        for (let i = 0; i < wordsToHideCount && availableWords.length > 0; i++) {
+            const randomIndex = Math.floor(Math.random() * availableWords.length);
+            const wordToHide = availableWords.splice(randomIndex, 1)[0];
+            wordsToHide.push(wordToHide);
         }
-        question = words.join(' ') + ' _____';
-    } else if (difficulty === 'experto') {
-        const tempWords = [...words];
-        for (let i = 0; i < 3 && tempWords.length > 0; i++) {
-            const randomIndex = Math.floor(Math.random() * tempWords.length);
-            const missingWord = tempWords.splice(randomIndex, 1)[0];
-            missingWords.push(missingWord);
-        }
-        
-        question = challenge.fullPhrase;
-        missingWords.forEach((word: string) => {
-             // Use a function for replacement to only replace the first occurrence
-            let replaced = false;
-            question = question.split(' ').map((w: string) => {
-                if (!replaced && w === word) {
-                    replaced = true;
-                    return '_____';
-                }
-                return w;
-            }).join(' ');
-        });
     }
+
+    missingWords = [...wordsToHide];
+
+    let tempQuestion = challenge.fullPhrase;
+    wordsToHide.forEach((word: string) => {
+        const placeholder = '_'.repeat(word.length);
+        // Replace only the first occurrence to handle repeated words correctly
+        tempQuestion = tempQuestion.replace(word, placeholder);
+    });
+    question = tempQuestion;
 
     return {
         question,
