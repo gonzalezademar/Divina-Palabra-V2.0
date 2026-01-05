@@ -244,7 +244,7 @@ const generateGuessPhraseChallenge = (challenge: any, difficulty: string) => {
     
     return {
       ...challenge,
-      preGuessed,
+      preGuessed: preGuessed.map(l => normalizeForValidation(l)),
       hint,
     };
 };
@@ -440,7 +440,7 @@ export default function GamePage() {
   };
 
   const handleGuessLetter = () => {
-    const letter = letterInput.trim().toUpperCase();
+    const letter = normalizeForValidation(letterInput);
     if (!letter || letter.length > 1 || guessedLetters.includes(letter)) {
         setLetterInput('');
         return;
@@ -449,8 +449,8 @@ export default function GamePage() {
     setGuessedLetters([...guessedLetters, letter]);
     setLetterInput('');
 
-    const phrase = (challenge.phrase || '').toUpperCase();
-    if (!phrase.includes(letter)) {
+    const phrase = challenge.phrase || '';
+    if (!normalizeForValidation(phrase).includes(letter)) {
         playSound('incorrect');
         if (!isPracticeMode) {
             const newLives = updateLives(currentTeamIndex, -1);
@@ -460,8 +460,8 @@ export default function GamePage() {
         }
     } else {
         playSound('correct');
-        const phraseLetters = [...new Set(phrase.replace(/ /g, ''))];
-        const revealedLetters = phraseLetters.filter(l => guessedLetters.includes(l) || l === letter);
+        const phraseLetters = [...new Set(normalizeForValidation(phrase).replace(/ /g, ''))];
+        const revealedLetters = phraseLetters.filter(l => guessedLetters.includes(l));
         if (revealedLetters.length === phraseLetters.length) {
             setFeedback('correct');
             if(!isPracticeMode) updateScore(currentTeamIndex, 20);
@@ -522,7 +522,7 @@ export default function GamePage() {
     const phrase = (challenge.phrase || '').toUpperCase();
     const displayedPhrase = phrase.split('').map(char => {
         if (char === ' ') return ' ';
-        if (guessedLetters.includes(char)) return char;
+        if (guessedLetters.includes(normalizeForValidation(char))) return char;
         return '_';
     }).join('');
 
@@ -671,5 +671,7 @@ export default function GamePage() {
     </div>
   );
 }
+
+    
 
     
