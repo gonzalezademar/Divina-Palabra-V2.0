@@ -1,8 +1,9 @@
-
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect, useRef } from 'react';
 import * as Tone from 'tone';
+import { getTranslation, TranslationType } from '@/data/locales';
+import { getBibleData, BibleCatalog } from '@/data/bibleData';
 
 type Team = {
   name: string;
@@ -10,8 +11,17 @@ type Team = {
   lives: number;
 };
 
-type GameMode = 'find-word' | 'complete-phrase' | 'guess-the-phrase';
-type DifficultyLevel = 'principiante' | 'discipulo' | 'experto';
+type GameMode = 'find-word' | 'complete-phrase' | 'guess-the-phrase' | 'bible-rosco' | 'word-search' | 'counseling-practical';
+type DifficultyLevel = 'principiante' | 'discipulo' | 'avanzado';
+
+export interface LessonType {
+  lessonName: string;
+  difficulty: DifficultyLevel;
+  bibleVersion: string;
+  language: 'es' | 'en';
+  challenges: any[];
+  reflectionQuestion: string;
+}
 
 interface GameContextType {
   teams: Team[];
@@ -32,74 +42,70 @@ interface GameContextType {
   gameRestarted: number;
   roundTime: number;
   setRoundTime: (time: number) => void;
+  
+  // New States
+  language: 'es' | 'en';
+  setLanguage: (lang: 'es' | 'en') => void;
+  bibleVersion: string;
+  setBibleVersion: (version: string) => void;
+  isPremium: boolean;
+  setIsPremium: (premium: boolean) => void;
+  t: TranslationType;
+  bibleData: BibleCatalog;
+  activeLesson: LessonType | null;
+  setActiveLesson: (lesson: LessonType | null) => void;
+  hasConfiguredLanguage: boolean;
+  setHasConfiguredLanguage: (val: boolean) => void;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
 // Sound setup
-let synth: Tone.Synth;
-let amSynth: Tone.AMSynth;
+let polySynth: Tone.PolySynth;
 let clickSynth: Tone.MembraneSynth;
-let glassSynth: Tone.MetalSynth;
-
+let tickSynth: Tone.MembraneSynth;
+let bellSynth: Tone.MetalSynth;
 
 if (typeof window !== 'undefined') {
-  const volume = 10;
-  synth = new Tone.Synth({
+  const volume = -8;
+  polySynth = new Tone.PolySynth(Tone.Synth, {
     oscillator: { type: 'triangle' },
-    envelope: { attack: 0.02, decay: 0.1, sustain: 0.3, release: 0.4 },
+    envelope: { attack: 0.02, decay: 0.15, sustain: 0.4, release: 0.6 },
   }).toDestination();
-  synth.volume.value = volume;
-  
-  amSynth = new Tone.AMSynth({
-    harmonicity: 1.5,
-    detune: 0,
-    oscillator: {
-      type: 'fatsawtooth'
-    },
-    envelope: {
-      attack: 0.01,
-      decay: 0.2,
-      sustain: 0.2,
-      release: 0.3
-    },
-    modulation: {
-      type: 'square'
-    },
-    modulationEnvelope: {
-      attack: 0.01,
-      decay: 0.3,
-      sustain: 0.2,
-      release: 0.3
-    }
-  }).toDestination();
-  amSynth.volume.value = volume;
+  polySynth.volume.value = volume;
 
   clickSynth = new Tone.MembraneSynth({
     pitchDecay: 0.01,
-    octaves: 2,
+    octaves: 1.5,
     oscillator: { type: 'sine' },
-    envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.01 }
+    envelope: { attack: 0.001, decay: 0.1, sustain: 0.01, release: 0.01 }
   }).toDestination();
   clickSynth.volume.value = -18;
   
-  glassSynth = new Tone.MetalSynth({
-        frequency: 440,
-        envelope: { attack: 0.001, decay: 1.5, release: 0.8 },
-        harmonicity: 8.5,
-        modulationIndex: 20,
-        resonance: 4000,
-        octaves: 1.5,
-      }).toDestination();
-  glassSynth.volume.value = -12;
+  tickSynth = new Tone.MembraneSynth({
+    pitchDecay: 0.005,
+    octaves: 1,
+    oscillator: { type: 'sine' },
+    envelope: { attack: 0.001, decay: 0.08, sustain: 0.01, release: 0.01 }
+  }).toDestination();
+  tickSynth.volume.value = -24;
+
+  bellSynth = new Tone.MetalSynth({
+    envelope: { attack: 0.001, decay: 2.0, release: 1.5 },
+    harmonicity: 5.1,
+    modulationIndex: 15,
+    resonance: 3000,
+    octaves: 1.2
+  }).toDestination();
+  bellSynth.volume.value = -14;
 }
 
 const INITIAL_LIVES = 5;
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [teams, setTeamsState] = useState<Team[]>([
-    { name: 'Equipo 1', score: 0, lives: INITIAL_LIVES },
-    { name: 'Equipo 2', score: 0, lives: INITIAL_LIVES },
+    { name: 'Equipo Ámbar', score: 0, lives: INITIAL_LIVES },
+    { name: 'Equipo Celeste', score: 0, lives: INITIAL_LIVES },
   ]);
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [difficulty, setDifficultyState] = useState<DifficultyLevel>('principiante');
@@ -108,27 +114,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [roundTime, setRoundTime] = useState(30);
   const [gameRestarted, setGameRestarted] = useState(0);
   
+  // New States
+  const [language, setLanguageState] = useState<'es' | 'en'>('es');
+  const [bibleVersion, setBibleVersionState] = useState<string>('rvr1960');
+  const [isPremium, setIsPremiumState] = useState<boolean>(false);
+  const [activeLesson, setActiveLesson] = useState<LessonType | null>(null);
+  const [hasConfiguredLanguage, setHasConfiguredLanguage] = useState<boolean>(true);
+  const lastPlayedTimesRef = useRef<Record<string, number>>({});
+
   const resetTeamStats = (teams: Team[]) => {
     return teams.map(team => ({...team, score: 0, lives: INITIAL_LIVES}));
   }
 
+  // Load configuration on mount
   useEffect(() => {
-    try {
-      const savedTeamsItem = localStorage.getItem('gameTeams');
-      if (savedTeamsItem) {
-          const savedTeams = JSON.parse(savedTeamsItem);
-          // We only restore names, stats are reset
-          setTeamsState(currentTeams => 
-              currentTeams.map((team, index) => ({
-                  ...team,
-                  name: savedTeams[index]?.name || team.name
-              }))
-          );
-      }
-    } catch (e) {
-      console.error("Failed to parse teams from localStorage", e);
-    }
-    
     const savedSound = localStorage.getItem('soundOn');
     if (savedSound) {
       setIsSoundOn(JSON.parse(savedSound));
@@ -140,6 +139,61 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const savedDifficulty = localStorage.getItem('difficulty');
     if (savedDifficulty) {
       setDifficultyState(JSON.parse(savedDifficulty) as DifficultyLevel);
+    }
+    const savedLang = localStorage.getItem('language');
+    let activeLang: 'es' | 'en' = 'es';
+    if (savedLang) {
+      activeLang = JSON.parse(savedLang) as 'es' | 'en';
+      setLanguageState(activeLang);
+      setHasConfiguredLanguage(true);
+    } else {
+      setHasConfiguredLanguage(false);
+    }
+    
+    // Set color-themed team names by default based on selected language
+    setTeamsState([
+      { name: activeLang === 'es' ? 'Equipo Ámbar' : 'Amber Team', score: 0, lives: INITIAL_LIVES },
+      { name: activeLang === 'es' ? 'Equipo Celeste' : 'Sky Blue Team', score: 0, lives: INITIAL_LIVES },
+    ]);
+
+    // Bible version defaults based on active configured language on reload
+    const defaultVersion = activeLang === 'es' ? 'rvr1960' : 'niv';
+    setBibleVersionState(defaultVersion);
+
+    const savedPremium = localStorage.getItem('isPremium');
+    if (savedPremium) {
+      setIsPremiumState(JSON.parse(savedPremium));
+    }
+  }, []);
+
+  // Check URL query parameters for virtual classroom lessons
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      const lessonBase64 = searchParams.get('lesson');
+      if (lessonBase64) {
+        try {
+          const decodedJson = atob(lessonBase64);
+          const lessonData = JSON.parse(decodedJson) as LessonType;
+          if (lessonData && lessonData.lessonName) {
+            setActiveLesson(lessonData);
+            if (lessonData.language) {
+              setLanguageState(lessonData.language);
+            }
+            if (lessonData.bibleVersion) {
+              setBibleVersionState(lessonData.bibleVersion);
+            }
+            if (lessonData.difficulty) {
+              setDifficultyState(lessonData.difficulty);
+            }
+            // For lessons, we default to single player/team or a clean setup
+            setTeamsState([{ name: 'Alumno', score: 0, lives: INITIAL_LIVES }]);
+            setGameMode('find-word'); // default mode to open the game
+          }
+        } catch (e) {
+          console.error("Failed to decode base64 lesson", e);
+        }
+      }
     }
   }, []);
 
@@ -155,16 +209,64 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   const setTeams = (newTeams: Team[]) => {
     setTeamsState(newTeams);
-    // Save only the names to localStorage to persist them across sessions
     localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name }))));
   };
+
+  const setLanguage = (lang: 'es' | 'en') => {
+    setLanguageState(lang);
+    localStorage.setItem('language', JSON.stringify(lang));
+    setHasConfiguredLanguage(true);
+    
+    // Set color-themed team names dynamically based on language
+    setTeamsState(current => {
+      if (current.length === 2) {
+        return [
+          { ...current[0], name: lang === 'es' ? 'Equipo Ámbar' : 'Amber Team' },
+          { ...current[1], name: lang === 'es' ? 'Equipo Celeste' : 'Sky Blue Team' }
+        ];
+      }
+      return current;
+    });
+
+    // Set matching default bible version
+    const defaultVersion = lang === 'es' ? 'rvr1960' : 'niv';
+    setBibleVersionState(defaultVersion);
+    localStorage.setItem('bibleVersion', JSON.stringify(defaultVersion));
+  };
+
+  const setBibleVersion = (version: string) => {
+    setBibleVersionState(version);
+    localStorage.setItem('bibleVersion', JSON.stringify(version));
+  };
+
+  const setIsPremium = (premium: boolean) => {
+    setIsPremiumState(premium);
+    localStorage.setItem('isPremium', JSON.stringify(premium));
+  };
   
+  const silenceAll = () => {
+    try {
+      if (typeof window !== 'undefined') {
+        polySynth?.releaseAll();
+      }
+    } catch (e) {
+      console.error("Failed to silence all sounds", e);
+    }
+  };
+
   const resetGame = () => {
+    silenceAll();
     setGameMode(null);
+    setActiveLesson(null);
+    // Clear URL parameter cleanly
+    if (typeof window !== 'undefined' && window.history) {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
     setTeamsState(prevTeams => resetTeamStats(prevTeams));
   }
 
   const restartCurrentGame = () => {
+    silenceAll();
     setTeamsState(prevTeams => resetTeamStats(prevTeams));
     setGameRestarted(prev => prev + 1);
   };
@@ -173,8 +275,10 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     const newSoundState = !isSoundOn;
     setIsSoundOn(newSoundState);
     localStorage.setItem('soundOn', JSON.stringify(newSoundState));
-    if (newSoundState && Tone.context.state !== 'running') {
-        Tone.start();
+    if (!newSoundState) {
+      silenceAll();
+    } else if (Tone.context.state !== 'running') {
+      Tone.start();
     }
     playSound('click');
   };
@@ -182,6 +286,13 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const playSound = (sound: 'correct' | 'incorrect' | 'click' | 'times-up' | 'tick') => {
     if (!isSoundOn || typeof window === 'undefined') return;
     
+    const nowMs = Date.now();
+    const lastTime = lastPlayedTimesRef.current[sound] || 0;
+    if (nowMs - lastTime < 50) {
+      return;
+    }
+    lastPlayedTimesRef.current[sound] = nowMs;
+
     if (Tone.context.state !== 'running') {
         Tone.start().catch(e => console.error("Tone.start() failed", e));
         return;
@@ -191,32 +302,25 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       const now = Tone.now();
       switch (sound) {
         case 'correct':
-          amSynth.triggerAttackRelease('C4', '8n', now);
-          amSynth.triggerAttackRelease('G4', '8n', now + 0.15);
-          amSynth.triggerAttackRelease('C5', '8n', now + 0.3);
+          // Warm ascending major triad arpeggio (C4, E4, G4, C5)
+          polySynth.triggerAttackRelease('C4', '8n', now);
+          polySynth.triggerAttackRelease('E4', '8n', now + 0.12);
+          polySynth.triggerAttackRelease('G4', '8n', now + 0.24);
+          polySynth.triggerAttackRelease('C5', '4n', now + 0.36);
           break;
         case 'incorrect':
-          synth.triggerAttackRelease('A2', '8n');
-          synth.triggerAttackRelease('A#2', '8n', now + 0.1);
+          // Warm descending minor third (A3, F#3)
+          polySynth.triggerAttackRelease('A3', '8n', now);
+          polySynth.triggerAttackRelease('F#3', '4n', now + 0.15);
           break;
         case 'click':
-          clickSynth.triggerAttackRelease('C7', '32n');
+          clickSynth.triggerAttackRelease('C6', '32n', now);
           break;
         case 'times-up':
-          glassSynth.triggerAttackRelease("G5", "1n");
+          bellSynth.triggerAttackRelease("G4", "2n", now);
           break;
         case 'tick':
-          const tickSynth = new Tone.MembraneSynth({
-            pitchDecay: 0.01,
-            octaves: 2,
-            oscillator: { type: 'sine' },
-            envelope: { attack: 0.001, decay: 0.2, sustain: 0.01, release: 0.01 }
-          }).toDestination();
-          tickSynth.volume.value = -22;
-          tickSynth.triggerAttackRelease('C5', '32n');
-          setTimeout(() => {
-            tickSynth.dispose();
-          }, 300);
+          tickSynth.triggerAttackRelease('C5', '32n', now);
           break;
       }
     } catch(e) {
@@ -248,8 +352,26 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     return newLives;
   };
 
+  const t = getTranslation(language);
+  const bibleData = getBibleData(language, bibleVersion);
+
   return (
-    <GameContext.Provider value={{ teams, setTeams, gameMode, setGameMode, difficulty, setDifficulty, isPracticeMode, setPracticeMode, isSoundOn, toggleSound, playSound, updateScore, updateLives, resetGame, restartCurrentGame, gameRestarted, roundTime, setRoundTime: handleSetRoundTime }}>
+    <GameContext.Provider value={{
+      teams, setTeams,
+      gameMode, setGameMode,
+      difficulty, setDifficulty,
+      isPracticeMode, setPracticeMode,
+      isSoundOn, toggleSound, playSound,
+      updateScore, updateLives,
+      resetGame, restartCurrentGame, gameRestarted,
+      roundTime, setRoundTime: handleSetRoundTime,
+      language, setLanguage,
+      bibleVersion, setBibleVersion,
+      isPremium, setIsPremium,
+      t, bibleData,
+      activeLesson, setActiveLesson,
+      hasConfiguredLanguage, setHasConfiguredLanguage
+    }}>
       {children}
     </GameContext.Provider>
   );

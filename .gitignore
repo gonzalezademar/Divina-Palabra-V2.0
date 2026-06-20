@@ -43,3 +43,9 @@ next-env.d.ts
 # firebase
 firebase-debug.log
 firestore-debug.log
+
+# Antigravity/Agent configuration
+.agents/
+.vscode/
+metadata.json
+skills-lock.json
