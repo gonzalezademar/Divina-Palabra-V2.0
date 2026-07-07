@@ -57,7 +57,7 @@ export class AccessibilityEngine {
       cognitiveLoad = 'Mejorable';
     }
 
-    let languageComplexity: AccessibilityStatus = govAudit.vocabularyAppropriateness;
+    const languageComplexity: AccessibilityStatus = govAudit.vocabularyAppropriateness;
     
     // UI components are statically well-designed
     const textVisibility: AccessibilityStatus = 'Excelente';
