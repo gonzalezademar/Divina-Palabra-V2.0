@@ -25,6 +25,7 @@ export default function SetupPage() {
     roundTime, setRoundTime,
     difficulty, setDifficulty,
     bibleVersion, setBibleVersion,
+    doctrinalProfile, setDoctrinalProfile,
     t, isPremium, language
   } = useGame();
 
@@ -178,6 +179,27 @@ export default function SetupPage() {
                       <SelectItem value="esv" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">English Standard Version (No Internet required)</SelectItem>
                     </>
                   )}
+                </SelectContent>
+              </Select>
+            </div>
+
+            {/* Doctrinal Profile Selection */}
+            <div className="space-y-3 animate-scroll-reveal" style={{animationDelay: '0.55s'}}>
+              <h3 className="font-headline text-base font-bold flex items-center justify-center gap-2 text-amber-300/95">
+                <BookOpen className="w-5 h-5 text-amber-400" />
+                {language === 'es' ? 'Perfil Doctrinal' : 'Doctrinal Profile'}
+              </h3>
+              <Select value={doctrinalProfile || 'universal'} onValueChange={(val: string) => { playSound('click'); setDoctrinalProfile(val === 'universal' ? undefined : val); }}>
+                <SelectTrigger className="w-full max-w-md mx-auto bg-slate-950 border-slate-800 text-sm text-amber-300 h-12 rounded-xl">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent className="bg-slate-900 border-slate-800 text-slate-200">
+                  <SelectItem value="universal" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Universal (Todas)' : 'Universal (All)'}</SelectItem>
+                  <SelectItem value="evangelico" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Evangélico' : 'Evangelical'}</SelectItem>
+                  <SelectItem value="catolico" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Católico' : 'Catholic'}</SelectItem>
+                  <SelectItem value="adventista" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Adventista' : 'Adventist'}</SelectItem>
+                  <SelectItem value="bautista" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Bautista' : 'Baptist'}</SelectItem>
+                  <SelectItem value="pentecostal" className="focus:bg-amber-500 focus:text-slate-950 py-3 text-sm">{language === 'es' ? 'Pentecostal' : 'Pentecostal'}</SelectItem>
                 </SelectContent>
               </Select>
             </div>

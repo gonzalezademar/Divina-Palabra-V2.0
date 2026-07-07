@@ -1,117 +1,4879 @@
 {
   "findWordLevel1": [
-    { "answer": "GENESIS", "syllables": ["GEN", "E", "SIS"], "hint": "THE FIRST BOOK OF THE BIBLE.", "reference": "Genesis" },
-    { "answer": "EXODUS", "syllables": ["EX", "O", "DUS"], "hint": "THE BOOK OF THE DEPARTURE FROM EGYPT.", "reference": "Exodus" },
-    { "answer": "PSALMS", "syllables": ["PSALMS"], "hint": "BOOK OF SONGS AND PRAYERS.", "reference": "Psalms" },
-    { "answer": "CAIN", "syllables": ["CAIN"], "hint": "BROTHER OF ABEL AND FIRST SON OF ADAM.", "reference": "Genesis 4" },
-    { "answer": "DAVID", "syllables": ["DA", "VID"], "hint": "KING OF ISRAEL WHO DEFEATED A GIANT.", "reference": "1 Samuel 17" },
-    { "answer": "MOSES", "syllables": ["MO", "SES"], "hint": "LED THE ISRAELITES OUT OF EGYPTIAN BONDAGE.", "reference": "Exodus" },
-    { "answer": "BETHLEHEM", "syllables": ["BETH", "LE", "HEM"], "hint": "BIRTHPLACE OF JESUS.", "reference": "Micah 5:2" },
-    { "answer": "ARK", "syllables": ["ARK"], "hint": "THE VESSEL BUILT BY NOAH.", "reference": "Genesis 6" },
-    { "answer": "ABRAHAM", "syllables": ["A", "BRA", "HAM"], "hint": "FATHER OF MANY NATIONS.", "reference": "Genesis 17" },
-    { "answer": "SOLOMON", "syllables": ["SOL", "O", "MON"], "hint": "THE WISEST KING OF ISRAEL.", "reference": "1 Kings 3" },
-    { "answer": "APOSTLE", "syllables": ["A", "POS", "TLE"], "hint": "ONE OF THE TWELVE FOLLOWERS OF JESUS.", "reference": "Matthew 10" },
-    { "answer": "PROPHET", "syllables": ["PROPH", "ET"], "hint": "A MESSENGER OF GOD.", "reference": "Hebrews 1" },
-    { "answer": "ANGEL", "syllables": ["AN", "GEL"], "hint": "HEAVENLY MESSENGER.", "reference": "Genesis 19" },
-    { "answer": "GOLIATH", "syllables": ["GO", "LI", "ATH"], "hint": "GIANT DEFEATED BY DAVID.", "reference": "1 Samuel 17" },
-    { "answer": "SAMSON", "syllables": ["SAM", "SON"], "hint": "JUDGE OF GREAT STRENGTH.", "reference": "Judges 13-16" },
-    { "answer": "DANIEL", "syllables": ["DAN", "IEL"], "hint": "PROPHET IN THE LIONS DEN.", "reference": "Daniel 6" },
-    { "answer": "JONAH", "syllables": ["JO", "NAH"], "hint": "PROPHET SWALLOWED BY A GREAT FISH.", "reference": "Jonah 1-2" },
-    { "answer": "MARY", "syllables": ["MA", "RY"], "hint": "MOTHER OF JESUS.", "reference": "Luke 1" },
-    { "answer": "PETER", "syllables": ["PE", "TER"], "hint": "DENIED JESUS THREE TIMES.", "reference": "Matthew 26" },
-    { "answer": "PAUL", "syllables": ["PAUL"], "hint": "APOSTLE TO THE GENTILES, FORMERLY SAUL.", "reference": "Acts 9" },
-    { "answer": "NOAH", "syllables": ["NO", "AH"], "hint": "BUILT THE ARK TO SAVE HIS FAMILY.", "reference": "Genesis 6" },
-    { "answer": "ISAAC", "syllables": ["I", "SAAC"], "hint": "SON OF THE PROMISE TO ABRAHAM AND SARAH.", "reference": "Genesis 21" },
-    { "answer": "JACOB", "syllables": ["JA", "COB"], "hint": "WRESTLED WITH AN ANGEL AND HIS NAME WAS CHANGED TO ISRAEL.", "reference": "Genesis 32" },
-    { "answer": "JOSEPH", "syllables": ["JO", "SEPH"], "hint": "SON OF JACOB SOLD BY HIS BROTHERS WHO BECAME A RULER IN EGYPT.", "reference": "Genesis 37" },
-    { "answer": "AARON", "syllables": ["AA", "RON"], "hint": "BROTHER OF MOSES AND THE FIRST HIGH PRIEST.", "reference": "Exodus 4" },
-    { "answer": "JOSHUA", "syllables": ["JOSH", "UA"], "hint": "SUCCESSOR OF MOSES WHO LED THE CONQUEST OF JERICHO.", "reference": "Joshua 1" },
-    { "answer": "GIDEON", "syllables": ["GID", "EON"], "hint": "JUDGE WHO DEFEATED THE MIDIANITES WITH 300 MEN.", "reference": "Judges 7" },
-    { "answer": "RUTH", "syllables": ["RUTH"], "hint": "LOYAL MOABITE WOMAN ANCESTOR OF KING DAVID.", "reference": "Ruth 1" },
-    { "answer": "SAMUEL", "syllables": ["SAM", "UEL"], "hint": "PROPHET AND JUDGE WHO ANOINTED SAUL AND DAVID.", "reference": "1 Samuel 3" },
-    { "answer": "ELIJAH", "syllables": ["E", "LI", "JAH"], "hint": "PROPHET WHO DEFENDED THE FAITH AT MOUNT CARMEL AND WAS TAKEN IN A CHARIOT OF FIRE.", "reference": "1 Kings 18" },
-    { "answer": "ELISHA", "syllables": ["E", "LI", "SHA"], "hint": "SUCCESSOR OF ELIJAH WHO ASKED FOR A DOUBLE PORTION OF HIS SPIRIT.", "reference": "2 Kings 2" },
-    { "answer": "NEHEMIAH", "syllables": ["NE", "HE", "MI", "AH"], "hint": "LED THE RECONSTRUCTION OF THE WALLS OF JERUSALEM.", "reference": "Nehemiah 2" },
-    { "answer": "MATTHEW", "syllables": ["MAT", "THEW"], "hint": "TAX COLLECTOR WHO BECAME AN EVANGELIST.", "reference": "Matthew 9" },
-    { "answer": "STEPHEN", "syllables": ["STE", "PHEN"], "hint": "FIRST CHRISTIAN MARTYR FULL OF GRACE AND POWER.", "reference": "Acts 7" },
-    { "answer": "TIMOTHY", "syllables": ["TIM", "O", "THY"], "hint": "YOUNG DISCIPLE AND CO-WORKER OF THE APOSTLE PAUL.", "reference": "1 Timothy" },
-    { "answer": "SARAH", "syllables": ["SA", "RAH"], "hint": "WIFE OF ABRAHAM AND MOTHER OF ISAAC.", "reference": "Genesis 18" },
-    { "answer": "NAOMI", "syllables": ["NA", "O", "MI"], "hint": "MOTHER-IN-LAW OF RUTH WHO RETURNED TO BETHLEHEM.", "reference": "Ruth 1" },
-    { "answer": "MARTHA", "syllables": ["MAR", "THA"], "hint": "SISTER OF LAZARUS AND MARY WHO WAS BUSY WITH HOUSEHOLD TASKS.", "reference": "Lucas 10" },
-    { "answer": "LAZARUS", "syllables": ["LAZ", "A", "RUS"], "hint": "FRIEND OF JESUS WHOM HE RAISED FROM THE DEAD.", "reference": "John 11" },
-    { "answer": "LUKE", "syllables": ["LUKE"], "hint": "BELOVED PHYSICIAN WHO WRITE A GOSPEL AND ACTS.", "reference": "Colossians 4:14" },
-    { "answer": "MARK", "syllables": ["MARK"], "hint": "YOUNG EVANGELIST AND CO-WORKER OF PETER AND PAUL.", "reference": "Acts 12" }
+    {
+      "answer": "GENESIS",
+      "syllables": [
+        "GEN",
+        "E",
+        "SIS"
+      ],
+      "hint": "THE FIRST BOOK OF THE BIBLE.",
+      "reference": "Genesis"
+    },
+    {
+      "answer": "EXODUS",
+      "syllables": [
+        "EX",
+        "O",
+        "DUS"
+      ],
+      "hint": "THE BOOK OF THE DEPARTURE FROM EGYPT.",
+      "reference": "Exodus"
+    },
+    {
+      "answer": "PSALMS",
+      "syllables": [
+        "PSALMS"
+      ],
+      "hint": "BOOK OF SONGS AND PRAYERS.",
+      "reference": "Psalms"
+    },
+    {
+      "answer": "CAIN",
+      "syllables": [
+        "CAIN"
+      ],
+      "hint": "BROTHER OF ABEL AND FIRST SON OF ADAM.",
+      "reference": "Genesis 4"
+    },
+    {
+      "answer": "DAVID",
+      "syllables": [
+        "DA",
+        "VID"
+      ],
+      "hint": "KING OF ISRAEL WHO DEFEATED A GIANT.",
+      "reference": "1 Samuel 17"
+    },
+    {
+      "answer": "MOSES",
+      "syllables": [
+        "MO",
+        "SES"
+      ],
+      "hint": "LED THE ISRAELITES OUT OF EGYPTIAN BONDAGE.",
+      "reference": "Exodus"
+    },
+    {
+      "answer": "BETHLEHEM",
+      "syllables": [
+        "BETH",
+        "LE",
+        "HEM"
+      ],
+      "hint": "BIRTHPLACE OF JESUS.",
+      "reference": "Micah 5:2"
+    },
+    {
+      "answer": "ARK",
+      "syllables": [
+        "ARK"
+      ],
+      "hint": "THE VESSEL BUILT BY NOAH.",
+      "reference": "Genesis 6"
+    },
+    {
+      "answer": "ABRAHAM",
+      "syllables": [
+        "A",
+        "BRA",
+        "HAM"
+      ],
+      "hint": "FATHER OF MANY NATIONS.",
+      "reference": "Genesis 17"
+    },
+    {
+      "answer": "SOLOMON",
+      "syllables": [
+        "SOL",
+        "O",
+        "MON"
+      ],
+      "hint": "THE WISEST KING OF ISRAEL.",
+      "reference": "1 Kings 3"
+    },
+    {
+      "answer": "APOSTLE",
+      "syllables": [
+        "A",
+        "POS",
+        "TLE"
+      ],
+      "hint": "ONE OF THE TWELVE FOLLOWERS OF JESUS.",
+      "reference": "Matthew 10"
+    },
+    {
+      "answer": "PROPHET",
+      "syllables": [
+        "PROPH",
+        "ET"
+      ],
+      "hint": "A MESSENGER OF GOD.",
+      "reference": "Hebrews 1"
+    },
+    {
+      "answer": "ANGEL",
+      "syllables": [
+        "AN",
+        "GEL"
+      ],
+      "hint": "HEAVENLY MESSENGER.",
+      "reference": "Genesis 19"
+    },
+    {
+      "answer": "GOLIATH",
+      "syllables": [
+        "GO",
+        "LI",
+        "ATH"
+      ],
+      "hint": "GIANT DEFEATED BY DAVID.",
+      "reference": "1 Samuel 17"
+    },
+    {
+      "answer": "SAMSON",
+      "syllables": [
+        "SAM",
+        "SON"
+      ],
+      "hint": "JUDGE OF GREAT STRENGTH.",
+      "reference": "Judges 13-16"
+    },
+    {
+      "answer": "DANIEL",
+      "syllables": [
+        "DAN",
+        "IEL"
+      ],
+      "hint": "PROPHET IN THE LIONS DEN.",
+      "reference": "Daniel 6"
+    },
+    {
+      "answer": "JONAH",
+      "syllables": [
+        "JO",
+        "NAH"
+      ],
+      "hint": "PROPHET SWALLOWED BY A GREAT FISH.",
+      "reference": "Jonah 1-2"
+    },
+    {
+      "answer": "MARY",
+      "syllables": [
+        "MA",
+        "RY"
+      ],
+      "hint": "MOTHER OF JESUS.",
+      "reference": "Luke 1"
+    },
+    {
+      "answer": "PETER",
+      "syllables": [
+        "PE",
+        "TER"
+      ],
+      "hint": "DENIED JESUS THREE TIMES.",
+      "reference": "Matthew 26"
+    },
+    {
+      "answer": "PAUL",
+      "syllables": [
+        "PAUL"
+      ],
+      "hint": "APOSTLE TO THE GENTILES, FORMERLY SAUL.",
+      "reference": "Acts 9"
+    },
+    {
+      "answer": "NOAH",
+      "syllables": [
+        "NO",
+        "AH"
+      ],
+      "hint": "BUILT THE ARK TO SAVE HIS FAMILY.",
+      "reference": "Genesis 6"
+    },
+    {
+      "answer": "ISAAC",
+      "syllables": [
+        "I",
+        "SAAC"
+      ],
+      "hint": "SON OF THE PROMISE TO ABRAHAM AND SARAH.",
+      "reference": "Genesis 21"
+    },
+    {
+      "answer": "JACOB",
+      "syllables": [
+        "JA",
+        "COB"
+      ],
+      "hint": "WRESTLED WITH AN ANGEL AND HIS NAME WAS CHANGED TO ISRAEL.",
+      "reference": "Genesis 32"
+    },
+    {
+      "answer": "JOSEPH",
+      "syllables": [
+        "JO",
+        "SEPH"
+      ],
+      "hint": "SON OF JACOB SOLD BY HIS BROTHERS WHO BECAME A RULER IN EGYPT.",
+      "reference": "Genesis 37"
+    },
+    {
+      "answer": "AARON",
+      "syllables": [
+        "AA",
+        "RON"
+      ],
+      "hint": "BROTHER OF MOSES AND THE FIRST HIGH PRIEST.",
+      "reference": "Exodus 4"
+    },
+    {
+      "answer": "JOSHUA",
+      "syllables": [
+        "JOSH",
+        "UA"
+      ],
+      "hint": "SUCCESSOR OF MOSES WHO LED THE CONQUEST OF JERICHO.",
+      "reference": "Joshua 1"
+    },
+    {
+      "answer": "GIDEON",
+      "syllables": [
+        "GID",
+        "EON"
+      ],
+      "hint": "JUDGE WHO DEFEATED THE MIDIANITES WITH 300 MEN.",
+      "reference": "Judges 7"
+    },
+    {
+      "answer": "RUTH",
+      "syllables": [
+        "RUTH"
+      ],
+      "hint": "LOYAL MOABITE WOMAN ANCESTOR OF KING DAVID.",
+      "reference": "Ruth 1"
+    },
+    {
+      "answer": "SAMUEL",
+      "syllables": [
+        "SAM",
+        "UEL"
+      ],
+      "hint": "PROPHET AND JUDGE WHO ANOINTED SAUL AND DAVID.",
+      "reference": "1 Samuel 3"
+    },
+    {
+      "answer": "ELIJAH",
+      "syllables": [
+        "E",
+        "LI",
+        "JAH"
+      ],
+      "hint": "PROPHET WHO DEFENDED THE FAITH AT MOUNT CARMEL AND WAS TAKEN IN A CHARIOT OF FIRE.",
+      "reference": "1 Kings 18"
+    },
+    {
+      "answer": "ELISHA",
+      "syllables": [
+        "E",
+        "LI",
+        "SHA"
+      ],
+      "hint": "SUCCESSOR OF ELIJAH WHO ASKED FOR A DOUBLE PORTION OF HIS SPIRIT.",
+      "reference": "2 Kings 2"
+    },
+    {
+      "answer": "NEHEMIAH",
+      "syllables": [
+        "NE",
+        "HE",
+        "MI",
+        "AH"
+      ],
+      "hint": "LED THE RECONSTRUCTION OF THE WALLS OF JERUSALEM.",
+      "reference": "Nehemiah 2"
+    },
+    {
+      "answer": "MATTHEW",
+      "syllables": [
+        "MAT",
+        "THEW"
+      ],
+      "hint": "TAX COLLECTOR WHO BECAME AN EVANGELIST.",
+      "reference": "Matthew 9"
+    },
+    {
+      "answer": "STEPHEN",
+      "syllables": [
+        "STE",
+        "PHEN"
+      ],
+      "hint": "FIRST CHRISTIAN MARTYR FULL OF GRACE AND POWER.",
+      "reference": "Acts 7"
+    },
+    {
+      "answer": "TIMOTHY",
+      "syllables": [
+        "TIM",
+        "O",
+        "THY"
+      ],
+      "hint": "YOUNG DISCIPLE AND CO-WORKER OF THE APOSTLE PAUL.",
+      "reference": "1 Timothy"
+    },
+    {
+      "answer": "SARAH",
+      "syllables": [
+        "SA",
+        "RAH"
+      ],
+      "hint": "WIFE OF ABRAHAM AND MOTHER OF ISAAC.",
+      "reference": "Genesis 18"
+    },
+    {
+      "answer": "NAOMI",
+      "syllables": [
+        "NA",
+        "O",
+        "MI"
+      ],
+      "hint": "MOTHER-IN-LAW OF RUTH WHO RETURNED TO BETHLEHEM.",
+      "reference": "Ruth 1"
+    },
+    {
+      "answer": "MARTHA",
+      "syllables": [
+        "MAR",
+        "THA"
+      ],
+      "hint": "SISTER OF LAZARUS AND MARY WHO WAS BUSY WITH HOUSEHOLD TASKS.",
+      "reference": "Lucas 10"
+    },
+    {
+      "answer": "LAZARUS",
+      "syllables": [
+        "LAZ",
+        "A",
+        "RUS"
+      ],
+      "hint": "FRIEND OF JESUS WHOM HE RAISED FROM THE DEAD.",
+      "reference": "John 11"
+    },
+    {
+      "answer": "LUKE",
+      "syllables": [
+        "LUKE"
+      ],
+      "hint": "BELOVED PHYSICIAN WHO WRITE A GOSPEL AND ACTS.",
+      "reference": "Colossians 4:14"
+    },
+    {
+      "answer": "MARK",
+      "syllables": [
+        "MARK"
+      ],
+      "hint": "YOUNG EVANGELIST AND CO-WORKER OF PETER AND PAUL.",
+      "reference": "Acts 12"
+    },
+    {
+      "answer": "LORD",
+      "syllables": [
+        "LORD"
+      ],
+      "hint": "Word from Psalms 23:1: \"The _______ is my shepherd: I am never in need.\"",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "answer": "NEVER",
+      "syllables": [
+        "NE",
+        "VER"
+      ],
+      "hint": "Word from Psalms 23:1: \"The Lord is my shepherd: I am _______ in need.\"",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "answer": "NEED",
+      "syllables": [
+        "NEED"
+      ],
+      "hint": "Word from Psalms 23:1: \"The Lord is my shepherd: I am never in _______.\"",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "answer": "LAYS",
+      "syllables": [
+        "LAYS"
+      ],
+      "hint": "Word from Psalms 23:2: \"He _______ me down in green pastures.\nHe gently leads me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "DOWN",
+      "syllables": [
+        "DOWN"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me _______ in green pastures.\nHe gently leads me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "GREEN",
+      "syllables": [
+        "GREEN"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me down in _______ pastures.\nHe gently leads me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "GENTLY",
+      "syllables": [
+        "GENT",
+        "LY"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me down in green pastures.\nHe _______ leads me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "LEADS",
+      "syllables": [
+        "LEADS"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me down in green pastures.\nHe gently _______ me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "WATERS",
+      "syllables": [
+        "WA",
+        "TERS"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me down in green pastures.\nHe gently leads me to _______ of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "REST",
+      "syllables": [
+        "REST"
+      ],
+      "hint": "Word from Psalms 23:2: \"He lays me down in green pastures.\nHe gently leads me to waters of _______,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "LIFEHE",
+      "syllables": [
+        "LI",
+        "FE",
+        "HE"
+      ],
+      "hint": "Word from Psalms 23:3: \"he refreshes my life.\nHe guides me along paths that are straight,\ntrue to his name.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "GUIDES",
+      "syllables": [
+        "GUI",
+        "DES"
+      ],
+      "hint": "Word from Psalms 23:3: \"he refreshes my life.\nHe _______ me along paths that are straight,\ntrue to his name.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "ALONG",
+      "syllables": [
+        "A",
+        "LONG"
+      ],
+      "hint": "Word from Psalms 23:3: \"he refreshes my life.\nHe guides me _______ paths that are straight,\ntrue to his name.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "PATHS",
+      "syllables": [
+        "PATHS"
+      ],
+      "hint": "Word from Psalms 23:3: \"he refreshes my life.\nHe guides me along _______ that are straight,\ntrue to his name.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "NAME",
+      "syllables": [
+        "NA",
+        "ME"
+      ],
+      "hint": "Word from Psalms 23:3: \"he refreshes my life.\nHe guides me along paths that are straight,\ntrue to his _______.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "WHEN",
+      "syllables": [
+        "WHEN"
+      ],
+      "hint": "Word from Psalms 23:4: \"And _______ my way lies through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "LIES",
+      "syllables": [
+        "LIES"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way _______ through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "VALLEY",
+      "syllables": [
+        "VAL",
+        "LEY"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a _______ of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "GLOOMI",
+      "syllables": [
+        "GLOO",
+        "MI"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "FEAR",
+      "syllables": [
+        "FEAR"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI _______ no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "EVIL",
+      "syllables": [
+        "E",
+        "VIL"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI fear no _______, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "MEYOUR",
+      "syllables": [
+        "MEYOUR"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "STAFF",
+      "syllables": [
+        "STAFF"
+      ],
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your _______ comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "SPREAD",
+      "syllables": [
+        "SPREAD"
+      ],
+      "hint": "Word from Psalms 23:5: \"You _______ a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "TABLE",
+      "syllables": [
+        "TAB",
+        "LE"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a _______ for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "MEIN",
+      "syllables": [
+        "MEIN"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "FACE",
+      "syllables": [
+        "FA",
+        "CE"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin _______ of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "ANOINT",
+      "syllables": [
+        "A",
+        "NOINT"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you _______ my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "RUNS",
+      "syllables": [
+        "RUNS"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup _______ over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "OVER",
+      "syllables": [
+        "O",
+        "VER"
+      ],
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs _______.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "SHOUT",
+      "syllables": [
+        "SHOUT"
+      ],
+      "hint": "Word from Psalms 100:1: \"_______, all the earth, to the Lord.\"",
+      "reference": "Psalms 100:1"
+    },
+    {
+      "answer": "EARTH",
+      "syllables": [
+        "EARTH"
+      ],
+      "hint": "Word from Psalms 100:1: \"Shout, all the _______, to the Lord.\"",
+      "reference": "Psalms 100:1"
+    },
+    {
+      "answer": "SERVE",
+      "syllables": [
+        "SER",
+        "VE"
+      ],
+      "hint": "Word from Psalms 100:2: \"_______ the Lord with gladness,\napproach him with ringing cries.\"",
+      "reference": "Psalms 100:2"
+    },
+    {
+      "answer": "CRIES",
+      "syllables": [
+        "CRIES"
+      ],
+      "hint": "Word from Psalms 100:2: \"Serve the Lord with gladness,\napproach him with ringing _______.\"",
+      "reference": "Psalms 100:2"
+    },
+    {
+      "answer": "SURE",
+      "syllables": [
+        "SU",
+        "RE"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be _______ that the Lord alone is God.\nIt is he who has made us, and his we are\nhis people, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "ALONE",
+      "syllables": [
+        "A",
+        "LO",
+        "NE"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord _______ is God.\nIt is he who has made us, and his we are\nhis people, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "GODIT",
+      "syllables": [
+        "GO",
+        "DIT"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has made us, and his we are\nhis people, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "MADE",
+      "syllables": [
+        "MA",
+        "DE"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has _______ us, and his we are\nhis people, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "AREHIS",
+      "syllables": [
+        "A",
+        "RE",
+        "HIS"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has made us, and his we are\nhis people, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "PEOPLE",
+      "syllables": [
+        "PEOP",
+        "LE"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has made us, and his we are\nhis _______, the sheep of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "SHEEP",
+      "syllables": [
+        "SHEEP"
+      ],
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has made us, and his we are\nhis people, the _______ of his pasture.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "ENTER",
+      "syllables": [
+        "EN",
+        "TER"
+      ],
+      "hint": "Word from Psalms 100:4: \"_______ his gates with thanksgiving,\nhis courts with praise.\nGive thanks to him, bless his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "GATES",
+      "syllables": [
+        "GA",
+        "TES"
+      ],
+      "hint": "Word from Psalms 100:4: \"Enter his _______ with thanksgiving,\nhis courts with praise.\nGive thanks to him, bless his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "COURTS",
+      "syllables": [
+        "COURTS"
+      ],
+      "hint": "Word from Psalms 100:4: \"Enter his gates with thanksgiving,\nhis _______ with praise.\nGive thanks to him, bless his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "THANKS",
+      "syllables": [
+        "THANKS"
+      ],
+      "hint": "Word from Psalms 100:4: \"Enter his gates with _______giving,\nhis courts with praise.\nGive _______ to him, bless his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "BLESS",
+      "syllables": [
+        "BLESS"
+      ],
+      "hint": "Word from Psalms 100:4: \"Enter his gates with thanksgiving,\nhis courts with praise.\nGive thanks to him, _______ his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "GOOD",
+      "syllables": [
+        "GOOD"
+      ],
+      "hint": "Word from Psalms 100:5: \"For the Lord is _______, his love is forever,\nand to all ages endures his faithfulness.\"",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "answer": "AGES",
+      "syllables": [
+        "A",
+        "GES"
+      ],
+      "hint": "Word from Psalms 100:5: \"For the Lord is good, his love is forever,\nand to all _______ endures his faithfulness.\"",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "answer": "SEEING",
+      "syllables": [
+        "SEEING"
+      ],
+      "hint": "Word from Matthew 5:1: \"On _______ the crowds of people, Jesus went up the hill; and, when he had taken his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "CROWDS",
+      "syllables": [
+        "CROWDS"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the _______ of people, Jesus went up the hill; and, when he had taken his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "JESUS",
+      "syllables": [
+        "JE",
+        "SUS"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, _______ went up the hill; and, when he had taken his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "WENT",
+      "syllables": [
+        "WENT"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus _______ up the hill; and, when he had taken his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "HILL",
+      "syllables": [
+        "HILL"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus went up the _______; and, when he had taken his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "TAKEN",
+      "syllables": [
+        "TA",
+        "KEN"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus went up the hill; and, when he had _______ his seat, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "SEAT",
+      "syllables": [
+        "SEAT"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus went up the hill; and, when he had taken his _______, his disciples came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "CAME",
+      "syllables": [
+        "CA",
+        "ME"
+      ],
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus went up the hill; and, when he had taken his seat, his disciples _______ up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "BEGAN",
+      "syllables": [
+        "BE",
+        "GAN"
+      ],
+      "hint": "Word from Matthew 5:2: \"and he _______ to teach them, saying:\"",
+      "reference": "Matthew 5:2"
+    },
+    {
+      "answer": "TEACH",
+      "syllables": [
+        "TEACH"
+      ],
+      "hint": "Word from Matthew 5:2: \"and he began to _______ them, saying:\"",
+      "reference": "Matthew 5:2"
+    },
+    {
+      "answer": "SAYING",
+      "syllables": [
+        "SAYING"
+      ],
+      "hint": "Word from Matthew 5:2: \"and he began to teach them, _______:\"",
+      "reference": "Matthew 5:2"
+    },
+    {
+      "answer": "POOR",
+      "syllables": [
+        "POOR"
+      ],
+      "hint": "Word from Matthew 5:3: \"“Blessed are the _______ in spirit, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "SPIRIT",
+      "syllables": [
+        "SPI",
+        "RIT"
+      ],
+      "hint": "Word from Matthew 5:3: \"“Blessed are the poor in _______, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "THEIRS",
+      "syllables": [
+        "THEIRS"
+      ],
+      "hint": "Word from Matthew 5:3: \"“Blessed are the poor in spirit, \nfor _______ is the kingdom of heaven.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "HEAVEN",
+      "syllables": [
+        "HEA",
+        "VEN"
+      ],
+      "hint": "Word from Matthew 5:3: \"“Blessed are the poor in spirit, \nfor theirs is the kingdom of _______.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "GENTLE",
+      "syllables": [
+        "GENT",
+        "LE"
+      ],
+      "hint": "Word from Matthew 5:5: \"Blessed are the _______, \nfor they will inherit the earth.\"",
+      "reference": "Matthew 5:5"
+    },
+    {
+      "answer": "THOSE",
+      "syllables": [
+        "THO",
+        "SE"
+      ],
+      "hint": "Word from Matthew 5:6: \"Blessed are _______ who hunger and thirst for righteousness, \nfor they will be satisfied.\"",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "answer": "HUNGER",
+      "syllables": [
+        "HUN",
+        "GER"
+      ],
+      "hint": "Word from Matthew 5:6: \"Blessed are those who _______ and thirst for righteousness, \nfor they will be satisfied.\"",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "answer": "THIRST",
+      "syllables": [
+        "THIRST"
+      ],
+      "hint": "Word from Matthew 5:6: \"Blessed are those who hunger and _______ for righteousness, \nfor they will be satisfied.\"",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "answer": "FIND",
+      "syllables": [
+        "FIND"
+      ],
+      "hint": "Word from Matthew 5:7: \"Blessed are the merciful, \nfor they will _______ mercy.\"",
+      "reference": "Matthew 5:7"
+    },
+    {
+      "answer": "MERCY",
+      "syllables": [
+        "MER",
+        "CY"
+      ],
+      "hint": "Word from Matthew 5:7: \"Blessed are the merciful, \nfor they will find _______.\"",
+      "reference": "Matthew 5:7"
+    },
+    {
+      "answer": "PURE",
+      "syllables": [
+        "PU",
+        "RE"
+      ],
+      "hint": "Word from Matthew 5:8: \"Blessed are the _______ in heart, \nfor they will see God.\"",
+      "reference": "Matthew 5:8"
+    },
+    {
+      "answer": "HEART",
+      "syllables": [
+        "HEART"
+      ],
+      "hint": "Word from Matthew 5:8: \"Blessed are the pure in _______, \nfor they will see God.\"",
+      "reference": "Matthew 5:8"
+    },
+    {
+      "answer": "CALLED",
+      "syllables": [
+        "CAL",
+        "LED"
+      ],
+      "hint": "Word from Matthew 5:9: \"Blessed are the peacemakers, \nfor they will be _______ children of God.\"",
+      "reference": "Matthew 5:9"
+    },
+    {
+      "answer": "BEEN",
+      "syllables": [
+        "BEEN"
+      ],
+      "hint": "Word from Matthew 5:10: \"Blessed are those who have _______ persecuted in the cause of righteousness, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:10"
+    },
+    {
+      "answer": "CAUSE",
+      "syllables": [
+        "CAU",
+        "SE"
+      ],
+      "hint": "Word from Matthew 5:10: \"Blessed are those who have been persecuted in the _______ of righteousness, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:10"
+    },
+    {
+      "answer": "INSULT",
+      "syllables": [
+        "IN",
+        "SULT"
+      ],
+      "hint": "Word from Matthew 5:11: \"“Blessed are you when people _______ you, and persecute you, and say all kinds of evil lies about you because of me.\"",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "answer": "KINDS",
+      "syllables": [
+        "KINDS"
+      ],
+      "hint": "Word from Matthew 5:11: \"“Blessed are you when people insult you, and persecute you, and say all _______ of evil lies about you because of me.\"",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "answer": "ABOUT",
+      "syllables": [
+        "A",
+        "BOUT"
+      ],
+      "hint": "Word from Matthew 5:11: \"“Blessed are you when people insult you, and persecute you, and say all kinds of evil lies _______ you because of me.\"",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "answer": "LIGHT",
+      "syllables": [
+        "LIGHT"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the _______ of the world. A town that stands on a hill cannot be hidden.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "WORLD",
+      "syllables": [
+        "WORLD"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the light of the _______. A town that stands on a hill cannot be hidden.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "TOWN",
+      "syllables": [
+        "TOWN"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the light of the world. A _______ that stands on a hill cannot be hidden.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "STANDS",
+      "syllables": [
+        "STANDS"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the light of the world. A town that _______ on a hill cannot be hidden.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "CANNOT",
+      "syllables": [
+        "CAN",
+        "NOT"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the light of the world. A town that stands on a hill _______ be hidden.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "HIDDEN",
+      "syllables": [
+        "HID",
+        "DEN"
+      ],
+      "hint": "Word from Matthew 5:14: \"It is you who are the light of the world. A town that stands on a hill cannot be _______.\"",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "answer": "LAMP",
+      "syllables": [
+        "LAMP"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a _______ and put it under a basket, but on the _______-stand, where it gives light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "UNDER",
+      "syllables": [
+        "UN",
+        "DER"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it _______ a basket, but on the lamp-stand, where it gives light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "BASKET",
+      "syllables": [
+        "BAS",
+        "KET"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a _______, but on the lamp-stand, where it gives light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "WHERE",
+      "syllables": [
+        "WHE",
+        "RE"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a basket, but on the lamp-stand, _______ it gives light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "GIVES",
+      "syllables": [
+        "GI",
+        "VES"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a basket, but on the lamp-stand, where it _______ light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "HOUSE",
+      "syllables": [
+        "HOU",
+        "SE"
+      ],
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a basket, but on the lamp-stand, where it gives light to everyone in the _______.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "WORD",
+      "syllables": [
+        "WORD"
+      ],
+      "hint": "Word from John 1:1: \"In the beginning the _______ was;\nand the _______ was with God;\nand the _______ was God.\"",
+      "reference": "John 1:1"
+    },
+    {
+      "answer": "WASAND",
+      "syllables": [
+        "WA",
+        "SAND"
+      ],
+      "hint": "Word from John 1:1: \"In the beginning the Word was;\nand the Word was with God;\nand the Word was God.\"",
+      "reference": "John 1:1"
+    },
+    {
+      "answer": "GODAND",
+      "syllables": [
+        "GO",
+        "DAND"
+      ],
+      "hint": "Word from John 1:1: \"In the beginning the Word was;\nand the Word was with God;\nand the Word was God.\"",
+      "reference": "John 1:1"
+    },
+    {
+      "answer": "THINGS",
+      "syllables": [
+        "THINGS"
+      ],
+      "hint": "Word from John 1:3: \"through him all _______ came into being,\nand nothing came into being apart from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "INTO",
+      "syllables": [
+        "IN",
+        "TO"
+      ],
+      "hint": "Word from John 1:3: \"through him all things came _______ being,\nand nothing came _______ being apart from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "BEING",
+      "syllables": [
+        "BEING"
+      ],
+      "hint": "Word from John 1:3: \"through him all things came into _______,\nand nothing came into _______ apart from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "APART",
+      "syllables": [
+        "A",
+        "PART"
+      ],
+      "hint": "Word from John 1:3: \"through him all things came into being,\nand nothing came into being _______ from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "WHICH",
+      "syllables": [
+        "WHICH"
+      ],
+      "hint": "Word from John 1:4: \"That _______ came into being in him was life;\nand the life was the light of humanity;\"",
+      "reference": "John 1:4"
+    },
+    {
+      "answer": "LIFE",
+      "syllables": [
+        "LI",
+        "FE"
+      ],
+      "hint": "Word from John 1:4: \"That which came into being in him was _______;\nand the _______ was the light of humanity;\"",
+      "reference": "John 1:4"
+    },
+    {
+      "answer": "SHINES",
+      "syllables": [
+        "SHI",
+        "NES"
+      ],
+      "hint": "Word from John 1:5: \"and the light _______ in the darkness,\nand the darkness never overpowered it.\"",
+      "reference": "John 1:5"
+    },
+    {
+      "answer": "THERE",
+      "syllables": [
+        "THE",
+        "RE"
+      ],
+      "hint": "Word from John 1:6: \"_______ appeared a man sent from God, whose name was John;\"",
+      "reference": "John 1:6"
+    },
+    {
+      "answer": "SENT",
+      "syllables": [
+        "SENT"
+      ],
+      "hint": "Word from John 1:6: \"There appeared a man _______ from God, whose name was John;\"",
+      "reference": "John 1:6"
+    },
+    {
+      "answer": "WHOSE",
+      "syllables": [
+        "WHO",
+        "SE"
+      ],
+      "hint": "Word from John 1:6: \"There appeared a man sent from God, _______ name was John;\"",
+      "reference": "John 1:6"
+    },
+    {
+      "answer": "JOHN",
+      "syllables": [
+        "JOHN"
+      ],
+      "hint": "Word from John 1:6: \"There appeared a man sent from God, whose name was _______;\"",
+      "reference": "John 1:6"
+    },
+    {
+      "answer": "BEAR",
+      "syllables": [
+        "BEAR"
+      ],
+      "hint": "Word from John 1:7: \"he came as a witness – to _______ witness to the light\nso that through him everyone might believe.\"",
+      "reference": "John 1:7"
+    },
+    {
+      "answer": "MIGHT",
+      "syllables": [
+        "MIGHT"
+      ],
+      "hint": "Word from John 1:7: \"he came as a witness – to bear witness to the light\nso that through him everyone _______ believe.\"",
+      "reference": "John 1:7"
+    },
+    {
+      "answer": "TRUE",
+      "syllables": [
+        "TRUE"
+      ],
+      "hint": "Word from John 1:9: \"That was the _______ light which enlightens everyone coming into the world.\"",
+      "reference": "John 1:9"
+    },
+    {
+      "answer": "COMING",
+      "syllables": [
+        "CO",
+        "MING"
+      ],
+      "hint": "Word from John 1:9: \"That was the true light which enlightens everyone _______ into the world.\"",
+      "reference": "John 1:9"
+    },
+    {
+      "answer": "KNOW",
+      "syllables": [
+        "KNOW"
+      ],
+      "hint": "Word from John 1:10: \"He was in the world;\nand through him the world came into being –\nyet the world did not _______ him.\"",
+      "reference": "John 1:10"
+    },
+    {
+      "answer": "GAVE",
+      "syllables": [
+        "GA",
+        "VE"
+      ],
+      "hint": "Word from John 1:12: \"But to all who did receive him he _______ power to become children of God –\nto those who believe in his name.\"",
+      "reference": "John 1:12"
+    },
+    {
+      "answer": "POWER",
+      "syllables": [
+        "PO",
+        "WER"
+      ],
+      "hint": "Word from John 1:12: \"But to all who did receive him he gave _______ to become children of God –\nto those who believe in his name.\"",
+      "reference": "John 1:12"
+    },
+    {
+      "answer": "BECOME",
+      "syllables": [
+        "BE",
+        "CO",
+        "ME"
+      ],
+      "hint": "Word from John 1:12: \"But to all who did receive him he gave power to _______ children of God –\nto those who believe in his name.\"",
+      "reference": "John 1:12"
+    },
+    {
+      "answer": "HUMAN",
+      "syllables": [
+        "HU",
+        "MAN"
+      ],
+      "hint": "Word from John 1:13: \"For not to natural conception, nor to _______ instincts, nor to _______ will did they owe the new life,\nbut to God.\"",
+      "reference": "John 1:13"
+    },
+    {
+      "answer": "SOME",
+      "syllables": [
+        "SO",
+        "ME"
+      ],
+      "hint": "Word from John 1:16: \"out of his fullness we have all received _______ gift,\ngift after gift of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "AFTER",
+      "syllables": [
+        "AF",
+        "TER"
+      ],
+      "hint": "Word from John 1:16: \"out of his fullness we have all received some gift,\ngift _______ gift of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "GIFT",
+      "syllables": [
+        "GIFT"
+      ],
+      "hint": "Word from John 1:16: \"out of his fullness we have all received some _______,\n_______ after _______ of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "GIVEN",
+      "syllables": [
+        "GI",
+        "VEN"
+      ],
+      "hint": "Word from John 1:17: \"for the Law was _______ through Moses,\nlove and truth came through Jesus Christ.\"",
+      "reference": "John 1:17"
+    },
+    {
+      "answer": "TRUTH",
+      "syllables": [
+        "TRUTH"
+      ],
+      "hint": "Word from John 1:17: \"for the Law was given through Moses,\nlove and _______ came through Jesus Christ.\"",
+      "reference": "John 1:17"
+    },
+    {
+      "answer": "CHRIST",
+      "syllables": [
+        "CHRIST"
+      ],
+      "hint": "Word from John 1:17: \"for the Law was given through Moses,\nlove and truth came through Jesus _______.\"",
+      "reference": "John 1:17"
+    },
+    {
+      "answer": "EVER",
+      "syllables": [
+        "E",
+        "VER"
+      ],
+      "hint": "Word from John 1:18: \"No one has _______ yet seen God;\nGod the only Son, who is _______ with the Father –\nhe has revealed him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "SEEN",
+      "syllables": [
+        "SEEN"
+      ],
+      "hint": "Word from John 1:18: \"No one has ever yet _______ God;\nGod the only Son, who is ever with the Father –\nhe has revealed him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "GODGOD",
+      "syllables": [
+        "GOD",
+        "GOD"
+      ],
+      "hint": "Word from John 1:18: \"No one has ever yet seen God;\nGod the only Son, who is ever with the Father –\nhe has revealed him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "ONLY",
+      "syllables": [
+        "ON",
+        "LY"
+      ],
+      "hint": "Word from John 1:18: \"No one has ever yet seen God;\nGod the _______ Son, who is ever with the Father –\nhe has revealed him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "FATHER",
+      "syllables": [
+        "FAT",
+        "HER"
+      ],
+      "hint": "Word from John 1:18: \"No one has ever yet seen God;\nGod the only Son, who is ever with the _______ –\nhe has revealed him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "TOLD",
+      "syllables": [
+        "TOLD"
+      ],
+      "hint": "Word from John 1:20: \"he _______ them clearly and simply, “I am not the Christ.”\"",
+      "reference": "John 1:20"
+    },
+    {
+      "answer": "SIMPLY",
+      "syllables": [
+        "SIMP",
+        "LY"
+      ],
+      "hint": "Word from John 1:20: \"he told them clearly and _______, “I am not the Christ.”\"",
+      "reference": "John 1:20"
+    },
+    {
+      "answer": "HEARTS",
+      "syllables": [
+        "HEARTS"
+      ],
+      "hint": "Word from John 14:1: \"Do not let your _______ be troubled. Believe in God; believe also in me.\"",
+      "reference": "John 14:1"
+    },
+    {
+      "answer": "ALSO",
+      "syllables": [
+        "AL",
+        "SO"
+      ],
+      "hint": "Word from John 14:1: \"Do not let your hearts be troubled. Believe in God; believe _______ in me.\"",
+      "reference": "John 14:1"
+    },
+    {
+      "answer": "SINCE",
+      "syllables": [
+        "SIN",
+        "CE"
+      ],
+      "hint": "Word from John 14:3: \"And, _______ I go and prepare a place for you, I will return and take you to be with me, so that you may be where I am;\"",
+      "reference": "John 14:3"
+    },
+    {
+      "answer": "PLACE",
+      "syllables": [
+        "PLA",
+        "CE"
+      ],
+      "hint": "Word from John 14:3: \"And, since I go and prepare a _______ for you, I will return and take you to be with me, so that you may be where I am;\"",
+      "reference": "John 14:3"
+    },
+    {
+      "answer": "RETURN",
+      "syllables": [
+        "RE",
+        "TURN"
+      ],
+      "hint": "Word from John 14:3: \"And, since I go and prepare a place for you, I will _______ and take you to be with me, so that you may be where I am;\"",
+      "reference": "John 14:3"
+    },
+    {
+      "answer": "TAKE",
+      "syllables": [
+        "TA",
+        "KE"
+      ],
+      "hint": "Word from John 14:3: \"And, since I go and prepare a place for you, I will return and _______ you to be with me, so that you may be where I am;\"",
+      "reference": "John 14:3"
+    },
+    {
+      "answer": "GOING",
+      "syllables": [
+        "GOING"
+      ],
+      "hint": "Word from John 14:4: \"and you know the way to the place where I am _______.”\"",
+      "reference": "John 14:4"
+    },
+    {
+      "answer": "MASTER",
+      "syllables": [
+        "MAS",
+        "TER"
+      ],
+      "hint": "Word from John 14:5: \"“We do not know where you are going, _______,” said Thomas. “So how can we know the way?”\"",
+      "reference": "John 14:5"
+    },
+    {
+      "answer": "THOMAS",
+      "syllables": [
+        "THO",
+        "MAS"
+      ],
+      "hint": "Word from John 14:5: \"“We do not know where you are going, Master,” said _______. “So how can we know the way?”\"",
+      "reference": "John 14:5"
+    },
+    {
+      "answer": "COMES",
+      "syllables": [
+        "CO",
+        "MES"
+      ],
+      "hint": "Word from John 14:6: \"Jesus answered, “I am the way, and the truth, and the life; no one ever _______ to the Father except through me.\"",
+      "reference": "John 14:6"
+    },
+    {
+      "answer": "EXCEPT",
+      "syllables": [
+        "EX",
+        "CEPT"
+      ],
+      "hint": "Word from John 14:6: \"Jesus answered, “I am the way, and the truth, and the life; no one ever comes to the Father _______ through me.\"",
+      "reference": "John 14:6"
+    },
+    {
+      "answer": "SHOW",
+      "syllables": [
+        "SHOW"
+      ],
+      "hint": "Word from John 14:8: \"“Master, _______ us the Father,” said Philip, “and we will be satisfied.”\"",
+      "reference": "John 14:8"
+    },
+    {
+      "answer": "PHILIP",
+      "syllables": [
+        "PHI",
+        "LIP"
+      ],
+      "hint": "Word from John 14:8: \"“Master, show us the Father,” said _______, “and we will be satisfied.”\"",
+      "reference": "John 14:8"
+    },
+    {
+      "answer": "GIVE",
+      "syllables": [
+        "GI",
+        "VE"
+      ],
+      "hint": "Word from John 14:16: \"and I will ask the Father, and he will _______ you another helper, to be with you always – the Spirit of truth.\"",
+      "reference": "John 14:16"
+    },
+    {
+      "answer": "HELPER",
+      "syllables": [
+        "HEL",
+        "PER"
+      ],
+      "hint": "Word from John 14:16: \"and I will ask the Father, and he will give you another _______, to be with you always – the Spirit of truth.\"",
+      "reference": "John 14:16"
+    },
+    {
+      "answer": "ALWAYS",
+      "syllables": [
+        "AL",
+        "WAYS"
+      ],
+      "hint": "Word from John 14:16: \"and I will ask the Father, and he will give you another helper, to be with you _______ – the Spirit of truth.\"",
+      "reference": "John 14:16"
+    },
+    {
+      "answer": "LEAVE",
+      "syllables": [
+        "LEA",
+        "VE"
+      ],
+      "hint": "Word from John 14:18: \"I will not _______ you bereaved; I will come to you.\"",
+      "reference": "John 14:18"
+    },
+    {
+      "answer": "COME",
+      "syllables": [
+        "CO",
+        "ME"
+      ],
+      "hint": "Word from John 14:18: \"I will not leave you bereaved; I will _______ to you.\"",
+      "reference": "John 14:18"
+    },
+    {
+      "answer": "LITTLE",
+      "syllables": [
+        "LITT",
+        "LE"
+      ],
+      "hint": "Word from John 14:19: \"In a _______ while the world will see me no more, but you will still see me; because I am living, you will be living also.\"",
+      "reference": "John 14:19"
+    },
+    {
+      "answer": "WHILE",
+      "syllables": [
+        "WHI",
+        "LE"
+      ],
+      "hint": "Word from John 14:19: \"In a little _______ the world will see me no more, but you will still see me; because I am living, you will be living also.\"",
+      "reference": "John 14:19"
+    },
+    {
+      "answer": "MORE",
+      "syllables": [
+        "MO",
+        "RE"
+      ],
+      "hint": "Word from John 14:19: \"In a little while the world will see me no _______, but you will still see me; because I am living, you will be living also.\"",
+      "reference": "John 14:19"
+    },
+    {
+      "answer": "STILL",
+      "syllables": [
+        "STILL"
+      ],
+      "hint": "Word from John 14:19: \"In a little while the world will see me no more, but you will _______ see me; because I am living, you will be living also.\"",
+      "reference": "John 14:19"
+    },
+    {
+      "answer": "LIVING",
+      "syllables": [
+        "LI",
+        "VING"
+      ],
+      "hint": "Word from John 14:19: \"In a little while the world will see me no more, but you will still see me; because I am _______, you will be _______ also.\"",
+      "reference": "John 14:19"
+    },
+    {
+      "answer": "TIME",
+      "syllables": [
+        "TI",
+        "ME"
+      ],
+      "hint": "Word from John 14:20: \"At that _______ you will recognize that I am in union with the Father, and you with me, and I with you.\"",
+      "reference": "John 14:20"
+    },
+    {
+      "answer": "UNION",
+      "syllables": [
+        "U",
+        "NION"
+      ],
+      "hint": "Word from John 14:20: \"At that time you will recognize that I am in _______ with the Father, and you with me, and I with you.\"",
+      "reference": "John 14:20"
+    },
+    {
+      "answer": "FREE",
+      "syllables": [
+        "FREE"
+      ],
+      "hint": "Word from Romans 8:2: \"for through your union with Christ Jesus, the Law of the life-giving Spirit has set you _______ from the Law of sin and death.\"",
+      "reference": "Romans 8:2"
+    },
+    {
+      "answer": "DEATH",
+      "syllables": [
+        "DEATH"
+      ],
+      "hint": "Word from Romans 8:2: \"for through your union with Christ Jesus, the Law of the life-giving Spirit has set you free from the Law of sin and _______.\"",
+      "reference": "Romans 8:2"
+    },
+    {
+      "answer": "FOLLOW",
+      "syllables": [
+        "FOL",
+        "LOW"
+      ],
+      "hint": "Word from Romans 8:5: \"They who _______ their earthly nature are earthly-minded, while they who _______ the Spirit are spiritually minded.\"",
+      "reference": "Romans 8:5"
+    },
+    {
+      "answer": "NATURE",
+      "syllables": [
+        "NA",
+        "TU",
+        "RE"
+      ],
+      "hint": "Word from Romans 8:5: \"They who follow their earthly _______ are earthly-minded, while they who follow the Spirit are spiritually minded.\"",
+      "reference": "Romans 8:5"
+    },
+    {
+      "answer": "MINDED",
+      "syllables": [
+        "MIN",
+        "DED"
+      ],
+      "hint": "Word from Romans 8:5: \"They who follow their earthly nature are earthly-_______, while they who follow the Spirit are spiritually _______.\"",
+      "reference": "Romans 8:5"
+    },
+    {
+      "answer": "MEANS",
+      "syllables": [
+        "MEANS"
+      ],
+      "hint": "Word from Romans 8:6: \"To be earthly-minded _______ death, to be spiritually minded _______ life and peace;\"",
+      "reference": "Romans 8:6"
+    },
+    {
+      "answer": "PLEASE",
+      "syllables": [
+        "PLEA",
+        "SE"
+      ],
+      "hint": "Word from Romans 8:8: \"They who are earthly cannot _______ God.\"",
+      "reference": "Romans 8:8"
+    },
+    {
+      "answer": "THEN",
+      "syllables": [
+        "THEN"
+      ],
+      "hint": "Word from Romans 8:12: \"So _______, friends, we owe nothing to our earthly nature, that we should live in obedience to it.\"",
+      "reference": "Romans 8:12"
+    },
+    {
+      "answer": "SHOULD",
+      "syllables": [
+        "SHOULD"
+      ],
+      "hint": "Word from Romans 8:12: \"So then, friends, we owe nothing to our earthly nature, that we _______ live in obedience to it.\"",
+      "reference": "Romans 8:12"
+    },
+    {
+      "answer": "LIVE",
+      "syllables": [
+        "LI",
+        "VE"
+      ],
+      "hint": "Word from Romans 8:12: \"So then, friends, we owe nothing to our earthly nature, that we should _______ in obedience to it.\"",
+      "reference": "Romans 8:12"
+    },
+    {
+      "answer": "GUIDED",
+      "syllables": [
+        "GUI",
+        "DED"
+      ],
+      "hint": "Word from Romans 8:14: \"All who are _______ by the Spirit of God are sons of God.\"",
+      "reference": "Romans 8:14"
+    },
+    {
+      "answer": "SONS",
+      "syllables": [
+        "SONS"
+      ],
+      "hint": "Word from Romans 8:14: \"All who are guided by the Spirit of God are _______ of God.\"",
+      "reference": "Romans 8:14"
+    },
+    {
+      "answer": "UNITES",
+      "syllables": [
+        "U",
+        "NI",
+        "TES"
+      ],
+      "hint": "Word from Romans 8:16: \"The Spirit himself _______ with our spirits in bearing witness to our being God’s children,\"",
+      "reference": "Romans 8:16"
+    },
+    {
+      "answer": "GODS",
+      "syllables": [
+        "GODS"
+      ],
+      "hint": "Word from Romans 8:16: \"The Spirit himself unites with our spirits in bearing witness to our being God’s children,\"",
+      "reference": "Romans 8:16"
+    },
+    {
+      "answer": "AWAITS",
+      "syllables": [
+        "A",
+        "WAITS"
+      ],
+      "hint": "Word from Romans 8:19: \"All Nature _______ with eager expectation the appearing of the sons of God.\"",
+      "reference": "Romans 8:19"
+    },
+    {
+      "answer": "EAGER",
+      "syllables": [
+        "EA",
+        "GER"
+      ],
+      "hint": "Word from Romans 8:19: \"All Nature awaits with _______ expectation the appearing of the sons of God.\"",
+      "reference": "Romans 8:19"
+    },
+    {
+      "answer": "CHOICE",
+      "syllables": [
+        "CHOI",
+        "CE"
+      ],
+      "hint": "Word from Romans 8:20: \"For Nature was made subject to imperfection – not by its own _______, but owing to him who made it so –\"",
+      "reference": "Romans 8:20"
+    },
+    {
+      "answer": "OWING",
+      "syllables": [
+        "O",
+        "WING"
+      ],
+      "hint": "Word from Romans 8:20: \"For Nature was made subject to imperfection – not by its own choice, but _______ to him who made it so –\"",
+      "reference": "Romans 8:20"
+    },
+    {
+      "answer": "KIND",
+      "syllables": [
+        "KIND"
+      ],
+      "hint": "Word from 1corinthians 13:4: \"Love is long-suffering, and _______; love is never envious, never boastful, never conceited, never behaves unbecomingly;\"",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "answer": "WRONGS",
+      "syllables": [
+        "WRONGS"
+      ],
+      "hint": "Word from 1corinthians 13:5: \"love is never self-seeking, never provoked, never reckons up her _______;\"",
+      "reference": "1corinthians 13:5"
+    },
+    {
+      "answer": "BEARS",
+      "syllables": [
+        "BEARS"
+      ],
+      "hint": "Word from 1corinthians 13:7: \"love _______ with all things, ever trustful, ever hopeful, ever patient.\"",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "answer": "DONE",
+      "syllables": [
+        "DO",
+        "NE"
+      ],
+      "hint": "Word from 1corinthians 13:10: \"but, when the perfect has come, that which is incomplete will be _______ with.\"",
+      "reference": "1corinthians 13:10"
+    },
+    {
+      "answer": "ENDURE",
+      "syllables": [
+        "EN",
+        "DU",
+        "RE"
+      ],
+      "hint": "Word from 1corinthians 13:13: \"Meanwhile faith, hope, and love _______ – these three, but the greatest of these is love.\"",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "answer": "THESE",
+      "syllables": [
+        "THE",
+        "SE"
+      ],
+      "hint": "Word from 1corinthians 13:13: \"Meanwhile faith, hope, and love endure – _______ three, but the greatest of _______ is love.\"",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "answer": "THREE",
+      "syllables": [
+        "THREE"
+      ],
+      "hint": "Word from 1corinthians 13:13: \"Meanwhile faith, hope, and love endure – these _______, but the greatest of these is love.\"",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "answer": "OBEY",
+      "syllables": [
+        "O",
+        "BEY"
+      ],
+      "hint": "Word from Ephesians 6:1: \"Children, _______ your parents, as children of the Lord; for that is but right.\"",
+      "reference": "Ephesians 6:1"
+    },
+    {
+      "answer": "RIGHT",
+      "syllables": [
+        "RIGHT"
+      ],
+      "hint": "Word from Ephesians 6:1: \"Children, obey your parents, as children of the Lord; for that is but _______.\"",
+      "reference": "Ephesians 6:1"
+    },
+    {
+      "answer": "HONOR",
+      "syllables": [
+        "HO",
+        "NOR"
+      ],
+      "hint": "Word from Ephesians 6:2: \"‘_______ your father and mother’ – this is the first Commandment with a promise –\"",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "answer": "MOTHER",
+      "syllables": [
+        "MOT",
+        "HER"
+      ],
+      "hint": "Word from Ephesians 6:2: \"‘Honor your father and _______’ – this is the first Commandment with a promise –\"",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "answer": "FIRST",
+      "syllables": [
+        "FIRST"
+      ],
+      "hint": "Word from Ephesians 6:2: \"‘Honor your father and mother’ – this is the _______ Commandment with a promise –\"",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "answer": "LONG",
+      "syllables": [
+        "LONG"
+      ],
+      "hint": "Word from Ephesians 6:3: \"‘so that you may prosper and have a _______ life on earth.’\"",
+      "reference": "Ephesians 6:3"
+    },
+    {
+      "answer": "BRING",
+      "syllables": [
+        "BRING"
+      ],
+      "hint": "Word from Ephesians 6:4: \"And fathers, do not irritate your children, but _______ them up with Christian discipline and instruction.\"",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "answer": "SLAVES",
+      "syllables": [
+        "SLA",
+        "VES"
+      ],
+      "hint": "Word from Ephesians 6:5: \"_______, obey your earthly masters, with anxious care, giving them ungrudging service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "CARE",
+      "syllables": [
+        "CA",
+        "RE"
+      ],
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with anxious _______, giving them ungrudging service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "GIVING",
+      "syllables": [
+        "GI",
+        "VING"
+      ],
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with anxious care, _______ them ungrudging service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "FUTURE",
+      "syllables": [
+        "FU",
+        "TU",
+        "RE"
+      ],
+      "hint": "Word from Ephesians 6:10: \"For the _______, find strength in your union with the Lord, and in the power which comes from his might.\"",
+      "reference": "Ephesians 6:10"
+    },
+    {
+      "answer": "FULL",
+      "syllables": [
+        "FULL"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the _______ armor of God, so that you may be able to stand your ground against the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "ARMOR",
+      "syllables": [
+        "AR",
+        "MOR"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the full _______ of God, so that you may be able to stand your ground against the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "ABLE",
+      "syllables": [
+        "AB",
+        "LE"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be _______ to stand your ground against the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "STAND",
+      "syllables": [
+        "STAND"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be able to _______ your ground against the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "GROUND",
+      "syllables": [
+        "GROUND"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be able to stand your _______ against the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "DEVIL",
+      "syllables": [
+        "DE",
+        "VIL"
+      ],
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be able to stand your ground against the stratagems of the _______.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "BELT",
+      "syllables": [
+        "BELT"
+      ],
+      "hint": "Word from Ephesians 6:14: \"Stand your ground, then, with truth for your _______, and with righteousness for your breast-plate,\"",
+      "reference": "Ephesians 6:14"
+    },
+    {
+      "answer": "NEWS",
+      "syllables": [
+        "NEWS"
+      ],
+      "hint": "Word from Ephesians 6:15: \"and with the readiness to serve the good _______ of peace as shoes for your feet.\"",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "answer": "SHOES",
+      "syllables": [
+        "SHOES"
+      ],
+      "hint": "Word from Ephesians 6:15: \"and with the readiness to serve the good news of peace as _______ for your feet.\"",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "answer": "FEET",
+      "syllables": [
+        "FEET"
+      ],
+      "hint": "Word from Ephesians 6:15: \"and with the readiness to serve the good news of peace as shoes for your _______.\"",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "answer": "PRAY",
+      "syllables": [
+        "PRAY"
+      ],
+      "hint": "Word from Ephesians 6:18: \"_______ in spirit at all times. Be intent on this, with unwearying perseverance and supplication for all Christ’s people –\"",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "answer": "TIMES",
+      "syllables": [
+        "TI",
+        "MES"
+      ],
+      "hint": "Word from Ephesians 6:18: \"Pray in spirit at all _______. Be intent on this, with unwearying perseverance and supplication for all Christ’s people –\"",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "answer": "INTENT",
+      "syllables": [
+        "IN",
+        "TENT"
+      ],
+      "hint": "Word from Ephesians 6:18: \"Pray in spirit at all times. Be _______ on this, with unwearying perseverance and supplication for all Christ’s people –\"",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "answer": "EUODIA",
+      "syllables": [
+        "EUO",
+        "DIA"
+      ],
+      "hint": "Word from Philippians 4:2: \"I entreat _______, and I entreat Syntyche, to live in harmony, in union with the Lord;\"",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "answer": "YOURS",
+      "syllables": [
+        "YOURS"
+      ],
+      "hint": "Word from Philippians 4:4: \"All joy be _______ at all times in your union with the Lord. Again I repeat – All joy be _______.\"",
+      "reference": "Philippians 4:4"
+    },
+    {
+      "answer": "AGAIN",
+      "syllables": [
+        "A",
+        "GAIN"
+      ],
+      "hint": "Word from Philippians 4:4: \"All joy be yours at all times in your union with the Lord. _______ I repeat – All joy be yours.\"",
+      "reference": "Philippians 4:4"
+    },
+    {
+      "answer": "REPEAT",
+      "syllables": [
+        "RE",
+        "PEAT"
+      ],
+      "hint": "Word from Philippians 4:4: \"All joy be yours at all times in your union with the Lord. Again I _______ – All joy be yours.\"",
+      "reference": "Philippians 4:4"
+    },
+    {
+      "answer": "PLAIN",
+      "syllables": [
+        "PLAIN"
+      ],
+      "hint": "Word from Philippians 4:5: \"Let your forbearing spirit be _______ to everyone. The Lord is near.\"",
+      "reference": "Philippians 4:5"
+    },
+    {
+      "answer": "NEAR",
+      "syllables": [
+        "NEAR"
+      ],
+      "hint": "Word from Philippians 4:5: \"Let your forbearing spirit be plain to everyone. The Lord is _______.\"",
+      "reference": "Philippians 4:5"
+    },
+    {
+      "answer": "MAKES",
+      "syllables": [
+        "MA",
+        "KES"
+      ],
+      "hint": "Word from Philippians 4:13: \"I can do everything in the strength of him who _______ me strong!\"",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "answer": "STRONG",
+      "syllables": [
+        "STRONG"
+      ],
+      "hint": "Word from Philippians 4:13: \"I can do everything in the strength of him who makes me _______!\"",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "answer": "ACTED",
+      "syllables": [
+        "AC",
+        "TED"
+      ],
+      "hint": "Word from Philippians 4:14: \"Yet you have _______ nobly in sharing my troubles.\"",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "answer": "NOBLY",
+      "syllables": [
+        "NOB",
+        "LY"
+      ],
+      "hint": "Word from Philippians 4:14: \"Yet you have acted _______ in sharing my troubles.\"",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "answer": "INDEED",
+      "syllables": [
+        "IN",
+        "DEED"
+      ],
+      "hint": "Word from Philippians 4:16: \"_______, even while I was still in Thessalonica, you sent more than once to relieve my wants.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "EVEN",
+      "syllables": [
+        "E",
+        "VEN"
+      ],
+      "hint": "Word from Philippians 4:16: \"Indeed, _______ while I was still in Thessalonica, you sent more than once to relieve my wants.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "THAN",
+      "syllables": [
+        "THAN"
+      ],
+      "hint": "Word from Philippians 4:16: \"Indeed, even while I was still in Thessalonica, you sent more _______ once to relieve my wants.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "ONCE",
+      "syllables": [
+        "ON",
+        "CE"
+      ],
+      "hint": "Word from Philippians 4:16: \"Indeed, even while I was still in Thessalonica, you sent more than _______ to relieve my wants.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "WANTS",
+      "syllables": [
+        "WANTS"
+      ],
+      "hint": "Word from Philippians 4:16: \"Indeed, even while I was still in Thessalonica, you sent more than once to relieve my _______.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "GLORY",
+      "syllables": [
+        "GLO",
+        "RY"
+      ],
+      "hint": "Word from Philippians 4:20: \"To him, our God and Father, be ascribed all _______ for every and ever. Amen.\"",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "answer": "EVERY",
+      "syllables": [
+        "E",
+        "VE",
+        "RY"
+      ],
+      "hint": "Word from Philippians 4:20: \"To him, our God and Father, be ascribed all glory for _______ and ever. Amen.\"",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "answer": "AMEN",
+      "syllables": [
+        "A",
+        "MEN"
+      ],
+      "hint": "Word from Philippians 4:20: \"To him, our God and Father, be ascribed all glory for every and ever. _______.\"",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "answer": "JAMES",
+      "syllables": [
+        "JA",
+        "MES"
+      ],
+      "hint": "Word from James 1:1: \"_______, a servant of God and of the Lord Jesus Christ, greets the twelve tribes that are living abroad.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "GREETS",
+      "syllables": [
+        "GREETS"
+      ],
+      "hint": "Word from James 1:1: \"James, a servant of God and of the Lord Jesus Christ, _______ the twelve tribes that are living abroad.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "TWELVE",
+      "syllables": [
+        "TWEL",
+        "VE"
+      ],
+      "hint": "Word from James 1:1: \"James, a servant of God and of the Lord Jesus Christ, greets the _______ tribes that are living abroad.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "TRIBES",
+      "syllables": [
+        "TRI",
+        "BES"
+      ],
+      "hint": "Word from James 1:1: \"James, a servant of God and of the Lord Jesus Christ, greets the twelve _______ that are living abroad.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "ABROAD",
+      "syllables": [
+        "AB",
+        "ROAD"
+      ],
+      "hint": "Word from James 1:1: \"James, a servant of God and of the Lord Jesus Christ, greets the twelve tribes that are living _______.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "TRIALS",
+      "syllables": [
+        "TRIALS"
+      ],
+      "hint": "Word from James 1:2: \"My friends, whatever _______ you may face from time to time, always regard them as a reason for rejoicing,\"",
+      "reference": "James 1:2"
+    },
+    {
+      "answer": "REGARD",
+      "syllables": [
+        "RE",
+        "GARD"
+      ],
+      "hint": "Word from James 1:2: \"My friends, whatever trials you may face from time to time, always _______ them as a reason for rejoicing,\"",
+      "reference": "James 1:2"
+    },
+    {
+      "answer": "REASON",
+      "syllables": [
+        "REA",
+        "SON"
+      ],
+      "hint": "Word from James 1:2: \"My friends, whatever trials you may face from time to time, always regard them as a _______ for rejoicing,\"",
+      "reference": "James 1:2"
+    },
+    {
+      "answer": "WORK",
+      "syllables": [
+        "WORK"
+      ],
+      "hint": "Word from James 1:4: \"And let endurance do its _______ perfectly, so that you may be altogether perfect, and in no respect lacking.\"",
+      "reference": "James 1:4"
+    },
+    {
+      "answer": "SUCH",
+      "syllables": [
+        "SUCH"
+      ],
+      "hint": "Word from James 1:7: \"_______ a person must not expect that they will receive anything from the Lord,\"",
+      "reference": "James 1:7"
+    },
+    {
+      "answer": "PERSON",
+      "syllables": [
+        "PER",
+        "SON"
+      ],
+      "hint": "Word from James 1:7: \"Such a _______ must not expect that they will receive anything from the Lord,\"",
+      "reference": "James 1:7"
+    },
+    {
+      "answer": "MUST",
+      "syllables": [
+        "MUST"
+      ],
+      "hint": "Word from James 1:7: \"Such a person _______ not expect that they will receive anything from the Lord,\"",
+      "reference": "James 1:7"
+    },
+    {
+      "answer": "EXPECT",
+      "syllables": [
+        "EX",
+        "PECT"
+      ],
+      "hint": "Word from James 1:7: \"Such a person must not _______ that they will receive anything from the Lord,\"",
+      "reference": "James 1:7"
+    },
+    {
+      "answer": "TURN",
+      "syllables": [
+        "TURN"
+      ],
+      "hint": "Word from James 1:8: \"vacillating as they are, irresolute at every _______.\"",
+      "reference": "James 1:8"
+    },
+    {
+      "answer": "HUMBLE",
+      "syllables": [
+        "HUMB",
+        "LE"
+      ],
+      "hint": "Word from James 1:9: \"Let a follower in _______ circumstances be proud of their exalted position,\"",
+      "reference": "James 1:9"
+    },
+    {
+      "answer": "PROUD",
+      "syllables": [
+        "PROUD"
+      ],
+      "hint": "Word from James 1:9: \"Let a follower in humble circumstances be _______ of their exalted position,\"",
+      "reference": "James 1:9"
+    },
+    {
+      "answer": "RICH",
+      "syllables": [
+        "RICH"
+      ],
+      "hint": "Word from James 1:10: \"but a _______ follower of their humiliation; for the _______ will pass away like a wild flower.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "PASS",
+      "syllables": [
+        "PASS"
+      ],
+      "hint": "Word from James 1:10: \"but a rich follower of their humiliation; for the rich will _______ away like a wild flower.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "AWAY",
+      "syllables": [
+        "A",
+        "WAY"
+      ],
+      "hint": "Word from James 1:10: \"but a rich follower of their humiliation; for the rich will pass _______ like a wild flower.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "LIKE",
+      "syllables": [
+        "LI",
+        "KE"
+      ],
+      "hint": "Word from James 1:10: \"but a rich follower of their humiliation; for the rich will pass away _______ a wild flower.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "WILD",
+      "syllables": [
+        "WILD"
+      ],
+      "hint": "Word from James 1:10: \"but a rich follower of their humiliation; for the rich will pass away like a _______ flower.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "FLOWER",
+      "syllables": [
+        "FLO",
+        "WER"
+      ],
+      "hint": "Word from James 1:10: \"but a rich follower of their humiliation; for the rich will pass away like a wild _______.\"",
+      "reference": "James 1:10"
+    },
+    {
+      "answer": "CASE",
+      "syllables": [
+        "CA",
+        "SE"
+      ],
+      "hint": "Word from James 1:14: \"A man is in every _______ tempted by their own passions – allured and enticed by them.\"",
+      "reference": "James 1:14"
+    },
+    {
+      "answer": "BIRTH",
+      "syllables": [
+        "BIRTH"
+      ],
+      "hint": "Word from James 1:15: \"Then passion conceives and gives _______ to sin, and sin, on reaching maturity, brings forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "BRINGS",
+      "syllables": [
+        "BRINGS"
+      ],
+      "hint": "Word from James 1:15: \"Then passion conceives and gives birth to sin, and sin, on reaching maturity, _______ forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "FORTH",
+      "syllables": [
+        "FORTH"
+      ],
+      "hint": "Word from James 1:15: \"Then passion conceives and gives birth to sin, and sin, on reaching maturity, brings _______ death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "DEAR",
+      "syllables": [
+        "DEAR"
+      ],
+      "hint": "Word from James 1:16: \"Do not be deceived, my _______ friends.\"",
+      "reference": "James 1:16"
+    },
+    {
+      "answer": "QUICK",
+      "syllables": [
+        "QUICK"
+      ],
+      "hint": "Word from James 1:19: \"Mark this, my dear friends – Let everyone be _______ to listen, slow to speak, and slow to get angry;\"",
+      "reference": "James 1:19"
+    },
+    {
+      "answer": "LISTEN",
+      "syllables": [
+        "LIS",
+        "TEN"
+      ],
+      "hint": "Word from James 1:19: \"Mark this, my dear friends – Let everyone be quick to _______, slow to speak, and slow to get angry;\"",
+      "reference": "James 1:19"
+    },
+    {
+      "answer": "SLOW",
+      "syllables": [
+        "SLOW"
+      ],
+      "hint": "Word from James 1:19: \"Mark this, my dear friends – Let everyone be quick to listen, _______ to speak, and _______ to get angry;\"",
+      "reference": "James 1:19"
+    },
+    {
+      "answer": "SPEAK",
+      "syllables": [
+        "SPEAK"
+      ],
+      "hint": "Word from James 1:19: \"Mark this, my dear friends – Let everyone be quick to listen, slow to _______, and slow to get angry;\"",
+      "reference": "James 1:19"
+    },
+    {
+      "answer": "ANGRY",
+      "syllables": [
+        "ANG",
+        "RY"
+      ],
+      "hint": "Word from James 1:19: \"Mark this, my dear friends – Let everyone be quick to listen, slow to speak, and slow to get _______;\"",
+      "reference": "James 1:19"
+    },
+    {
+      "answer": "ANGER",
+      "syllables": [
+        "AN",
+        "GER"
+      ],
+      "hint": "Word from James 1:20: \"for human _______ does not forward the righteous purpose of God.\"",
+      "reference": "James 1:20"
+    },
+    {
+      "answer": "DOES",
+      "syllables": [
+        "DOES"
+      ],
+      "hint": "Word from James 1:20: \"for human anger _______ not forward the righteous purpose of God.\"",
+      "reference": "James 1:20"
+    },
+    {
+      "answer": "FLESH",
+      "syllables": [
+        "FLESH"
+      ],
+      "hint": "Word from 1john 4:2: \"This is the way to recognize the Spirit of God: those who acknowledge Jesus Christ as come in the _______ have God’s Spirit,\"",
+      "reference": "1john 4:2"
+    },
+    {
+      "answer": "BELONG",
+      "syllables": [
+        "BE",
+        "LONG"
+      ],
+      "hint": "Word from 1john 4:5: \"Those people _______ to the world and therefore they speak as the world speaks, and the world listens to them.\"",
+      "reference": "1john 4:5"
+    },
+    {
+      "answer": "SPEAKS",
+      "syllables": [
+        "SPEAKS"
+      ],
+      "hint": "Word from 1john 4:5: \"Those people belong to the world and therefore they speak as the world _______, and the world listens to them.\"",
+      "reference": "1john 4:5"
+    },
+    {
+      "answer": "LOVES",
+      "syllables": [
+        "LO",
+        "VES"
+      ],
+      "hint": "Word from 1john 4:7: \"Dear friends, let us love one another, because love comes from God and everyone who _______ is a child of God and knows God.\"",
+      "reference": "1john 4:7"
+    },
+    {
+      "answer": "CHILD",
+      "syllables": [
+        "CHILD"
+      ],
+      "hint": "Word from 1john 4:7: \"Dear friends, let us love one another, because love comes from God and everyone who loves is a _______ of God and knows God.\"",
+      "reference": "1john 4:7"
+    },
+    {
+      "answer": "KNOWS",
+      "syllables": [
+        "KNOWS"
+      ],
+      "hint": "Word from 1john 4:7: \"Dear friends, let us love one another, because love comes from God and everyone who loves is a child of God and _______ God.\"",
+      "reference": "1john 4:7"
+    },
+    {
+      "answer": "SHOWED",
+      "syllables": [
+        "SHO",
+        "WED"
+      ],
+      "hint": "Word from 1john 4:9: \"This is how God _______ his love among us: he sent his one and only Son into the world that we might live through him.\"",
+      "reference": "1john 4:9"
+    },
+    {
+      "answer": "AMONG",
+      "syllables": [
+        "A",
+        "MONG"
+      ],
+      "hint": "Word from 1john 4:9: \"This is how God showed his love _______ us: he sent his one and only Son into the world that we might live through him.\"",
+      "reference": "1john 4:9"
+    },
+    {
+      "answer": "LOVED",
+      "syllables": [
+        "LO",
+        "VED"
+      ],
+      "hint": "Word from 1john 4:11: \"Dear friends, since God _______ us in this way, we should love one another.\"",
+      "reference": "1john 4:11"
+    },
+    {
+      "answer": "LIVES",
+      "syllables": [
+        "LI",
+        "VES"
+      ],
+      "hint": "Word from 1john 4:12: \"No one has ever seen God, but if we love one another, God _______ in us and his love reaches perfection within us.\"",
+      "reference": "1john 4:12"
+    },
+    {
+      "answer": "WITHIN",
+      "syllables": [
+        "WIT",
+        "HIN"
+      ],
+      "hint": "Word from 1john 4:12: \"No one has ever seen God, but if we love one another, God lives in us and his love reaches perfection _______ us.\"",
+      "reference": "1john 4:12"
+    },
+    {
+      "answer": "SAVIOR",
+      "syllables": [
+        "SA",
+        "VIOR"
+      ],
+      "hint": "Word from 1john 4:14: \"Moreover, we have seen for ourselves and testify that the Father has sent the Son to be the _______ of the world.\"",
+      "reference": "1john 4:14"
+    }
   ],
   "findWordLevel2": [
-    { "answer": "NAZARETH", "hint": "TOWN WHERE JESUS GREW UP.", "reference": "Matthew 2:23" },
-    { "answer": "DESERT", "hint": "PLACE WHERE JESUS FASTED FOR 40 DAYS.", "reference": "Matthew 4:1-2" },
-    { "answer": "PARABLE", "hint": "SHORT STORY WITH A MORAL LESSON.", "reference": "Matthew 13:3" },
-    { "answer": "TEMPLE", "hint": "SACRED PLACE OF WORSHIP IN JERUSALEM.", "reference": "1 Kings 6" },
-    { "answer": "REVELATION", "hint": "THE LAST BOOK OF THE BIBLE, FULL OF PROPHECY.", "reference": "Revelation" },
-    { "answer": "TESTAMENT", "hint": "ONE OF THE TWO MAIN PARTS OF THE BIBLE.", "reference": "Hebrews 9" },
-    { "answer": "JERUSALEM", "hint": "THE HOLY CITY.", "reference": "Psalms 122" },
-    { "answer": "MESSIAH", "hint": "THE ANNOINTED ONE.", "reference": "John 1:41" },
-    { "answer": "SYNAGOGUE", "hint": "JEWISH PLACE OF MEETING AND WORSHIP.", "reference": "Luke 4:16" },
-    { "answer": "MANNA", "hint": "BREAD SENT FROM HEAVEN IN THE WILDERNESS.", "reference": "Exodus 16" },
-    { "answer": "SINAI", "hint": "MOUNTAIN WHERE MOSES RECEIVED THE TEN COMMANDMENTS.", "reference": "Exodus 19" },
-    { "answer": "JORDAN", "hint": "RIVER WHERE JESUS WAS BAPTIZED.", "reference": "Matthew 3" },
-    { "answer": "EGYPT", "hint": "LAND WHERE THE ISRAELITES WERE SLAVES.", "reference": "Exodus 1" },
-    { "answer": "EDEN", "hint": "GARDEN CREATED BY GOD FOR MAN.", "reference": "Genesis 2" },
-    { "answer": "GALILEE", "hint": "REGION WHERE JESUS CONDUCTED MOST OF HIS MINISTRY.", "reference": "Matthew 4" },
-    { "answer": "DAMASCUS", "hint": "CITY ON THE WAY TO WHICH SAUL WAS CONVERTED.", "reference": "Acts 9" },
-    { "answer": "EPHESUS", "hint": "CITY TO WHICH PAUL WROTE ABOUT THE ARMOR OF GOD.", "reference": "Ephesians 6" },
-    { "answer": "ROME", "hint": "CITY WHERE PAUL WAS IMPRISONED AND PREACHED.", "reference": "Acts 28" },
-    { "answer": "CORINTH", "hint": "CITY TO WHICH THE FAMOUS LOVE CHAPTER WAS WRITTEN.", "reference": "1 Corinthians 13" },
-    { "answer": "GRACE", "hint": "GOD'S UNMERITED FAVOR FOR SALVATION.", "reference": "Ephesians 2:8" },
-    { "answer": "FAITH", "hint": "ASSURANCE OF WHAT WE HOPE FOR.", "reference": "Hebrews 11:1" },
-    { "answer": "LOVE", "hint": "THE GREATEST OF THE FRUITS AND COMMANDMENTS.", "reference": "1 Corinthians 13" },
-    { "answer": "PEACE", "hint": "FRUIT OF THE SPIRIT THAT TRANSCENDS ALL UNDERSTANDING.", "reference": "Philippians 4:7" },
-    { "answer": "HOPE", "hint": "ANCHOR FOR THE SOUL FIRM AND SECURE.", "reference": "Hebrews 6:19" },
-    { "answer": "FORGIVENESS", "hint": "THE ACT OF CLEANSING OUR SINS THROUGH THE BLOOD OF CHRIST.", "reference": "Colossians 3:13" },
-    { "answer": "SALVATION", "hint": "GIFT OF GOD THROUGH FAITH IN JESUS CHRIST.", "reference": "Romans 6:23" },
-    { "answer": "CROSS", "hint": "PLACE OF CHRIST'S REDEMPTIVE SACRIFICE.", "reference": "Luke 23" },
-    { "answer": "MIRACLE", "hint": "SUPERNATURAL EVENT DISPLAYING GOD'S POWER.", "reference": "John 2" },
-    { "answer": "PRAYER", "hint": "DIRECT COMMUNICATION WITH GOD.", "reference": "Matthew 6" },
-    { "answer": "PRAISE", "hint": "EXPRESSION OF WORSHIP AND GRATITUDE TO GOD.", "reference": "Psalms 100" }
+    {
+      "answer": "NAZARETH",
+      "hint": "TOWN WHERE JESUS GREW UP.",
+      "reference": "Matthew 2:23"
+    },
+    {
+      "answer": "DESERT",
+      "hint": "PLACE WHERE JESUS FASTED FOR 40 DAYS.",
+      "reference": "Matthew 4:1-2"
+    },
+    {
+      "answer": "PARABLE",
+      "hint": "SHORT STORY WITH A MORAL LESSON.",
+      "reference": "Matthew 13:3"
+    },
+    {
+      "answer": "TEMPLE",
+      "hint": "SACRED PLACE OF WORSHIP IN JERUSALEM.",
+      "reference": "1 Kings 6"
+    },
+    {
+      "answer": "REVELATION",
+      "hint": "THE LAST BOOK OF THE BIBLE, FULL OF PROPHECY.",
+      "reference": "Revelation"
+    },
+    {
+      "answer": "TESTAMENT",
+      "hint": "ONE OF THE TWO MAIN PARTS OF THE BIBLE.",
+      "reference": "Hebrews 9"
+    },
+    {
+      "answer": "JERUSALEM",
+      "hint": "THE HOLY CITY.",
+      "reference": "Psalms 122"
+    },
+    {
+      "answer": "MESSIAH",
+      "hint": "THE ANNOINTED ONE.",
+      "reference": "John 1:41"
+    },
+    {
+      "answer": "SYNAGOGUE",
+      "hint": "JEWISH PLACE OF MEETING AND WORSHIP.",
+      "reference": "Luke 4:16"
+    },
+    {
+      "answer": "MANNA",
+      "hint": "BREAD SENT FROM HEAVEN IN THE WILDERNESS.",
+      "reference": "Exodus 16"
+    },
+    {
+      "answer": "SINAI",
+      "hint": "MOUNTAIN WHERE MOSES RECEIVED THE TEN COMMANDMENTS.",
+      "reference": "Exodus 19"
+    },
+    {
+      "answer": "JORDAN",
+      "hint": "RIVER WHERE JESUS WAS BAPTIZED.",
+      "reference": "Matthew 3"
+    },
+    {
+      "answer": "EGYPT",
+      "hint": "LAND WHERE THE ISRAELITES WERE SLAVES.",
+      "reference": "Exodus 1"
+    },
+    {
+      "answer": "EDEN",
+      "hint": "GARDEN CREATED BY GOD FOR MAN.",
+      "reference": "Genesis 2"
+    },
+    {
+      "answer": "GALILEE",
+      "hint": "REGION WHERE JESUS CONDUCTED MOST OF HIS MINISTRY.",
+      "reference": "Matthew 4"
+    },
+    {
+      "answer": "DAMASCUS",
+      "hint": "CITY ON THE WAY TO WHICH SAUL WAS CONVERTED.",
+      "reference": "Acts 9"
+    },
+    {
+      "answer": "EPHESUS",
+      "hint": "CITY TO WHICH PAUL WROTE ABOUT THE ARMOR OF GOD.",
+      "reference": "Ephesians 6"
+    },
+    {
+      "answer": "ROME",
+      "hint": "CITY WHERE PAUL WAS IMPRISONED AND PREACHED.",
+      "reference": "Acts 28"
+    },
+    {
+      "answer": "CORINTH",
+      "hint": "CITY TO WHICH THE FAMOUS LOVE CHAPTER WAS WRITTEN.",
+      "reference": "1 Corinthians 13"
+    },
+    {
+      "answer": "GRACE",
+      "hint": "GOD'S UNMERITED FAVOR FOR SALVATION.",
+      "reference": "Ephesians 2:8"
+    },
+    {
+      "answer": "FAITH",
+      "hint": "ASSURANCE OF WHAT WE HOPE FOR.",
+      "reference": "Hebrews 11:1"
+    },
+    {
+      "answer": "LOVE",
+      "hint": "THE GREATEST OF THE FRUITS AND COMMANDMENTS.",
+      "reference": "1 Corinthians 13"
+    },
+    {
+      "answer": "PEACE",
+      "hint": "FRUIT OF THE SPIRIT THAT TRANSCENDS ALL UNDERSTANDING.",
+      "reference": "Philippians 4:7"
+    },
+    {
+      "answer": "HOPE",
+      "hint": "ANCHOR FOR THE SOUL FIRM AND SECURE.",
+      "reference": "Hebrews 6:19"
+    },
+    {
+      "answer": "FORGIVENESS",
+      "hint": "THE ACT OF CLEANSING OUR SINS THROUGH THE BLOOD OF CHRIST.",
+      "reference": "Colossians 3:13"
+    },
+    {
+      "answer": "SALVATION",
+      "hint": "GIFT OF GOD THROUGH FAITH IN JESUS CHRIST.",
+      "reference": "Romans 6:23"
+    },
+    {
+      "answer": "CROSS",
+      "hint": "PLACE OF CHRIST'S REDEMPTIVE SACRIFICE.",
+      "reference": "Luke 23"
+    },
+    {
+      "answer": "MIRACLE",
+      "hint": "SUPERNATURAL EVENT DISPLAYING GOD'S POWER.",
+      "reference": "John 2"
+    },
+    {
+      "answer": "PRAYER",
+      "hint": "DIRECT COMMUNICATION WITH GOD.",
+      "reference": "Matthew 6"
+    },
+    {
+      "answer": "PRAISE",
+      "hint": "EXPRESSION OF WORSHIP AND GRATITUDE TO GOD.",
+      "reference": "Psalms 100"
+    },
+    {
+      "answer": "SHEPHERD",
+      "hint": "Word from Psalms 23:1: \"The Lord is my _______: I am never in need.\"",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "answer": "PASTURESHE",
+      "hint": "Word from Psalms 23:2: \"He lays me down in green pastures.\nHe gently leads me to waters of rest,\"",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "answer": "REFRESHES",
+      "hint": "Word from Psalms 23:3: \"he _______ my life.\nHe guides me along paths that are straight,\ntrue to his name.\"",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "answer": "THROUGH",
+      "hint": "Word from Psalms 23:4: \"And when my way lies _______ a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff comfort me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "COMFORT",
+      "hint": "Word from Psalms 23:4: \"And when my way lies through a valley of gloom,\nI fear no evil, for you are with me.\nYour rod and your staff _______ me.\"",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "answer": "FOESWITH",
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "HEADAND",
+      "hint": "Word from Psalms 23:5: \"You spread a table for me\nin face of my foes;\nwith oil you anoint my head,\nand my cup runs over.\"",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "answer": "RINGING",
+      "hint": "Word from Psalms 100:2: \"Serve the Lord with gladness,\napproach him with _______ cries.\"",
+      "reference": "Psalms 100:2"
+    },
+    {
+      "answer": "PASTURE",
+      "hint": "Word from Psalms 100:3: \"Be sure that the Lord alone is God.\nIt is he who has made us, and his we are\nhis people, the sheep of his _______.\"",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "answer": "PRAISEGIVE",
+      "hint": "Word from Psalms 100:4: \"Enter his gates with thanksgiving,\nhis courts with praise.\nGive thanks to him, bless his name.\"",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "answer": "FOREVERAND",
+      "hint": "Word from Psalms 100:5: \"For the Lord is good, his love is forever,\nand to all ages endures his faithfulness.\"",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "answer": "ENDURES",
+      "hint": "Word from Psalms 100:5: \"For the Lord is good, his love is forever,\nand to all ages _______ his faithfulness.\"",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "answer": "DISCIPLES",
+      "hint": "Word from Matthew 5:1: \"On seeing the crowds of people, Jesus went up the hill; and, when he had taken his seat, his _______ came up to him;\"",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "answer": "BLESSED",
+      "hint": "Word from Matthew 5:3: \"“_______ are the poor in spirit, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "KINGDOM",
+      "hint": "Word from Matthew 5:3: \"“Blessed are the poor in spirit, \nfor theirs is the _______ of heaven.\"",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "answer": "MOURNERS",
+      "hint": "Word from Matthew 5:4: \"Blessed are the _______, \nfor they will be comforted.\"",
+      "reference": "Matthew 5:4"
+    },
+    {
+      "answer": "COMFORTED",
+      "hint": "Word from Matthew 5:4: \"Blessed are the mourners, \nfor they will be _______.\"",
+      "reference": "Matthew 5:4"
+    },
+    {
+      "answer": "INHERIT",
+      "hint": "Word from Matthew 5:5: \"Blessed are the gentle, \nfor they will _______ the earth.\"",
+      "reference": "Matthew 5:5"
+    },
+    {
+      "answer": "SATISFIED",
+      "hint": "Word from Matthew 5:6: \"Blessed are those who hunger and thirst for righteousness, \nfor they will be _______.\"",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "answer": "MERCIFUL",
+      "hint": "Word from Matthew 5:7: \"Blessed are the _______, \nfor they will find mercy.\"",
+      "reference": "Matthew 5:7"
+    },
+    {
+      "answer": "CHILDREN",
+      "hint": "Word from Matthew 5:9: \"Blessed are the peacemakers, \nfor they will be called _______ of God.\"",
+      "reference": "Matthew 5:9"
+    },
+    {
+      "answer": "PERSECUTED",
+      "hint": "Word from Matthew 5:10: \"Blessed are those who have been _______ in the cause of righteousness, \nfor theirs is the kingdom of heaven.\"",
+      "reference": "Matthew 5:10"
+    },
+    {
+      "answer": "PERSECUTE",
+      "hint": "Word from Matthew 5:11: \"“Blessed are you when people insult you, and _______ you, and say all kinds of evil lies about you because of me.\"",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "answer": "BECAUSE",
+      "hint": "Word from Matthew 5:11: \"“Blessed are you when people insult you, and persecute you, and say all kinds of evil lies about you _______ of me.\"",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "answer": "LAMPSTAND",
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a basket, but on the lamp-stand, where it gives light to everyone in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "EVERYONE",
+      "hint": "Word from Matthew 5:15: \"People do not light a lamp and put it under a basket, but on the lamp-stand, where it gives light to _______ in the house.\"",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "answer": "BEGINNING",
+      "hint": "Word from John 1:1: \"In the _______ the Word was;\nand the Word was with God;\nand the Word was God.\"",
+      "reference": "John 1:1"
+    },
+    {
+      "answer": "BEINGAND",
+      "hint": "Word from John 1:3: \"through him all things came into being,\nand nothing came into being apart from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "NOTHING",
+      "hint": "Word from John 1:3: \"through him all things came into being,\nand _______ came into being apart from him.\"",
+      "reference": "John 1:3"
+    },
+    {
+      "answer": "LIFEAND",
+      "hint": "Word from John 1:4: \"That which came into being in him was life;\nand the life was the light of humanity;\"",
+      "reference": "John 1:4"
+    },
+    {
+      "answer": "HUMANITY",
+      "hint": "Word from John 1:4: \"That which came into being in him was life;\nand the life was the light of _______;\"",
+      "reference": "John 1:4"
+    },
+    {
+      "answer": "DARKNESS",
+      "hint": "Word from John 1:5: \"and the light shines in the _______,\nand the _______ never overpowered it.\"",
+      "reference": "John 1:5"
+    },
+    {
+      "answer": "APPEARED",
+      "hint": "Word from John 1:6: \"There _______ a man sent from God, whose name was John;\"",
+      "reference": "John 1:6"
+    },
+    {
+      "answer": "WITNESS",
+      "hint": "Word from John 1:7: \"he came as a _______ – to bear _______ to the light\nso that through him everyone might believe.\"",
+      "reference": "John 1:7"
+    },
+    {
+      "answer": "LIGHTSO",
+      "hint": "Word from John 1:7: \"he came as a witness – to bear witness to the light\nso that through him everyone might believe.\"",
+      "reference": "John 1:7"
+    },
+    {
+      "answer": "BELIEVE",
+      "hint": "Word from John 1:7: \"he came as a witness – to bear witness to the light\nso that through him everyone might _______.\"",
+      "reference": "John 1:7"
+    },
+    {
+      "answer": "LIGHTBUT",
+      "hint": "Word from John 1:8: \"He was not the light,\nbut he came to bear witness to the light.\"",
+      "reference": "John 1:8"
+    },
+    {
+      "answer": "ENLIGHTENS",
+      "hint": "Word from John 1:9: \"That was the true light which _______ everyone coming into the world.\"",
+      "reference": "John 1:9"
+    },
+    {
+      "answer": "WORLDAND",
+      "hint": "Word from John 1:10: \"He was in the world;\nand through him the world came into being –\nyet the world did not know him.\"",
+      "reference": "John 1:10"
+    },
+    {
+      "answer": "RECEIVE",
+      "hint": "Word from John 1:11: \"He came to his own –\nyet his own did not _______ him.\"",
+      "reference": "John 1:11"
+    },
+    {
+      "answer": "NATURAL",
+      "hint": "Word from John 1:13: \"For not to _______ conception, nor to human instincts, nor to human will did they owe the new life,\nbut to God.\"",
+      "reference": "John 1:13"
+    },
+    {
+      "answer": "CONCEPTION",
+      "hint": "Word from John 1:13: \"For not to natural _______, nor to human instincts, nor to human will did they owe the new life,\nbut to God.\"",
+      "reference": "John 1:13"
+    },
+    {
+      "answer": "INSTINCTS",
+      "hint": "Word from John 1:13: \"For not to natural conception, nor to human _______, nor to human will did they owe the new life,\nbut to God.\"",
+      "reference": "John 1:13"
+    },
+    {
+      "answer": "LIFEBUT",
+      "hint": "Word from John 1:13: \"For not to natural conception, nor to human instincts, nor to human will did they owe the new life,\nbut to God.\"",
+      "reference": "John 1:13"
+    },
+    {
+      "answer": "FULLNESS",
+      "hint": "Word from John 1:16: \"out of his _______ we have all received some gift,\ngift after gift of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "RECEIVED",
+      "hint": "Word from John 1:16: \"out of his fullness we have all _______ some gift,\ngift after gift of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "GIFTGIFT",
+      "hint": "Word from John 1:16: \"out of his fullness we have all received some gift,\ngift after gift of love;\"",
+      "reference": "John 1:16"
+    },
+    {
+      "answer": "MOSESLOVE",
+      "hint": "Word from John 1:17: \"for the Law was given through Moses,\nlove and truth came through Jesus Christ.\"",
+      "reference": "John 1:17"
+    },
+    {
+      "answer": "REVEALED",
+      "hint": "Word from John 1:18: \"No one has ever yet seen God;\nGod the only Son, who is ever with the Father –\nhe has _______ him.\"",
+      "reference": "John 1:18"
+    },
+    {
+      "answer": "RELIGIOUS",
+      "hint": "Word from John 1:19: \"When the _______ authorities in Jerusalem sent some Priests and Levites to ask John – “Who are you?”,\"",
+      "reference": "John 1:19"
+    },
+    {
+      "answer": "PRIESTS",
+      "hint": "Word from John 1:19: \"When the religious authorities in Jerusalem sent some _______ and Levites to ask John – “Who are you?”,\"",
+      "reference": "John 1:19"
+    },
+    {
+      "answer": "LEVITES",
+      "hint": "Word from John 1:19: \"When the religious authorities in Jerusalem sent some Priests and _______ to ask John – “Who are you?”,\"",
+      "reference": "John 1:19"
+    },
+    {
+      "answer": "CLEARLY",
+      "hint": "Word from John 1:20: \"he told them _______ and simply, “I am not the Christ.”\"",
+      "reference": "John 1:20"
+    },
+    {
+      "answer": "TROUBLED",
+      "hint": "Word from John 14:1: \"Do not let your hearts be _______. Believe in God; believe also in me.\"",
+      "reference": "John 14:1"
+    },
+    {
+      "answer": "PREPARE",
+      "hint": "Word from John 14:3: \"And, since I go and _______ a place for you, I will return and take you to be with me, so that you may be where I am;\"",
+      "reference": "John 14:3"
+    },
+    {
+      "answer": "ANSWERED",
+      "hint": "Word from John 14:6: \"Jesus _______, “I am the way, and the truth, and the life; no one ever comes to the Father except through me.\"",
+      "reference": "John 14:6"
+    },
+    {
+      "answer": "WHATEVER",
+      "hint": "Word from John 14:13: \"_______ you ask, in my name, I will do, so that the Father may be honored in the Son.\"",
+      "reference": "John 14:13"
+    },
+    {
+      "answer": "HONORED",
+      "hint": "Word from John 14:13: \"Whatever you ask, in my name, I will do, so that the Father may be _______ in the Son.\"",
+      "reference": "John 14:13"
+    },
+    {
+      "answer": "ANYTHING",
+      "hint": "Word from John 14:14: \"If you ask _______, in my name, I will do it.\"",
+      "reference": "John 14:14"
+    },
+    {
+      "answer": "COMMANDS",
+      "hint": "Word from John 14:15: \"If you love me, you will lay my _______ to heart,\"",
+      "reference": "John 14:15"
+    },
+    {
+      "answer": "ANOTHER",
+      "hint": "Word from John 14:16: \"and I will ask the Father, and he will give you _______ helper, to be with you always – the Spirit of truth.\"",
+      "reference": "John 14:16"
+    },
+    {
+      "answer": "BEREAVED",
+      "hint": "Word from John 14:18: \"I will not leave you _______; I will come to you.\"",
+      "reference": "John 14:18"
+    },
+    {
+      "answer": "RECOGNIZE",
+      "hint": "Word from John 14:20: \"At that time you will _______ that I am in union with the Father, and you with me, and I with you.\"",
+      "reference": "John 14:20"
+    },
+    {
+      "answer": "THEREFORE",
+      "hint": "Word from Romans 8:1: \"There is, _______, now no condemnation for those who are in union with Christ Jesus;\"",
+      "reference": "Romans 8:1"
+    },
+    {
+      "answer": "LIFEGIVING",
+      "hint": "Word from Romans 8:2: \"for through your union with Christ Jesus, the Law of the life-giving Spirit has set you free from the Law of sin and death.\"",
+      "reference": "Romans 8:2"
+    },
+    {
+      "answer": "EARTHLY",
+      "hint": "Word from Romans 8:5: \"They who follow their _______ nature are _______-minded, while they who follow the Spirit are spiritually minded.\"",
+      "reference": "Romans 8:5"
+    },
+    {
+      "answer": "FRIENDS",
+      "hint": "Word from Romans 8:12: \"So then, _______, we owe nothing to our earthly nature, that we should live in obedience to it.\"",
+      "reference": "Romans 8:12"
+    },
+    {
+      "answer": "OBEDIENCE",
+      "hint": "Word from Romans 8:12: \"So then, friends, we owe nothing to our earthly nature, that we should live in _______ to it.\"",
+      "reference": "Romans 8:12"
+    },
+    {
+      "answer": "HIMSELF",
+      "hint": "Word from Romans 8:16: \"The Spirit _______ unites with our spirits in bearing witness to our being God’s children,\"",
+      "reference": "Romans 8:16"
+    },
+    {
+      "answer": "SPIRITS",
+      "hint": "Word from Romans 8:16: \"The Spirit himself unites with our _______ in bearing witness to our being God’s children,\"",
+      "reference": "Romans 8:16"
+    },
+    {
+      "answer": "BEARING",
+      "hint": "Word from Romans 8:16: \"The Spirit himself unites with our spirits in _______ witness to our being God’s children,\"",
+      "reference": "Romans 8:16"
+    },
+    {
+      "answer": "APPEARING",
+      "hint": "Word from Romans 8:19: \"All Nature awaits with eager expectation the _______ of the sons of God.\"",
+      "reference": "Romans 8:19"
+    },
+    {
+      "answer": "SUBJECT",
+      "hint": "Word from Romans 8:20: \"For Nature was made _______ to imperfection – not by its own choice, but owing to him who made it so –\"",
+      "reference": "Romans 8:20"
+    },
+    {
+      "answer": "ENVIOUS",
+      "hint": "Word from 1corinthians 13:4: \"Love is long-suffering, and kind; love is never _______, never boastful, never conceited, never behaves unbecomingly;\"",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "answer": "BOASTFUL",
+      "hint": "Word from 1corinthians 13:4: \"Love is long-suffering, and kind; love is never envious, never _______, never conceited, never behaves unbecomingly;\"",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "answer": "CONCEITED",
+      "hint": "Word from 1corinthians 13:4: \"Love is long-suffering, and kind; love is never envious, never boastful, never _______, never behaves unbecomingly;\"",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "answer": "BEHAVES",
+      "hint": "Word from 1corinthians 13:4: \"Love is long-suffering, and kind; love is never envious, never boastful, never conceited, never _______ unbecomingly;\"",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "answer": "PROVOKED",
+      "hint": "Word from 1corinthians 13:5: \"love is never self-seeking, never _______, never reckons up her wrongs;\"",
+      "reference": "1corinthians 13:5"
+    },
+    {
+      "answer": "RECKONS",
+      "hint": "Word from 1corinthians 13:5: \"love is never self-seeking, never provoked, never _______ up her wrongs;\"",
+      "reference": "1corinthians 13:5"
+    },
+    {
+      "answer": "REJOICES",
+      "hint": "Word from 1corinthians 13:6: \"love never _______ at evil, but _______ in the triumph of truth;\"",
+      "reference": "1corinthians 13:6"
+    },
+    {
+      "answer": "TRIUMPH",
+      "hint": "Word from 1corinthians 13:6: \"love never rejoices at evil, but rejoices in the _______ of truth;\"",
+      "reference": "1corinthians 13:6"
+    },
+    {
+      "answer": "TRUSTFUL",
+      "hint": "Word from 1corinthians 13:7: \"love bears with all things, ever _______, ever hopeful, ever patient.\"",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "answer": "HOPEFUL",
+      "hint": "Word from 1corinthians 13:7: \"love bears with all things, ever trustful, ever _______, ever patient.\"",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "answer": "PATIENT",
+      "hint": "Word from 1corinthians 13:7: \"love bears with all things, ever trustful, ever hopeful, ever _______.\"",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "answer": "KNOWLEDGE",
+      "hint": "Word from 1corinthians 13:9: \"For our _______ is incomplete, and our preaching is incomplete,\"",
+      "reference": "1corinthians 13:9"
+    },
+    {
+      "answer": "INCOMPLETE",
+      "hint": "Word from 1corinthians 13:9: \"For our knowledge is _______, and our preaching is _______,\"",
+      "reference": "1corinthians 13:9"
+    },
+    {
+      "answer": "PREACHING",
+      "hint": "Word from 1corinthians 13:9: \"For our knowledge is incomplete, and our _______ is incomplete,\"",
+      "reference": "1corinthians 13:9"
+    },
+    {
+      "answer": "PERFECT",
+      "hint": "Word from 1corinthians 13:10: \"but, when the _______ has come, that which is incomplete will be done with.\"",
+      "reference": "1corinthians 13:10"
+    },
+    {
+      "answer": "MEANWHILE",
+      "hint": "Word from 1corinthians 13:13: \"_______ faith, hope, and love endure – these three, but the greatest of these is love.\"",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "answer": "GREATEST",
+      "hint": "Word from 1corinthians 13:13: \"Meanwhile faith, hope, and love endure – these three, but the _______ of these is love.\"",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "answer": "PARENTS",
+      "hint": "Word from Ephesians 6:1: \"Children, obey your _______, as children of the Lord; for that is but right.\"",
+      "reference": "Ephesians 6:1"
+    },
+    {
+      "answer": "PROMISE",
+      "hint": "Word from Ephesians 6:2: \"‘Honor your father and mother’ – this is the first Commandment with a _______ –\"",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "answer": "PROSPER",
+      "hint": "Word from Ephesians 6:3: \"‘so that you may _______ and have a long life on earth.’\"",
+      "reference": "Ephesians 6:3"
+    },
+    {
+      "answer": "FATHERS",
+      "hint": "Word from Ephesians 6:4: \"And _______, do not irritate your children, but bring them up with Christian discipline and instruction.\"",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "answer": "IRRITATE",
+      "hint": "Word from Ephesians 6:4: \"And fathers, do not _______ your children, but bring them up with Christian discipline and instruction.\"",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "answer": "CHRISTIAN",
+      "hint": "Word from Ephesians 6:4: \"And fathers, do not irritate your children, but bring them up with _______ discipline and instruction.\"",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "answer": "DISCIPLINE",
+      "hint": "Word from Ephesians 6:4: \"And fathers, do not irritate your children, but bring them up with Christian _______ and instruction.\"",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "answer": "MASTERS",
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly _______, with anxious care, giving them ungrudging service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "ANXIOUS",
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with _______ care, giving them ungrudging service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "UNGRUDGING",
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with anxious care, giving them _______ service, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "SERVICE",
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with anxious care, giving them ungrudging _______, as if obeying the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "OBEYING",
+      "hint": "Word from Ephesians 6:5: \"Slaves, obey your earthly masters, with anxious care, giving them ungrudging service, as if _______ the Christ;\"",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "answer": "HEARTILY",
+      "hint": "Word from Ephesians 6:7: \"Give your service _______ and cheerfully, as working for the Master and not for people;\"",
+      "reference": "Ephesians 6:7"
+    },
+    {
+      "answer": "CHEERFULLY",
+      "hint": "Word from Ephesians 6:7: \"Give your service heartily and _______, as working for the Master and not for people;\"",
+      "reference": "Ephesians 6:7"
+    },
+    {
+      "answer": "WORKING",
+      "hint": "Word from Ephesians 6:7: \"Give your service heartily and cheerfully, as _______ for the Master and not for people;\"",
+      "reference": "Ephesians 6:7"
+    },
+    {
+      "answer": "STRENGTH",
+      "hint": "Word from Ephesians 6:10: \"For the future, find _______ in your union with the Lord, and in the power which comes from his might.\"",
+      "reference": "Ephesians 6:10"
+    },
+    {
+      "answer": "AGAINST",
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be able to stand your ground _______ the stratagems of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "STRATAGEMS",
+      "hint": "Word from Ephesians 6:11: \"Put on the full armor of God, so that you may be able to stand your ground against the _______ of the devil.\"",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "answer": "READINESS",
+      "hint": "Word from Ephesians 6:15: \"and with the _______ to serve the good news of peace as shoes for your feet.\"",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "answer": "UNWEARYING",
+      "hint": "Word from Ephesians 6:18: \"Pray in spirit at all times. Be intent on this, with _______ perseverance and supplication for all Christ’s people –\"",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "answer": "CHRISTS",
+      "hint": "Word from Ephesians 6:18: \"Pray in spirit at all times. Be intent on this, with unwearying perseverance and supplication for all Christ’s people –\"",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "answer": "ENTREAT",
+      "hint": "Word from Philippians 4:2: \"I _______ Euodia, and I _______ Syntyche, to live in harmony, in union with the Lord;\"",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "answer": "SYNTYCHE",
+      "hint": "Word from Philippians 4:2: \"I entreat Euodia, and I entreat _______, to live in harmony, in union with the Lord;\"",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "answer": "HARMONY",
+      "hint": "Word from Philippians 4:2: \"I entreat Euodia, and I entreat Syntyche, to live in _______, in union with the Lord;\"",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "answer": "FORBEARING",
+      "hint": "Word from Philippians 4:5: \"Let your _______ spirit be plain to everyone. The Lord is near.\"",
+      "reference": "Philippians 4:5"
+    },
+    {
+      "answer": "EVERYTHING",
+      "hint": "Word from Philippians 4:13: \"I can do _______ in the strength of him who makes me strong!\"",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "answer": "SHARING",
+      "hint": "Word from Philippians 4:14: \"Yet you have acted nobly in _______ my troubles.\"",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "answer": "TROUBLES",
+      "hint": "Word from Philippians 4:14: \"Yet you have acted nobly in sharing my _______.\"",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "answer": "RELIEVE",
+      "hint": "Word from Philippians 4:16: \"Indeed, even while I was still in Thessalonica, you sent more than once to _______ my wants.\"",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "answer": "ASCRIBED",
+      "hint": "Word from Philippians 4:20: \"To him, our God and Father, be _______ all glory for every and ever. Amen.\"",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "answer": "SERVANT",
+      "hint": "Word from James 1:1: \"James, a _______ of God and of the Lord Jesus Christ, greets the twelve tribes that are living abroad.\"",
+      "reference": "James 1:1"
+    },
+    {
+      "answer": "REJOICING",
+      "hint": "Word from James 1:2: \"My friends, whatever trials you may face from time to time, always regard them as a reason for _______,\"",
+      "reference": "James 1:2"
+    },
+    {
+      "answer": "KNOWING",
+      "hint": "Word from James 1:3: \"_______, as you do, that the testing of your faith develops endurance.\"",
+      "reference": "James 1:3"
+    },
+    {
+      "answer": "TESTING",
+      "hint": "Word from James 1:3: \"knowing, as you do, that the _______ of your faith develops endurance.\"",
+      "reference": "James 1:3"
+    },
+    {
+      "answer": "DEVELOPS",
+      "hint": "Word from James 1:3: \"knowing, as you do, that the testing of your faith _______ endurance.\"",
+      "reference": "James 1:3"
+    },
+    {
+      "answer": "ENDURANCE",
+      "hint": "Word from James 1:3: \"knowing, as you do, that the testing of your faith develops _______.\"",
+      "reference": "James 1:3"
+    },
+    {
+      "answer": "PERFECTLY",
+      "hint": "Word from James 1:4: \"And let endurance do its work _______, so that you may be altogether perfect, and in no respect lacking.\"",
+      "reference": "James 1:4"
+    },
+    {
+      "answer": "ALTOGETHER",
+      "hint": "Word from James 1:4: \"And let endurance do its work perfectly, so that you may be _______ perfect, and in no respect lacking.\"",
+      "reference": "James 1:4"
+    },
+    {
+      "answer": "RESPECT",
+      "hint": "Word from James 1:4: \"And let endurance do its work perfectly, so that you may be altogether perfect, and in no _______ lacking.\"",
+      "reference": "James 1:4"
+    },
+    {
+      "answer": "LACKING",
+      "hint": "Word from James 1:4: \"And let endurance do its work perfectly, so that you may be altogether perfect, and in no respect _______.\"",
+      "reference": "James 1:4"
+    },
+    {
+      "answer": "IRRESOLUTE",
+      "hint": "Word from James 1:8: \"vacillating as they are, _______ at every turn.\"",
+      "reference": "James 1:8"
+    },
+    {
+      "answer": "FOLLOWER",
+      "hint": "Word from James 1:9: \"Let a _______ in humble circumstances be proud of their exalted position,\"",
+      "reference": "James 1:9"
+    },
+    {
+      "answer": "EXALTED",
+      "hint": "Word from James 1:9: \"Let a follower in humble circumstances be proud of their _______ position,\"",
+      "reference": "James 1:9"
+    },
+    {
+      "answer": "POSITION",
+      "hint": "Word from James 1:9: \"Let a follower in humble circumstances be proud of their exalted _______,\"",
+      "reference": "James 1:9"
+    },
+    {
+      "answer": "TEMPTED",
+      "hint": "Word from James 1:14: \"A man is in every case _______ by their own passions – allured and enticed by them.\"",
+      "reference": "James 1:14"
+    },
+    {
+      "answer": "PASSIONS",
+      "hint": "Word from James 1:14: \"A man is in every case tempted by their own _______ – allured and enticed by them.\"",
+      "reference": "James 1:14"
+    },
+    {
+      "answer": "ALLURED",
+      "hint": "Word from James 1:14: \"A man is in every case tempted by their own passions – _______ and enticed by them.\"",
+      "reference": "James 1:14"
+    },
+    {
+      "answer": "ENTICED",
+      "hint": "Word from James 1:14: \"A man is in every case tempted by their own passions – allured and _______ by them.\"",
+      "reference": "James 1:14"
+    },
+    {
+      "answer": "PASSION",
+      "hint": "Word from James 1:15: \"Then _______ conceives and gives birth to sin, and sin, on reaching maturity, brings forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "CONCEIVES",
+      "hint": "Word from James 1:15: \"Then passion _______ and gives birth to sin, and sin, on reaching maturity, brings forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "REACHING",
+      "hint": "Word from James 1:15: \"Then passion conceives and gives birth to sin, and sin, on _______ maturity, brings forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "MATURITY",
+      "hint": "Word from James 1:15: \"Then passion conceives and gives birth to sin, and sin, on reaching _______, brings forth death.\"",
+      "reference": "James 1:15"
+    },
+    {
+      "answer": "DECEIVED",
+      "hint": "Word from James 1:16: \"Do not be _______, my dear friends.\"",
+      "reference": "James 1:16"
+    },
+    {
+      "answer": "FORWARD",
+      "hint": "Word from James 1:20: \"for human anger does not _______ the righteous purpose of God.\"",
+      "reference": "James 1:20"
+    },
+    {
+      "answer": "RIGHTEOUS",
+      "hint": "Word from James 1:20: \"for human anger does not forward the _______ purpose of God.\"",
+      "reference": "James 1:20"
+    },
+    {
+      "answer": "PURPOSE",
+      "hint": "Word from James 1:20: \"for human anger does not forward the righteous _______ of God.\"",
+      "reference": "James 1:20"
+    },
+    {
+      "answer": "LISTENS",
+      "hint": "Word from 1john 4:5: \"Those people belong to the world and therefore they speak as the world speaks, and the world _______ to them.\"",
+      "reference": "1john 4:5"
+    },
+    {
+      "answer": "REACHES",
+      "hint": "Word from 1john 4:12: \"No one has ever seen God, but if we love one another, God lives in us and his love _______ perfection within us.\"",
+      "reference": "1john 4:12"
+    },
+    {
+      "answer": "PERFECTION",
+      "hint": "Word from 1john 4:12: \"No one has ever seen God, but if we love one another, God lives in us and his love reaches _______ within us.\"",
+      "reference": "1john 4:12"
+    },
+    {
+      "answer": "MEASURE",
+      "hint": "Word from 1john 4:13: \"We know that we live in him, and he lives in us, because he has given us a _______ of his Spirit.\"",
+      "reference": "1john 4:13"
+    },
+    {
+      "answer": "MOREOVER",
+      "hint": "Word from 1john 4:14: \"_______, we have seen for ourselves and testify that the Father has sent the Son to be the Savior of the world.\"",
+      "reference": "1john 4:14"
+    },
+    {
+      "answer": "OURSELVES",
+      "hint": "Word from 1john 4:14: \"Moreover, we have seen for _______ and testify that the Father has sent the Son to be the Savior of the world.\"",
+      "reference": "1john 4:14"
+    },
+    {
+      "answer": "TESTIFY",
+      "hint": "Word from 1john 4:14: \"Moreover, we have seen for ourselves and _______ that the Father has sent the Son to be the Savior of the world.\"",
+      "reference": "1john 4:14"
+    },
+    {
+      "answer": "WHOEVER",
+      "hint": "Word from 1john 4:15: \"_______ acknowledges that Jesus Christ is the Son of God, God lives in them, and they live in God.\"",
+      "reference": "1john 4:15"
+    }
   ],
   "completePhraseChallenges": [
-    { "fullPhrase": "IN THE BEGINNING GOD CREATED THE HEAVENS AND THE EARTH", "hint": "The first verse of the Bible.", "reference": "Genesis 1:1" },
-    { "fullPhrase": "THE LORD IS MY SHEPHERD I SHALL NOT WANT", "hint": "A well-known psalm of trust.", "reference": "Psalm 23:1" },
-    { "fullPhrase": "MAN SHALL NOT LIVE BY BREAD ALONE", "hint": "Jesus' reply to the tempter.", "reference": "Matthew 4:4" },
-    { "fullPhrase": "ASK AND IT WILL BE GIVEN TO YOU", "hint": "A promise about prayer.", "reference": "Matthew 7:7" },
-    { "fullPhrase": "I AND THE FATHER ARE ONE", "hint": "Jesus' declaration of divinity.", "reference": "John 10:30" },
-    { "fullPhrase": "I CAN DO ALL THINGS THROUGH HIM WHO STRENGTHENS ME", "hint": "A verse about strength in faith.", "reference": "Philippians 4:13" },
-    { "fullPhrase": "NOW FAITH IS THE ASSURANCE OF THINGS HOPED FOR THE CONVICTION OF THINGS NOT SEEN", "hint": "Biblical definition of faith.", "reference": "Hebrews 11:1" },
-    { "fullPhrase": "LOVE IS PATIENT AND KIND", "hint": "Start of the famous chapter on love.", "reference": "1 Corinthians 13:4" },
-    { "fullPhrase": "COME TO ME ALL WHO LABOR AND ARE HEAVY LADEN", "hint": "A beautiful invitation to rest.", "reference": "Matthew 11:28" },
-    { "fullPhrase": "BUT SEEK FIRST THE KINGDOM OF GOD AND HIS RIGHTEOUSNESS", "hint": "Sets priorities for the believer.", "reference": "Matthew 6:33" },
-    { "fullPhrase": "LOVE NEVER ENDS", "hint": "The quality of love that remains forever.", "reference": "1 Corinthians 13:8" },
-    { "fullPhrase": "I AM THE WAY AND THE TRUTH AND THE LIFE", "hint": "Jesus' statement on access to the Father.", "reference": "John 14:6" },
-    { "fullPhrase": "AND YOU WILL KNOW THE TRUTH AND THE TRUTH WILL SET YOU FREE", "hint": "The promise of freedom through truth.", "reference": "John 8:32" },
-    { "fullPhrase": "BELIEVE IN THE LORD JESUS AND YOU WILL BE SAVED", "hint": "Paul's reply to the Philippian jailer.", "reference": "Acts 16:31" },
-    { "fullPhrase": "THE LORD IS MY LIGHT AND MY SALVATION WHOM SHALL I FEAR", "hint": "Psalm of trust and courage in God.", "reference": "Psalm 27:1" },
-    { "fullPhrase": "CHRIST IN YOU THE HOPE OF GLORY", "hint": "The mystery revealed to the believers.", "reference": "Colossians 1:27" },
-    { "fullPhrase": "A SOFT ANSWER TURNS AWAY WRATH", "hint": "Proverb about prudence in speech.", "reference": "Proverbs 15:1" },
-    { "fullPhrase": "BLESSED ARE THE PEACEMAKERS FOR THEY SHALL BE CALLED SONS OF GOD", "hint": "One of the beatitudes from the sermon on the mount.", "reference": "Matthew 5:9" },
-    { "fullPhrase": "TAKE MY YOKE UPON YOU AND LEARN FROM ME", "hint": "Jesus invites us to learn from His gentleness.", "reference": "Matthew 11:29" },
-    { "fullPhrase": "IN THE WORLD YOU WILL HAVE TRIBULATION BUT TAKE HEART I HAVE OVERCOME THE WORLD", "hint": "Jesus' words of encouragement before the cross.", "reference": "John 16:33" }
+    {
+      "fullPhrase": "IN THE BEGINNING GOD CREATED THE HEAVENS AND THE EARTH",
+      "hint": "The first verse of the Bible.",
+      "reference": "Genesis 1:1"
+    },
+    {
+      "fullPhrase": "THE LORD IS MY SHEPHERD I SHALL NOT WANT",
+      "hint": "A well-known psalm of trust.",
+      "reference": "Psalm 23:1"
+    },
+    {
+      "fullPhrase": "MAN SHALL NOT LIVE BY BREAD ALONE",
+      "hint": "Jesus' reply to the tempter.",
+      "reference": "Matthew 4:4"
+    },
+    {
+      "fullPhrase": "ASK AND IT WILL BE GIVEN TO YOU",
+      "hint": "A promise about prayer.",
+      "reference": "Matthew 7:7"
+    },
+    {
+      "fullPhrase": "I AND THE FATHER ARE ONE",
+      "hint": "Jesus' declaration of divinity.",
+      "reference": "John 10:30"
+    },
+    {
+      "fullPhrase": "I CAN DO ALL THINGS THROUGH HIM WHO STRENGTHENS ME",
+      "hint": "A verse about strength in faith.",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "fullPhrase": "NOW FAITH IS THE ASSURANCE OF THINGS HOPED FOR THE CONVICTION OF THINGS NOT SEEN",
+      "hint": "Biblical definition of faith.",
+      "reference": "Hebrews 11:1"
+    },
+    {
+      "fullPhrase": "LOVE IS PATIENT AND KIND",
+      "hint": "Start of the famous chapter on love.",
+      "reference": "1 Corinthians 13:4"
+    },
+    {
+      "fullPhrase": "COME TO ME ALL WHO LABOR AND ARE HEAVY LADEN",
+      "hint": "A beautiful invitation to rest.",
+      "reference": "Matthew 11:28"
+    },
+    {
+      "fullPhrase": "BUT SEEK FIRST THE KINGDOM OF GOD AND HIS RIGHTEOUSNESS",
+      "hint": "Sets priorities for the believer.",
+      "reference": "Matthew 6:33"
+    },
+    {
+      "fullPhrase": "LOVE NEVER ENDS",
+      "hint": "The quality of love that remains forever.",
+      "reference": "1 Corinthians 13:8"
+    },
+    {
+      "fullPhrase": "I AM THE WAY AND THE TRUTH AND THE LIFE",
+      "hint": "Jesus' statement on access to the Father.",
+      "reference": "John 14:6"
+    },
+    {
+      "fullPhrase": "AND YOU WILL KNOW THE TRUTH AND THE TRUTH WILL SET YOU FREE",
+      "hint": "The promise of freedom through truth.",
+      "reference": "John 8:32"
+    },
+    {
+      "fullPhrase": "BELIEVE IN THE LORD JESUS AND YOU WILL BE SAVED",
+      "hint": "Paul's reply to the Philippian jailer.",
+      "reference": "Acts 16:31"
+    },
+    {
+      "fullPhrase": "THE LORD IS MY LIGHT AND MY SALVATION WHOM SHALL I FEAR",
+      "hint": "Psalm of trust and courage in God.",
+      "reference": "Psalm 27:1"
+    },
+    {
+      "fullPhrase": "CHRIST IN YOU THE HOPE OF GLORY",
+      "hint": "The mystery revealed to the believers.",
+      "reference": "Colossians 1:27"
+    },
+    {
+      "fullPhrase": "A SOFT ANSWER TURNS AWAY WRATH",
+      "hint": "Proverb about prudence in speech.",
+      "reference": "Proverbs 15:1"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE PEACEMAKERS FOR THEY SHALL BE CALLED SONS OF GOD",
+      "hint": "One of the beatitudes from the sermon on the mount.",
+      "reference": "Matthew 5:9"
+    },
+    {
+      "fullPhrase": "TAKE MY YOKE UPON YOU AND LEARN FROM ME",
+      "hint": "Jesus invites us to learn from His gentleness.",
+      "reference": "Matthew 11:29"
+    },
+    {
+      "fullPhrase": "IN THE WORLD YOU WILL HAVE TRIBULATION BUT TAKE HEART I HAVE OVERCOME THE WORLD",
+      "hint": "Jesus' words of encouragement before the cross.",
+      "reference": "John 16:33"
+    },
+    {
+      "fullPhrase": "THE LORD IS MY SHEPHERD I AM NEVER IN NEED",
+      "hint": "Complete the verse: Psalms 23:1",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "fullPhrase": "HE LAYS ME DOWN IN GREEN PASTURES\nHE GENTLY LEADS ME TO WATERS OF REST",
+      "hint": "Complete the verse: Psalms 23:2",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "fullPhrase": "HE REFRESHES MY LIFE\nHE GUIDES ME ALONG PATHS THAT ARE STRAIGHT\nTRUE TO HIS NAME",
+      "hint": "Complete the verse: Psalms 23:3",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "fullPhrase": "AND WHEN MY WAY LIES THROUGH A VALLEY OF GLOOM\nI FEAR NO EVIL FOR YOU ARE WITH ME\nYOUR ROD AND YOUR STAFF COMFORT ME",
+      "hint": "Complete the verse: Psalms 23:4",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "fullPhrase": "YOU SPREAD A TABLE FOR ME\nIN FACE OF MY FOES\nWITH OIL YOU ANOINT MY HEAD\nAND MY CUP RUNS OVER",
+      "hint": "Complete the verse: Psalms 23:5",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "fullPhrase": "SHOUT ALL THE EARTH TO THE LORD",
+      "hint": "Complete the verse: Psalms 100:1",
+      "reference": "Psalms 100:1"
+    },
+    {
+      "fullPhrase": "SERVE THE LORD WITH GLADNESS\nAPPROACH HIM WITH RINGING CRIES",
+      "hint": "Complete the verse: Psalms 100:2",
+      "reference": "Psalms 100:2"
+    },
+    {
+      "fullPhrase": "BE SURE THAT THE LORD ALONE IS GOD\nIT IS HE WHO HAS MADE US AND HIS WE ARE\nHIS PEOPLE THE SHEEP OF HIS PASTURE",
+      "hint": "Complete the verse: Psalms 100:3",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "fullPhrase": "ENTER HIS GATES WITH THANKSGIVING\nHIS COURTS WITH PRAISE\nGIVE THANKS TO HIM BLESS HIS NAME",
+      "hint": "Complete the verse: Psalms 100:4",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "fullPhrase": "FOR THE LORD IS GOOD HIS LOVE IS FOREVER\nAND TO ALL AGES ENDURES HIS FAITHFULNESS",
+      "hint": "Complete the verse: Psalms 100:5",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "fullPhrase": "ON SEEING THE CROWDS OF PEOPLE JESUS WENT UP THE HILL AND WHEN HE HAD TAKEN HIS SEAT HIS DISCIPLES CAME UP TO HIM",
+      "hint": "Complete the verse: Matthew 5:1",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "fullPhrase": "AND HE BEGAN TO TEACH THEM SAYING",
+      "hint": "Complete the verse: Matthew 5:2",
+      "reference": "Matthew 5:2"
+    },
+    {
+      "fullPhrase": "“BLESSED ARE THE POOR IN SPIRIT FOR THEIRS IS THE KINGDOM OF HEAVEN",
+      "hint": "Complete the verse: Matthew 5:3",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE MOURNERS FOR THEY WILL BE COMFORTED",
+      "hint": "Complete the verse: Matthew 5:4",
+      "reference": "Matthew 5:4"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE GENTLE FOR THEY WILL INHERIT THE EARTH",
+      "hint": "Complete the verse: Matthew 5:5",
+      "reference": "Matthew 5:5"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THOSE WHO HUNGER AND THIRST FOR RIGHTEOUSNESS FOR THEY WILL BE SATISFIED",
+      "hint": "Complete the verse: Matthew 5:6",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE MERCIFUL FOR THEY WILL FIND MERCY",
+      "hint": "Complete the verse: Matthew 5:7",
+      "reference": "Matthew 5:7"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE PURE IN HEART FOR THEY WILL SEE GOD",
+      "hint": "Complete the verse: Matthew 5:8",
+      "reference": "Matthew 5:8"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THE PEACEMAKERS FOR THEY WILL BE CALLED CHILDREN OF GOD",
+      "hint": "Complete the verse: Matthew 5:9",
+      "reference": "Matthew 5:9"
+    },
+    {
+      "fullPhrase": "BLESSED ARE THOSE WHO HAVE BEEN PERSECUTED IN THE CAUSE OF RIGHTEOUSNESS FOR THEIRS IS THE KINGDOM OF HEAVEN",
+      "hint": "Complete the verse: Matthew 5:10",
+      "reference": "Matthew 5:10"
+    },
+    {
+      "fullPhrase": "“BLESSED ARE YOU WHEN PEOPLE INSULT YOU AND PERSECUTE YOU AND SAY ALL KINDS OF EVIL LIES ABOUT YOU BECAUSE OF ME",
+      "hint": "Complete the verse: Matthew 5:11",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "fullPhrase": "IT IS YOU WHO ARE THE LIGHT OF THE WORLD A TOWN THAT STANDS ON A HILL CANNOT BE HIDDEN",
+      "hint": "Complete the verse: Matthew 5:14",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "fullPhrase": "PEOPLE DO NOT LIGHT A LAMP AND PUT IT UNDER A BASKET BUT ON THE LAMPSTAND WHERE IT GIVES LIGHT TO EVERYONE IN THE HOUSE",
+      "hint": "Complete the verse: Matthew 5:15",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "fullPhrase": "IN THE BEGINNING THE WORD WAS\nAND THE WORD WAS WITH GOD\nAND THE WORD WAS GOD",
+      "hint": "Complete the verse: John 1:1",
+      "reference": "John 1:1"
+    },
+    {
+      "fullPhrase": "HE WAS IN THE BEGINNING WITH GOD",
+      "hint": "Complete the verse: John 1:2",
+      "reference": "John 1:2"
+    },
+    {
+      "fullPhrase": "THROUGH HIM ALL THINGS CAME INTO BEING\nAND NOTHING CAME INTO BEING APART FROM HIM",
+      "hint": "Complete the verse: John 1:3",
+      "reference": "John 1:3"
+    },
+    {
+      "fullPhrase": "THAT WHICH CAME INTO BEING IN HIM WAS LIFE\nAND THE LIFE WAS THE LIGHT OF HUMANITY",
+      "hint": "Complete the verse: John 1:4",
+      "reference": "John 1:4"
+    },
+    {
+      "fullPhrase": "AND THE LIGHT SHINES IN THE DARKNESS\nAND THE DARKNESS NEVER OVERPOWERED IT",
+      "hint": "Complete the verse: John 1:5",
+      "reference": "John 1:5"
+    },
+    {
+      "fullPhrase": "THERE APPEARED A MAN SENT FROM GOD WHOSE NAME WAS JOHN",
+      "hint": "Complete the verse: John 1:6",
+      "reference": "John 1:6"
+    },
+    {
+      "fullPhrase": "HE CAME AS A WITNESS – TO BEAR WITNESS TO THE LIGHT\nSO THAT THROUGH HIM EVERYONE MIGHT BELIEVE",
+      "hint": "Complete the verse: John 1:7",
+      "reference": "John 1:7"
+    },
+    {
+      "fullPhrase": "HE WAS NOT THE LIGHT\nBUT HE CAME TO BEAR WITNESS TO THE LIGHT",
+      "hint": "Complete the verse: John 1:8",
+      "reference": "John 1:8"
+    },
+    {
+      "fullPhrase": "THAT WAS THE TRUE LIGHT WHICH ENLIGHTENS EVERYONE COMING INTO THE WORLD",
+      "hint": "Complete the verse: John 1:9",
+      "reference": "John 1:9"
+    },
+    {
+      "fullPhrase": "HE WAS IN THE WORLD\nAND THROUGH HIM THE WORLD CAME INTO BEING –\nYET THE WORLD DID NOT KNOW HIM",
+      "hint": "Complete the verse: John 1:10",
+      "reference": "John 1:10"
+    },
+    {
+      "fullPhrase": "HE CAME TO HIS OWN –\nYET HIS OWN DID NOT RECEIVE HIM",
+      "hint": "Complete the verse: John 1:11",
+      "reference": "John 1:11"
+    },
+    {
+      "fullPhrase": "BUT TO ALL WHO DID RECEIVE HIM HE GAVE POWER TO BECOME CHILDREN OF GOD –\nTO THOSE WHO BELIEVE IN HIS NAME",
+      "hint": "Complete the verse: John 1:12",
+      "reference": "John 1:12"
+    },
+    {
+      "fullPhrase": "FOR NOT TO NATURAL CONCEPTION NOR TO HUMAN INSTINCTS NOR TO HUMAN WILL DID THEY OWE THE NEW LIFE\nBUT TO GOD",
+      "hint": "Complete the verse: John 1:13",
+      "reference": "John 1:13"
+    },
+    {
+      "fullPhrase": "OUT OF HIS FULLNESS WE HAVE ALL RECEIVED SOME GIFT\nGIFT AFTER GIFT OF LOVE",
+      "hint": "Complete the verse: John 1:16",
+      "reference": "John 1:16"
+    },
+    {
+      "fullPhrase": "FOR THE LAW WAS GIVEN THROUGH MOSES\nLOVE AND TRUTH CAME THROUGH JESUS CHRIST",
+      "hint": "Complete the verse: John 1:17",
+      "reference": "John 1:17"
+    },
+    {
+      "fullPhrase": "NO ONE HAS EVER YET SEEN GOD\nGOD THE ONLY SON WHO IS EVER WITH THE FATHER –\nHE HAS REVEALED HIM",
+      "hint": "Complete the verse: John 1:18",
+      "reference": "John 1:18"
+    },
+    {
+      "fullPhrase": "WHEN THE RELIGIOUS AUTHORITIES IN JERUSALEM SENT SOME PRIESTS AND LEVITES TO ASK JOHN – “WHO ARE YOU”",
+      "hint": "Complete the verse: John 1:19",
+      "reference": "John 1:19"
+    },
+    {
+      "fullPhrase": "HE TOLD THEM CLEARLY AND SIMPLY “I AM NOT THE CHRIST”",
+      "hint": "Complete the verse: John 1:20",
+      "reference": "John 1:20"
+    },
+    {
+      "fullPhrase": "DO NOT LET YOUR HEARTS BE TROUBLED BELIEVE IN GOD BELIEVE ALSO IN ME",
+      "hint": "Complete the verse: John 14:1",
+      "reference": "John 14:1"
+    },
+    {
+      "fullPhrase": "AND SINCE I GO AND PREPARE A PLACE FOR YOU I WILL RETURN AND TAKE YOU TO BE WITH ME SO THAT YOU MAY BE WHERE I AM",
+      "hint": "Complete the verse: John 14:3",
+      "reference": "John 14:3"
+    },
+    {
+      "fullPhrase": "AND YOU KNOW THE WAY TO THE PLACE WHERE I AM GOING”",
+      "hint": "Complete the verse: John 14:4",
+      "reference": "John 14:4"
+    },
+    {
+      "fullPhrase": "“WE DO NOT KNOW WHERE YOU ARE GOING MASTER” SAID THOMAS “SO HOW CAN WE KNOW THE WAY”",
+      "hint": "Complete the verse: John 14:5",
+      "reference": "John 14:5"
+    },
+    {
+      "fullPhrase": "JESUS ANSWERED “I AM THE WAY AND THE TRUTH AND THE LIFE NO ONE EVER COMES TO THE FATHER EXCEPT THROUGH ME",
+      "hint": "Complete the verse: John 14:6",
+      "reference": "John 14:6"
+    },
+    {
+      "fullPhrase": "“MASTER SHOW US THE FATHER” SAID PHILIP “AND WE WILL BE SATISFIED”",
+      "hint": "Complete the verse: John 14:8",
+      "reference": "John 14:8"
+    },
+    {
+      "fullPhrase": "WHATEVER YOU ASK IN MY NAME I WILL DO SO THAT THE FATHER MAY BE HONORED IN THE SON",
+      "hint": "Complete the verse: John 14:13",
+      "reference": "John 14:13"
+    },
+    {
+      "fullPhrase": "IF YOU ASK ANYTHING IN MY NAME I WILL DO IT",
+      "hint": "Complete the verse: John 14:14",
+      "reference": "John 14:14"
+    },
+    {
+      "fullPhrase": "IF YOU LOVE ME YOU WILL LAY MY COMMANDS TO HEART",
+      "hint": "Complete the verse: John 14:15",
+      "reference": "John 14:15"
+    },
+    {
+      "fullPhrase": "AND I WILL ASK THE FATHER AND HE WILL GIVE YOU ANOTHER HELPER TO BE WITH YOU ALWAYS – THE SPIRIT OF TRUTH",
+      "hint": "Complete the verse: John 14:16",
+      "reference": "John 14:16"
+    },
+    {
+      "fullPhrase": "I WILL NOT LEAVE YOU BEREAVED I WILL COME TO YOU",
+      "hint": "Complete the verse: John 14:18",
+      "reference": "John 14:18"
+    },
+    {
+      "fullPhrase": "IN A LITTLE WHILE THE WORLD WILL SEE ME NO MORE BUT YOU WILL STILL SEE ME BECAUSE I AM LIVING YOU WILL BE LIVING ALSO",
+      "hint": "Complete the verse: John 14:19",
+      "reference": "John 14:19"
+    },
+    {
+      "fullPhrase": "AT THAT TIME YOU WILL RECOGNIZE THAT I AM IN UNION WITH THE FATHER AND YOU WITH ME AND I WITH YOU",
+      "hint": "Complete the verse: John 14:20",
+      "reference": "John 14:20"
+    },
+    {
+      "fullPhrase": "THERE IS THEREFORE NOW NO CONDEMNATION FOR THOSE WHO ARE IN UNION WITH CHRIST JESUS",
+      "hint": "Complete the verse: Romans 8:1",
+      "reference": "Romans 8:1"
+    },
+    {
+      "fullPhrase": "FOR THROUGH YOUR UNION WITH CHRIST JESUS THE LAW OF THE LIFEGIVING SPIRIT HAS SET YOU FREE FROM THE LAW OF SIN AND DEATH",
+      "hint": "Complete the verse: Romans 8:2",
+      "reference": "Romans 8:2"
+    },
+    {
+      "fullPhrase": "THEY WHO FOLLOW THEIR EARTHLY NATURE ARE EARTHLYMINDED WHILE THEY WHO FOLLOW THE SPIRIT ARE SPIRITUALLY MINDED",
+      "hint": "Complete the verse: Romans 8:5",
+      "reference": "Romans 8:5"
+    },
+    {
+      "fullPhrase": "TO BE EARTHLYMINDED MEANS DEATH TO BE SPIRITUALLY MINDED MEANS LIFE AND PEACE",
+      "hint": "Complete the verse: Romans 8:6",
+      "reference": "Romans 8:6"
+    },
+    {
+      "fullPhrase": "THEY WHO ARE EARTHLY CANNOT PLEASE GOD",
+      "hint": "Complete the verse: Romans 8:8",
+      "reference": "Romans 8:8"
+    },
+    {
+      "fullPhrase": "SO THEN FRIENDS WE OWE NOTHING TO OUR EARTHLY NATURE THAT WE SHOULD LIVE IN OBEDIENCE TO IT",
+      "hint": "Complete the verse: Romans 8:12",
+      "reference": "Romans 8:12"
+    },
+    {
+      "fullPhrase": "ALL WHO ARE GUIDED BY THE SPIRIT OF GOD ARE SONS OF GOD",
+      "hint": "Complete the verse: Romans 8:14",
+      "reference": "Romans 8:14"
+    },
+    {
+      "fullPhrase": "THE SPIRIT HIMSELF UNITES WITH OUR SPIRITS IN BEARING WITNESS TO OUR BEING GOD’S CHILDREN",
+      "hint": "Complete the verse: Romans 8:16",
+      "reference": "Romans 8:16"
+    },
+    {
+      "fullPhrase": "ALL NATURE AWAITS WITH EAGER EXPECTATION THE APPEARING OF THE SONS OF GOD",
+      "hint": "Complete the verse: Romans 8:19",
+      "reference": "Romans 8:19"
+    },
+    {
+      "fullPhrase": "FOR NATURE WAS MADE SUBJECT TO IMPERFECTION – NOT BY ITS OWN CHOICE BUT OWING TO HIM WHO MADE IT SO –",
+      "hint": "Complete the verse: Romans 8:20",
+      "reference": "Romans 8:20"
+    },
+    {
+      "fullPhrase": "LOVE IS LONGSUFFERING AND KIND LOVE IS NEVER ENVIOUS NEVER BOASTFUL NEVER CONCEITED NEVER BEHAVES UNBECOMINGLY",
+      "hint": "Complete the verse: 1corinthians 13:4",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "fullPhrase": "LOVE IS NEVER SELFSEEKING NEVER PROVOKED NEVER RECKONS UP HER WRONGS",
+      "hint": "Complete the verse: 1corinthians 13:5",
+      "reference": "1corinthians 13:5"
+    },
+    {
+      "fullPhrase": "LOVE NEVER REJOICES AT EVIL BUT REJOICES IN THE TRIUMPH OF TRUTH",
+      "hint": "Complete the verse: 1corinthians 13:6",
+      "reference": "1corinthians 13:6"
+    },
+    {
+      "fullPhrase": "LOVE BEARS WITH ALL THINGS EVER TRUSTFUL EVER HOPEFUL EVER PATIENT",
+      "hint": "Complete the verse: 1corinthians 13:7",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "fullPhrase": "FOR OUR KNOWLEDGE IS INCOMPLETE AND OUR PREACHING IS INCOMPLETE",
+      "hint": "Complete the verse: 1corinthians 13:9",
+      "reference": "1corinthians 13:9"
+    },
+    {
+      "fullPhrase": "BUT WHEN THE PERFECT HAS COME THAT WHICH IS INCOMPLETE WILL BE DONE WITH",
+      "hint": "Complete the verse: 1corinthians 13:10",
+      "reference": "1corinthians 13:10"
+    },
+    {
+      "fullPhrase": "MEANWHILE FAITH HOPE AND LOVE ENDURE – THESE THREE BUT THE GREATEST OF THESE IS LOVE",
+      "hint": "Complete the verse: 1corinthians 13:13",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "fullPhrase": "CHILDREN OBEY YOUR PARENTS AS CHILDREN OF THE LORD FOR THAT IS BUT RIGHT",
+      "hint": "Complete the verse: Ephesians 6:1",
+      "reference": "Ephesians 6:1"
+    },
+    {
+      "fullPhrase": "‘HONOR YOUR FATHER AND MOTHER’ – THIS IS THE FIRST COMMANDMENT WITH A PROMISE –",
+      "hint": "Complete the verse: Ephesians 6:2",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "fullPhrase": "‘SO THAT YOU MAY PROSPER AND HAVE A LONG LIFE ON EARTH’",
+      "hint": "Complete the verse: Ephesians 6:3",
+      "reference": "Ephesians 6:3"
+    },
+    {
+      "fullPhrase": "AND FATHERS DO NOT IRRITATE YOUR CHILDREN BUT BRING THEM UP WITH CHRISTIAN DISCIPLINE AND INSTRUCTION",
+      "hint": "Complete the verse: Ephesians 6:4",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "fullPhrase": "SLAVES OBEY YOUR EARTHLY MASTERS WITH ANXIOUS CARE GIVING THEM UNGRUDGING SERVICE AS IF OBEYING THE CHRIST",
+      "hint": "Complete the verse: Ephesians 6:5",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "fullPhrase": "GIVE YOUR SERVICE HEARTILY AND CHEERFULLY AS WORKING FOR THE MASTER AND NOT FOR PEOPLE",
+      "hint": "Complete the verse: Ephesians 6:7",
+      "reference": "Ephesians 6:7"
+    },
+    {
+      "fullPhrase": "FOR THE FUTURE FIND STRENGTH IN YOUR UNION WITH THE LORD AND IN THE POWER WHICH COMES FROM HIS MIGHT",
+      "hint": "Complete the verse: Ephesians 6:10",
+      "reference": "Ephesians 6:10"
+    },
+    {
+      "fullPhrase": "PUT ON THE FULL ARMOR OF GOD SO THAT YOU MAY BE ABLE TO STAND YOUR GROUND AGAINST THE STRATAGEMS OF THE DEVIL",
+      "hint": "Complete the verse: Ephesians 6:11",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "fullPhrase": "STAND YOUR GROUND THEN WITH TRUTH FOR YOUR BELT AND WITH RIGHTEOUSNESS FOR YOUR BREASTPLATE",
+      "hint": "Complete the verse: Ephesians 6:14",
+      "reference": "Ephesians 6:14"
+    },
+    {
+      "fullPhrase": "AND WITH THE READINESS TO SERVE THE GOOD NEWS OF PEACE AS SHOES FOR YOUR FEET",
+      "hint": "Complete the verse: Ephesians 6:15",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "fullPhrase": "PRAY IN SPIRIT AT ALL TIMES BE INTENT ON THIS WITH UNWEARYING PERSEVERANCE AND SUPPLICATION FOR ALL CHRIST’S PEOPLE –",
+      "hint": "Complete the verse: Ephesians 6:18",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "fullPhrase": "I ENTREAT EUODIA AND I ENTREAT SYNTYCHE TO LIVE IN HARMONY IN UNION WITH THE LORD",
+      "hint": "Complete the verse: Philippians 4:2",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "fullPhrase": "ALL JOY BE YOURS AT ALL TIMES IN YOUR UNION WITH THE LORD AGAIN I REPEAT – ALL JOY BE YOURS",
+      "hint": "Complete the verse: Philippians 4:4",
+      "reference": "Philippians 4:4"
+    },
+    {
+      "fullPhrase": "LET YOUR FORBEARING SPIRIT BE PLAIN TO EVERYONE THE LORD IS NEAR",
+      "hint": "Complete the verse: Philippians 4:5",
+      "reference": "Philippians 4:5"
+    },
+    {
+      "fullPhrase": "I CAN DO EVERYTHING IN THE STRENGTH OF HIM WHO MAKES ME STRONG",
+      "hint": "Complete the verse: Philippians 4:13",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "fullPhrase": "YET YOU HAVE ACTED NOBLY IN SHARING MY TROUBLES",
+      "hint": "Complete the verse: Philippians 4:14",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "fullPhrase": "INDEED EVEN WHILE I WAS STILL IN THESSALONICA YOU SENT MORE THAN ONCE TO RELIEVE MY WANTS",
+      "hint": "Complete the verse: Philippians 4:16",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "fullPhrase": "TO HIM OUR GOD AND FATHER BE ASCRIBED ALL GLORY FOR EVERY AND EVER AMEN",
+      "hint": "Complete the verse: Philippians 4:20",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "fullPhrase": "JAMES A SERVANT OF GOD AND OF THE LORD JESUS CHRIST GREETS THE TWELVE TRIBES THAT ARE LIVING ABROAD",
+      "hint": "Complete the verse: James 1:1",
+      "reference": "James 1:1"
+    },
+    {
+      "fullPhrase": "MY FRIENDS WHATEVER TRIALS YOU MAY FACE FROM TIME TO TIME ALWAYS REGARD THEM AS A REASON FOR REJOICING",
+      "hint": "Complete the verse: James 1:2",
+      "reference": "James 1:2"
+    },
+    {
+      "fullPhrase": "KNOWING AS YOU DO THAT THE TESTING OF YOUR FAITH DEVELOPS ENDURANCE",
+      "hint": "Complete the verse: James 1:3",
+      "reference": "James 1:3"
+    },
+    {
+      "fullPhrase": "AND LET ENDURANCE DO ITS WORK PERFECTLY SO THAT YOU MAY BE ALTOGETHER PERFECT AND IN NO RESPECT LACKING",
+      "hint": "Complete the verse: James 1:4",
+      "reference": "James 1:4"
+    },
+    {
+      "fullPhrase": "SUCH A PERSON MUST NOT EXPECT THAT THEY WILL RECEIVE ANYTHING FROM THE LORD",
+      "hint": "Complete the verse: James 1:7",
+      "reference": "James 1:7"
+    },
+    {
+      "fullPhrase": "VACILLATING AS THEY ARE IRRESOLUTE AT EVERY TURN",
+      "hint": "Complete the verse: James 1:8",
+      "reference": "James 1:8"
+    },
+    {
+      "fullPhrase": "LET A FOLLOWER IN HUMBLE CIRCUMSTANCES BE PROUD OF THEIR EXALTED POSITION",
+      "hint": "Complete the verse: James 1:9",
+      "reference": "James 1:9"
+    },
+    {
+      "fullPhrase": "BUT A RICH FOLLOWER OF THEIR HUMILIATION FOR THE RICH WILL PASS AWAY LIKE A WILD FLOWER",
+      "hint": "Complete the verse: James 1:10",
+      "reference": "James 1:10"
+    },
+    {
+      "fullPhrase": "A MAN IS IN EVERY CASE TEMPTED BY THEIR OWN PASSIONS – ALLURED AND ENTICED BY THEM",
+      "hint": "Complete the verse: James 1:14",
+      "reference": "James 1:14"
+    },
+    {
+      "fullPhrase": "THEN PASSION CONCEIVES AND GIVES BIRTH TO SIN AND SIN ON REACHING MATURITY BRINGS FORTH DEATH",
+      "hint": "Complete the verse: James 1:15",
+      "reference": "James 1:15"
+    },
+    {
+      "fullPhrase": "DO NOT BE DECEIVED MY DEAR FRIENDS",
+      "hint": "Complete the verse: James 1:16",
+      "reference": "James 1:16"
+    },
+    {
+      "fullPhrase": "MARK THIS MY DEAR FRIENDS – LET EVERYONE BE QUICK TO LISTEN SLOW TO SPEAK AND SLOW TO GET ANGRY",
+      "hint": "Complete the verse: James 1:19",
+      "reference": "James 1:19"
+    },
+    {
+      "fullPhrase": "FOR HUMAN ANGER DOES NOT FORWARD THE RIGHTEOUS PURPOSE OF GOD",
+      "hint": "Complete the verse: James 1:20",
+      "reference": "James 1:20"
+    },
+    {
+      "fullPhrase": "THIS IS THE WAY TO RECOGNIZE THE SPIRIT OF GOD THOSE WHO ACKNOWLEDGE JESUS CHRIST AS COME IN THE FLESH HAVE GOD’S SPIRIT",
+      "hint": "Complete the verse: 1john 4:2",
+      "reference": "1john 4:2"
+    },
+    {
+      "fullPhrase": "THOSE PEOPLE BELONG TO THE WORLD AND THEREFORE THEY SPEAK AS THE WORLD SPEAKS AND THE WORLD LISTENS TO THEM",
+      "hint": "Complete the verse: 1john 4:5",
+      "reference": "1john 4:5"
+    },
+    {
+      "fullPhrase": "DEAR FRIENDS LET US LOVE ONE ANOTHER BECAUSE LOVE COMES FROM GOD AND EVERYONE WHO LOVES IS A CHILD OF GOD AND KNOWS GOD",
+      "hint": "Complete the verse: 1john 4:7",
+      "reference": "1john 4:7"
+    },
+    {
+      "fullPhrase": "THOSE WHO DO NOT LOVE KNOW NOTHING OF GOD FOR GOD IS LOVE",
+      "hint": "Complete the verse: 1john 4:8",
+      "reference": "1john 4:8"
+    },
+    {
+      "fullPhrase": "THIS IS HOW GOD SHOWED HIS LOVE AMONG US HE SENT HIS ONE AND ONLY SON INTO THE WORLD THAT WE MIGHT LIVE THROUGH HIM",
+      "hint": "Complete the verse: 1john 4:9",
+      "reference": "1john 4:9"
+    },
+    {
+      "fullPhrase": "DEAR FRIENDS SINCE GOD LOVED US IN THIS WAY WE SHOULD LOVE ONE ANOTHER",
+      "hint": "Complete the verse: 1john 4:11",
+      "reference": "1john 4:11"
+    },
+    {
+      "fullPhrase": "NO ONE HAS EVER SEEN GOD BUT IF WE LOVE ONE ANOTHER GOD LIVES IN US AND HIS LOVE REACHES PERFECTION WITHIN US",
+      "hint": "Complete the verse: 1john 4:12",
+      "reference": "1john 4:12"
+    },
+    {
+      "fullPhrase": "WE KNOW THAT WE LIVE IN HIM AND HE LIVES IN US BECAUSE HE HAS GIVEN US A MEASURE OF HIS SPIRIT",
+      "hint": "Complete the verse: 1john 4:13",
+      "reference": "1john 4:13"
+    },
+    {
+      "fullPhrase": "MOREOVER WE HAVE SEEN FOR OURSELVES AND TESTIFY THAT THE FATHER HAS SENT THE SON TO BE THE SAVIOR OF THE WORLD",
+      "hint": "Complete the verse: 1john 4:14",
+      "reference": "1john 4:14"
+    },
+    {
+      "fullPhrase": "WHOEVER ACKNOWLEDGES THAT JESUS CHRIST IS THE SON OF GOD GOD LIVES IN THEM AND THEY LIVE IN GOD",
+      "hint": "Complete the verse: 1john 4:15",
+      "reference": "1john 4:15"
+    },
+    {
+      "fullPhrase": "WE LOVE BECAUSE GOD FIRST LOVED US",
+      "hint": "Complete the verse: 1john 4:19",
+      "reference": "1john 4:19"
+    }
   ],
   "guessPhraseChallenges": [
-    { "phrase": "THE LORD IS MY LIGHT AND MY SALVATION", "hint": "Psalm of trust in divine protection.", "reference": "Psalm 27:1" },
-    { "phrase": "I CAN DO ALL THINGS THROUGH CHRIST", "hint": "Declaration of sufficiency through faith.", "reference": "Philippians 4:13" },
-    { "phrase": "LOVE NEVER FAILS", "hint": "The quality of love that remains forever.", "reference": "1 Corinthians 13:8" },
-    { "phrase": "I AM THE ALPHA AND THE OMEGA", "hint": "Divine title of the beginning and the end.", "reference": "Revelation 1:8" },
-    { "phrase": "THE TRUTH WILL SET YOU FREE", "hint": "Jesus' words on truth and freedom.", "reference": "John 8:32" },
-    { "phrase": "BE STRONG AND COURAGEOUS", "hint": "Divine command given to Joshua.", "reference": "Joshua 1:9" },
-    { "phrase": "THE LORD IS MY SHEPHERD", "hint": "Famous opening of the Shepherd's psalm.", "reference": "Psalm 23:1" },
-    { "phrase": "PRAY CONTINUALLY", "hint": "Apostolic exhortation to continuous prayer.", "reference": "1 Thessalonians 5:17" },
-    { "phrase": "I AM THE WAY THE TRUTH AND THE LIFE", "hint": "Jesus as unique access to the Father.", "reference": "John 14:6" },
-    { "phrase": "BELIEVE IN THE LORD JESUS AND YOU WILL BE SAVED", "hint": "The message of salvation to the jailer.", "reference": "Acts 16:31" },
-    { "phrase": "MY PEACE I GIVE YOU I DO NOT GIVE TO YOU AS THE WORLD GIVES", "hint": "The singular peace that Jesus grants.", "reference": "John 14:27" },
-    { "phrase": "THE BLOOD OF JESUS HIS SON PURIFIES US FROM ALL SIN", "hint": "The purifying power of Jesus' sacrifice.", "reference": "1 John 1:7" },
-    { "phrase": "DEAR FRIENDS LET US LOVE ONE ANOTHER", "hint": "The command of brotherly love.", "reference": "1 John 4:7" },
-    { "phrase": "THE FEAR OF THE LORD IS THE BEGINNING OF WISDOM", "hint": "Foundation of true knowledge.", "reference": "Proverbs 1:7" },
-    { "phrase": "DO IT ALL FOR THE GLORY OF GOD", "hint": "Purpose of every action of the believer.", "reference": "1 Corinthians 10:31" },
-    { "phrase": "CHRIST LIVES IN ME", "hint": "Declaration of new life in faith.", "reference": "Galatians 2:20" }
+    {
+      "phrase": "THE LORD IS MY LIGHT AND MY SALVATION",
+      "hint": "Psalm of trust in divine protection.",
+      "reference": "Psalm 27:1"
+    },
+    {
+      "phrase": "I CAN DO ALL THINGS THROUGH CHRIST",
+      "hint": "Declaration of sufficiency through faith.",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "phrase": "LOVE NEVER FAILS",
+      "hint": "The quality of love that remains forever.",
+      "reference": "1 Corinthians 13:8"
+    },
+    {
+      "phrase": "I AM THE ALPHA AND THE OMEGA",
+      "hint": "Divine title of the beginning and the end.",
+      "reference": "Revelation 1:8"
+    },
+    {
+      "phrase": "THE TRUTH WILL SET YOU FREE",
+      "hint": "Jesus' words on truth and freedom.",
+      "reference": "John 8:32"
+    },
+    {
+      "phrase": "BE STRONG AND COURAGEOUS",
+      "hint": "Divine command given to Joshua.",
+      "reference": "Joshua 1:9"
+    },
+    {
+      "phrase": "THE LORD IS MY SHEPHERD",
+      "hint": "Famous opening of the Shepherd's psalm.",
+      "reference": "Psalm 23:1"
+    },
+    {
+      "phrase": "PRAY CONTINUALLY",
+      "hint": "Apostolic exhortation to continuous prayer.",
+      "reference": "1 Thessalonians 5:17"
+    },
+    {
+      "phrase": "I AM THE WAY THE TRUTH AND THE LIFE",
+      "hint": "Jesus as unique access to the Father.",
+      "reference": "John 14:6"
+    },
+    {
+      "phrase": "BELIEVE IN THE LORD JESUS AND YOU WILL BE SAVED",
+      "hint": "The message of salvation to the jailer.",
+      "reference": "Acts 16:31"
+    },
+    {
+      "phrase": "MY PEACE I GIVE YOU I DO NOT GIVE TO YOU AS THE WORLD GIVES",
+      "hint": "The singular peace that Jesus grants.",
+      "reference": "John 14:27"
+    },
+    {
+      "phrase": "THE BLOOD OF JESUS HIS SON PURIFIES US FROM ALL SIN",
+      "hint": "The purifying power of Jesus' sacrifice.",
+      "reference": "1 John 1:7"
+    },
+    {
+      "phrase": "DEAR FRIENDS LET US LOVE ONE ANOTHER",
+      "hint": "The command of brotherly love.",
+      "reference": "1 John 4:7"
+    },
+    {
+      "phrase": "THE FEAR OF THE LORD IS THE BEGINNING OF WISDOM",
+      "hint": "Foundation of true knowledge.",
+      "reference": "Proverbs 1:7"
+    },
+    {
+      "phrase": "DO IT ALL FOR THE GLORY OF GOD",
+      "hint": "Purpose of every action of the believer.",
+      "reference": "1 Corinthians 10:31"
+    },
+    {
+      "phrase": "CHRIST LIVES IN ME",
+      "hint": "Declaration of new life in faith.",
+      "reference": "Galatians 2:20"
+    },
+    {
+      "phrase": "THE LORD IS MY SHEPHERD I AM NEVER IN NEED",
+      "hint": "Discover the verse: Psalms 23:1",
+      "reference": "Psalms 23:1"
+    },
+    {
+      "phrase": "HE LAYS ME DOWN IN GREEN PASTURES\nHE GENTLY LEADS ME TO WATERS OF REST",
+      "hint": "Discover the verse: Psalms 23:2",
+      "reference": "Psalms 23:2"
+    },
+    {
+      "phrase": "HE REFRESHES MY LIFE\nHE GUIDES ME ALONG PATHS THAT ARE STRAIGHT\nTRUE TO HIS NAME",
+      "hint": "Discover the verse: Psalms 23:3",
+      "reference": "Psalms 23:3"
+    },
+    {
+      "phrase": "AND WHEN MY WAY LIES THROUGH A VALLEY OF GLOOM\nI FEAR NO EVIL FOR YOU ARE WITH ME\nYOUR ROD AND YOUR STAFF COMFORT ME",
+      "hint": "Discover the verse: Psalms 23:4",
+      "reference": "Psalms 23:4"
+    },
+    {
+      "phrase": "YOU SPREAD A TABLE FOR ME\nIN FACE OF MY FOES\nWITH OIL YOU ANOINT MY HEAD\nAND MY CUP RUNS OVER",
+      "hint": "Discover the verse: Psalms 23:5",
+      "reference": "Psalms 23:5"
+    },
+    {
+      "phrase": "SHOUT ALL THE EARTH TO THE LORD",
+      "hint": "Discover the verse: Psalms 100:1",
+      "reference": "Psalms 100:1"
+    },
+    {
+      "phrase": "SERVE THE LORD WITH GLADNESS\nAPPROACH HIM WITH RINGING CRIES",
+      "hint": "Discover the verse: Psalms 100:2",
+      "reference": "Psalms 100:2"
+    },
+    {
+      "phrase": "BE SURE THAT THE LORD ALONE IS GOD\nIT IS HE WHO HAS MADE US AND HIS WE ARE\nHIS PEOPLE THE SHEEP OF HIS PASTURE",
+      "hint": "Discover the verse: Psalms 100:3",
+      "reference": "Psalms 100:3"
+    },
+    {
+      "phrase": "ENTER HIS GATES WITH THANKSGIVING\nHIS COURTS WITH PRAISE\nGIVE THANKS TO HIM BLESS HIS NAME",
+      "hint": "Discover the verse: Psalms 100:4",
+      "reference": "Psalms 100:4"
+    },
+    {
+      "phrase": "FOR THE LORD IS GOOD HIS LOVE IS FOREVER\nAND TO ALL AGES ENDURES HIS FAITHFULNESS",
+      "hint": "Discover the verse: Psalms 100:5",
+      "reference": "Psalms 100:5"
+    },
+    {
+      "phrase": "ON SEEING THE CROWDS OF PEOPLE JESUS WENT UP THE HILL AND WHEN HE HAD TAKEN HIS SEAT HIS DISCIPLES CAME UP TO HIM",
+      "hint": "Discover the verse: Matthew 5:1",
+      "reference": "Matthew 5:1"
+    },
+    {
+      "phrase": "AND HE BEGAN TO TEACH THEM SAYING",
+      "hint": "Discover the verse: Matthew 5:2",
+      "reference": "Matthew 5:2"
+    },
+    {
+      "phrase": "“BLESSED ARE THE POOR IN SPIRIT FOR THEIRS IS THE KINGDOM OF HEAVEN",
+      "hint": "Discover the verse: Matthew 5:3",
+      "reference": "Matthew 5:3"
+    },
+    {
+      "phrase": "BLESSED ARE THE MOURNERS FOR THEY WILL BE COMFORTED",
+      "hint": "Discover the verse: Matthew 5:4",
+      "reference": "Matthew 5:4"
+    },
+    {
+      "phrase": "BLESSED ARE THE GENTLE FOR THEY WILL INHERIT THE EARTH",
+      "hint": "Discover the verse: Matthew 5:5",
+      "reference": "Matthew 5:5"
+    },
+    {
+      "phrase": "BLESSED ARE THOSE WHO HUNGER AND THIRST FOR RIGHTEOUSNESS FOR THEY WILL BE SATISFIED",
+      "hint": "Discover the verse: Matthew 5:6",
+      "reference": "Matthew 5:6"
+    },
+    {
+      "phrase": "BLESSED ARE THE MERCIFUL FOR THEY WILL FIND MERCY",
+      "hint": "Discover the verse: Matthew 5:7",
+      "reference": "Matthew 5:7"
+    },
+    {
+      "phrase": "BLESSED ARE THE PURE IN HEART FOR THEY WILL SEE GOD",
+      "hint": "Discover the verse: Matthew 5:8",
+      "reference": "Matthew 5:8"
+    },
+    {
+      "phrase": "BLESSED ARE THE PEACEMAKERS FOR THEY WILL BE CALLED CHILDREN OF GOD",
+      "hint": "Discover the verse: Matthew 5:9",
+      "reference": "Matthew 5:9"
+    },
+    {
+      "phrase": "BLESSED ARE THOSE WHO HAVE BEEN PERSECUTED IN THE CAUSE OF RIGHTEOUSNESS FOR THEIRS IS THE KINGDOM OF HEAVEN",
+      "hint": "Discover the verse: Matthew 5:10",
+      "reference": "Matthew 5:10"
+    },
+    {
+      "phrase": "“BLESSED ARE YOU WHEN PEOPLE INSULT YOU AND PERSECUTE YOU AND SAY ALL KINDS OF EVIL LIES ABOUT YOU BECAUSE OF ME",
+      "hint": "Discover the verse: Matthew 5:11",
+      "reference": "Matthew 5:11"
+    },
+    {
+      "phrase": "IT IS YOU WHO ARE THE LIGHT OF THE WORLD A TOWN THAT STANDS ON A HILL CANNOT BE HIDDEN",
+      "hint": "Discover the verse: Matthew 5:14",
+      "reference": "Matthew 5:14"
+    },
+    {
+      "phrase": "PEOPLE DO NOT LIGHT A LAMP AND PUT IT UNDER A BASKET BUT ON THE LAMPSTAND WHERE IT GIVES LIGHT TO EVERYONE IN THE HOUSE",
+      "hint": "Discover the verse: Matthew 5:15",
+      "reference": "Matthew 5:15"
+    },
+    {
+      "phrase": "IN THE BEGINNING THE WORD WAS\nAND THE WORD WAS WITH GOD\nAND THE WORD WAS GOD",
+      "hint": "Discover the verse: John 1:1",
+      "reference": "John 1:1"
+    },
+    {
+      "phrase": "HE WAS IN THE BEGINNING WITH GOD",
+      "hint": "Discover the verse: John 1:2",
+      "reference": "John 1:2"
+    },
+    {
+      "phrase": "THROUGH HIM ALL THINGS CAME INTO BEING\nAND NOTHING CAME INTO BEING APART FROM HIM",
+      "hint": "Discover the verse: John 1:3",
+      "reference": "John 1:3"
+    },
+    {
+      "phrase": "THAT WHICH CAME INTO BEING IN HIM WAS LIFE\nAND THE LIFE WAS THE LIGHT OF HUMANITY",
+      "hint": "Discover the verse: John 1:4",
+      "reference": "John 1:4"
+    },
+    {
+      "phrase": "AND THE LIGHT SHINES IN THE DARKNESS\nAND THE DARKNESS NEVER OVERPOWERED IT",
+      "hint": "Discover the verse: John 1:5",
+      "reference": "John 1:5"
+    },
+    {
+      "phrase": "THERE APPEARED A MAN SENT FROM GOD WHOSE NAME WAS JOHN",
+      "hint": "Discover the verse: John 1:6",
+      "reference": "John 1:6"
+    },
+    {
+      "phrase": "HE CAME AS A WITNESS – TO BEAR WITNESS TO THE LIGHT\nSO THAT THROUGH HIM EVERYONE MIGHT BELIEVE",
+      "hint": "Discover the verse: John 1:7",
+      "reference": "John 1:7"
+    },
+    {
+      "phrase": "HE WAS NOT THE LIGHT\nBUT HE CAME TO BEAR WITNESS TO THE LIGHT",
+      "hint": "Discover the verse: John 1:8",
+      "reference": "John 1:8"
+    },
+    {
+      "phrase": "THAT WAS THE TRUE LIGHT WHICH ENLIGHTENS EVERYONE COMING INTO THE WORLD",
+      "hint": "Discover the verse: John 1:9",
+      "reference": "John 1:9"
+    },
+    {
+      "phrase": "HE WAS IN THE WORLD\nAND THROUGH HIM THE WORLD CAME INTO BEING –\nYET THE WORLD DID NOT KNOW HIM",
+      "hint": "Discover the verse: John 1:10",
+      "reference": "John 1:10"
+    },
+    {
+      "phrase": "HE CAME TO HIS OWN –\nYET HIS OWN DID NOT RECEIVE HIM",
+      "hint": "Discover the verse: John 1:11",
+      "reference": "John 1:11"
+    },
+    {
+      "phrase": "BUT TO ALL WHO DID RECEIVE HIM HE GAVE POWER TO BECOME CHILDREN OF GOD –\nTO THOSE WHO BELIEVE IN HIS NAME",
+      "hint": "Discover the verse: John 1:12",
+      "reference": "John 1:12"
+    },
+    {
+      "phrase": "FOR NOT TO NATURAL CONCEPTION NOR TO HUMAN INSTINCTS NOR TO HUMAN WILL DID THEY OWE THE NEW LIFE\nBUT TO GOD",
+      "hint": "Discover the verse: John 1:13",
+      "reference": "John 1:13"
+    },
+    {
+      "phrase": "OUT OF HIS FULLNESS WE HAVE ALL RECEIVED SOME GIFT\nGIFT AFTER GIFT OF LOVE",
+      "hint": "Discover the verse: John 1:16",
+      "reference": "John 1:16"
+    },
+    {
+      "phrase": "FOR THE LAW WAS GIVEN THROUGH MOSES\nLOVE AND TRUTH CAME THROUGH JESUS CHRIST",
+      "hint": "Discover the verse: John 1:17",
+      "reference": "John 1:17"
+    },
+    {
+      "phrase": "NO ONE HAS EVER YET SEEN GOD\nGOD THE ONLY SON WHO IS EVER WITH THE FATHER –\nHE HAS REVEALED HIM",
+      "hint": "Discover the verse: John 1:18",
+      "reference": "John 1:18"
+    },
+    {
+      "phrase": "WHEN THE RELIGIOUS AUTHORITIES IN JERUSALEM SENT SOME PRIESTS AND LEVITES TO ASK JOHN – “WHO ARE YOU”",
+      "hint": "Discover the verse: John 1:19",
+      "reference": "John 1:19"
+    },
+    {
+      "phrase": "HE TOLD THEM CLEARLY AND SIMPLY “I AM NOT THE CHRIST”",
+      "hint": "Discover the verse: John 1:20",
+      "reference": "John 1:20"
+    },
+    {
+      "phrase": "DO NOT LET YOUR HEARTS BE TROUBLED BELIEVE IN GOD BELIEVE ALSO IN ME",
+      "hint": "Discover the verse: John 14:1",
+      "reference": "John 14:1"
+    },
+    {
+      "phrase": "AND SINCE I GO AND PREPARE A PLACE FOR YOU I WILL RETURN AND TAKE YOU TO BE WITH ME SO THAT YOU MAY BE WHERE I AM",
+      "hint": "Discover the verse: John 14:3",
+      "reference": "John 14:3"
+    },
+    {
+      "phrase": "AND YOU KNOW THE WAY TO THE PLACE WHERE I AM GOING”",
+      "hint": "Discover the verse: John 14:4",
+      "reference": "John 14:4"
+    },
+    {
+      "phrase": "“WE DO NOT KNOW WHERE YOU ARE GOING MASTER” SAID THOMAS “SO HOW CAN WE KNOW THE WAY”",
+      "hint": "Discover the verse: John 14:5",
+      "reference": "John 14:5"
+    },
+    {
+      "phrase": "JESUS ANSWERED “I AM THE WAY AND THE TRUTH AND THE LIFE NO ONE EVER COMES TO THE FATHER EXCEPT THROUGH ME",
+      "hint": "Discover the verse: John 14:6",
+      "reference": "John 14:6"
+    },
+    {
+      "phrase": "“MASTER SHOW US THE FATHER” SAID PHILIP “AND WE WILL BE SATISFIED”",
+      "hint": "Discover the verse: John 14:8",
+      "reference": "John 14:8"
+    },
+    {
+      "phrase": "WHATEVER YOU ASK IN MY NAME I WILL DO SO THAT THE FATHER MAY BE HONORED IN THE SON",
+      "hint": "Discover the verse: John 14:13",
+      "reference": "John 14:13"
+    },
+    {
+      "phrase": "IF YOU ASK ANYTHING IN MY NAME I WILL DO IT",
+      "hint": "Discover the verse: John 14:14",
+      "reference": "John 14:14"
+    },
+    {
+      "phrase": "IF YOU LOVE ME YOU WILL LAY MY COMMANDS TO HEART",
+      "hint": "Discover the verse: John 14:15",
+      "reference": "John 14:15"
+    },
+    {
+      "phrase": "AND I WILL ASK THE FATHER AND HE WILL GIVE YOU ANOTHER HELPER TO BE WITH YOU ALWAYS – THE SPIRIT OF TRUTH",
+      "hint": "Discover the verse: John 14:16",
+      "reference": "John 14:16"
+    },
+    {
+      "phrase": "I WILL NOT LEAVE YOU BEREAVED I WILL COME TO YOU",
+      "hint": "Discover the verse: John 14:18",
+      "reference": "John 14:18"
+    },
+    {
+      "phrase": "IN A LITTLE WHILE THE WORLD WILL SEE ME NO MORE BUT YOU WILL STILL SEE ME BECAUSE I AM LIVING YOU WILL BE LIVING ALSO",
+      "hint": "Discover the verse: John 14:19",
+      "reference": "John 14:19"
+    },
+    {
+      "phrase": "AT THAT TIME YOU WILL RECOGNIZE THAT I AM IN UNION WITH THE FATHER AND YOU WITH ME AND I WITH YOU",
+      "hint": "Discover the verse: John 14:20",
+      "reference": "John 14:20"
+    },
+    {
+      "phrase": "THERE IS THEREFORE NOW NO CONDEMNATION FOR THOSE WHO ARE IN UNION WITH CHRIST JESUS",
+      "hint": "Discover the verse: Romans 8:1",
+      "reference": "Romans 8:1"
+    },
+    {
+      "phrase": "FOR THROUGH YOUR UNION WITH CHRIST JESUS THE LAW OF THE LIFEGIVING SPIRIT HAS SET YOU FREE FROM THE LAW OF SIN AND DEATH",
+      "hint": "Discover the verse: Romans 8:2",
+      "reference": "Romans 8:2"
+    },
+    {
+      "phrase": "THEY WHO FOLLOW THEIR EARTHLY NATURE ARE EARTHLYMINDED WHILE THEY WHO FOLLOW THE SPIRIT ARE SPIRITUALLY MINDED",
+      "hint": "Discover the verse: Romans 8:5",
+      "reference": "Romans 8:5"
+    },
+    {
+      "phrase": "TO BE EARTHLYMINDED MEANS DEATH TO BE SPIRITUALLY MINDED MEANS LIFE AND PEACE",
+      "hint": "Discover the verse: Romans 8:6",
+      "reference": "Romans 8:6"
+    },
+    {
+      "phrase": "THEY WHO ARE EARTHLY CANNOT PLEASE GOD",
+      "hint": "Discover the verse: Romans 8:8",
+      "reference": "Romans 8:8"
+    },
+    {
+      "phrase": "SO THEN FRIENDS WE OWE NOTHING TO OUR EARTHLY NATURE THAT WE SHOULD LIVE IN OBEDIENCE TO IT",
+      "hint": "Discover the verse: Romans 8:12",
+      "reference": "Romans 8:12"
+    },
+    {
+      "phrase": "ALL WHO ARE GUIDED BY THE SPIRIT OF GOD ARE SONS OF GOD",
+      "hint": "Discover the verse: Romans 8:14",
+      "reference": "Romans 8:14"
+    },
+    {
+      "phrase": "THE SPIRIT HIMSELF UNITES WITH OUR SPIRITS IN BEARING WITNESS TO OUR BEING GOD’S CHILDREN",
+      "hint": "Discover the verse: Romans 8:16",
+      "reference": "Romans 8:16"
+    },
+    {
+      "phrase": "ALL NATURE AWAITS WITH EAGER EXPECTATION THE APPEARING OF THE SONS OF GOD",
+      "hint": "Discover the verse: Romans 8:19",
+      "reference": "Romans 8:19"
+    },
+    {
+      "phrase": "FOR NATURE WAS MADE SUBJECT TO IMPERFECTION – NOT BY ITS OWN CHOICE BUT OWING TO HIM WHO MADE IT SO –",
+      "hint": "Discover the verse: Romans 8:20",
+      "reference": "Romans 8:20"
+    },
+    {
+      "phrase": "LOVE IS LONGSUFFERING AND KIND LOVE IS NEVER ENVIOUS NEVER BOASTFUL NEVER CONCEITED NEVER BEHAVES UNBECOMINGLY",
+      "hint": "Discover the verse: 1corinthians 13:4",
+      "reference": "1corinthians 13:4"
+    },
+    {
+      "phrase": "LOVE IS NEVER SELFSEEKING NEVER PROVOKED NEVER RECKONS UP HER WRONGS",
+      "hint": "Discover the verse: 1corinthians 13:5",
+      "reference": "1corinthians 13:5"
+    },
+    {
+      "phrase": "LOVE NEVER REJOICES AT EVIL BUT REJOICES IN THE TRIUMPH OF TRUTH",
+      "hint": "Discover the verse: 1corinthians 13:6",
+      "reference": "1corinthians 13:6"
+    },
+    {
+      "phrase": "LOVE BEARS WITH ALL THINGS EVER TRUSTFUL EVER HOPEFUL EVER PATIENT",
+      "hint": "Discover the verse: 1corinthians 13:7",
+      "reference": "1corinthians 13:7"
+    },
+    {
+      "phrase": "FOR OUR KNOWLEDGE IS INCOMPLETE AND OUR PREACHING IS INCOMPLETE",
+      "hint": "Discover the verse: 1corinthians 13:9",
+      "reference": "1corinthians 13:9"
+    },
+    {
+      "phrase": "BUT WHEN THE PERFECT HAS COME THAT WHICH IS INCOMPLETE WILL BE DONE WITH",
+      "hint": "Discover the verse: 1corinthians 13:10",
+      "reference": "1corinthians 13:10"
+    },
+    {
+      "phrase": "MEANWHILE FAITH HOPE AND LOVE ENDURE – THESE THREE BUT THE GREATEST OF THESE IS LOVE",
+      "hint": "Discover the verse: 1corinthians 13:13",
+      "reference": "1corinthians 13:13"
+    },
+    {
+      "phrase": "CHILDREN OBEY YOUR PARENTS AS CHILDREN OF THE LORD FOR THAT IS BUT RIGHT",
+      "hint": "Discover the verse: Ephesians 6:1",
+      "reference": "Ephesians 6:1"
+    },
+    {
+      "phrase": "‘HONOR YOUR FATHER AND MOTHER’ – THIS IS THE FIRST COMMANDMENT WITH A PROMISE –",
+      "hint": "Discover the verse: Ephesians 6:2",
+      "reference": "Ephesians 6:2"
+    },
+    {
+      "phrase": "‘SO THAT YOU MAY PROSPER AND HAVE A LONG LIFE ON EARTH’",
+      "hint": "Discover the verse: Ephesians 6:3",
+      "reference": "Ephesians 6:3"
+    },
+    {
+      "phrase": "AND FATHERS DO NOT IRRITATE YOUR CHILDREN BUT BRING THEM UP WITH CHRISTIAN DISCIPLINE AND INSTRUCTION",
+      "hint": "Discover the verse: Ephesians 6:4",
+      "reference": "Ephesians 6:4"
+    },
+    {
+      "phrase": "SLAVES OBEY YOUR EARTHLY MASTERS WITH ANXIOUS CARE GIVING THEM UNGRUDGING SERVICE AS IF OBEYING THE CHRIST",
+      "hint": "Discover the verse: Ephesians 6:5",
+      "reference": "Ephesians 6:5"
+    },
+    {
+      "phrase": "GIVE YOUR SERVICE HEARTILY AND CHEERFULLY AS WORKING FOR THE MASTER AND NOT FOR PEOPLE",
+      "hint": "Discover the verse: Ephesians 6:7",
+      "reference": "Ephesians 6:7"
+    },
+    {
+      "phrase": "FOR THE FUTURE FIND STRENGTH IN YOUR UNION WITH THE LORD AND IN THE POWER WHICH COMES FROM HIS MIGHT",
+      "hint": "Discover the verse: Ephesians 6:10",
+      "reference": "Ephesians 6:10"
+    },
+    {
+      "phrase": "PUT ON THE FULL ARMOR OF GOD SO THAT YOU MAY BE ABLE TO STAND YOUR GROUND AGAINST THE STRATAGEMS OF THE DEVIL",
+      "hint": "Discover the verse: Ephesians 6:11",
+      "reference": "Ephesians 6:11"
+    },
+    {
+      "phrase": "STAND YOUR GROUND THEN WITH TRUTH FOR YOUR BELT AND WITH RIGHTEOUSNESS FOR YOUR BREASTPLATE",
+      "hint": "Discover the verse: Ephesians 6:14",
+      "reference": "Ephesians 6:14"
+    },
+    {
+      "phrase": "AND WITH THE READINESS TO SERVE THE GOOD NEWS OF PEACE AS SHOES FOR YOUR FEET",
+      "hint": "Discover the verse: Ephesians 6:15",
+      "reference": "Ephesians 6:15"
+    },
+    {
+      "phrase": "PRAY IN SPIRIT AT ALL TIMES BE INTENT ON THIS WITH UNWEARYING PERSEVERANCE AND SUPPLICATION FOR ALL CHRIST’S PEOPLE –",
+      "hint": "Discover the verse: Ephesians 6:18",
+      "reference": "Ephesians 6:18"
+    },
+    {
+      "phrase": "I ENTREAT EUODIA AND I ENTREAT SYNTYCHE TO LIVE IN HARMONY IN UNION WITH THE LORD",
+      "hint": "Discover the verse: Philippians 4:2",
+      "reference": "Philippians 4:2"
+    },
+    {
+      "phrase": "ALL JOY BE YOURS AT ALL TIMES IN YOUR UNION WITH THE LORD AGAIN I REPEAT – ALL JOY BE YOURS",
+      "hint": "Discover the verse: Philippians 4:4",
+      "reference": "Philippians 4:4"
+    },
+    {
+      "phrase": "LET YOUR FORBEARING SPIRIT BE PLAIN TO EVERYONE THE LORD IS NEAR",
+      "hint": "Discover the verse: Philippians 4:5",
+      "reference": "Philippians 4:5"
+    },
+    {
+      "phrase": "I CAN DO EVERYTHING IN THE STRENGTH OF HIM WHO MAKES ME STRONG",
+      "hint": "Discover the verse: Philippians 4:13",
+      "reference": "Philippians 4:13"
+    },
+    {
+      "phrase": "YET YOU HAVE ACTED NOBLY IN SHARING MY TROUBLES",
+      "hint": "Discover the verse: Philippians 4:14",
+      "reference": "Philippians 4:14"
+    },
+    {
+      "phrase": "INDEED EVEN WHILE I WAS STILL IN THESSALONICA YOU SENT MORE THAN ONCE TO RELIEVE MY WANTS",
+      "hint": "Discover the verse: Philippians 4:16",
+      "reference": "Philippians 4:16"
+    },
+    {
+      "phrase": "TO HIM OUR GOD AND FATHER BE ASCRIBED ALL GLORY FOR EVERY AND EVER AMEN",
+      "hint": "Discover the verse: Philippians 4:20",
+      "reference": "Philippians 4:20"
+    },
+    {
+      "phrase": "JAMES A SERVANT OF GOD AND OF THE LORD JESUS CHRIST GREETS THE TWELVE TRIBES THAT ARE LIVING ABROAD",
+      "hint": "Discover the verse: James 1:1",
+      "reference": "James 1:1"
+    },
+    {
+      "phrase": "MY FRIENDS WHATEVER TRIALS YOU MAY FACE FROM TIME TO TIME ALWAYS REGARD THEM AS A REASON FOR REJOICING",
+      "hint": "Discover the verse: James 1:2",
+      "reference": "James 1:2"
+    },
+    {
+      "phrase": "KNOWING AS YOU DO THAT THE TESTING OF YOUR FAITH DEVELOPS ENDURANCE",
+      "hint": "Discover the verse: James 1:3",
+      "reference": "James 1:3"
+    },
+    {
+      "phrase": "AND LET ENDURANCE DO ITS WORK PERFECTLY SO THAT YOU MAY BE ALTOGETHER PERFECT AND IN NO RESPECT LACKING",
+      "hint": "Discover the verse: James 1:4",
+      "reference": "James 1:4"
+    },
+    {
+      "phrase": "SUCH A PERSON MUST NOT EXPECT THAT THEY WILL RECEIVE ANYTHING FROM THE LORD",
+      "hint": "Discover the verse: James 1:7",
+      "reference": "James 1:7"
+    },
+    {
+      "phrase": "VACILLATING AS THEY ARE IRRESOLUTE AT EVERY TURN",
+      "hint": "Discover the verse: James 1:8",
+      "reference": "James 1:8"
+    },
+    {
+      "phrase": "LET A FOLLOWER IN HUMBLE CIRCUMSTANCES BE PROUD OF THEIR EXALTED POSITION",
+      "hint": "Discover the verse: James 1:9",
+      "reference": "James 1:9"
+    },
+    {
+      "phrase": "BUT A RICH FOLLOWER OF THEIR HUMILIATION FOR THE RICH WILL PASS AWAY LIKE A WILD FLOWER",
+      "hint": "Discover the verse: James 1:10",
+      "reference": "James 1:10"
+    },
+    {
+      "phrase": "A MAN IS IN EVERY CASE TEMPTED BY THEIR OWN PASSIONS – ALLURED AND ENTICED BY THEM",
+      "hint": "Discover the verse: James 1:14",
+      "reference": "James 1:14"
+    },
+    {
+      "phrase": "THEN PASSION CONCEIVES AND GIVES BIRTH TO SIN AND SIN ON REACHING MATURITY BRINGS FORTH DEATH",
+      "hint": "Discover the verse: James 1:15",
+      "reference": "James 1:15"
+    },
+    {
+      "phrase": "DO NOT BE DECEIVED MY DEAR FRIENDS",
+      "hint": "Discover the verse: James 1:16",
+      "reference": "James 1:16"
+    },
+    {
+      "phrase": "MARK THIS MY DEAR FRIENDS – LET EVERYONE BE QUICK TO LISTEN SLOW TO SPEAK AND SLOW TO GET ANGRY",
+      "hint": "Discover the verse: James 1:19",
+      "reference": "James 1:19"
+    },
+    {
+      "phrase": "FOR HUMAN ANGER DOES NOT FORWARD THE RIGHTEOUS PURPOSE OF GOD",
+      "hint": "Discover the verse: James 1:20",
+      "reference": "James 1:20"
+    },
+    {
+      "phrase": "THIS IS THE WAY TO RECOGNIZE THE SPIRIT OF GOD THOSE WHO ACKNOWLEDGE JESUS CHRIST AS COME IN THE FLESH HAVE GOD’S SPIRIT",
+      "hint": "Discover the verse: 1john 4:2",
+      "reference": "1john 4:2"
+    },
+    {
+      "phrase": "THOSE PEOPLE BELONG TO THE WORLD AND THEREFORE THEY SPEAK AS THE WORLD SPEAKS AND THE WORLD LISTENS TO THEM",
+      "hint": "Discover the verse: 1john 4:5",
+      "reference": "1john 4:5"
+    },
+    {
+      "phrase": "DEAR FRIENDS LET US LOVE ONE ANOTHER BECAUSE LOVE COMES FROM GOD AND EVERYONE WHO LOVES IS A CHILD OF GOD AND KNOWS GOD",
+      "hint": "Discover the verse: 1john 4:7",
+      "reference": "1john 4:7"
+    },
+    {
+      "phrase": "THOSE WHO DO NOT LOVE KNOW NOTHING OF GOD FOR GOD IS LOVE",
+      "hint": "Discover the verse: 1john 4:8",
+      "reference": "1john 4:8"
+    },
+    {
+      "phrase": "THIS IS HOW GOD SHOWED HIS LOVE AMONG US HE SENT HIS ONE AND ONLY SON INTO THE WORLD THAT WE MIGHT LIVE THROUGH HIM",
+      "hint": "Discover the verse: 1john 4:9",
+      "reference": "1john 4:9"
+    },
+    {
+      "phrase": "DEAR FRIENDS SINCE GOD LOVED US IN THIS WAY WE SHOULD LOVE ONE ANOTHER",
+      "hint": "Discover the verse: 1john 4:11",
+      "reference": "1john 4:11"
+    },
+    {
+      "phrase": "NO ONE HAS EVER SEEN GOD BUT IF WE LOVE ONE ANOTHER GOD LIVES IN US AND HIS LOVE REACHES PERFECTION WITHIN US",
+      "hint": "Discover the verse: 1john 4:12",
+      "reference": "1john 4:12"
+    },
+    {
+      "phrase": "WE KNOW THAT WE LIVE IN HIM AND HE LIVES IN US BECAUSE HE HAS GIVEN US A MEASURE OF HIS SPIRIT",
+      "hint": "Discover the verse: 1john 4:13",
+      "reference": "1john 4:13"
+    },
+    {
+      "phrase": "MOREOVER WE HAVE SEEN FOR OURSELVES AND TESTIFY THAT THE FATHER HAS SENT THE SON TO BE THE SAVIOR OF THE WORLD",
+      "hint": "Discover the verse: 1john 4:14",
+      "reference": "1john 4:14"
+    },
+    {
+      "phrase": "WHOEVER ACKNOWLEDGES THAT JESUS CHRIST IS THE SON OF GOD GOD LIVES IN THEM AND THEY LIVE IN GOD",
+      "hint": "Discover the verse: 1john 4:15",
+      "reference": "1john 4:15"
+    },
+    {
+      "phrase": "WE LOVE BECAUSE GOD FIRST LOVED US",
+      "hint": "Discover the verse: 1john 4:19",
+      "reference": "1john 4:19"
+    }
   ]
 }

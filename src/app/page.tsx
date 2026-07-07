@@ -8,6 +8,7 @@ import { InstitutionalLogo } from '@/components/common/InstitutionalLogo';
 import { useGame } from '@/contexts/GameContext';
 import { Crown, School, Sparkles, Globe, ArrowRight, HelpCircle, BookOpen, Settings, ChevronLeft, ChevronRight, Trophy, Share2 } from 'lucide-react';
 import { dailyVerses } from '@/data/bibleMetadata';
+import { AgeGateModal } from '@/components/Trust/AgeGateModal';
 
 
 export default function WelcomePage() {
@@ -17,7 +18,8 @@ export default function WelcomePage() {
     language, 
     setLanguage, 
     t, 
-    hasConfiguredLanguage
+    hasConfiguredLanguage,
+    userSettings
   } = useGame();
 
   const [showOnboarding, setShowOnboarding] = useState(false);
@@ -107,6 +109,11 @@ export default function WelcomePage() {
         </main>
       </div>
     );
+  }
+
+  // 1.5 Age Gate Screen
+  if (hasConfiguredLanguage && !userSettings.ageVerified) {
+    return <AgeGateModal onVerify={() => {}} />;
   }
 
   // 2. Onboarding Modal Overlay

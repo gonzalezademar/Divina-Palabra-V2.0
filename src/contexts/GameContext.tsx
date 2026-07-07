@@ -4,6 +4,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect, useRe
 import * as Tone from 'tone';
 import { getTranslation, TranslationType } from '@/data/locales';
 import { getBibleData, BibleCatalog } from '@/data/bibleData';
+import { LearningProfile } from '@/services/learningEngine';
 
 type Team = {
   name: string;
@@ -21,6 +22,14 @@ export interface LessonType {
   language: 'es' | 'en';
   challenges: any[];
   reflectionQuestion: string;
+  doctrinalProfile?: string;
+}
+
+export type SyncStatus = 'idle' | 'syncing' | 'offline' | 'error';
+
+export interface UserSettings {
+  ageVerified: boolean;
+  isAdult: boolean;
 }
 
 interface GameContextType {
@@ -56,6 +65,14 @@ interface GameContextType {
   setActiveLesson: (lesson: LessonType | null) => void;
   hasConfiguredLanguage: boolean;
   setHasConfiguredLanguage: (val: boolean) => void;
+  userSettings: UserSettings;
+  setUserSettings: (settings: UserSettings) => void;
+  doctrinalProfile?: string;
+  setDoctrinalProfile: (profile: string | undefined) => void;
+  syncStatus: SyncStatus;
+  setSyncStatus: (status: SyncStatus) => void;
+  learningProfile: LearningProfile;
+  setLearningProfile: React.Dispatch<React.SetStateAction<LearningProfile>>;
 }
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -120,6 +137,16 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [isPremium, setIsPremiumState] = useState<boolean>(false);
   const [activeLesson, setActiveLesson] = useState<LessonType | null>(null);
   const [hasConfiguredLanguage, setHasConfiguredLanguage] = useState<boolean>(true);
+  const [userSettings, setUserSettingsState] = useState<UserSettings>({ ageVerified: false, isAdult: false });
+  const [doctrinalProfile, setDoctrinalProfileState] = useState<string | undefined>(undefined);
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('offline');
+  const [learningProfile, setLearningProfile] = useState<LearningProfile>({
+    bloomLevels: {},
+    competencies: {},
+    themes: {},
+    books: {},
+    totalChallenges: 0
+  });
   const lastPlayedTimesRef = useRef<Record<string, number>>({});
 
   const resetTeamStats = (teams: Team[]) => {
@@ -164,6 +191,24 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     if (savedPremium) {
       setIsPremiumState(JSON.parse(savedPremium));
     }
+
+    const savedUserSettings = localStorage.getItem('userSettings');
+    if (savedUserSettings) {
+      try {
+        const parsed = JSON.parse(savedUserSettings);
+        setUserSettingsState({
+          ageVerified: parsed.ageVerified ?? false,
+          isAdult: parsed.isAdult ?? false
+        });
+      } catch (e) {
+        console.error("Failed to parse user settings", e);
+      }
+    }
+
+    const savedProfile = localStorage.getItem('doctrinalProfile');
+    if (savedProfile) {
+      setDoctrinalProfileState(savedProfile);
+    }
   }, []);
 
   // Check URL query parameters for virtual classroom lessons
@@ -185,6 +230,9 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
             }
             if (lessonData.difficulty) {
               setDifficultyState(lessonData.difficulty);
+            }
+            if (lessonData.doctrinalProfile) {
+              setDoctrinalProfileState(lessonData.doctrinalProfile);
             }
             // For lessons, we default to single player/team or a clean setup
             setTeamsState([{ name: 'Alumno', score: 0, lives: INITIAL_LIVES }]);
@@ -244,6 +292,20 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('isPremium', JSON.stringify(premium));
   };
   
+  const setUserSettings = (settings: UserSettings) => {
+    setUserSettingsState(settings);
+    localStorage.setItem('userSettings', JSON.stringify(settings));
+  };
+  
+  const setDoctrinalProfile = (profile: string | undefined) => {
+    setDoctrinalProfileState(profile);
+    if (profile) {
+      localStorage.setItem('doctrinalProfile', profile);
+    } else {
+      localStorage.removeItem('doctrinalProfile');
+    }
+  };
+  
   const silenceAll = () => {
     try {
       if (typeof window !== 'undefined') {
@@ -258,6 +320,13 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     silenceAll();
     setGameMode(null);
     setActiveLesson(null);
+    setLearningProfile({
+      bloomLevels: {},
+      competencies: {},
+      themes: {},
+      books: {},
+      totalChallenges: 0
+    });
     // Clear URL parameter cleanly
     if (typeof window !== 'undefined' && window.history) {
       window.history.replaceState({}, document.title, window.location.pathname);
@@ -370,7 +439,11 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       isPremium, setIsPremium,
       t, bibleData,
       activeLesson, setActiveLesson,
-      hasConfiguredLanguage, setHasConfiguredLanguage
+      hasConfiguredLanguage, setHasConfiguredLanguage,
+      userSettings, setUserSettings,
+      doctrinalProfile, setDoctrinalProfile,
+      syncStatus, setSyncStatus,
+      learningProfile, setLearningProfile
     }}>
       {children}
     </GameContext.Provider>

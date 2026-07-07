@@ -15,12 +15,15 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Volume2, VolumeX, Home, RefreshCw, Pause } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { SyncIndicator } from '@/components/common/SyncIndicator';
+import { useCloudSync } from '@/hooks/useCloudSync';
 
 interface GameHeaderProps {
   onCancel?: () => void;
 }
 
 export function GameHeader({ onCancel }: GameHeaderProps) {
+    useCloudSync();
     const { isSoundOn, toggleSound, resetGame, restartCurrentGame, playSound, t } = useGame();
     const router = useRouter();
 
@@ -47,11 +50,11 @@ export function GameHeader({ onCancel }: GameHeaderProps) {
                     <AlertDialogTrigger asChild>
                         <Button 
                             variant="outline" 
-                            size="sm"
-                            className="border-slate-700 bg-slate-900/80 text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-1.5 rounded-xl px-3"
+                            className="border-slate-700 bg-slate-900/80 text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-1.5 rounded-xl px-4 min-h-[44px]"
+                            aria-label={t.game.cancel || 'Pausar o cancelar partida'}
                         >
-                            <Pause className="h-4 w-4 text-amber-400" />
-                            <span className="text-xs font-semibold hidden sm:inline">{t.game.cancel}</span>
+                            <Pause className="h-5 w-5 text-amber-400" />
+                            <span className="text-sm font-semibold hidden sm:inline">{t.game.cancel}</span>
                         </Button>
                     </AlertDialogTrigger>
                     <AlertDialogContent className="bg-slate-900 border-slate-800 text-slate-100 rounded-2xl">
@@ -75,18 +78,26 @@ export function GameHeader({ onCancel }: GameHeaderProps) {
                 {/* Restart button */}
                 <Button 
                     variant="ghost" 
-                    size="icon" 
                     onClick={handleGameRestart}
-                    className="text-slate-400 hover:text-white"
+                    className="text-slate-400 hover:text-white min-h-[44px] min-w-[44px] rounded-full p-2"
                     title={t.game.restart_sr}
+                    aria-label={t.game.restart_sr || 'Reiniciar partida'}
                 >
-                    <RefreshCw className="h-5 w-5" />
+                    <RefreshCw className="h-6 w-6" />
                 </Button>
             </div>
-            <Button onClick={toggleSound} variant="ghost" size="icon" className="text-slate-400 hover:text-white">
-                {isSoundOn ? <Volume2 className="h-6 w-6" /> : <VolumeX className="h-6 w-6" />}
-                <span className="sr-only">Toggle Sound</span>
-            </Button>
+            <div className="flex gap-2 items-center">
+                <SyncIndicator />
+                <Button 
+                    onClick={toggleSound} 
+                    variant="ghost" 
+                    className="text-slate-400 hover:text-white min-h-[44px] min-w-[44px] rounded-full p-2"
+                    aria-label={isSoundOn ? 'Desactivar sonido' : 'Activar sonido'}
+                    title={isSoundOn ? 'Desactivar sonido' : 'Activar sonido'}
+                >
+                    {isSoundOn ? <Volume2 className="h-6 w-6" /> : <VolumeX className="h-6 w-6" />}
+                </Button>
+            </div>
         </header>
     )
 }

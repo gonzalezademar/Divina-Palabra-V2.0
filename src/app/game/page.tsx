@@ -13,6 +13,10 @@ import { Trophy, CheckCircle, XCircle, Clock, Star, Brain, Users, Heart, BookOpe
 import { AdBanner } from '@/components/game/AdBanner';
 import { normalizeForValidation } from '@/lib/string-utils';
 import { getNewChallenges } from '@/data/newChallengesData';
+import { filterByDoctrinalProfile } from '@/utils/doctrinalFilter';
+import { learningEngine } from '@/services/learningEngine';
+import { educationalAnalyticsEngine } from '@/services/educationalAnalyticsEngine';
+import { adaptiveLearningEngine } from '@/services/adaptiveLearningEngine';
 
 // Helper pure functions preserved from original implementation
 function shuffleArray<T>(array: T[]): T[] {
@@ -177,7 +181,8 @@ export default function GamePage() {
   const { 
     teams, gameMode, isPracticeMode, playSound, 
     updateScore, resetGame, restartCurrentGame, roundTime, updateLives, 
-    gameRestarted, difficulty, language, isPremium, t, bibleData, activeLesson 
+    gameRestarted, difficulty, language, isPremium, t, bibleData, activeLesson,
+    doctrinalProfile, learningProfile, setLearningProfile
   } = useGame();
   
   const [currentChallengeIndex, setCurrentChallengeIndex] = useState(0);
@@ -212,6 +217,9 @@ export default function GamePage() {
   const [letterInput, setLetterInput] = useState('');
   const [isCancelled, setIsCancelled] = useState(false);
   const [playedChallenges, setPlayedChallenges] = useState<any[]>([]);
+  
+  // ARIA Live Region State
+  const [ariaMessage, setAriaMessage] = useState('');
 
   // Auto-saved reflection so students never lose their input
   const [studentReflection, setStudentReflection] = useState(() => {
@@ -224,6 +232,31 @@ export default function GamePage() {
   useEffect(() => {
     localStorage.setItem('divina_palabra_temp_reflection', studentReflection);
   }, [studentReflection]);
+
+  // Accessibility Announcements
+  useEffect(() => {
+    if (feedback === 'correct') {
+      setAriaMessage(language === 'es' ? 'Respuesta correcta' : 'Correct answer');
+    } else if (feedback === 'incorrect') {
+      setAriaMessage(language === 'es' ? 'Respuesta incorrecta' : 'Incorrect answer');
+    }
+  }, [feedback, language]);
+  
+  useEffect(() => {
+    if (timeLeft === 0 && !isPracticeMode && !isTurnPaused && !gameOver) {
+      setAriaMessage(language === 'es' ? 'Tiempo terminado' : 'Time is up');
+    }
+  }, [timeLeft, isPracticeMode, isTurnPaused, gameOver, language]);
+
+  const adaptiveRecommendations = useMemo(() => {
+    if (!gameOver || playedChallenges.length === 0) return null;
+    let total = 0;
+    if (bibleData) {
+      total = bibleData.findWordLevel1.length + bibleData.findWordLevel2.length + bibleData.completePhraseChallenges.length + bibleData.guessPhraseChallenges.length;
+    }
+    const analytics = educationalAnalyticsEngine.processGameSession(playedChallenges, total);
+    return adaptiveLearningEngine.generateRecommendations(analytics);
+  }, [gameOver, playedChallenges, bibleData]);
 
   const challenges = useMemo(() => {
     if (!gameMode) return [];
@@ -248,13 +281,18 @@ export default function GamePage() {
     if (gameMode === 'bible-rosco') {
       const catalog = getNewChallenges(language);
       const roscoLists = catalog.rosco[difficulty] || catalog.rosco['principiante'];
-      return roscoLists.map(letters => ({ type: 'rosco', letters }));
+      const filteredRoscoLists = roscoLists.map(letters => filterByDoctrinalProfile(letters, doctrinalProfile));
+      const shuffledRoscoLists = shuffleArray(filteredRoscoLists);
+      return shuffledRoscoLists.map(letters => ({ type: 'rosco', letters }));
     }
 
     if (gameMode === 'word-search') {
       const catalog = getNewChallenges(language);
-      const wsSets = catalog.wordSearch[difficulty] || catalog.wordSearch['principiante'];
-      const classSets = catalog.classification;
+      const filteredWsSets = filterByDoctrinalProfile(catalog.wordSearch[difficulty] || catalog.wordSearch['principiante'], doctrinalProfile);
+      const filteredClassSets = filterByDoctrinalProfile(catalog.classification, doctrinalProfile);
+      
+      const wsSets = shuffleArray(filteredWsSets);
+      const classSets = shuffleArray(filteredClassSets);
       const combined: any[] = [];
       const len = Math.max(wsSets.length, classSets.length);
       for (let i = 0; i < len; i++) {
@@ -266,13 +304,17 @@ export default function GamePage() {
 
     if (gameMode === 'counseling-practical') {
       const catalog = getNewChallenges(language);
-      return catalog.counseling;
+      const filteredCounseling = filterByDoctrinalProfile(catalog.counseling, doctrinalProfile, 3);
+      return shuffleArray(filteredCounseling);
     }
 
     // Otherwise, generate challenges from local JSON catalog
     if (gameMode === 'find-word') {
-        const shuffledLevel1 = shuffleArray(bibleData.findWordLevel1);
-        const shuffledLevel2 = shuffleArray(bibleData.findWordLevel2);
+        const filteredLevel1 = filterByDoctrinalProfile(bibleData.findWordLevel1, doctrinalProfile, 10);
+        const filteredLevel2 = filterByDoctrinalProfile(bibleData.findWordLevel2, doctrinalProfile, 10);
+        
+        const shuffledLevel1 = shuffleArray(filteredLevel1);
+        const shuffledLevel2 = shuffleArray(filteredLevel2);
         
         switch (difficulty) {
             case 'principiante':
@@ -311,11 +353,13 @@ export default function GamePage() {
     }
     
     if (gameMode === 'complete-phrase') {
-        return shuffleArray(bibleData.completePhraseChallenges).map(c => generateCompletePhraseChallenge(c, difficulty));
+        const filtered = filterByDoctrinalProfile(bibleData.completePhraseChallenges, doctrinalProfile, 5);
+        return shuffleArray(filtered).map(c => generateCompletePhraseChallenge(c, difficulty));
     }
     
     if (gameMode === 'guess-the-phrase') {
-      return shuffleArray(bibleData.guessPhraseChallenges).map(c => generateGuessPhraseChallenge(c, difficulty));
+      const filtered = filterByDoctrinalProfile(bibleData.guessPhraseChallenges, doctrinalProfile, 5);
+      return shuffleArray(filtered).map(c => generateGuessPhraseChallenge(c, difficulty));
     }
 
     return [];
@@ -511,6 +555,18 @@ export default function GamePage() {
   const challenge = challenges[currentChallengeIndex];
   const currentTeam = teams[currentTeamIndex];
 
+  // Phase 8: Educational Analytics on Game Over
+  useEffect(() => {
+    if (gameOver && playedChallenges.length > 0) {
+      let total = 0;
+      if (bibleData) {
+        total = bibleData.findWordLevel1.length + bibleData.findWordLevel2.length + bibleData.completePhraseChallenges.length + bibleData.guessPhraseChallenges.length;
+      }
+      const analytics = educationalAnalyticsEngine.processGameSession(playedChallenges, total);
+      educationalAnalyticsEngine.saveLocalAnalytics(analytics);
+    }
+  }, [gameOver, playedChallenges, bibleData]);
+
   useEffect(() => {
     if (challenge) {
       setPlayedChallenges(prev => {
@@ -520,10 +576,34 @@ export default function GamePage() {
           (c.phrase && c.phrase === challenge.phrase)
         );
         if (exists) return prev;
-        return [...prev, challenge];
+        
+        // --- PHASE 5: Learning Engine Analysis ---
+        const analysis = learningEngine.analyzeChallenge(challenge);
+        const enrichedChallenge = { ...challenge, _pedagogy: analysis };
+        
+        setLearningProfile(prevProfile => {
+          const newProfile = { ...prevProfile };
+          newProfile.totalChallenges++;
+          
+          newProfile.bloomLevels = { ...newProfile.bloomLevels };
+          newProfile.bloomLevels[analysis.bloomLevel] = (newProfile.bloomLevels[analysis.bloomLevel] || 0) + 1;
+          
+          newProfile.competencies = { ...newProfile.competencies };
+          newProfile.competencies[analysis.competency] = (newProfile.competencies[analysis.competency] || 0) + 1;
+          
+          newProfile.themes = { ...newProfile.themes };
+          newProfile.themes[analysis.theme] = (newProfile.themes[analysis.theme] || 0) + 1;
+          
+          newProfile.books = { ...newProfile.books };
+          newProfile.books[analysis.book] = (newProfile.books[analysis.book] || 0) + 1;
+          
+          return newProfile;
+        });
+
+        return [...prev, enrichedChallenge];
       });
     }
-  }, [challenge]);
+  }, [challenge, setLearningProfile]);
 
   // Memoized keyboard grid helper
   const alphabetKeys = useMemo(() => {
@@ -652,6 +732,14 @@ export default function GamePage() {
   const handleAnswer = (isCorrect: boolean) => {
       if(timerRef.current) clearInterval(timerRef.current);
       
+      setPlayedChallenges(prev => {
+        const updated = [...prev];
+        if (updated.length > 0) {
+          updated[updated.length - 1] = { ...updated[updated.length - 1], _isCorrect: isCorrect };
+        }
+        return updated;
+      });
+
       if (isCorrect) {
           playSound('correct');
           setFeedback('correct');
@@ -1063,7 +1151,8 @@ export default function GamePage() {
 
   if (gameOver) {
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-4 relative overflow-hidden">
+        <div className="flex flex-col items-center justify-center min-h-screen bg-slate-950 text-slate-100 p-4 relative overflow-hidden pb-12">
+            <div className="sr-only" aria-live="polite" aria-atomic="true">{ariaMessage}</div>
             {/* Glow effects */}
             <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-sky-500/5 rounded-full blur-3xl pointer-events-none" />
@@ -1170,9 +1259,70 @@ export default function GamePage() {
                                     <p className="text-slate-300 text-xs italic pl-2.5 border-l-2 border-slate-700">
                                       "{fullText}"
                                     </p>
+                                    {pc._pedagogy && (
+                                      <div className="mt-2 pl-2.5 flex flex-wrap gap-1.5">
+                                        <span className="text-[9px] uppercase tracking-wider bg-amber-500/10 text-amber-300 px-1.5 py-0.5 rounded border border-amber-500/20">{pc._pedagogy.theme}</span>
+                                        <span className="text-[9px] uppercase tracking-wider bg-sky-500/10 text-sky-300 px-1.5 py-0.5 rounded border border-sky-500/20">{pc._pedagogy.competency}</span>
+                                        <span className="text-[9px] uppercase tracking-wider bg-emerald-500/10 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/20">{pc._pedagogy.objective}</span>
+                                      </div>
+                                    )}
                                   </div>
                                 );
                               })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Phase 9: Adaptive Recommendations */}
+                        {adaptiveRecommendations && !activeLesson && (
+                          <div className="space-y-3 text-left mt-6 border-t border-slate-850 pt-4">
+                            <h4 className="text-sm font-bold uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                              <Sparkles className="w-4 h-4 text-amber-400" />
+                              {language === 'es' ? 'Análisis Pedagógico' : 'Pedagogical Analysis'}
+                            </h4>
+                            <div className="bg-slate-950/60 p-4 rounded-xl border border-amber-500/20 space-y-3">
+                              
+                              {adaptiveRecommendations.strengths.length > 0 && (
+                                <div>
+                                  <span className="text-[10px] uppercase font-bold text-green-400 block mb-1">Fortalezas detectadas</span>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {adaptiveRecommendations.strengths.map((s, i) => (
+                                      <span key={i} className="text-xs bg-green-500/10 text-green-300 px-2 py-0.5 rounded border border-green-500/20">{s}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              {adaptiveRecommendations.weaknesses.length > 0 && (
+                                <div>
+                                  <span className="text-[10px] uppercase font-bold text-red-400 block mb-1">Áreas de mejora</span>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {adaptiveRecommendations.weaknesses.map((w, i) => (
+                                      <span key={i} className="text-xs bg-red-500/10 text-red-300 px-2 py-0.5 rounded border border-red-500/20">{w}</span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+
+                              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800">
+                                <div>
+                                  <span className="text-[10px] text-slate-500 font-bold uppercase">Próximo Tema</span>
+                                  <p className="text-xs text-slate-300 font-semibold">{adaptiveRecommendations.recommendedTheme}</p>
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-500 font-bold uppercase">Nivel Sugerido</span>
+                                  <p className="text-xs text-slate-300 font-semibold">{adaptiveRecommendations.recommendedDifficulty}</p>
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-500 font-bold uppercase">Enfoque Bloom</span>
+                                  <p className="text-xs text-sky-400 font-semibold">{adaptiveRecommendations.recommendedBloom}</p>
+                                </div>
+                                <div>
+                                  <span className="text-[10px] text-slate-500 font-bold uppercase">Lectura Sugerida</span>
+                                  <p className="text-xs text-amber-400 font-semibold">{adaptiveRecommendations.recommendedVerseReference}</p>
+                                </div>
+                              </div>
+
                             </div>
                           </div>
                         )}

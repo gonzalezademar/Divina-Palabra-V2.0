@@ -4,6 +4,7 @@ import es_ntv from './bible/es_ntv.json';
 import en_kjv from './bible/en_kjv.json';
 import en_niv from './bible/en_niv.json';
 import en_esv from './bible/en_esv.json';
+import { educationalOrchestrator } from '@/services/educationalOrchestrator';
 
 export type Challenge = {
   answer?: string;
@@ -12,6 +13,11 @@ export type Challenge = {
   reference: string;
   fullPhrase?: string;
   phrase?: string;
+  question?: string;
+  word?: string;
+  metadata?: any;
+  _qualityStatus?: string;
+  _pedagogy?: any;
 };
 
 export type BibleCatalog = {
@@ -32,5 +38,10 @@ export const bibleDataMap: Record<string, BibleCatalog> = {
 
 export const getBibleData = (lang: string, version: string): BibleCatalog => {
   const key = `${lang}_${version.toLowerCase()}`;
-  return bibleDataMap[key] || bibleDataMap['es_rvr1960'];
+  const catalog = bibleDataMap[key] || bibleDataMap['es_rvr1960'];
+  
+  // Phase 7: Automatically audit catalog upon load (only runs once per catalog internally)
+  educationalOrchestrator.auditCatalog(key, catalog);
+  
+  return catalog;
 };

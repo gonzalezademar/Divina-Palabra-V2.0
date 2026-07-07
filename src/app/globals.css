@@ -67,6 +67,20 @@
   25% { transform: translateX(-6px); }
   75% { transform: translateX(6px); }
 }
+
 .animate-shake {
   animation: shake 0.3s ease-in-out;
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-scroll-reveal,
+  .animate-pulse,
+  .animate-shake,
+  .animate-spin,
+  .transition-all {
+    animation: none !important;
+    transition: none !important;
+  }
 }
