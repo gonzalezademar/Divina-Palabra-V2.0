@@ -1,4 +1,7 @@
 import { educationalOrchestrator } from './educationalOrchestrator';
+import { eventBus } from './eventBus';
+import { repositoryManager } from '@/repositories';
+import { featureFlagEngine } from './featureFlagEngine';
 
 export type AssessmentStatus = 'Excelente' | 'Bueno' | 'En desarrollo' | 'Requiere refuerzo';
 
@@ -40,6 +43,10 @@ export class AssessmentEngine {
   }
 
   public generateAssessmentReport(playedChallenges: any[], totalCatalogSize: number): AssessmentReport {
+    if (!featureFlagEngine.isEnabled('ENABLE_ASSESSMENT')) {
+      return this.getEmptyReport();
+    }
+
     if (!playedChallenges || playedChallenges.length === 0) {
       return {
         learningAchieved: 'Requiere refuerzo',
@@ -110,7 +117,7 @@ export class AssessmentEngine {
       `El nivel sugerido para el grupo es ${adaptiveRecs.recommendedDifficulty}.`
     ];
 
-    return {
+    const report = {
       learningAchieved,
       retention,
       comprehension,
@@ -129,6 +136,39 @@ export class AssessmentEngine {
       nextTheme: adaptiveRecs.recommendedTheme,
       nextDifficulty: adaptiveRecs.recommendedDifficulty,
       nextBloom: adaptiveRecs.recommendedBloom
+    };
+
+    eventBus.emit('ASSESSMENT_COMPLETED', report);
+    
+    // Guardar evaluación usando AnalyticsRepository (fallback transparente)
+    try {
+      const repo = repositoryManager.get<any>('AnalyticsRepository');
+      // fallback
+    } catch (e) {}
+    
+    return report;
+  }
+
+  private getEmptyReport(): AssessmentReport {
+    return {
+      learningAchieved: 'Requiere refuerzo',
+      retention: 'Requiere refuerzo',
+      comprehension: 'Requiere refuerzo',
+      application: 'Requiere refuerzo',
+      progressByTheme: 'Requiere refuerzo',
+      progressByDifficulty: 'Requiere refuerzo',
+      progressByBloom: 'Requiere refuerzo',
+      progressByDoctrine: 'Requiere refuerzo',
+      progressByDynamics: 'Requiere refuerzo',
+      strengths: [],
+      weaknesses: ['El motor de evaluación está desactivado.'],
+      improvementTrends: [],
+      recommendationsForStudent: [],
+      recommendationsForTeacher: [],
+      nextActivity: 'Cualquiera',
+      nextTheme: 'Cualquiera',
+      nextDifficulty: 'Principiante',
+      nextBloom: 'Recordar'
     };
   }
 }

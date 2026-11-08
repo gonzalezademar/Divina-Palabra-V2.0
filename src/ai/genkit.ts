@@ -1,7 +1,3 @@
-import {genkit} from 'genkit';
-import {googleAI} from '@genkit-ai/googleai';
-
-export const ai = genkit({
-  plugins: [googleAI()],
-  model: 'googleai/gemini-2.0-flash',
-});
+// El contenido educativo procede exclusivamente del catálogo precargado.
+// No se inicializan modelos ni proveedores que generen textos bíblicos.
+export {};

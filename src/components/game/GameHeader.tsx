@@ -1,103 +1,29 @@
-"use client"
-
+"use client";
+import { useState } from 'react';
 import { useGame } from '@/contexts/GameContext';
 import { Button } from '@/components/ui/button';
-import { 
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Volume2, VolumeX, Home, RefreshCw, Pause } from 'lucide-react';
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+import { Pause, Home } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { SyncIndicator } from '@/components/common/SyncIndicator';
-import { useCloudSync } from '@/hooks/useCloudSync';
-
-interface GameHeaderProps {
-  onCancel?: () => void;
-}
-
-export function GameHeader({ onCancel }: GameHeaderProps) {
-    useCloudSync();
-    const { isSoundOn, toggleSound, resetGame, restartCurrentGame, playSound, t } = useGame();
-    const router = useRouter();
-
-    const handleFullReset = () => {
-        playSound('click');
-        if (onCancel) {
-            onCancel();
-        } else {
-            resetGame();
-            router.push('/');
-        }
-    }
-
-    const handleGameRestart = () => {
-        playSound('click');
-        restartCurrentGame();
-    }
-
-    return (
-        <header className="absolute top-0 left-0 right-0 p-2 md:p-4 flex justify-between items-center z-20 bg-slate-950/60 backdrop-blur-sm border-b border-slate-800/60">
-            <div className="flex gap-2 items-center">
-                {/* Prominent Exit button - always visible */}
-                <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                        <Button 
-                            variant="outline" 
-                            className="border-slate-700 bg-slate-900/80 text-slate-300 hover:bg-slate-800 hover:text-white flex items-center gap-1.5 rounded-xl px-4 min-h-[44px]"
-                            aria-label={t.game.cancel || 'Pausar o cancelar partida'}
-                        >
-                            <Pause className="h-5 w-5 text-amber-400" />
-                            <span className="text-sm font-semibold hidden sm:inline">{t.game.cancel}</span>
-                        </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent className="bg-slate-900 border-slate-800 text-slate-100 rounded-2xl">
-                        <AlertDialogHeader>
-                            <AlertDialogTitle className="text-amber-300 font-bold">{t.game.restart_title}</AlertDialogTitle>
-                            <AlertDialogDescription className="text-slate-400">
-                                {t.game.restart_desc}
-                            </AlertDialogDescription>
-                        </AlertDialogHeader>
-                        <AlertDialogFooter className="flex gap-2 flex-wrap">
-                            <AlertDialogCancel className="border-slate-800 bg-slate-950 text-slate-400 hover:bg-slate-800 hover:text-white rounded-xl">{t.game.cancel}</AlertDialogCancel>
-                            <AlertDialogAction onClick={handleGameRestart} className="bg-slate-800 text-slate-200 hover:bg-slate-700 rounded-xl">{t.game.current_match}</AlertDialogAction>
-                            <AlertDialogAction onClick={handleFullReset} className="bg-amber-500 text-slate-950 hover:bg-amber-600 font-bold rounded-xl flex items-center gap-1.5">
-                                <Home className="h-4 w-4" />
-                                {t.game.back_to_menu}
-                            </AlertDialogAction>
-                        </AlertDialogFooter>
-                    </AlertDialogContent>
-                </AlertDialog>
-
-                {/* Restart button */}
-                <Button 
-                    variant="ghost" 
-                    onClick={handleGameRestart}
-                    className="text-slate-400 hover:text-white min-h-[44px] min-w-[44px] rounded-full p-2"
-                    title={t.game.restart_sr}
-                    aria-label={t.game.restart_sr || 'Reiniciar partida'}
-                >
-                    <RefreshCw className="h-6 w-6" />
-                </Button>
-            </div>
-            <div className="flex gap-2 items-center">
-                <SyncIndicator />
-                <Button 
-                    onClick={toggleSound} 
-                    variant="ghost" 
-                    className="text-slate-400 hover:text-white min-h-[44px] min-w-[44px] rounded-full p-2"
-                    aria-label={isSoundOn ? 'Desactivar sonido' : 'Activar sonido'}
-                    title={isSoundOn ? 'Desactivar sonido' : 'Activar sonido'}
-                >
-                    {isSoundOn ? <Volume2 className="h-6 w-6" /> : <VolumeX className="h-6 w-6" />}
-                </Button>
-            </div>
-        </header>
-    )
+interface GameHeaderProps { onCancel?: () => void; onPauseChange?: (paused: boolean) => void; initialPaused?: boolean; }
+export function GameHeader({ onCancel, onPauseChange, initialPaused=false }: GameHeaderProps) {
+  const { isSoundOn, toggleSound, resetGame, restartCurrentGame, language } = useGame();
+  const router = useRouter();
+  const [open, setOpen] = useState(initialPaused);
+  const es = language === 'es';
+  const changeOpen = (value: boolean) => { setOpen(value); onPauseChange?.(value); };
+  return <header className="fixed top-0 inset-x-0 p-3 flex justify-between gap-2 z-20 bg-slate-950 border-b border-slate-700">
+    {onCancel ? <AlertDialog open={open} onOpenChange={changeOpen}>
+      <AlertDialogTrigger asChild><Button variant="outline" className="gap-2"><Pause aria-hidden="true" className="h-5 w-5" />{('Pausar')}</Button></AlertDialogTrigger>
+      <AlertDialogContent className="bg-slate-900 text-slate-100 border-slate-700 max-h-[90dvh] overflow-y-auto">
+        <AlertDialogHeader><AlertDialogTitle>{('Actividad en pausa')}</AlertDialogTitle><AlertDialogDescription className="text-slate-300">{('El reloj está detenido. Continuar conserva tu respuesta. Repasar conserva los desafíos y reinicia los puntos; finalizar muestra el resumen.')}</AlertDialogDescription></AlertDialogHeader>
+        <AlertDialogFooter className="flex-col sm:flex-col gap-3">
+          <AlertDialogCancel className="m-0 bg-amber-400 text-slate-950 hover:bg-amber-300">{('Continuar actividad')}</AlertDialogCancel>
+          <AlertDialogAction className="bg-slate-800 text-white hover:bg-slate-700" onClick={restartCurrentGame}>{('Repasar estos desafíos')}</AlertDialogAction>
+          <AlertDialogAction className="bg-slate-800 text-white hover:bg-slate-700" onClick={onCancel}>{('Finalizar y ver resumen')}</AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog> : <Button variant="outline" onClick={() => { resetGame(); router.push('/'); }} className="gap-2"><Home aria-hidden="true" className="h-5 w-5" />{('Inicio')}</Button>}
+    <Button variant="outline" onClick={toggleSound} aria-pressed={isSoundOn}>{((isSoundOn ? 'Sonido: sí' : 'Sonido: no'))}</Button>
+  </header>;
 }

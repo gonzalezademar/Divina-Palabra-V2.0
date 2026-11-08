@@ -1,0 +1,1 @@
+import { ITransaction } from "../../application/ports/ITransaction"; export class NoopTransaction implements ITransaction { begin() {} commit() {} rollback() {} }

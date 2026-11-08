@@ -1,0 +1,1 @@
+export class LessonSpecification { isSatisfiedBy(lesson: any): boolean { return true; } }

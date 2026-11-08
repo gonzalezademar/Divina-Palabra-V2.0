@@ -1,0 +1,1 @@
+export class IntegrationFacade { static initialize() {} }

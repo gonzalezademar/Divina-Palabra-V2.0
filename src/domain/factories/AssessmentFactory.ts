@@ -1,0 +1,1 @@
+import { Assessment } from '../entities/Assessment'; export class AssessmentFactory { static create(id: string): Assessment { return new Assessment(id); } }

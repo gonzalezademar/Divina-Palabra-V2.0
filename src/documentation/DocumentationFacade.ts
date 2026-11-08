@@ -1,0 +1,1 @@
+export class DocumentationFacade { static generateAll() { return "All documentation"; } }

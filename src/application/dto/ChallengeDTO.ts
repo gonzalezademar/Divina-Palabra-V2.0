@@ -1,0 +1,1 @@
+export interface ChallengeDTO { id: string; }

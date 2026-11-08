@@ -1,0 +1,1 @@
+import { Player } from '../entities/Player'; export class PlayerFactory { static create(id: string): Player { return new Player(id); } }

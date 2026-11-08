@@ -1,0 +1,1 @@
+export class PerformanceTimer { start() {} stop() {} }

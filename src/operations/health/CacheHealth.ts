@@ -1,0 +1,1 @@
+import { HealthStatus } from "./ApplicationHealth"; export class CacheHealth { check(): HealthStatus { return "Healthy"; } }

@@ -1,0 +1,1 @@
+import { IStorage } from "../../application/ports/IStorage"; import { MemoryStorageAdapter } from "./MemoryStorageAdapter"; export class StorageFactory { static create(): IStorage { return new MemoryStorageAdapter(); } }

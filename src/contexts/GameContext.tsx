@@ -1,10 +1,17 @@
 "use client";
 
 import React, { createContext, useContext, useState, ReactNode, useEffect, useRef } from 'react';
+import { changeProgressOwner, progressOwner, progressStorageKey } from '@/lib/practice';
 import * as Tone from 'tone';
 import { getTranslation, TranslationType } from '@/data/locales';
 import { getBibleData, BibleCatalog } from '@/data/bibleData';
-import { LearningProfile } from '@/services/learningEngine';
+import { LearningProfile } from '@/types/education';
+
+const safeStorage = {
+  getItem(key: string) { try { return localStorage.getItem(key); } catch { return null; } },
+  setItem(key: string, value: string) { try { localStorage.setItem(key,value); } catch {} },
+  removeItem(key: string) { try { localStorage.removeItem(key); } catch {} }
+};
 
 type Team = {
   name: string;
@@ -27,12 +34,15 @@ export interface LessonType {
 
 export type SyncStatus = 'idle' | 'syncing' | 'offline' | 'error';
 
-export interface UserSettings {
-  ageVerified: boolean;
-  isAdult: boolean;
-}
 
 interface GameContextType {
+  storageOwner:string;
+  preferencesReady: boolean;
+  pendingRoundId: string | null;
+  setPendingRoundId: (id: string | null) => void;
+  restoreRoundConfig: (config: any) => void;
+  includeGuidedContent: boolean;
+  setIncludeGuidedContent: (value: boolean) => void;
   teams: Team[];
   setTeams: (teams: Team[]) => void;
   gameMode: GameMode | null;
@@ -65,10 +75,7 @@ interface GameContextType {
   setActiveLesson: (lesson: LessonType | null) => void;
   hasConfiguredLanguage: boolean;
   setHasConfiguredLanguage: (val: boolean) => void;
-  userSettings: UserSettings;
-  setUserSettings: (settings: UserSettings) => void;
   doctrinalProfile?: string;
-  setDoctrinalProfile: (profile: string | undefined) => void;
   syncStatus: SyncStatus;
   setSyncStatus: (status: SyncStatus) => void;
   learningProfile: LearningProfile;
@@ -120,15 +127,22 @@ if (typeof window !== 'undefined') {
 const INITIAL_LIVES = 5;
 
 export const GameProvider = ({ children }: { children: ReactNode }) => {
+  const [preferencesReady,setPreferencesReady]=useState(false);
+  const [storageOwner,setStorageOwner]=useState('guest');
+  const [profileOwner,setProfileOwner]=useState<string|null>(null);
+  const [pendingRoundId,setPendingRoundId]=useState<string|null>(null);
+  const [includeGuidedContent, setIncludeGuidedContent] = useState(false);
   const [teams, setTeamsState] = useState<Team[]>([
     { name: 'Equipo Ámbar', score: 0, lives: INITIAL_LIVES },
     { name: 'Equipo Celeste', score: 0, lives: INITIAL_LIVES },
   ]);
+  const teamsRef = useRef(teams);
+  teamsRef.current = teams;
   const [gameMode, setGameMode] = useState<GameMode | null>(null);
   const [difficulty, setDifficultyState] = useState<DifficultyLevel>('principiante');
-  const [isPracticeMode, setPracticeMode] = useState(false);
-  const [isSoundOn, setIsSoundOn] = useState(true);
-  const [roundTime, setRoundTime] = useState(30);
+  const [isPracticeMode, setPracticeMode] = useState(true);
+  const [isSoundOn, setIsSoundOn] = useState(false);
+  const [roundTime, setRoundTime] = useState(60);
   const [gameRestarted, setGameRestarted] = useState(0);
   
   // New States
@@ -137,16 +151,30 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const [isPremium, setIsPremiumState] = useState<boolean>(false);
   const [activeLesson, setActiveLesson] = useState<LessonType | null>(null);
   const [hasConfiguredLanguage, setHasConfiguredLanguage] = useState<boolean>(true);
-  const [userSettings, setUserSettingsState] = useState<UserSettings>({ ageVerified: false, isAdult: false });
-  const [doctrinalProfile, setDoctrinalProfileState] = useState<string | undefined>(undefined);
+  // El catálogo se ofrece sin segmentación denominacional.
+  const doctrinalProfile = undefined;
   const [syncStatus, setSyncStatus] = useState<SyncStatus>('offline');
-  const [learningProfile, setLearningProfile] = useState<LearningProfile>({
-    bloomLevels: {},
-    competencies: {},
-    themes: {},
-    books: {},
-    totalChallenges: 0
-  });
+  // Load persisted learning profile on mount
+  const [learningProfile, setLearningProfile] = useState<LearningProfile>({ bloomLevels: {}, competencies: {}, themes: {}, books: {}, totalChallenges: 0 });
+
+  useEffect(()=>{
+    let cancelled=false;let changedSinceStart=false;
+    const load=()=>{
+      const owner=progressOwner();setStorageOwner(owner);
+      let next:LearningProfile={bloomLevels:{},competencies:{},themes:{},books:{},totalChallenges:0};
+      try{const value=JSON.parse(localStorage.getItem(progressStorageKey('divina_palabra_learning_profile',owner))||'null');if(value&&['bloomLevels','competencies','themes','books'].every(k=>value[k]&&typeof value[k]==='object')&&Number.isFinite(value.totalChallenges))next=value;}catch{}
+      setLearningProfile(next);setProfileOwner(owner);setPreferencesReady(true);
+    };
+    const changed=()=>{changedSinceStart=true;setPendingRoundId(null);setGameMode(null);setActiveLesson(null);load();};
+    const otherTab=(e:StorageEvent)=>{if(e.key==='dp_owner_v1')window.location.reload();};
+    window.addEventListener('dp-owner-change',changed);window.addEventListener('dp-progress-copied',load);window.addEventListener('storage',otherTab);
+    fetch('/api/identity',{cache:'no-store',signal:AbortSignal.timeout(5000)}).then(r=>{if(!r.ok)throw new Error('Sin servicio');return r.json();}).then(x=>{if(!cancelled&&!changedSinceStart){changeProgressOwner(x.user?.id||'guest');load();}}).catch(()=>{if(!cancelled)load();});
+    return()=>{cancelled=true;window.removeEventListener('dp-owner-change',changed);window.removeEventListener('dp-progress-copied',load);window.removeEventListener('storage',otherTab);};
+  },[]);
+  useEffect(()=>{
+    if(!preferencesReady||profileOwner!==storageOwner||storageOwner!==progressOwner())return;
+    safeStorage.setItem(progressStorageKey('divina_palabra_learning_profile',storageOwner),JSON.stringify(learningProfile));
+  },[learningProfile,preferencesReady,profileOwner,storageOwner]);
   const lastPlayedTimesRef = useRef<Record<string, number>>({});
 
   const resetTeamStats = (teams: Team[]) => {
@@ -155,156 +183,75 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   // Load configuration on mount
   useEffect(() => {
-    const savedSound = localStorage.getItem('soundOn');
+    const savedSound = safeStorage.getItem('soundOn');
     if (savedSound) {
-      setIsSoundOn(JSON.parse(savedSound));
+      setIsSoundOn(savedSound === 'true');
     }
-    const savedRoundTime = localStorage.getItem('roundTime');
+    const savedRoundTime = safeStorage.getItem('roundTime');
     if (savedRoundTime) {
-      setRoundTime(JSON.parse(savedRoundTime));
+      setRoundTime(Math.max(60, Math.min(600, Number(savedRoundTime) || 60)));
     }
-    const savedDifficulty = localStorage.getItem('difficulty');
+    const savedDifficulty = safeStorage.getItem('difficulty');
     if (savedDifficulty) {
-      setDifficultyState(JSON.parse(savedDifficulty) as DifficultyLevel);
+      try {const value=JSON.parse(savedDifficulty);setDifficultyState(['principiante','discipulo','avanzado'].includes(value)?value:'principiante');}catch{}
     }
-    const savedLang = localStorage.getItem('language');
-    let activeLang: 'es' | 'en' = 'es';
-    if (savedLang) {
-      activeLang = JSON.parse(savedLang) as 'es' | 'en';
-      setLanguageState(activeLang);
-      setHasConfiguredLanguage(true);
-    } else {
-      setHasConfiguredLanguage(false);
-    }
-    
-    // Set color-themed team names by default based on selected language
-    setTeamsState([
-      { name: activeLang === 'es' ? 'Equipo Ámbar' : 'Amber Team', score: 0, lives: INITIAL_LIVES },
-      { name: activeLang === 'es' ? 'Equipo Celeste' : 'Sky Blue Team', score: 0, lives: INITIAL_LIVES },
-    ]);
+    setLanguageState('es');
+    setHasConfiguredLanguage(true);
+    safeStorage.setItem('language', JSON.stringify('es'));
+    const savedVersion = safeStorage.getItem('bibleVersion');
+    try {
+      const version = JSON.parse(savedVersion || '"rvr1960"');
+      setBibleVersionState(['rvr1960','nvi','ntv'].includes(version) ? version : 'rvr1960');
+    } catch { setBibleVersionState('rvr1960'); }
 
-    // Bible version defaults based on active configured language on reload
-    const defaultVersion = activeLang === 'es' ? 'rvr1960' : 'niv';
-    setBibleVersionState(defaultVersion);
-
-    const savedPremium = localStorage.getItem('isPremium');
+    const savedPremium = safeStorage.getItem('isPremium');
     if (savedPremium) {
-      setIsPremiumState(JSON.parse(savedPremium));
+      setIsPremiumState(savedPremium === 'true');
     }
 
-    const savedUserSettings = localStorage.getItem('userSettings');
-    if (savedUserSettings) {
-      try {
-        const parsed = JSON.parse(savedUserSettings);
-        setUserSettingsState({
-          ageVerified: parsed.ageVerified ?? false,
-          isAdult: parsed.isAdult ?? false
-        });
-      } catch (e) {
-        console.error("Failed to parse user settings", e);
-      }
-    }
-
-    const savedProfile = localStorage.getItem('doctrinalProfile');
-    if (savedProfile) {
-      setDoctrinalProfileState(savedProfile);
-    }
+    safeStorage.removeItem('userSettings');
+    // Las preferencias antiguas no reactivan filtros denominacionales.
   }, []);
 
-  // Check URL query parameters for virtual classroom lessons
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const searchParams = new URLSearchParams(window.location.search);
-      const lessonBase64 = searchParams.get('lesson');
-      if (lessonBase64) {
-        try {
-          const decodedJson = atob(lessonBase64);
-          const lessonData = JSON.parse(decodedJson) as LessonType;
-          if (lessonData && lessonData.lessonName) {
-            setActiveLesson(lessonData);
-            if (lessonData.language) {
-              setLanguageState(lessonData.language);
-            }
-            if (lessonData.bibleVersion) {
-              setBibleVersionState(lessonData.bibleVersion);
-            }
-            if (lessonData.difficulty) {
-              setDifficultyState(lessonData.difficulty);
-            }
-            if (lessonData.doctrinalProfile) {
-              setDoctrinalProfileState(lessonData.doctrinalProfile);
-            }
-            // For lessons, we default to single player/team or a clean setup
-            setTeamsState([{ name: 'Alumno', score: 0, lives: INITIAL_LIVES }]);
-            setGameMode('find-word'); // default mode to open the game
-          }
-        } catch (e) {
-          console.error("Failed to decode base64 lesson", e);
-        }
-      }
-    }
+    // Borrar la clasificación etaria de versiones anteriores sin recopilarla.
+    try { safeStorage.removeItem('userSettings'); } catch {}
   }, []);
 
   const handleSetRoundTime = (time: number) => {
     setRoundTime(time);
-    localStorage.setItem('roundTime', JSON.stringify(time));
+    safeStorage.setItem('roundTime', JSON.stringify(time));
   };
   
   const setDifficulty = (newDifficulty: DifficultyLevel) => {
     setDifficultyState(newDifficulty);
-    localStorage.setItem('difficulty', JSON.stringify(newDifficulty));
+    safeStorage.setItem('difficulty', JSON.stringify(newDifficulty));
   };
 
   const setTeams = (newTeams: Team[]) => {
     setTeamsState(newTeams);
-    localStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name }))));
+    safeStorage.setItem('gameTeams', JSON.stringify(newTeams.map(({ name }) => ({ name }))));
   };
 
-  const setLanguage = (lang: 'es' | 'en') => {
-    setLanguageState(lang);
-    localStorage.setItem('language', JSON.stringify(lang));
+  const setLanguage = (_lang: 'es' | 'en') => {
+    setLanguageState('es');
+    safeStorage.setItem('language', JSON.stringify('es'));
     setHasConfiguredLanguage(true);
-    
-    // Set color-themed team names dynamically based on language
-    setTeamsState(current => {
-      if (current.length === 2) {
-        return [
-          { ...current[0], name: lang === 'es' ? 'Equipo Ámbar' : 'Amber Team' },
-          { ...current[1], name: lang === 'es' ? 'Equipo Celeste' : 'Sky Blue Team' }
-        ];
-      }
-      return current;
-    });
-
-    // Set matching default bible version
-    const defaultVersion = lang === 'es' ? 'rvr1960' : 'niv';
-    setBibleVersionState(defaultVersion);
-    localStorage.setItem('bibleVersion', JSON.stringify(defaultVersion));
   };
 
   const setBibleVersion = (version: string) => {
+    if (!['rvr1960','nvi','ntv'].includes(version)) return;
     setBibleVersionState(version);
-    localStorage.setItem('bibleVersion', JSON.stringify(version));
+    safeStorage.setItem('bibleVersion', JSON.stringify(version));
   };
 
   const setIsPremium = (premium: boolean) => {
     setIsPremiumState(premium);
-    localStorage.setItem('isPremium', JSON.stringify(premium));
+    safeStorage.setItem('isPremium', JSON.stringify(premium));
   };
   
-  const setUserSettings = (settings: UserSettings) => {
-    setUserSettingsState(settings);
-    localStorage.setItem('userSettings', JSON.stringify(settings));
-  };
   
-  const setDoctrinalProfile = (profile: string | undefined) => {
-    setDoctrinalProfileState(profile);
-    if (profile) {
-      localStorage.setItem('doctrinalProfile', profile);
-    } else {
-      localStorage.removeItem('doctrinalProfile');
-    }
-  };
+
   
   const silenceAll = () => {
     try {
@@ -320,13 +267,6 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
     silenceAll();
     setGameMode(null);
     setActiveLesson(null);
-    setLearningProfile({
-      bloomLevels: {},
-      competencies: {},
-      themes: {},
-      books: {},
-      totalChallenges: 0
-    });
     // Clear URL parameter cleanly
     if (typeof window !== 'undefined' && window.history) {
       window.history.replaceState({}, document.title, window.location.pathname);
@@ -343,7 +283,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   const toggleSound = () => {
     const newSoundState = !isSoundOn;
     setIsSoundOn(newSoundState);
-    localStorage.setItem('soundOn', JSON.stringify(newSoundState));
+    safeStorage.setItem('soundOn', JSON.stringify(newSoundState));
     if (!newSoundState) {
       silenceAll();
     } else if (Tone.context.state !== 'running') {
@@ -398,27 +338,19 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateScore = (teamIndex: number, points: number) => {
-    setTeamsState(prevTeams => {
-        const newTeams = [...prevTeams];
-        if(newTeams[teamIndex]) {
-          newTeams[teamIndex].score += points;
-        }
-        return newTeams;
-    });
+    setTeamsState(prev => prev.map((team, index) => index === teamIndex ? { ...team, score: team.score + points } : team));
+  };
+  const updateLives = (teamIndex: number, change: number): number => {
+    const newLives = Math.max(0, (teamsRef.current[teamIndex]?.lives ?? 0) + change);
+    teamsRef.current = teamsRef.current.map((team, index) => index === teamIndex ? { ...team, lives: newLives } : team);
+    setTeamsState(prev => prev.map((team, index) => index === teamIndex ? { ...team, lives: newLives } : team));
+    return newLives;
   };
 
-  const updateLives = (teamIndex: number, change: number): number => {
-      let newLives = 0;
-      setTeamsState(prevTeams => {
-        const newTeams = [...prevTeams];
-        if (newTeams[teamIndex]) {
-          const currentLives = newTeams[teamIndex].lives;
-          newLives = Math.max(0, currentLives + change);
-          newTeams[teamIndex].lives = newLives;
-        }
-        return newTeams;
-    });
-    return newLives;
+  const restoreRoundConfig = (c: any) => {
+    setTeamsState(c.teams); setGameMode(c.gameMode); setDifficultyState(c.difficulty);
+    setPracticeMode(c.isPracticeMode); setRoundTime(c.roundTime); setBibleVersionState(c.bibleVersion);
+    setIncludeGuidedContent(!!c.includeGuidedContent); setActiveLesson(c.activeLesson || null); setGameRestarted(0);
   };
 
   const t = getTranslation(language);
@@ -426,6 +358,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <GameContext.Provider value={{
+      storageOwner, pendingRoundId, setPendingRoundId, preferencesReady, restoreRoundConfig, includeGuidedContent, setIncludeGuidedContent,
       teams, setTeams,
       gameMode, setGameMode,
       difficulty, setDifficulty,
@@ -440,8 +373,7 @@ export const GameProvider = ({ children }: { children: ReactNode }) => {
       t, bibleData,
       activeLesson, setActiveLesson,
       hasConfiguredLanguage, setHasConfiguredLanguage,
-      userSettings, setUserSettings,
-      doctrinalProfile, setDoctrinalProfile,
+      doctrinalProfile,
       syncStatus, setSyncStatus,
       learningProfile, setLearningProfile
     }}>

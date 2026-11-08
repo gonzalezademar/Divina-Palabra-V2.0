@@ -1,0 +1,1 @@
+export class Analytics { constructor(public readonly id: string) {} }

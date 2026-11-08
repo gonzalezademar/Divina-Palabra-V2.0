@@ -1,0 +1,1 @@
+export class ContentDocumenter { document() { return "Content"; } }

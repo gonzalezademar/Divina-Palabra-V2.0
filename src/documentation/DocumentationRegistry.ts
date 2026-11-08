@@ -1,0 +1,1 @@
+export class DocumentationRegistry { private docs = new Map(); register(key: string, doc: any) { this.docs.set(key, doc); } get(key: string) { return this.docs.get(key); } }

@@ -1,0 +1,1 @@
+export class BibleReference { constructor(public readonly book: string, public readonly chapter: number, public readonly verse: number) {} }

@@ -1,0 +1,1 @@
+export interface WorkflowFinished { eventId: string; workflowId: string; status: string; }

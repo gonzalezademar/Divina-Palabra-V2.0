@@ -1,0 +1,1 @@
+export class PlayerMapper { toDTO(entity: any): any { return {}; } toDomain(dto: any): any { return {}; } }

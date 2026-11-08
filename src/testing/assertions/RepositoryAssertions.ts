@@ -1,0 +1,1 @@
+export class RepositoryAssertions { static assertValid() {} }

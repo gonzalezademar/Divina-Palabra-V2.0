@@ -1,0 +1,1 @@
+export interface IChallengeRepository { findById(id: string): Promise<any>; save(challenge: any): Promise<void>; }

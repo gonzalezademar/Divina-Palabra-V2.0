@@ -1,0 +1,1 @@
+export class MermaidGenerator { generate() { return "graph TD\n A-->B"; } }

@@ -22,14 +22,14 @@ export function AdBanner({ className }: { className?: string }) {
         <div className="text-left">
           <p className="font-bold text-amber-300 tracking-wide">AG Lumina Apps</p>
           <p className="text-[10px] text-slate-400">
-            {language === 'es' ? 'Descubre más herramientas con propósito' : 'Discover more tools with purpose'}
+            {('Descubre más herramientas con propósito')}
           </p>
         </div>
       </div>
 
       <div className="flex items-center gap-2 z-10">
         <span className="text-[9px] uppercase tracking-widest text-slate-500 border border-slate-800 rounded px-1.5 py-0.5 bg-slate-950/40">
-          {language === 'es' ? 'Promoción' : 'Sponsor'}
+          {('Promoción')}
         </span>
         <Sparkles className="w-3.5 h-3.5 text-amber-400 animate-pulse hidden sm:inline" />
       </div>

@@ -1,0 +1,1 @@
+import { HealthStatus } from "./ApplicationHealth"; export class ContentHealth { check(): HealthStatus { return "Healthy"; } }

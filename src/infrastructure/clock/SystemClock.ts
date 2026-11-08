@@ -1,0 +1,1 @@
+import { IClock } from "../../application/ports/IClock"; export class SystemClock implements IClock { now() { return Date.now(); } }

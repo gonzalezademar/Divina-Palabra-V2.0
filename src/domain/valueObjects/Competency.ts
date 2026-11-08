@@ -1,0 +1,1 @@
+export class Competency { constructor(public readonly name: string) {} }

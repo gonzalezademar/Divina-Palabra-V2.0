@@ -1,0 +1,1 @@
+export interface ITelemetry { track(event: string, data: any): void; }

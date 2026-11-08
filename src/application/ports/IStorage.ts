@@ -1,0 +1,1 @@
+export interface IStorage { save(data: any): void; load(): any; }

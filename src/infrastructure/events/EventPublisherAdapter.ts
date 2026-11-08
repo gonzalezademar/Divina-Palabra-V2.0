@@ -1,0 +1,1 @@
+import { IEventPublisher } from "../../application/ports/IEventPublisher"; export class EventPublisherAdapter implements IEventPublisher { publish(event: any) {} }

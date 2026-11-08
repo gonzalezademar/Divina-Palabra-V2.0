@@ -1,0 +1,1 @@
+export interface IEventPublisher { publish(event: any): void; }

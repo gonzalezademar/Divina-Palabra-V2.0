@@ -1,0 +1,1 @@
+export class Version { constructor(public readonly code: string) {} }

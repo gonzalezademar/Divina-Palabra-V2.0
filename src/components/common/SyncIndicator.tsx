@@ -10,29 +10,29 @@ export function SyncIndicator() {
       case 'idle':
         return {
           icon: <Cloud className="w-4 h-4 text-emerald-400" />,
-          label: language === 'es' ? 'Local' : 'Local',
-          tooltip: language === 'es' ? 'Datos guardados localmente' : 'Data saved locally',
+          label: ('Local'),
+          tooltip: ('Datos guardados localmente'),
           animate: false
         };
       case 'syncing':
         return {
           icon: <RefreshCw className="w-4 h-4 text-amber-400" />,
-          label: language === 'es' ? 'Guardando' : 'Saving',
-          tooltip: language === 'es' ? 'Sincronizando con la nube...' : 'Syncing with cloud...',
+          label: ('Guardando'),
+          tooltip: ('Sincronizando con la nube...'),
           animate: true
         };
       case 'offline':
         return {
           icon: <CloudOff className="w-4 h-4 text-slate-500" />,
-          label: language === 'es' ? 'Desconectado' : 'Offline',
-          tooltip: language === 'es' ? 'Modo sin conexión activo' : 'Offline mode active',
+          label: ('Desconectado'),
+          tooltip: ('Modo sin conexión activo'),
           animate: false
         };
       case 'error':
         return {
           icon: <AlertCircle className="w-4 h-4 text-red-400" />,
           label: 'Error',
-          tooltip: language === 'es' ? 'Error al guardar' : 'Failed to save',
+          tooltip: ('Error al guardar'),
           animate: false
         };
       default:

@@ -1,0 +1,34 @@
+{
+  "fecha": "2026-11-01",
+  "criterio": "Dato explícito, traducción identificada, contexto y lenguaje educativo; no certificación eclesial.",
+  "catalogos": {
+    "rvr1960": {
+      "findWordLevel1": 389,
+      "findWordLevel2": 332,
+      "completePhraseChallenges": 189,
+      "guessPhraseChallenges": 182
+    },
+    "nvi": {
+      "findWordLevel1": 264,
+      "findWordLevel2": 270,
+      "completePhraseChallenges": 104,
+      "guessPhraseChallenges": 104
+    },
+    "ntv": {
+      "findWordLevel1": 84,
+      "findWordLevel2": 76,
+      "completePhraseChallenges": 10,
+      "guessPhraseChallenges": 9
+    }
+  },
+  "fichas_apartadas": 1244,
+  "rosco": 294,
+  "reflexion": 110,
+  "reflexion_sin_acompanamiento": 107,
+  "fuentes": [
+    "https://worldea.org/who-we-are/statement-of-faith/",
+    "https://ebible.org/spaRV1909/",
+    "https://www.biblegateway.com/"
+  ],
+  "nota": "NVI y NTV conservan únicamente citas cotejadas; las restantes quedan fuera de la selección. No se sustituyen por otra traducción."
+}

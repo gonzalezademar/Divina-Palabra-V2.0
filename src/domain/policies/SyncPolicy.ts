@@ -1,0 +1,1 @@
+export class SyncPolicy { shouldSync(): boolean { return true; } }

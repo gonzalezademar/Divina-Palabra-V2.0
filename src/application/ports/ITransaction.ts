@@ -1,0 +1,1 @@
+export interface ITransaction { begin(): void; commit(): void; rollback(): void; }

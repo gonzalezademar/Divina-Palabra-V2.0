@@ -1,0 +1,1 @@
+export interface GetRecommendationsQuery { studentId: string; }

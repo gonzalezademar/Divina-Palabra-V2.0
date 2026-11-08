@@ -84,3 +84,48 @@
     transition: none !important;
   }
 }
+
+/* Readability and keyboard navigation across all learning screens. */
+@layer base {
+  button, input, select, summary, [role="button"] { touch-action: manipulation; }
+  button, select, input:not([type="radio"]):not([type="checkbox"]) { min-height: 44px; }
+  :focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
+  p { overflow-wrap: anywhere; }
+}
+@layer utilities {
+  .text-xs { font-size: .875rem; line-height: 1.5; }
+  .text-slate-500 { color: #a6b4c7; }
+  .text-slate-350 { color: #cbd5e1; }
+  .text-slate-450 { color: #a6b4c7; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+/* Long action labels wrap instead of pushing mobile layouts sideways. */
+button { white-space: normal; }
+input, select, textarea { max-width: 100%; font-size: 1rem; }
+[role="alertdialog"] { width: calc(100% - 2rem); }
+
+/* Readable controls and keyboard navigation on small screens. */
+button, [role="button"], select { touch-action: manipulation; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #fbbf24; outline-offset: 3px; }
+@media (max-width: 640px) { button, [role="button"] { min-height: 44px; } input, select, textarea { font-size: 16px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+
+@layer components {
+  .learning-panel { @apply rounded-2xl border border-slate-700 bg-slate-900 p-4 sm:p-6; }
+  .learning-label { @apply flex flex-col gap-2 font-medium; }
+  .learning-input { @apply w-full min-w-0 rounded-xl border border-slate-600 bg-slate-950 px-3 py-3 text-base text-slate-100; }
+}
+input[type="checkbox"], input[type="radio"] { min-width: 20px; min-height: 20px; accent-color: #fbbf24; flex-shrink: 0; }
+button:disabled { cursor: not-allowed; }
+.word-cell { min-height: 30px; height: 36px; padding: 0; }
+@media (min-width: 640px) { .word-cell { min-height: 40px; height: 40px; } }
+nav { padding-bottom: max(.5rem, env(safe-area-inset-bottom)); }
+select { text-overflow: ellipsis; }
+
+.word-cell { min-height: 44px; height: 44px; }
+
+/* Keep account and educator actions usable with enlarged text. */
+.learning-panel button { max-width: 100%; height: auto; min-height: 44px; overflow-wrap: anywhere; }

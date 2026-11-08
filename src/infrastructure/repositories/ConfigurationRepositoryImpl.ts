@@ -1,0 +1,1 @@
+import { IConfigurationRepository } from "../../domain/repositories/IConfigurationRepository"; export class ConfigurationRepositoryImpl implements IConfigurationRepository { async findById(id: string) { return null; } async save(config: any) {} }

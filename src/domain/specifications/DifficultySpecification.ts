@@ -1,0 +1,1 @@
+export class DifficultySpecification { isSatisfiedBy(difficulty: any): boolean { return true; } }

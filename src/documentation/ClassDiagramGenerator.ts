@@ -1,0 +1,1 @@
+export class ClassDiagramGenerator { generate() { return "Class Diagram"; } }

@@ -1,0 +1,1 @@
+import { HealthStatus } from "./ApplicationHealth"; export class WorkflowHealth { check(): HealthStatus { return "Healthy"; } }

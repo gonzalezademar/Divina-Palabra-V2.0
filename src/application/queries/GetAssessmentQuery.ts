@@ -1,0 +1,1 @@
+export interface GetAssessmentQuery { assessmentId: string; }

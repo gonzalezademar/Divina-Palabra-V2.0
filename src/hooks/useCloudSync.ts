@@ -3,7 +3,7 @@ import { useGame } from '@/contexts/GameContext';
 import { syncService } from '@/services/syncService';
 
 export function useCloudSync() {
-  const { teams, gameMode, userSettings, setSyncStatus } = useGame();
+  const { teams, gameMode, setSyncStatus } = useGame();
   const lastSyncedData = useRef<any>(null);
   const syncTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -41,7 +41,6 @@ export function useCloudSync() {
     const payload = {
       teams,
       gameMode,
-      userSettings
     };
 
     if (syncService.hasChanges(payload, lastSyncedData.current)) {
@@ -64,5 +63,5 @@ export function useCloudSync() {
     return () => {
       if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
     };
-  }, [teams, gameMode, userSettings, setSyncStatus]);
+  }, [teams, gameMode, setSyncStatus]);
 }

@@ -1,0 +1,1 @@
+export interface MaintenanceTask { run(): void; }

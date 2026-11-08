@@ -1,0 +1,1 @@
+export class DoctrineSpecification { isSatisfiedBy(doctrine: any): boolean { return true; } }

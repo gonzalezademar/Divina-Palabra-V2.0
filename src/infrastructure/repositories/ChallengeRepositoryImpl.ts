@@ -1,0 +1,1 @@
+import { IChallengeRepository } from "../../domain/repositories/IChallengeRepository"; export class ChallengeRepositoryImpl implements IChallengeRepository { async findById(id: string) { return null; } async save(challenge: any) {} }

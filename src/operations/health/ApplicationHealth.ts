@@ -1,0 +1,1 @@
+export type HealthStatus = "Healthy" | "Warning" | "Critical" | "Unknown"; export class ApplicationHealth { check(): HealthStatus { return "Healthy"; } }

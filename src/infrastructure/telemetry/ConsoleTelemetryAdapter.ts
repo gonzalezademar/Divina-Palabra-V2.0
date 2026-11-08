@@ -1,0 +1,1 @@
+import { ITelemetry } from "../../application/ports/ITelemetry"; export class ConsoleTelemetryAdapter implements ITelemetry { track(event: string, data: any) { console.log(event, data); } }

@@ -17,8 +17,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-size: 20
-        node-version: 20
+        node-version: '24.14.0'
         cache: 'npm'
 
     - name: Install dependencies
@@ -32,3 +31,11 @@ jobs:
 
     - name: Build Next.js app
       run: npm run build
+
+    - name: Probar servicio, continuidad y almacenamiento en nube
+      run: node --test tests/service.test.mjs tests/catalog-regression.mjs tests/continuity-service.mjs tests/reliability-service.mjs tests/cloud-service.test.mjs
+
+    - name: Comprobar compilación para Vercel
+      run: npm run build
+      env:
+        VERCEL: '1'

@@ -1,0 +1,1 @@
+export interface AnalyticsGenerated { eventId: string; analyticsId: string; }

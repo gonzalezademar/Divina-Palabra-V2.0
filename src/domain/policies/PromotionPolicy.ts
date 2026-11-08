@@ -1,0 +1,1 @@
+export class PromotionPolicy { canPromote(player: any): boolean { return true; } }

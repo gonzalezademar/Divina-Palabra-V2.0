@@ -1,0 +1,1 @@
+export class JsonExporter { export(data: any) { return JSON.stringify(data); } }

@@ -1,0 +1,1 @@
+export interface StudentProgressUpdated { eventId: string; studentId: string; progress: number; }

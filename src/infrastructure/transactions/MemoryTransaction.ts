@@ -1,0 +1,1 @@
+import { ITransaction } from "../../application/ports/ITransaction"; export class MemoryTransaction implements ITransaction { begin() {} commit() {} rollback() {} }

@@ -1,0 +1,1 @@
+export class MarkdownExporter { export(data: string) { return data; } }

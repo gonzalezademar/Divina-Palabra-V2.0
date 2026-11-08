@@ -1,0 +1,1 @@
+export class UseCaseExecutor { execute(useCase: any, args: any) {} }

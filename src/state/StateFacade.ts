@@ -1,0 +1,1 @@
+export class StateFacade { static initialize() {} }

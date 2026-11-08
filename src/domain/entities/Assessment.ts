@@ -1,0 +1,1 @@
+export class Assessment { constructor(public readonly id: string) {} }

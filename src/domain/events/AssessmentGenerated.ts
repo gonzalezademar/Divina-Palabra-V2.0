@@ -1,0 +1,1 @@
+export interface AssessmentGenerated { eventId: string; assessmentId: string; }

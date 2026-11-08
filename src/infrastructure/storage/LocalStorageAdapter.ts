@@ -1,0 +1,1 @@
+import { IStorage } from "../../application/ports/IStorage"; export class LocalStorageAdapter implements IStorage { save(data: any) {} load() { return null; } }

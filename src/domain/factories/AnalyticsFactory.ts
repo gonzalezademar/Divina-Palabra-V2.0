@@ -1,0 +1,1 @@
+import { Analytics } from '../entities/Analytics'; export class AnalyticsFactory { static create(id: string): Analytics { return new Analytics(id); } }

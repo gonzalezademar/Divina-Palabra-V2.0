@@ -1,0 +1,1 @@
+import { IGuidGenerator } from "../../application/ports/IGuidGenerator"; export class RandomGuidGenerator implements IGuidGenerator { generate() { return Math.random().toString(36).substring(7); } }

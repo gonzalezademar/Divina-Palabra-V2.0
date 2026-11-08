@@ -1,0 +1,1 @@
+export class SequenceDiagramGenerator { generate() { return "Sequence Diagram"; } }

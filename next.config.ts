@@ -2,9 +2,11 @@ import type {NextConfig} from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
-  output: 'export',
+  // El servidor local conserva la exportación. Vercel ejecuta también la API.
+  ...(process.env.VERCEL === '1' ? {} : { output: 'export' as const }),
+  serverExternalPackages: ['node:sqlite'],
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   eslint: {
     ignoreDuringBuilds: true,

@@ -1,0 +1,1 @@
+export class CoreLifecycle { initialize() {} start() {} stop() {} restart() {} dispose() {} healthCheck() {} }

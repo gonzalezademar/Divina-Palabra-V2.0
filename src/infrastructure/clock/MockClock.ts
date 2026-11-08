@@ -1,0 +1,1 @@
+import { IClock } from "../../application/ports/IClock"; export class MockClock implements IClock { now() { return 0; } }

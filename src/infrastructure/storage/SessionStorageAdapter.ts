@@ -1,0 +1,1 @@
+import { IStorage } from "../../application/ports/IStorage"; export class SessionStorageAdapter implements IStorage { save(data: any) {} load() { return null; } }

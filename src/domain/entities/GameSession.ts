@@ -1,0 +1,1 @@
+export class GameSession { constructor(public readonly id: string) {} }

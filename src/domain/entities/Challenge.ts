@@ -1,0 +1,1 @@
+export class Challenge { constructor(public readonly id: string) {} }

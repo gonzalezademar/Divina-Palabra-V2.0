@@ -1,17 +1,10 @@
 import { BibleCatalog, Challenge } from '@/data/bibleData';
 import { learningEngine } from './learningEngine';
-import { DoctrinalMetadata } from '@/utils/doctrinalFilter';
+import { DoctrinalMetadata, QualityReport } from '@/types/education';
+import { eventBus } from './eventBus';
+import { featureFlagEngine } from './featureFlagEngine';
 
 export type QualityStatus = 'Validado' | 'Incompleto' | 'Requiere revisión' | 'Universal';
-
-export interface QualityReport {
-  totalChallenges: number;
-  validatedCount: number;
-  incompleteCount: number;
-  reviewRequiredCount: number;
-  universalCount: number;
-  issues: string[];
-}
 
 export class ContentQualityEngine {
   private static instance: ContentQualityEngine;
@@ -35,6 +28,7 @@ export class ContentQualityEngine {
   }
 
   public auditCatalog(catalogId: string, catalog: BibleCatalog): void {
+    if (!featureFlagEngine.isEnabled('ENABLE_CONTENT_QUALITY')) return;
     if (this.auditedCatalogs.has(catalogId)) return; // Audit only once
     
     this.auditChallengesList(catalog.findWordLevel1, 'findWordLevel1');
@@ -43,6 +37,7 @@ export class ContentQualityEngine {
     this.auditChallengesList(catalog.guessPhraseChallenges, 'guessPhraseChallenges');
     
     this.auditedCatalogs.add(catalogId);
+    eventBus.emit('QUALITY_AUDITED', { catalogId, report: this.globalReport });
   }
 
   private auditChallengesList(challenges: any[], mode: string): void {

@@ -1,0 +1,1 @@
+export class RandomDataGenerator { static generateString() { return "test"; } }

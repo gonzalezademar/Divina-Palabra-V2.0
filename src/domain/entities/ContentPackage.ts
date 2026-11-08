@@ -1,0 +1,1 @@
+export class ContentPackage { constructor(public readonly id: string) {} }

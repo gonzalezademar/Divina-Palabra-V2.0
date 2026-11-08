@@ -1,0 +1,1 @@
+import { Challenge } from '../entities/Challenge'; export class ChallengeFactory { static create(id: string): Challenge { return new Challenge(id); } }

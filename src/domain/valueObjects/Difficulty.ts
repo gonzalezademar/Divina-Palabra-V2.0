@@ -1,0 +1,1 @@
+export class Difficulty { constructor(public readonly level: number) { if (level < 1 || level > 5) throw new Error('Invalid difficulty'); } }

@@ -1,0 +1,1 @@
+export class GraphvizGenerator { generate() { return "digraph G { A -> B; }"; } }

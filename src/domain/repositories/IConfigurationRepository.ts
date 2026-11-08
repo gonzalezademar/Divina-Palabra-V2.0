@@ -1,0 +1,1 @@
+export interface IConfigurationRepository { findById(id: string): Promise<any>; save(config: any): Promise<void>; }

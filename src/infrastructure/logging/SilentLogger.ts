@@ -1,0 +1,1 @@
+import { ILogger } from "../../application/ports/ILogger"; export class SilentLogger implements ILogger { log(message: string) {} }

@@ -4,17 +4,29 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "genkit:dev": "genkit start -- tsx src/ai/dev.ts",
-    "genkit:watch": "genkit start -- tsx --watch src/ai/dev.ts",
-    "build": "next build",
+    "build": "node scripts/check-cloud-env.cjs && node scripts/build-learning-catalog.cjs && next build",
     "start": "next start",
-    "lint": "next lint",
-    "typecheck": "tsc --noEmit"
+    "lint": "eslint src/components/classroom src/lib/classroom.ts",
+    "typecheck": "tsc --noEmit",
+    "build:catalog": "node scripts/build-learning-catalog.cjs",
+    "serve:local": "node server/service.mjs",
+    "test:service": "node --test tests/service.test.mjs",
+    "test:browser": "node tests/browser-audit.cjs",
+    "test:catalog": "node scripts/verify-expansion.cjs",
+    "test:pressure": "node tests/pressure-audit.cjs",
+    "test:journeys": "node tests/activity-journeys.cjs",
+    "test:compatibility": "node tests/catalog-regression.mjs",
+    "measure:capacity": "node scripts/measure-capacity.cjs",
+    "test:reliability:service": "node tests/reliability-service.mjs",
+    "test:reliability:rounds": "node tests/reliability-rounds.cjs",
+    "test:reliability:history": "node tests/reliability-history.cjs",
+    "test:reliability:storage": "node tests/reliability-storage.cjs",
+    "test:continuity:service": "node tests/continuity-service.mjs",
+    "test:continuity:browser": "node tests/continuity-browser.cjs",
+    "test:continuity:teacher": "node tests/continuity-teacher.cjs",
+    "test:continuity:accounts": "node tests/continuity-accounts.cjs"
   },
   "dependencies": {
-    "@genkit-ai/googleai": "^1.14.1",
-    "@genkit-ai/next": "^1.14.1",
-    "@hookform/resolvers": "^4.1.3",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-alert-dialog": "^1.1.6",
     "@radix-ui/react-avatar": "^1.1.3",
@@ -41,10 +53,12 @@
     "date-fns": "^3.6.0",
     "dotenv": "^16.5.0",
     "embla-carousel-react": "^8.6.0",
-    "genkit": "^1.14.1",
+    "jspdf": "^4.2.1",
+    "jsqr": "^1.4.0",
     "lucide-react": "^0.475.0",
-    "next": "15.3.8",
+    "next": "^15.5.28",
     "patch-package": "^8.0.0",
+    "qrcode": "^1.5.4",
     "react": "^18.3.1",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18.3.1",
@@ -52,18 +66,26 @@
     "recharts": "^2.15.1",
     "tailwind-merge": "^3.0.1",
     "tailwindcss-animate": "^1.0.7",
-    "tone": "^15.0.4",
-    "zod": "^3.24.2"
+    "tone": "^15.0.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "@types/node": "^20",
+    "@types/qrcode": "^1.5.6",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^9.39.4",
-    "eslint-config-next": "^15.3.8",
-    "genkit-cli": "^1.14.1",
+    "eslint-config-next": "^15.5.28",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=24.14.0"
+  },
+  "overrides": {
+    "next": {
+      "postcss": "^8.5.23"
+    }
   }
 }

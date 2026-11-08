@@ -1,0 +1,1 @@
+export class Progress { constructor(public readonly percentage: number) {} }

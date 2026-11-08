@@ -1,0 +1,1 @@
+export class DependencyGraphDocumenter { document() { return "Dependency Graph"; } }

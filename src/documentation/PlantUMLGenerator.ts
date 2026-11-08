@@ -1,0 +1,1 @@
+export class PlantUMLGenerator { generate() { return "@startuml\nA -> B\n@enduml"; } }

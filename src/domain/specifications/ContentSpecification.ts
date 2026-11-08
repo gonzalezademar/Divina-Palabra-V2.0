@@ -1,0 +1,1 @@
+export class ContentSpecification { isSatisfiedBy(content: any): boolean { return true; } }

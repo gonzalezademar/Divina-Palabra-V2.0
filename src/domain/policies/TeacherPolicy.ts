@@ -1,0 +1,1 @@
+export class TeacherPolicy { canManage(teacher: any, classId: string): boolean { return true; } }

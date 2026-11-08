@@ -1,0 +1,1 @@
+export interface ILessonRepository { findById(id: string): Promise<any>; save(lesson: any): Promise<void>; }

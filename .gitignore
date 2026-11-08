@@ -49,3 +49,12 @@ firestore-debug.log
 .vscode/
 metadata.json
 skills-lock.json
+# Cuentas locales: nunca versionar datos ni sesiones
+/var/
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+/reports/
+/respaldos/
+/out_respaldo*/

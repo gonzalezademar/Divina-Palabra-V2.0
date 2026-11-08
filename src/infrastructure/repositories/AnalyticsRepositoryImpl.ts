@@ -1,0 +1,1 @@
+import { IAnalyticsRepository } from "../../domain/repositories/IAnalyticsRepository"; export class AnalyticsRepositoryImpl implements IAnalyticsRepository { async findById(id: string) { return null; } async save(analytics: any) {} }

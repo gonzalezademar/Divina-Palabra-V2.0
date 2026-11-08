@@ -1,0 +1,1 @@
+export interface AnswerChallengeCommand { challengeId: string; answer: string; }

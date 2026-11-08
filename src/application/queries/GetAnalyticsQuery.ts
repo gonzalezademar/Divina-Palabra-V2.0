@@ -1,0 +1,1 @@
+export interface GetAnalyticsQuery { timeframe: string; }

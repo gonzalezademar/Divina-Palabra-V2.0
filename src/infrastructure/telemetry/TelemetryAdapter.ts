@@ -1,0 +1,1 @@
+import { ITelemetry } from "../../application/ports/ITelemetry"; export class TelemetryAdapter implements ITelemetry { track(event: string, data: any) {} }

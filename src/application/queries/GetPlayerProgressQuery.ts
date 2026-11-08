@@ -1,0 +1,1 @@
+export interface GetPlayerProgressQuery { playerId: string; }

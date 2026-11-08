@@ -1,0 +1,1 @@
+import { Lesson } from '../entities/Lesson'; export class LessonFactory { static create(id: string): Lesson { return new Lesson(id); } }

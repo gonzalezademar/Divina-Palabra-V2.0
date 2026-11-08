@@ -1,0 +1,1 @@
+export class DomainDocumenter { document() { return "Domain"; } }

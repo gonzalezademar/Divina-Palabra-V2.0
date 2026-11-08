@@ -1,0 +1,1 @@
+export interface LessonCompleted { eventId: string; lessonId: string; playerId: string; }

@@ -1,0 +1,1 @@
+export class DifficultyPolicy { calculateNext(current: any): any { return current; } }

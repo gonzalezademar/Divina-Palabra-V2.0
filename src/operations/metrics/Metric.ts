@@ -1,0 +1,1 @@
+export interface Metric { name: string; type: string; }

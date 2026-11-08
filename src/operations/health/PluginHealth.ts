@@ -1,0 +1,1 @@
+import { HealthStatus } from "./ApplicationHealth"; export class PluginHealth { check(): HealthStatus { return "Healthy"; } }

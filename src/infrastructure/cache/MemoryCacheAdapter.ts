@@ -1,0 +1,1 @@
+import { ICache } from "../../application/ports/ICache"; export class MemoryCacheAdapter implements ICache { get(key: string) { return null; } set(key: string, value: any) {} }

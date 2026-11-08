@@ -1,0 +1,1 @@
+import { ILessonRepository } from "../../domain/repositories/ILessonRepository"; export class LessonRepositoryImpl implements ILessonRepository { async findById(id: string) { return null; } async save(lesson: any) {} }

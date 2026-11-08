@@ -1,0 +1,1 @@
+export class ApplicationDocumenter { document() { return "Application"; } }

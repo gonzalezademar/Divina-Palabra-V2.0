@@ -1,0 +1,1 @@
+export class DoctrinalProfile { constructor(public readonly profile: string) {} }

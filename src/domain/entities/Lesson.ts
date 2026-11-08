@@ -1,0 +1,1 @@
+export class Lesson { constructor(public readonly id: string) {} }

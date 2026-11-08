@@ -1,0 +1,1 @@
+import { IContentRepository } from "../../domain/repositories/IContentRepository"; export class ContentRepositoryImpl implements IContentRepository { async findById(id: string) { return null; } async save(content: any) {} }

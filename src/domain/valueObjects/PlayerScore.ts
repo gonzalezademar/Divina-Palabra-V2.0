@@ -1,0 +1,1 @@
+export class PlayerScore { constructor(public readonly score: number) {} }

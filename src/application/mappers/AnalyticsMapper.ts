@@ -1,0 +1,1 @@
+export class AnalyticsMapper { toDTO(entity: any): any { return {}; } toDomain(dto: any): any { return {}; } }

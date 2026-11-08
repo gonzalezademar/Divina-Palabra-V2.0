@@ -1,0 +1,1 @@
+export interface IGuidGenerator { generate(): string; }

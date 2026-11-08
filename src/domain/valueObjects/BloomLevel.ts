@@ -1,0 +1,1 @@
+export class BloomLevel { constructor(public readonly level: string) {} }

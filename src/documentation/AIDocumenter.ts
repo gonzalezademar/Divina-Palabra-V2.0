@@ -1,0 +1,1 @@
+export class AIDocumenter { document() { return "AI"; } }

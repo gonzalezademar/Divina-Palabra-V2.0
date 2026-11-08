@@ -1,0 +1,1 @@
+export class HtmlExporter { export(data: string) { return "<html><body>" + data + "</body></html>"; } }

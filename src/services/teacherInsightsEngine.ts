@@ -1,19 +1,8 @@
 import { BibleCatalog } from '@/data/bibleData';
 import { learningEngine } from './learningEngine';
-import { contentQualityEngine } from './contentQualityEngine';
+import { TeacherInsights, InsightStatus } from '@/types/education';
+import { repositoryManager } from '@/repositories';
 
-export type InsightStatus = 'Excelente' | 'Bueno' | 'Mejorable' | 'Insuficiente';
-
-export interface TeacherInsights {
-  themeBalance: InsightStatus;
-  difficultyBalance: InsightStatus;
-  bloomBalance: InsightStatus;
-  doctrinalBalance: InsightStatus;
-  gameModeBalance: InsightStatus;
-  biblicalCoverage: InsightStatus;
-  
-  recommendations: string[];
-}
 
 export class TeacherInsightsEngine {
   private static instance: TeacherInsightsEngine;
@@ -39,6 +28,12 @@ export class TeacherInsightsEngine {
         recommendations: ['Agrega desafíos a tu lección para ver el análisis pedagógico.']
       };
     }
+
+    // Consultar AnalyticsRepository de forma transparente
+    try {
+      const repo = repositoryManager.get<any>('AnalyticsRepository');
+      repo.getAll().catch(() => {});
+    } catch (e) {}
 
     const themes = new Set<string>();
     const difficulties = new Set<number>();

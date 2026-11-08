@@ -1,0 +1,1 @@
+import { ILogger } from "../../application/ports/ILogger"; export class ConsoleLogger implements ILogger { log(message: string) { console.log(message); } }

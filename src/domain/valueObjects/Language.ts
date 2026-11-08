@@ -1,0 +1,1 @@
+export class Language { constructor(public readonly code: string) {} }

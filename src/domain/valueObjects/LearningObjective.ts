@@ -1,0 +1,1 @@
+export class LearningObjective { constructor(public readonly description: string) {} }

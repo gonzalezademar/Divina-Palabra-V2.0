@@ -1,0 +1,1 @@
+export interface IAnalyticsRepository { findById(id: string): Promise<any>; save(analytics: any): Promise<void>; }

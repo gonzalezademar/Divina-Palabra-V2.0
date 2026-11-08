@@ -1,5 +1,6 @@
 "use client";
 
+import { progressStorageKey } from '@/lib/practice';
 import React, { useState, useEffect, useRef } from 'react';
 import { useGame } from '@/contexts/GameContext';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -18,6 +19,10 @@ interface Verse {
 }
 
 export default function BiblePage() {
+  const {storageOwner,preferencesReady}=useGame();
+  return preferencesReady?<BibleContent key={storageOwner}/>:<main className="p-6" role="status">Abriendo tu espacio…</main>;
+}
+function BibleContent() {
   const { language, playSound, bibleVersion: globalBibleVersion, t } = useGame();
 
   // Bible State
@@ -59,7 +64,7 @@ export default function BiblePage() {
 
   // Sync search input when selected book or language changes
   useEffect(() => {
-    setBookSearchQuery(language === 'es' ? selectedBook.nameEs : selectedBook.nameEn);
+    setBookSearchQuery((selectedBook.nameEs));
   }, [selectedBook, language]);
 
   // Sync inputs with state changes
@@ -114,9 +119,10 @@ export default function BiblePage() {
     return nameEs.includes(query) || nameEn.includes(query);
   });
 
+  const [draftLoaded,setDraftLoaded]=useState(false);
   // Load sermon from localStorage on mount
   useEffect(() => {
-    const savedSermon = localStorage.getItem('draftSermon');
+    let savedSermon:string|null=null;try{savedSermon=localStorage.getItem(progressStorageKey('draftSermon'));}catch{};
     if (savedSermon) {
       try {
         const data = JSON.parse(savedSermon);
@@ -131,36 +137,12 @@ export default function BiblePage() {
         console.error("Failed to parse draft sermon", e);
       }
     }
-  }, []);
-
-  // Check if URL has a shared sermon
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const sharedSermonB64 = params.get('sermon');
-      if (sharedSermonB64) {
-        try {
-          const decoded = decodeURIComponent(escape(atob(sharedSermonB64)));
-          const data = JSON.parse(decoded);
-          setSermonTitle(data.title || '');
-          setSermonTopic(data.topic || '');
-          setSermonIntro(data.intro || '');
-          setSermonVerses(data.verses || []);
-          setSermonPoints(data.points || ['']);
-          setSermonAppl(data.appl || '');
-          setSermonConc(data.conc || '');
-          setActiveTab('sermon');
-          setIsSharedSermonMode(true);
-        } catch (e) {
-          console.error("Failed to decode shared sermon", e);
-        }
-      }
-    }
+    setDraftLoaded(true);
   }, []);
 
   // Save sermon drafts to localStorage
   useEffect(() => {
-    if (!isSharedSermonMode) {
+    if (draftLoaded && !isSharedSermonMode) {
       const data = {
         title: sermonTitle,
         topic: sermonTopic,
@@ -170,9 +152,9 @@ export default function BiblePage() {
         appl: sermonAppl,
         conc: sermonConc
       };
-      localStorage.setItem('draftSermon', JSON.stringify(data));
+      try{localStorage.setItem(progressStorageKey('draftSermon'), JSON.stringify(data));}catch{}
     }
-  }, [sermonTitle, sermonTopic, sermonIntro, sermonVerses, sermonPoints, sermonAppl, sermonConc, isSharedSermonMode]);
+  }, [sermonTitle, sermonTopic, sermonIntro, sermonVerses, sermonPoints, sermonAppl, sermonConc, isSharedSermonMode,draftLoaded]);
 
   // Fetch Bible text helper
   const getSpanishSlug = (id: string) => {
@@ -198,56 +180,37 @@ export default function BiblePage() {
     return slugMap[id] || id;
   };
 
+  const readingRequest = useRef(0);
   const fetchBibleText = async () => {
+    const request = ++readingRequest.current;
     setIsLoading(true);
     setError(null);
     setVerses([]);
-
     try {
-      if (language === 'es') {
-        const bookSlug = getSpanishSlug(selectedBook.id);
-        const version = bibleVersion === 'nvi' ? 'nvi' : 'rv1960';
-        const url = `https://bible-api.deno.dev/api/read/${version}/${bookSlug}/${selectedChapter}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Could not load verses");
-        const data = await res.json();
-        
-        const versesArray = data.vers || [];
-        const formatted: Verse[] = versesArray.map((v: any) => ({
-          number: v.number,
-          text: v.verse || ''
-        }));
-        setVerses(formatted);
-      } else {
-        // English
-        const bookName = encodeURIComponent(selectedBook.nameEn);
-        const version = bibleVersion === 'kjv' ? 'kjv' : bibleVersion === 'esv' ? 'oeb-us' : 'web';
-        const url = `https://bible-api.com/${bookName}+${selectedChapter}?translation=${version}`;
-        const res = await fetch(url);
-        if (!res.ok) throw new Error("Could not load verses");
-        const data = await res.json();
-        
-        const formatted: Verse[] = data.verses.map((v: any) => ({
-          number: v.verse,
-          text: v.text
-        }));
-        setVerses(formatted);
+      if (!['rvr1960', 'nvi'].includes(bibleVersion)) {
+        setError('Esta versión no está disponible en el lector. Selecciona otra versión arriba; no se reemplazará automáticamente.');
+        return;
       }
-    } catch (e: any) {
-      console.error(e);
-      setError(language === 'es' 
-        ? "No se pudo cargar la Biblia en este momento. Revisa tu conexión." 
-        : "Failed to load the Bible. Please check your internet connection.");
+      const bookSlug = getSpanishSlug(selectedBook.id);
+      const version = bibleVersion === 'nvi' ? 'nvi' : 'rv1960';
+      const res = await fetch(`https://bible-api.deno.dev/api/read/${version}/${bookSlug}/${selectedChapter}`, { signal: AbortSignal.timeout(12000) });
+      if (!res.ok) throw new Error('No se pudo cargar el pasaje.');
+      const data = await res.json();
+      if (!Array.isArray(data.vers) || !data.vers.length || data.vers.some((v: any) => !Number.isInteger(v.number) || typeof v.verse !== 'string')) throw new Error('El servicio no devolvió un pasaje válido.');
+      if (request === readingRequest.current) setVerses(data.vers.map((v: any) => ({ number: v.number, text: v.verse })));
+    } catch {
+      if (request === readingRequest.current) setError('No se pudo cargar la Biblia en este momento. Revisa tu conexión o vuelve a intentar.');
     } finally {
-      setIsLoading(false);
+      if (request === readingRequest.current) setIsLoading(false);
     }
   };
 
-  // Fetch when book or chapter or version changes
+  // Una respuesta lenta nunca debe aparecer bajo el título de otro pasaje.
   useEffect(() => {
-    fetchBibleText();
+    void fetchBibleText();
     setSelectedVerseNumber(null);
     setVerseSearchQuery('');
+    return () => { readingRequest.current++; };
   }, [selectedBook, selectedChapter, bibleVersion]);
 
   // Handle adding verse to sermon
@@ -276,28 +239,6 @@ export default function BiblePage() {
     playSound('click');
     const updated = sermonPoints.filter((_, i) => i !== index);
     setSermonPoints(updated.length > 0 ? updated : ['']);
-  };
-
-  // Share sermon
-  const handleShareSermon = () => {
-    playSound('correct');
-    const data = {
-      title: sermonTitle,
-      topic: sermonTopic,
-      intro: sermonIntro,
-      verses: sermonVerses,
-      points: sermonPoints,
-      appl: sermonAppl,
-      conc: sermonConc
-    };
-    const jsonStr = JSON.stringify(data);
-    const b64 = btoa(unescape(encodeURIComponent(jsonStr)));
-    const baseUrl = typeof window !== 'undefined' ? `${window.location.protocol}//${window.location.host}` : '';
-    const shareUrl = `${baseUrl}/bible?sermon=${b64}`;
-
-    navigator.clipboard.writeText(shareUrl);
-    setShared(true);
-    setTimeout(() => setShared(false), 2500);
   };
 
   // Print sermon
@@ -389,7 +330,7 @@ export default function BiblePage() {
             className={`flex-grow font-bold rounded-xl py-3 flex items-center justify-center gap-2 ${activeTab === 'reader' ? 'bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 hover:from-amber-600 hover:to-yellow-600' : 'bg-transparent text-slate-400 hover:text-slate-200'}`}
           >
             <BookOpen className="w-4 h-4" />
-            {language === 'es' ? 'Buscador Biblia' : 'Bible Finder'}
+            {('Buscador Biblia')}
           </Button>
           <Button
             onClick={() => { playSound('click'); setActiveTab('sermon'); }}
@@ -397,8 +338,8 @@ export default function BiblePage() {
           >
             <FileText className="w-4 h-4" />
             {isSharedSermonMode 
-              ? (language === 'es' ? 'Sermón Compartido' : 'Shared Sermon')
-              : (language === 'es' ? 'Bosquejo Sermón' : 'Sermon Outliner')
+              ? (('Sermón Compartido'))
+              : (('Bosquejo Sermón'))
             }
           </Button>
         </div>
@@ -414,10 +355,10 @@ export default function BiblePage() {
                   <BookMarked className="w-8 h-8 text-amber-400" />
                   <div>
                     <CardTitle className="font-headline text-2xl text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-yellow-500">
-                      {language === 'es' ? 'Estudio Bíblico Reactivo' : 'Reactive Bible Study'}
+                      {('Leer la Biblia')}
                     </CardTitle>
                     <CardDescription className="text-slate-400 text-xs">
-                      {language === 'es' ? 'Buscador intuitivo libro, capítulo y versículo' : 'Intuitive search by book, chapter and verse'}
+                      {('Buscador intuitivo libro, capítulo y versículo')}
                     </CardDescription>
                   </div>
                 </div>
@@ -430,18 +371,12 @@ export default function BiblePage() {
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="bg-slate-900 border-slate-800 text-slate-200">
-                      {language === 'es' ? (
+                      {((
                         <>
                           <SelectItem value="rvr1960" className="focus:bg-amber-500 focus:text-slate-950">Reina-Valera 1960 (Requiere Internet)</SelectItem>
                           <SelectItem value="nvi" className="focus:bg-amber-500 focus:text-slate-950">Nueva Versión Internacional (Requiere Internet)</SelectItem>
                         </>
-                      ) : (
-                        <>
-                          <SelectItem value="kjv" className="focus:bg-amber-500 focus:text-slate-950">King James Version (Internet required)</SelectItem>
-                          <SelectItem value="niv" className="focus:bg-amber-500 focus:text-slate-950">New International Version (Internet required)</SelectItem>
-                          <SelectItem value="esv" className="focus:bg-amber-500 focus:text-slate-950">English Standard Version (Internet required)</SelectItem>
-                        </>
-                      )}
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -454,12 +389,13 @@ export default function BiblePage() {
                 {/* Book Selector (Reactive Search) */}
                 <div className="flex flex-col gap-1.5 relative" ref={bookSelectorRef}>
                   <Label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? '1. Libro' : '1. Book'}
+                    {('1. Libro')}
                   </Label>
                   <div className="relative">
                     <Input
                       type="text"
-                      placeholder={language === 'es' ? "Escribe para buscar..." : "Type to search..."}
+                      placeholder={("Escribe para buscar...")}
+                      aria-label={("Libro de la Biblia")}
                       value={bookSearchQuery}
                       onChange={(e) => {
                         setBookSearchQuery(e.target.value);
@@ -472,7 +408,7 @@ export default function BiblePage() {
                       <div className="absolute left-0 right-0 z-30 mt-1 bg-slate-900 border border-slate-800 rounded-xl shadow-2xl max-h-56 overflow-y-auto p-1.5 scrollbar-thin">
                         {filteredBooks.length === 0 ? (
                           <div className="p-3 text-xs text-slate-500 text-center">
-                            {language === 'es' ? 'No se encontraron libros' : 'No books found'}
+                            {('No se encontraron libros')}
                           </div>
                         ) : (
                           filteredBooks.map((b) => (
@@ -492,9 +428,9 @@ export default function BiblePage() {
                                   : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                               }`}
                             >
-                              <span>{language === 'es' ? b.nameEs : b.nameEn}</span>
+                              <span>{(b.nameEs)}</span>
                               <span className="text-[10px] text-slate-500">
-                                {b.chapters} {language === 'es' ? 'caps' : 'chaps'}
+                                {b.chapters} {('caps')}
                               </span>
                             </button>
                           ))
@@ -507,12 +443,13 @@ export default function BiblePage() {
                 {/* Chapter Selector (Validated Input) */}
                 <div className="flex flex-col gap-1.5">
                   <Label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? '2. Capítulo (Max: ' + selectedBook.chapters + ')' : '2. Chapter (Max: ' + selectedBook.chapters + ')'}
+                    {('2. Capítulo (Max: ' + selectedBook.chapters + ')')}
                   </Label>
                   <Input
                     type="number"
                     min={1}
                     max={selectedBook.chapters}
+                    aria-label={("Capítulo")}
                     value={chapterInputValue}
                     onChange={(e) => {
                       const val = e.target.value;
@@ -533,9 +470,7 @@ export default function BiblePage() {
                 {/* Verse Selector (Validated Input to Scroll & Highlight) */}
                 <div className="flex flex-col gap-1.5">
                   <Label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' 
-                      ? '3. Versículo ' + (verses.length > 0 ? '(Max: ' + verses.length + ')' : '')
-                      : '3. Verse ' + (verses.length > 0 ? '(Max: ' + verses.length + ')' : '')
+                    {('3. Versículo ' + (verses.length > 0 ? '(Max: ' + verses.length + ')' : ''))
                     }
                   </Label>
                   <Input
@@ -543,6 +478,7 @@ export default function BiblePage() {
                     min={1}
                     max={verses.length || 1}
                     disabled={verses.length === 0}
+                    aria-label={("Versículo")}
                     value={verseInputValue}
                     onChange={(e) => {
                       const val = e.target.value;
@@ -568,10 +504,10 @@ export default function BiblePage() {
               <div className="border border-slate-800 bg-slate-950/40 rounded-2xl overflow-hidden">
                 <div className="bg-slate-900/50 px-4 py-3 border-b border-slate-800/80 flex justify-between items-center">
                   <h3 className="text-sm font-bold text-amber-300">
-                    {language === 'es' ? selectedBook.nameEs : selectedBook.nameEn} {selectedChapter}
+                    {(selectedBook.nameEs)} {selectedChapter}
                   </h3>
                   <span className="text-[10px] text-slate-500 uppercase tracking-wide">
-                    {language === 'es' ? 'Presiona un versículo para añadirlo al sermón' : 'Tap a verse to add it to your sermon'}
+                    {('Presiona un versículo para añadirlo al sermón')}
                   </span>
                 </div>
 
@@ -583,12 +519,12 @@ export default function BiblePage() {
                       type="text"
                       value={verseSearchQuery}
                       onChange={(e) => setVerseSearchQuery(e.target.value)}
-                      placeholder={language === 'es' ? "Filtrar versículos por palabra clave..." : "Filter verses by keyword..."}
+                      placeholder={("Filtrar versículos por palabra clave...")}
                       className="bg-transparent border-none text-xs text-slate-200 focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-slate-500 h-8 p-0"
                     />
                     {verseSearchQuery && (
                       <Button onClick={() => setVerseSearchQuery('')} variant="ghost" size="sm" className="text-[10px] text-slate-400 hover:text-slate-200 h-6 px-1.5 rounded-md">
-                        {language === 'es' ? 'Limpiar' : 'Clear'}
+                        {('Limpiar')}
                       </Button>
                     )}
                   </div>
@@ -598,13 +534,13 @@ export default function BiblePage() {
                   {isLoading ? (
                     <div className="flex flex-col items-center justify-center h-full py-20 space-y-2">
                       <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500" />
-                      <span className="text-xs text-slate-400">{language === 'es' ? 'Cargando Escrituras...' : 'Loading Scriptures...'}</span>
+                      <span className="text-xs text-slate-400">{('Cargando Escrituras...')}</span>
                     </div>
                   ) : error ? (
-                    <div className="text-center py-20 text-red-400 text-sm">{error}</div>
+                    <div role="status" className="text-center py-10 text-slate-200 space-y-4"><p>{error}</p><Button onClick={fetchBibleText}>{('Volver a intentar')}</Button></div>
                   ) : verses.length === 0 ? (
                     <div className="text-center py-20 text-slate-500 text-sm">
-                      {language === 'es' ? 'Selecciona un libro y capítulo para comenzar' : 'Select a book and chapter to begin'}
+                      {('Selecciona un libro y capítulo para comenzar')}
                     </div>
                   ) : (
                     <div className="space-y-4">
@@ -617,7 +553,7 @@ export default function BiblePage() {
                         if (filtered.length === 0 && verseSearchQuery) {
                           return (
                             <div className="text-center py-10 text-slate-500 text-xs">
-                              {language === 'es' ? 'Ningún versículo coincide con tu búsqueda' : 'No verses match your search'}
+                              {('Ningún versículo coincide con tu búsqueda')}
                             </div>
                           );
                         }
@@ -625,6 +561,7 @@ export default function BiblePage() {
                           <div 
                             key={v.number}
                             id={`verse-card-${v.number}`}
+                            role="button" tabIndex={0} aria-label={`${("Añadir al bosquejo, versículo")} ${v.number}: ${v.text}`} onKeyDown={e => { if(e.key === "Enter" || e.key === " ") { e.preventDefault(); addVerseToSermon(v); } }}
                             onClick={() => addVerseToSermon(v)}
                             className={`p-3 rounded-xl border text-sm cursor-pointer transition-all flex items-start gap-3 group ${
                               selectedVerseNumber === v.number 
@@ -637,7 +574,7 @@ export default function BiblePage() {
                             </span>
                             <p className="leading-relaxed flex-grow">{v.text}</p>
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity bg-amber-500/10 border border-amber-500/30 rounded px-2 py-0.5 text-[10px] text-amber-400 shrink-0 self-center">
-                              + {language === 'es' ? 'Añadir' : 'Add'}
+                              + {('Añadir')}
                             </div>
                           </div>
                         ));
@@ -659,16 +596,16 @@ export default function BiblePage() {
               <div>
                 <CardTitle className="font-headline text-2xl text-transparent bg-clip-text bg-gradient-to-b from-amber-100 to-yellow-500 flex items-center gap-2">
                   <FileText className="w-6 h-6 text-amber-400" />
-                  {language === 'es' ? 'Preparador de Mensajes' : 'Sermon Assistant'}
+                  {('Preparador de Mensajes')}
                 </CardTitle>
                 <CardDescription className="text-slate-400 text-xs">
-                  {language === 'es' ? 'Guía práctica para estructurar y exportar sermones profesionales' : 'Practical guide to structure and export professional sermons'}
+                  {('Cuaderno privado de estudio. Tus notas no son contenido bíblico revisado de la app ni se envían a alumnos.')}
                 </CardDescription>
               </div>
               
               {isSharedSermonMode && (
                 <Button onClick={handleCreateNewSermon} size="sm" variant="outline" className="border-amber-500/30 text-amber-400">
-                  {language === 'es' ? 'Crear Nuevo' : 'Create New'}
+                  {('Crear Nuevo')}
                 </Button>
               )}
             </CardHeader>
@@ -679,14 +616,14 @@ export default function BiblePage() {
                 {/* Title */}
                 <div className="space-y-1.5">
                   <Label htmlFor="sermon-title" className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Título del Sermón' : 'Sermon Title'}
+                    {('Título del Sermón')}
                   </Label>
                   <Input
                     id="sermon-title"
                     value={sermonTitle}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSermonTitle(e.target.value)}
                     disabled={isSharedSermonMode}
-                    placeholder={language === 'es' ? 'Ej. El Poder de la Fe' : 'e.g. The Power of Faith'}
+                    placeholder={('Ej. El Poder de la Fe')}
                     className="bg-slate-950 border-slate-800 text-slate-200 focus:border-amber-500/50 text-base"
                   />
                 </div>
@@ -694,14 +631,14 @@ export default function BiblePage() {
                 {/* Topic */}
                 <div className="space-y-1.5">
                   <Label htmlFor="sermon-topic" className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Tema o Asunto Central' : 'Central Theme / Topic'}
+                    {('Tema o Asunto Central')}
                   </Label>
                   <Input
                     id="sermon-topic"
                     value={sermonTopic}
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSermonTopic(e.target.value)}
                     disabled={isSharedSermonMode}
-                    placeholder={language === 'es' ? 'Ej. Confianza en las tormentas' : 'Central message/focus'}
+                    placeholder={('Ej. Confianza en las tormentas')}
                     className="bg-slate-950 border-slate-800 text-slate-200 focus:border-amber-500/50"
                   />
                 </div>
@@ -709,14 +646,14 @@ export default function BiblePage() {
                 {/* Introduction */}
                 <div className="space-y-1.5">
                   <Label htmlFor="sermon-intro" className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Introducción' : 'Introduction'}
+                    {('Introducción')}
                   </Label>
                   <Textarea
                     id="sermon-intro"
                     value={sermonIntro}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSermonIntro(e.target.value)}
                     disabled={isSharedSermonMode}
-                    placeholder={language === 'es' ? 'Escribe cómo captarás la atención de tu congregación...' : 'Introductory words...'}
+                    placeholder={('Escribe cómo captarás la atención de tu congregación...')}
                     className="bg-slate-950 border-slate-800 text-slate-200 focus:border-amber-500/50 h-24"
                   />
                 </div>
@@ -724,13 +661,11 @@ export default function BiblePage() {
                 {/* Biblical Verses selected */}
                 <div className="space-y-2">
                   <Label className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Pasajes de Apoyo' : 'Supporting Passages'}
+                    {('Pasajes de Apoyo')}
                   </Label>
                   {sermonVerses.length === 0 ? (
                     <div className="text-xs text-slate-500 border border-dashed border-slate-800 p-4 rounded-xl text-center">
-                      {language === 'es' 
-                        ? 'No hay versículos agregados aún. Usa el buscador bíblico y toca un versículo para añadirlo.' 
-                        : 'No verses added yet. Search the Bible and click on a verse to append it here.'}
+                      {('No hay versículos agregados aún. Usa el buscador bíblico y toca un versículo para añadirlo.')}
                     </div>
                   ) : (
                     <div className="space-y-2">
@@ -759,10 +694,10 @@ export default function BiblePage() {
                 {/* Main Points */}
                 <div className="space-y-2">
                   <Label className="text-xs font-bold uppercase tracking-wider text-slate-400 flex justify-between items-center">
-                    <span>{language === 'es' ? 'Puntos Clave del Desarrollo' : 'Main Message Points'}</span>
+                    <span>{('Puntos Clave del Desarrollo')}</span>
                     {!isSharedSermonMode && (
                       <Button onClick={addPoint} size="sm" variant="ghost" className="text-amber-400 hover:text-amber-300 text-[11px] h-6">
-                        + {language === 'es' ? 'Agregar Punto' : 'Add Point'}
+                        + {('Agregar Punto')}
                       </Button>
                     )}
                   </Label>
@@ -773,7 +708,7 @@ export default function BiblePage() {
                           value={pt}
                           onChange={(e: React.ChangeEvent<HTMLInputElement>) => handlePointChange(idx, e.target.value)}
                           disabled={isSharedSermonMode}
-                          placeholder={language === 'es' ? `Punto ${idx + 1}` : `Point ${idx + 1}`}
+                          placeholder={(`Punto ${idx + 1}`)}
                           className="bg-slate-950 border-slate-805 text-slate-200 text-sm flex-grow"
                         />
                         {!isSharedSermonMode && (
@@ -794,14 +729,14 @@ export default function BiblePage() {
                 {/* Application */}
                 <div className="space-y-1.5">
                   <Label htmlFor="sermon-appl" className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Aplicación Práctica' : 'Practical Application'}
+                    {('Aplicación Práctica')}
                   </Label>
                   <Textarea
                     id="sermon-appl"
                     value={sermonAppl}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSermonAppl(e.target.value)}
                     disabled={isSharedSermonMode}
-                    placeholder={language === 'es' ? '¿Cómo aplicamos esto a nuestra vida hoy?' : 'How does this apply to daily life?'}
+                    placeholder={('¿Cómo aplicamos esto a nuestra vida hoy?')}
                     className="bg-slate-950 border-slate-800 text-slate-200 focus:border-amber-500/50 h-20"
                   />
                 </div>
@@ -809,14 +744,14 @@ export default function BiblePage() {
                 {/* Conclusion */}
                 <div className="space-y-1.5">
                   <Label htmlFor="sermon-conc" className="text-xs font-bold uppercase tracking-wider text-slate-400">
-                    {language === 'es' ? 'Conclusión' : 'Conclusion'}
+                    {('Conclusión')}
                   </Label>
                   <Textarea
                     id="sermon-conc"
                     value={sermonConc}
                     onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setSermonConc(e.target.value)}
                     disabled={isSharedSermonMode}
-                    placeholder={language === 'es' ? 'Un llamado a la acción o palabras finales de reflexión...' : 'Closing remarks...'}
+                    placeholder={('Un llamado a la acción o palabras finales de reflexión...')}
                     className="bg-slate-950 border-slate-800 text-slate-200 focus:border-amber-500/50 h-20"
                   />
                 </div>
@@ -829,25 +764,10 @@ export default function BiblePage() {
                   className="flex-grow bg-slate-950 border border-slate-800 text-slate-200 hover:bg-slate-900 font-bold py-5 rounded-2xl flex items-center justify-center gap-2"
                 >
                   <Printer className="w-4 h-4" />
-                  {language === 'es' ? 'Imprimir / Guardar PDF' : 'Print / Save PDF'}
+                  {('Imprimir / Guardar PDF')}
                 </Button>
 
-                <Button 
-                  onClick={handleShareSermon}
-                  className="flex-grow bg-gradient-to-r from-amber-500 to-yellow-500 text-slate-950 hover:from-amber-600 hover:to-yellow-600 font-bold py-5 rounded-2xl flex items-center justify-center gap-2"
-                >
-                  {shared ? (
-                    <>
-                      <Check className="w-4 h-4" />
-                      {language === 'es' ? 'Enlace Copiado' : 'Link Copied'}
-                    </>
-                  ) : (
-                    <>
-                      <Share2 className="w-4 h-4" />
-                      {language === 'es' ? 'Compartir Bosquejo' : 'Share Outline'}
-                    </>
-                  )}
-                </Button>
+
               </div>
             </CardContent>
           </Card>

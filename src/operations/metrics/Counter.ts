@@ -1,0 +1,1 @@
+export class Counter { inc() {} dec() {} count = 0; }

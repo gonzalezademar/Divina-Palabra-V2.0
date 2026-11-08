@@ -1,0 +1,1 @@
+import { HealthStatus } from "./ApplicationHealth"; export class RepositoryHealth { check(): HealthStatus { return "Healthy"; } }

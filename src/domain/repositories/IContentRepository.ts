@@ -1,0 +1,1 @@
+export interface IContentRepository { findById(id: string): Promise<any>; save(content: any): Promise<void>; }

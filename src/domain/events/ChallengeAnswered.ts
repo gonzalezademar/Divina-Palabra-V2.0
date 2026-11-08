@@ -1,0 +1,1 @@
+export interface ChallengeAnswered { eventId: string; challengeId: string; playerId: string; correct: boolean; }

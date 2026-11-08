@@ -1,0 +1,1 @@
+export interface PluginExecuted { eventId: string; pluginId: string; hook: string; }

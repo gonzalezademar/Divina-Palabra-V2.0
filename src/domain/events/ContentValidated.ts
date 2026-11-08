@@ -1,0 +1,1 @@
+export interface ContentValidated { eventId: string; contentId: string; isValid: boolean; }

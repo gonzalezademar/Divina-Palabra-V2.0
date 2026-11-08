@@ -1,0 +1,1 @@
+export class Curriculum { constructor(public readonly id: string) {} }

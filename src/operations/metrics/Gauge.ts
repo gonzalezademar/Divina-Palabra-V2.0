@@ -1,0 +1,1 @@
+export class Gauge { set(val: number) {} value = 0; }

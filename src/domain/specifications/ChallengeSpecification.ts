@@ -1,0 +1,1 @@
+export class ChallengeSpecification { isSatisfiedBy(challenge: any): boolean { return true; } }
